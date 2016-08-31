@@ -13,8 +13,21 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
+  # Added for Tufts spotlight experiment - the installation script said to do this
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_options = {
+    from: "spotlight_no_reply@tufts.edu"
+  }
+
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # Changed from false to flag errors for Tufts spotlight experiment
+  config.action_mailer.raise_delivery_errors = true
+
+  # Added this for Tufts spotlight experiment - needed for batch imports.
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.tufts.edu",
+    :port => 25,
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
