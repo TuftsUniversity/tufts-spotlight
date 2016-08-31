@@ -1,2 +1,6 @@
 $logo_image: 'tufts_logo.png';
 
+.dl-horizontal dd:after {
+  clear: left;
+}
+
