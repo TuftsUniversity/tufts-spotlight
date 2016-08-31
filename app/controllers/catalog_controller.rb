@@ -32,5 +32,8 @@ class CatalogController < ApplicationController
     config.add_sort_field 'relevance', sort: 'score desc', label: 'Relevance'
 
     config.add_field_configuration_to_solr_request!
+
+    config.add_facet_field 'spotlight_upload_date_tesim', label: 'Date', limit: 7
+    config.add_facet_fields_to_solr_request!
   end
 end
