@@ -19,4 +19,5 @@
 # Added for Tufts spotlight
 public/uploads/
 solr/.DS_Store
+config/ldap.yml
 

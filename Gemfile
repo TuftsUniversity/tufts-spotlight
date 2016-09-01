@@ -61,3 +61,5 @@ gem 'sitemap_generator'
 gem 'blacklight-gallery', '>= 0.3.0'
 gem 'blacklight-oembed', '>= 0.1.0'
 gem 'devise_invitable'
+
+gem 'devise_ldap_authenticatable'

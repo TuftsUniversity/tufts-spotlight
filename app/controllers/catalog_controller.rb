@@ -36,4 +36,9 @@ class CatalogController < ApplicationController
     config.add_facet_field 'spotlight_upload_date_tesim', label: 'Date', limit: 7
     config.add_facet_fields_to_solr_request!
   end
+
+  def guest_username_authentication_key key
+     "spotlight_guest"
+  end
+
 end

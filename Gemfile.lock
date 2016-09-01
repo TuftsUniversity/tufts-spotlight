@@ -146,6 +146,9 @@ GEM
     devise_invitable (1.7.0)
       actionmailer (>= 4.0.0)
       devise (>= 4.0.0)
+    devise_ldap_authenticatable (0.8.5)
+      devise (>= 3.4.1)
+      net-ldap (>= 0.6.0, <= 0.11)
     diffy (3.1.0)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -184,6 +187,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    net-ldap (0.11)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
@@ -332,6 +336,7 @@ DEPENDENCIES
   devise
   devise-guests (~> 0.5)
   devise_invitable
+  devise_ldap_authenticatable
   friendly_id!
   jbuilder (~> 2.0)
   jquery-rails
