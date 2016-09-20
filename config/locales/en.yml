@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  fedora_resources:
+    form:
+      add_item: "Do eet"
