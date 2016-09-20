@@ -28,8 +28,8 @@ Rails.application.routes.draw do
   end
 
   # Our fedora resources
-  resources :exhibits, only [] do
-    resources :fedora_resources, only [:create, :update] do
+  resources :exhibits, only: [] do
+    resources :fedora_resources, only: [:create, :update] do
     end
   end
 
