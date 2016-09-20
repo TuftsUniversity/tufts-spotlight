@@ -27,6 +27,12 @@ Rails.application.routes.draw do
     end
   end
 
+  # Our fedora resources
+  resources :exhibits, only [] do
+    resources :fedora_resources, only [:create, :update] do
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
