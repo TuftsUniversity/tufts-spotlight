@@ -23,4 +23,5 @@ en:
   hello: "Hello world"
   fedora_resources:
     form:
-      add_item: "Do eet"
+      title: "Fedora Object"
+      add_item: "Do It!"
