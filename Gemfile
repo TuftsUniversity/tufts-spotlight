@@ -63,4 +63,4 @@ gem 'blacklight-oembed', '>= 0.1.0'
 gem 'devise_invitable'
 
 gem 'devise_ldap_authenticatable'
-gem 'active-fedora'
+gem 'active-fedora', '~> 6.7.7'
