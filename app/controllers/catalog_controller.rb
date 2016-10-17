@@ -26,13 +26,16 @@ class CatalogController < ApplicationController
 
     # solr field configuration for search results/index views
     config.index.title_field = 'full_title_tesim'
+    config.add_index_field 'description_tesim', label: 'Description'
+    config.add_index_field 'creator_tesim', label: 'Creator'
+    config.add_index_field 'publisher_tesim', label: 'Publisher'
+    config.add_index_field 'subject_tesim', label: 'Subject'
 
     config.add_search_field 'all_fields', label: 'Everything'
 
     config.add_sort_field 'relevance', sort: 'score desc', label: 'Relevance'
 
 
-    config.add_index_field 'description_tesim', label: 'Description'
     config.add_field_configuration_to_solr_request!
 
     config.add_facet_field 'spotlight_upload_date_tesim', label: 'Date', limit: 7

@@ -1,4 +1,5 @@
 class FedoraResourcesController < Spotlight::ResourcesController
+
   private
 
   def resource_class

@@ -1,23 +1,85 @@
+require 'solrizer'
+
 class FedoraBuilder < Spotlight::SolrDocumentBuilder
+
   def to_solr
     return to_enum(:to_solr) unless block_given?
 
-    id = @resource.url
-    fedora_object = ActiveFedora::Base.find(id)
+    # Get the fedora resource and its pid.
+    fedora_object = ActiveFedora::Base.find(@resource.url)
     dcStrm = fedora_object.datastreams["DCA-META"]
-    dc = Nokogiri::XML(dcStrm.content.to_s)
-    root = "/dca_dc:dc/dc:"
-    id = /.*:(.*)/.match(dcStrm.pid)
 
+    # Parse the xml.
+    @xml = Nokogiri::XML(dcStrm.content.to_s)
+    @root = "/dca_dc:dc/"
+
+    # Start the output hash.
+    pid = dcStrm.pid.gsub(/^.*:/, '').gsub('.', '')
     doc = {
-      id: id[1],
-      full_title_tesim: dc.xpath(root + "title").text,
-      description_tesim: dc.xpath(root + "description").text
+      id: pid,
+      full_title_tesim: @xml.xpath(@root + full_title_field).first.text,
     }
+
+    # Fill the rest of the output hash.
+    field_names().each do |h|
+      Solrizer.insert_field(
+        doc,
+        h[:field],
+        aggregate_fields(build_xpath(h)),
+        :stored_searchable
+      )
+    end
 
     yield doc
 
     # TODO: your implementation here
     # yield { id: resource.id }
+  end
+
+
+  private
+
+  ##
+  # The field to use for full_title_field
+  def full_title_field
+    "dc:title"
+  end
+
+  ##
+  # The fields and namespaces we're adding to the doc.
+  def field_names
+    [
+      { field: "description" },
+      { field: "creator" },
+      { field: "publisher" },
+      { field: "subject", ns: "dcadesc" }
+    ]
+  end
+
+  ##
+  # Builds the xpath expression to run through nokogiri.
+  #
+  # @param {hash} fld_hsh
+  #   A hash with :field and optionally :ns values.
+  def build_xpath(fld_hsh)
+    root = @root.nil? ? "/" : @root
+    ns = fld_hsh.has_key?(:ns) ? fld_hsh[:ns] : "dc"
+
+    root + ns + ":" + fld_hsh[:field]
+  end
+
+  ##
+  # Iterates over an element list and gets each text value.
+  #
+  # @param {string} xpath
+  #   The xpath to use with nokogiri.
+  def aggregate_fields(xpath)
+    values = []
+    elements = @xml.xpath(xpath)
+    elements.each do |el|
+      values.push(el.text)
+    end
+
+    values
   end
 end
