@@ -50,6 +50,7 @@ gem 'blacklight', ' ~> 6.0'
 gem 'blacklight-spotlight', github: 'projectblacklight/spotlight'
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
+  gem "rspec-rails", "~> 3.5.0"
 end
 
 gem 'rsolr', '~> 1.0'
