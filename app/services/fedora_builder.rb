@@ -14,10 +14,12 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     @root = "/dca_dc:dc/"
 
     # Start the output hash.
-    pid = dcStrm.pid.gsub(/^.*:/, '').gsub('.', '')
+    pid = dcStrm.pid
+    id = dcStrm.pid.gsub(/^.*:/, '').gsub('.', '')
     doc = {
-      id: pid,
+      id: id,
       full_title_tesim: @xml.xpath(@root + full_title_field).first.text,
+      spotlight_resource_type_ssim: "spotlight/resources/fedora"
     }
 
     # Fill the rest of the output hash.
@@ -28,6 +30,16 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
         aggregate_fields(build_xpath(h)),
         :stored_searchable
       )
+    end
+
+    unless(fedora_object.datastreams["Advanced.jpg"].nil?)
+      doc[Spotlight::Engine.config.full_image_field] =
+        fedora_object.datastreams["Advanced.jpg"].dsLocation
+    end
+
+    unless(fedora_object.datastreams["Thumbnail.png"].nil?)
+      doc[Spotlight::Engine.config.thumbnail_field] =
+        fedora_object.datastreams["Thumbnail.png"].dsLocation
     end
 
     yield doc
