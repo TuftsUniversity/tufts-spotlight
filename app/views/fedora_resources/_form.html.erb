@@ -1,6 +1,5 @@
 <%= bootstrap_form_for([current_exhibit, @resource.becomes(FedoraResource)], as: :resource) do |f| %>
-  <%= label_tag(:resource_id, "Fedora ID:") %>
-  <%= f.text_field :url %>
+  <%= f.text_field :url, label: "Fedora ID:" %>
   <div class="form-actions">
     <div class="primary-actions">
       <%= cancel_link @resource, :back, class: 'btn btn-default' %>
