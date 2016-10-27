@@ -97,19 +97,19 @@ GEM
       activerecord (>= 4.0)
     addressable (2.4.0)
     arel (6.0.3)
-    autoprefixer-rails (6.5.1)
+    autoprefixer-rails (6.5.1.1)
       execjs
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    blacklight (6.7.1)
+    blacklight (6.7.2)
       bootstrap-sass (~> 3.2)
       deprecation
       globalid
       kaminari (>= 0.15)
       nokogiri (~> 1.6)
       rails (>= 4.2, < 6)
-      rsolr (~> 1.0, >= 1.0.6)
+      rsolr (>= 1.0.6, < 3)
       twitter-typeahead-rails (= 0.11.1.pre.corejavascript)
     blacklight-gallery (0.6.1)
       blacklight (~> 6.3)
@@ -129,6 +129,13 @@ GEM
     builder (3.2.2)
     byebug (9.0.6)
     cancancan (1.15.0)
+    capybara (2.10.1)
+      addressable
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -138,7 +145,9 @@ GEM
       carrierwave (>= 0.8.0, < 0.11.0)
       jquery-rails
       rails (>= 3.2)
-    clipboard-rails (1.5.13)
+    childprocess (0.5.9)
+      ffi (~> 1.0, >= 1.0.11)
+    clipboard-rails (1.5.15)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -180,6 +189,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.10.0)
       faraday (>= 0.7.4, < 0.10)
+    ffi (1.9.14)
     github-markup (1.4.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -194,6 +204,11 @@ GEM
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
+    jettywrapper (1.8.3)
+      activesupport (>= 3.0.0)
+      childprocess
+      i18n
+      logger
     jquery-rails (4.2.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -227,6 +242,7 @@ GEM
       rdf-turtle (~> 1.1, >= 1.1.5)
       sparql (~> 1.1, >= 1.1.4)
       sparql-client (~> 1.1, >= 1.1.3)
+    logger (1.2.8)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -464,7 +480,7 @@ GEM
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uber (0.0.15)
-    uglifier (3.0.2)
+    uglifier (3.0.3)
       execjs (>= 0.3.0, < 3)
     underscore-rails (1.8.3)
     unf (0.1.4)
@@ -478,6 +494,8 @@ GEM
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
     xml-simple (1.1.5)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
@@ -489,6 +507,7 @@ DEPENDENCIES
   blacklight-oembed (>= 0.1.0)
   blacklight-spotlight!
   byebug
+  capybara
   coffee-rails (~> 4.1.0)
   devise
   devise-guests (~> 0.5)
@@ -496,6 +515,7 @@ DEPENDENCIES
   devise_ldap_authenticatable
   friendly_id!
   jbuilder (~> 2.0)
+  jettywrapper (= 1.8.3)
   jquery-rails
   rails (= 4.2.6)
   riiif (~> 0.4.0)
@@ -511,4 +531,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.13.5
+   1.13.6
