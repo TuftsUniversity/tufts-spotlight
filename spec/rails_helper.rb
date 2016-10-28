@@ -55,3 +55,10 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+def clean_fedora_and_solr
+  ActiveFedora::Base.delete_all
+  solr = ActiveFedora::SolrService.instance.conn
+  solr.delete_by_query("*:*", params: { commit: true })
+end
+
