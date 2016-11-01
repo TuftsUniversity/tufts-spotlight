@@ -19,7 +19,8 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     doc = {
       id: id,
       full_title_tesim: @xml.xpath(@root + full_title_field).first.text,
-      spotlight_resource_type_ssim: "spotlight/resources/fedora"
+      spotlight_resource_type_ssim: "spotlight/resources/fedora",
+      orig_pid: pid
     }
 
     # Fill the rest of the output hash.
@@ -32,9 +33,9 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
       )
     end
 
-    unless(fedora_object.datastreams["Advanced.jpg"].nil?)
+    unless(fedora_object.datastreams["Basic.jpg"].nil?)
       doc[Spotlight::Engine.config.full_image_field] =
-        fedora_object.datastreams["Advanced.jpg"].dsLocation
+        fedora_object.datastreams["Basic.jpg"].dsLocation
     end
 
     unless(fedora_object.datastreams["Thumbnail.png"].nil?)
