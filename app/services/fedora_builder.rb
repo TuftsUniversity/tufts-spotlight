@@ -20,7 +20,7 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
       id: id,
       full_title_tesim: @xml.xpath(@root + full_title_field).first.text,
       spotlight_resource_type_ssim: "spotlight/resources/fedora",
-      orig_pid: pid
+      f3_pid_ssi: pid
     }
 
     # Fill the rest of the output hash.
