@@ -22,4 +22,13 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
+
+
+  # Use our fedora_resource model code, if document is a fedora resource.
+  use_extension(Spotlight::SolrDocument::FedoraResource, &:fedora_resource?)
+
+  def fedora_resource?
+    self[self.class.resource_type_field].present? &&
+      self[self.class.resource_type_field].include?('spotlight/resources/fedora')
+  end
 end

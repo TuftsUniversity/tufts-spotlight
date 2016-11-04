@@ -33,9 +33,9 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
       )
     end
 
-    unless(fedora_object.datastreams["Basic.jpg"].nil?)
+    unless(fedora_object.datastreams["Advanced.jpg"].nil?)
       doc[Spotlight::Engine.config.full_image_field] =
-        fedora_object.datastreams["Basic.jpg"].dsLocation
+        fedora_object.datastreams["Advanced.jpg"].dsLocation
     end
 
     unless(fedora_object.datastreams["Thumbnail.png"].nil?)
