@@ -1,13 +1,18 @@
 require 'solrizer'
+require 'yaml'
 
 class FedoraBuilder < Spotlight::SolrDocumentBuilder
+  def initialize(resource)
+    super(resource)
+    load_yaml
+  end
 
   def to_solr
     return to_enum(:to_solr) unless block_given?
 
     # Get the fedora resource and its pid.
-    fedora_object = ActiveFedora::Base.find(@resource.url)
-    dcStrm = fedora_object.datastreams["DCA-META"]
+    @fedora_object = ActiveFedora::Base.find(@resource.url)
+    dcStrm = @fedora_object.datastreams["DCA-META"]
 
     # Parse the xml.
     @xml = Nokogiri::XML(dcStrm.content.to_s)
@@ -18,7 +23,7 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     id = dcStrm.pid.gsub(/^.*:/, '').gsub('.', '')
     doc = {
       id: id,
-      full_title_tesim: @xml.xpath(@root + full_title_field).first.text,
+      full_title_tesim: full_title_field(), 
       spotlight_resource_type_ssim: "spotlight/resources/fedora",
       f3_pid_ssi: pid
     }
@@ -33,16 +38,16 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
       )
     end
 
-    unless(fedora_object.datastreams["Advanced.jpg"].nil?)
+    unless(@fedora_object.datastreams["Advanced.jpg"].nil?)
       doc[Spotlight::Engine.config.full_image_field] =
-        fedora_object.datastreams["Advanced.jpg"].dsLocation
+        @fedora_object.datastreams["Advanced.jpg"].dsLocation
 
       doc = add_image_dimensions(doc)
     end
 
-    unless(fedora_object.datastreams["Thumbnail.png"].nil?)
+    unless(@fedora_object.datastreams["Thumbnail.png"].nil?)
       doc[Spotlight::Engine.config.thumbnail_field] =
-        fedora_object.datastreams["Thumbnail.png"].dsLocation
+        @fedora_object.datastreams["Thumbnail.png"].dsLocation
     end
 
     yield doc
@@ -54,27 +59,33 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
 
   private
 
+  def load_yaml
+    # Load the yaml file or error out informatively.
+    begin
+      @settings = YAML::load(File.open(Rails.root.join("config/fedora_fields.yml").to_s))
+    rescue
+      raise "Unable to find fedora_fields.yml file!"
+    end
+  end
+
   def add_image_dimensions(doc)
     dimensions = ::MiniMagick::Image.open(doc[Spotlight::Engine.config.full_image_field])[:dimensions]
     doc[:spotlight_full_image_width_ssm] = dimensions.first
     doc[:spotlight_full_image_height_ssm] = dimensions.last
     doc
   end
+
   ##
   # The field to use for full_title_field
   def full_title_field
-    "dc:title"
+    byebug
+    #@xml.xpath(@root + full_title_field).first.text,
   end
 
   ##
   # The fields and namespaces we're adding to the doc.
   def field_names
-    [
-      { field: "description" },
-      { field: "creator" },
-      { field: "publisher" },
-      { field: "subject", ns: "dcadesc" }
-    ]
+    []
   end
 
   ##

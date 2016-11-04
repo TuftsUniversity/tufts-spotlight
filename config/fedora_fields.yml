@@ -1,0 +1,21 @@
+#@file
+# Contains the mappings for fields in Fedora => Spotlight
+
+full_title_field:
+  ds: DCA-META
+  xpath: "/dca_dc:dc/dc:title"
+
+full_image_ds: Advanced.jpg
+thumb_ds: Thumbnail.png
+
+default_ns: dc
+
+streams:
+  DCA-META:
+    root: "/dca_dc:dc/"
+    elements:
+      - { field: description }
+      - { field: creator }
+      - { field: publisher }
+      - { field: subject, ns: dcadesc }
+
