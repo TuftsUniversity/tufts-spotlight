@@ -36,6 +36,8 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     unless(fedora_object.datastreams["Advanced.jpg"].nil?)
       doc[Spotlight::Engine.config.full_image_field] =
         fedora_object.datastreams["Advanced.jpg"].dsLocation
+
+      doc = add_image_dimensions(doc)
     end
 
     unless(fedora_object.datastreams["Thumbnail.png"].nil?)
@@ -52,6 +54,12 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
 
   private
 
+  def add_image_dimensions(doc)
+    dimensions = ::MiniMagick::Image.open(doc[Spotlight::Engine.config.full_image_field])[:dimensions]
+    doc[:spotlight_full_image_width_ssm] = dimensions.first
+    doc[:spotlight_full_image_height_ssm] = dimensions.last
+    doc
+  end
   ##
   # The field to use for full_title_field
   def full_title_field
