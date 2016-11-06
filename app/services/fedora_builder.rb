@@ -6,7 +6,6 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
 
   def initialize(resource)
     super(resource)
-    @streams = {}
     load_yaml
   end
 
@@ -122,17 +121,6 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     end
 
     values
-  end
-
-  ##
-  # Converts a datastream to Nokogiri.
-  # Caches the stream to @streams.
-  def parse_stream(ds)
-    dsym = ds.to_sym
-    unless(@streams.key?(dsym))
-      @streams[dsym] = Nokogiri::XML(@fedora_object.datastreams[ds])
-    end
-    @streams[dsym]
   end
 
 end
