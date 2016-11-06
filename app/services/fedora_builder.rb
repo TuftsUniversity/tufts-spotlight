@@ -2,8 +2,11 @@ require 'solrizer'
 require 'yaml'
 
 class FedoraBuilder < Spotlight::SolrDocumentBuilder
+  include FedoraHelpers
+
   def initialize(resource)
     super(resource)
+    @streams = {}
     load_yaml
   end
 
@@ -23,7 +26,7 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     id = dcStrm.pid.gsub(/^.*:/, '').gsub('.', '')
     doc = {
       id: id,
-      full_title_tesim: full_title_field(), 
+      full_title_tesim: full_title_field(),
       spotlight_resource_type_ssim: "spotlight/resources/fedora",
       f3_pid_ssi: pid
     }
@@ -59,15 +62,19 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
 
   private
 
+  ##
+  # Load the fedora_fields.yml file.
   def load_yaml
     # Load the yaml file or error out informatively.
     begin
-      @settings = YAML::load(File.open(Rails.root.join("config/fedora_fields.yml").to_s))
+      @settings = YAML::load(File.open(Rails.root.join("config/fedora_fields.yml").to_s)).deep_symbolize_keys!
     rescue
       raise "Unable to find fedora_fields.yml file!"
     end
   end
 
+  ##
+  # Add the image dimensions to solr.
   def add_image_dimensions(doc)
     dimensions = ::MiniMagick::Image.open(doc[Spotlight::Engine.config.full_image_field])[:dimensions]
     doc[:spotlight_full_image_width_ssm] = dimensions.first
@@ -75,11 +82,13 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     doc
   end
 
-  ##
-  # The field to use for full_title_field
+  #
+  # The field to use for full_title_field.
   def full_title_field
+    f = @settings[:full_title_field]
     byebug
-    #@xml.xpath(@root + full_title_field).first.text,
+    ds = @fedora_object.datastreams[f[:ds]]
+    ds.xpath(f[:xpath]).first.text
   end
 
   ##
@@ -114,4 +123,16 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
 
     values
   end
+
+  ##
+  # Converts a datastream to Nokogiri.
+  # Caches the stream to @streams.
+  def parse_stream(ds)
+    dsym = ds.to_sym
+    unless(@streams.key?(dsym))
+      @streams[dsym] = Nokogiri::XML(@fedora_object.datastreams[ds])
+    end
+    @streams[dsym]
+  end
+
 end

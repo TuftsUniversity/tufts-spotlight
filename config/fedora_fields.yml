@@ -12,7 +12,7 @@ default_ns: dc
 
 streams:
   DCA-META:
-    root: "/dca_dc:dc/"
+    default_root: "/dca_dc:dc/"
     elements:
       - { field: description }
       - { field: creator }
