@@ -1,6 +1,6 @@
 ##
 ## @file
-# Helper methods for working with Fedora and ActiveFedora
+# Helper methods for working with Fedora, ActiveFedora, and Nokogiri
 
 module FedoraHelpers
 
@@ -15,27 +15,24 @@ module FedoraHelpers
   #
   # @params
   #   id {string} Fedora pid.
-  #
   # @return {object/hash}
   #   ActiveFedora object or empty hash.
   def find(id)
     if(ActiveFedora::Base.exists?(id))
       @fedora_object = ActiveFedora::Base.find(id)
-      Rails.logger.info("Successfully loaded " + id)
+      Rails.logger.info("Successfully loaded #{id}.")
     else
       @fedora_object = {}
-      Rails.logger.warn(id + " is not a valid Fedora ID!")
+      Rails.logger.warn("#{id} is not a valid Fedora ID!")
     end
   end
 
   ##
-  # Retrieves a specific datastream, wrapped in FedoraHelpers::Datastream class."
-  #
-  # Datastreams are lazy-loaded to @streams.
+  # Retrieves a specific datastream, wrapped in FedoraHelpers::Datastream class.
+  # Datastreams are saved to @streams, so we don't keep reloading them.
   #
   # @params
   #   name {string} Datastream name.
-  #
   # @return {object/hash}
   #   FedoraHelpers::Datastream object or empty hash.
   def get_stream(name)
@@ -50,7 +47,7 @@ module FedoraHelpers
       end
       @streams[nym]
     else
-      Rails.logger.warn(name + " is not a valid datastream!")
+      Rails.logger.warn("#{name} is not a valid datastream!")
       nil
     end
   end
@@ -59,7 +56,16 @@ module FedoraHelpers
   ##
   # Datastream-specific helpers.
   class Datastream
+    attr_reader :xml
+
     def initialize(stream)
+      unless(stream.respond_to?(:content))
+        @xml = ""
+        Rails.logger.warn("Error, #{stream} is not a datastream.")
+      else
+        @xml = Nokogiri::XML(stream.content.to_s)
+      end
     end
-  end
-end
+
+  end # End Datastream
+end # End FedoraHelpers
