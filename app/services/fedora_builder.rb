@@ -13,12 +13,9 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     return to_enum(:to_solr) unless block_given?
 
     # Get the fedora resource and its pid.
-    @fedora_object = ActiveFedora::Base.find(@resource.url)
-    dcStrm = @fedora_object.datastreams["DCA-META"]
-
+    @fedora_object = find(@resource.url)
     # Parse the xml.
-    @xml = Nokogiri::XML(dcStrm.content.to_s)
-    @root = "/dca_dc:dc/"
+    @xml = get_stream("DCA-META")
 
     # Start the output hash.
     pid = dcStrm.pid
