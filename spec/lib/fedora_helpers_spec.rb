@@ -39,11 +39,11 @@ shared_examples_for FedoraHelpers do
         expect(obj.instance_variable_get(:@streams)).to have_key(ds.to_sym)
       end
 
-      it "doesn't update @streams if already there" do
+      it "doesn't update @streams if key already exists" do
         obj.instance_variable_set(:@streams, { ds.to_sym => "different value" } )
         expect(obj.get_stream(ds)).to eq("different value")
       end
-    end
+    end #End context with a valid datastream
 
     context "with an invalid datastream" do
       it "returns nil" do
