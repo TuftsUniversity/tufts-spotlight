@@ -70,4 +70,11 @@ guard :rspec, cmd: "spring rspec" do
 
   # Travis specials
   watch("#{rspec.spec_dir}/lib/fedora_helpers_spec.rb") { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
+  watch("lib/fedora_helpers.rb") do
+    [
+      rspec.spec.call("services/fedora_builder"),
+      rspec.spec.call("lib/fedora_helpers_datastream")
+    ]
+  end
+
 end
