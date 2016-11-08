@@ -14,7 +14,11 @@ describe FedoraHelpers::Datastream do
         expect(obj.xml.class).to eq(Nokogiri::XML::Document)
       end
 
-      it "sets default_root to be the root element" do
+      it "sets attr_readable @pid to be the pid" do
+        expect(obj.pid).to eq(pid)
+      end
+
+      it "sets attr_accessible @default_root to be the root element" do
         expect(obj.default_root).to eq("/#{obj.get_root}")
       end
     end
@@ -26,6 +30,14 @@ describe FedoraHelpers::Datastream do
       end
     end
   end # End describe initialization
+
+  describe "attr_accessors" do
+    it "allows @default_root to be overwritten" do
+      new_root = "/blah"
+      obj.default_root = new_root
+      expect(obj.default_root).to eq(new_root)
+    end
+  end
 
   describe "get_root" do
     it "returns the root element's name" do
@@ -47,7 +59,7 @@ describe FedoraHelpers::Datastream do
     end
 
     # No testing for syntax errors here. That's done in get_all_text.
-  end
+  end # End describe get_text
 
   describe "get_all_text" do
     it "returns an array of all texts from matching elements" do
