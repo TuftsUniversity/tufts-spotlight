@@ -66,6 +66,8 @@ group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
   gem 'rspec-rails', '~> 3.5.0'
   gem 'jettywrapper', '1.8.3'
+  gem 'guard-rspec'
+  gem 'spring-commands-rspec'
 end
 
 group :development do
