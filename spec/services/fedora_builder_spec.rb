@@ -6,9 +6,12 @@ require 'mini_magick'
 describe FedoraBuilder do
   it_behaves_like FedoraHelpers
 
-  let(:obj) { obj = FedoraBuilder.new(FedoraResourceStub.new) }
+  let(:obj) { FedoraBuilder.new(FedoraResourceStub.new) }
 
   describe "initialize" do
+    it "loads the yaml into @settings" do
+      expect(obj.instance_variable_get(:@settings)).not_to be_empty
+    end
   end
 
   describe "to_solr" do
