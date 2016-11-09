@@ -14,10 +14,6 @@ describe FedoraHelpers::Datastream do
         expect(obj.xml.class).to eq(Nokogiri::XML::Document)
       end
 
-      it "sets attr_readable @pid to be the pid" do
-        expect(obj.pid).to eq(pid)
-      end
-
       it "sets attr_accessible @default_root to be the root element" do
         expect(obj.default_root).to eq("/#{obj.get_root}")
       end

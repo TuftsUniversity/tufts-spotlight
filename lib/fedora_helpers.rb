@@ -15,7 +15,7 @@ module FedoraHelpers
   #
   # @params
   #   id {string} Fedora pid.
-  def find(id)
+  def load_resource(id)
     if(ActiveFedora::Base.exists?(id))
       @fedora_object = ActiveFedora::Base.find(id)
       Rails.logger.info("Successfully loaded #{id}.")
@@ -59,8 +59,6 @@ module FedoraHelpers
     attr_reader :xml
     # Our default root element to work from.
     attr_accessor :default_root
-    # The Fedora 3 Pid
-    attr_reader :pid
 
     ##
     # Loads the xml into @xml.
@@ -74,7 +72,6 @@ module FedoraHelpers
       else
         @xml = Nokogiri::XML(stream.content.to_s)
         @default_root = "/#{get_root}"
-        @pid = stream.pid
       end
     end
 

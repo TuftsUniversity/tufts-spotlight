@@ -3,19 +3,19 @@ require 'rails_helper'
 shared_examples_for FedoraHelpers do
   let(:pid) { "tufts:MS054.003.DO.02108" }
 
-  describe "find" do
+  describe "load_resource" do
     let(:obj) { described_class.new("blah") }
 
     context "with a valid ID" do
       it "saves an ActiveFedora object in @fedora_object" do
-        obj.find(pid)
+        obj.load_resource(pid)
         expect(obj.instance_variable_get(:@fedora_object).class).to eq(ActiveFedora::Base)
       end
     end
 
     context "with an invalid ID" do
       it "saves an empty hash in @fedora_object" do
-        obj.find("fake")
+        obj.load_resource("fake")
         expect(obj.instance_variable_get(:@fedora_object)).to be_empty
       end
     end
@@ -24,7 +24,7 @@ shared_examples_for FedoraHelpers do
   describe "get_stream" do
     let(:obj) do
       obj = described_class.new("blah")
-      obj.find(pid)
+      obj.load_resource(pid)
       obj
     end
     let(:ds) { "DCA-META" }
