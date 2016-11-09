@@ -12,7 +12,6 @@ default_ns: dc
 
 streams:
   DCA-META:
-    default_root: "/dca_dc:dc/"
     elements:
       - { field: description }
       - { field: creator }

@@ -10,22 +10,18 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   end
 
   def to_solr
-    return to_enum(:to_solr) unless block_given?
-
+    doc = super
     # Get the fedora resource and its pid.
-    @fedora_object = find(@resource.url)
-    # Parse the xml.
-    @xml = get_stream("DCA-META")
+    load_resource(@resource.url)
+    pid = @fedora_object.pid
 
     # Start the output hash.
-    pid = dcStrm.pid
-    id = dcStrm.pid.gsub(/^.*:/, '').gsub('.', '')
-    doc = {
-      id: id,
+    doc.merge!({
+      id: pid.gsub(/^.*:/, '').gsub('.', ''),
       full_title_tesim: full_title_field(),
       spotlight_resource_type_ssim: "spotlight/resources/fedora",
       f3_pid_ssi: pid
-    }
+    })
 
     # Fill the rest of the output hash.
     field_names().each do |h|
@@ -49,10 +45,8 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
         @fedora_object.datastreams["Thumbnail.png"].dsLocation
     end
 
-    yield doc
+    doc
 
-    # TODO: your implementation here
-    # yield { id: resource.id }
   end
 
 
@@ -82,9 +76,7 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   # The field to use for full_title_field.
   def full_title_field
     f = @settings[:full_title_field]
-    byebug
-    ds = @fedora_object.datastreams[f[:ds]]
-    ds.xpath(f[:xpath]).first.text
+    get_stream(f[:ds]).get_text(f[:xpath])
   end
 
   ##
