@@ -76,5 +76,6 @@ guard :rspec, cmd: "spring rspec" do
       rspec.spec.call("lib/fedora_helpers_datastream")
     ]
   end
+  watch("config/fedora_fields.yml") { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
 
 end
