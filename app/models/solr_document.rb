@@ -25,7 +25,7 @@ class SolrDocument
 
 
   # Use our fedora_resource model code, if document is a fedora resource.
-  use_extension(Spotlight::SolrDocument::FedoraResource, &:fedora_resource?)
+  use_extension(SolrDocument::FedoraResource, &:fedora_resource?)
 
   def fedora_resource?
     self[self.class.resource_type_field].present? &&

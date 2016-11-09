@@ -1,6 +1,7 @@
 #@file
 # Contains the mappings for fields in Fedora => Spotlight
 
+---
 full_title_field:
   ds: DCA-META
   xpath: "/dca_dc:dc/dc:title"

@@ -10,21 +10,20 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   end
 
   def to_solr
-    doc = super
     # Get the fedora resource and its pid.
     load_resource(@resource.url)
     pid = @fedora_object.pid
 
     # Start the output hash.
-    doc.merge!({
+    doc = super.merge!({
       id: pid.gsub(/^.*:/, '').gsub('.', ''),
-      full_title_tesim: full_title_field(),
+      full_title_tesim: full_title_field,
       spotlight_resource_type_ssim: "spotlight/resources/fedora",
       f3_pid_ssi: pid
     })
 
     # Fill the rest of the output hash.
-    field_names().each do |h|
+    field_names.each do |h|
       Solrizer.insert_field(
         doc,
         h[:field],
@@ -95,21 +94,6 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     ns = fld_hsh.has_key?(:ns) ? fld_hsh[:ns] : "dc"
 
     root + ns + ":" + fld_hsh[:field]
-  end
-
-  ##
-  # Iterates over an element list and gets each text value.
-  #
-  # @param {string} xpath
-  #   The xpath to use with nokogiri.
-  def aggregate_fields(xpath)
-    values = []
-    elements = @xml.xpath(xpath)
-    elements.each do |el|
-      values.push(el.text)
-    end
-
-    values
   end
 
 end
