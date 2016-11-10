@@ -20,7 +20,10 @@ describe FedoraBuilder do
       {
         full_title_tesim: "114 Professors Row",
         spotlight_resource_type_ssim: "spotlight/resources/fedora",
-        f3_pid_ssi: "tufts:MS054.003.DO.02108"
+        f3_pid_ssi: "tufts:MS054.003.DO.02108",
+
+        Spotlight::Engine.config.full_image_field => "http://bucket01.lib.tufts.edu/data01/tufts/central/dca/MS054/advanced_jpg/MS054.003.DO.02108.advanced.jpg",
+        Spotlight::Engine.config.thumbnail_field => "http://bucket01.lib.tufts.edu/data01/tufts/central/dca/MS054/thumb_png/MS054.003.DO.02108.thumb.png"
       }
     end
 
