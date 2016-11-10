@@ -41,8 +41,7 @@ module FedoraHelpers
     if(@fedora_object.datastreams.key?(name))
       nym = name.to_sym
       unless(@streams.key?(nym))
-        @streams[nym] =
-          FedoraHelpers::Datastream.new(@fedora_object.datastreams[name])
+        prepare_stream(name)
       end
       @streams[nym]
     else
@@ -52,111 +51,24 @@ module FedoraHelpers
   end
 
 
+  private
+
   ##
-  # Datastream-specific helpers.
-  class Datastream
-    # Our Nokogiri::XML document.
-    attr_reader :xml
-    # Our default root element to work from.
-    attr_accessor :default_root
-
-    ##
-    # Loads the xml into @xml.
-    #
-    # @params
-    #   stream {ActiveFedora::Datastream} Datastream to parse.
-    def initialize(stream)
-      unless(stream.respond_to?(:content))
-        @xml = ""
-        Rails.logger.warn("Error, #{stream} is not a datastream.")
-      else
-        @xml = Nokogiri::XML(stream.content.to_s)
-        @default_root = "/#{get_root}"
-      end
+  # Figures out the stream type and loads it into the appropriate Datastream Class.
+  # Saves the datastream to @streams, for future use.
+  #
+  # @params
+  #   name {string} Datastream name.
+  def prepare_stream(name)
+    nym = name.to_sym
+    ds = @fedora_object.datastreams[name]
+    if(ds.mimeType == "text/xml")
+      @streams[nym] = FedoraHelpers::XMLDatastream.new(ds)
+    elsif(/image/.match(ds.mimeType))
+      @streams[nym] = FedoraHelpers::ImageDatastream.new(ds)
+    else
+      Rails.logger.warn("#{name} is not an XML or image datastream!")
     end
-
-    ##
-    # Gets the root node name and namespace.
-    #
-    # @return {string}
-    #   Root node name, with namespace.
-    def get_root
-      get_full_node_name(@xml.root)
-    end
-
-    ##
-    # Gets the text from the first element that matches xpath.
-    #
-    # @params
-    #   path {string} Element name or path to search for.
-    # @return {string}
-    #   The text from the element or "".
-    def get_text(path)
-      elements = xpath(path)
-      if(elements.empty?)
-        ""
-      else
-        elements.first.text
-      end
-    end
-
-    ##
-    # Gets an array of all the texts from elements that match xpath.
-    #
-    # @params
-    #   path {string} Element name or path to search for.
-    # @return {array}
-    #   An array of the text values of all the matching elements.
-    def get_all_text(path)
-      values = []
-      elements = xpath(path)
-      elements.each do |el|
-        values.push(el.text)
-      end
-      values
-    end
-
-
-    private
-
-    ##
-    # Performs an xpath query.
-    #
-    # Paths that start with '/' will be taken verbatim.
-    # Paths that don't will be concat'd to @default_root.
-    #
-    # @params
-    #   path {string} Xpath string to search for.
-    # @return {array}
-    #   Set of elements that match the query.
-    def xpath(path)
-      unless(path[0] == "/")
-        path = "#{@default_root}/#{path}"
-      end
-
-      begin
-        @xml.xpath(path)
-      rescue Nokogiri::XML::XPath::SyntaxError
-        Rails.logger.warn("Syntax error searching for #{path}.")
-        []
-      end
-    end
-
-    ##
-    # Gets the node name prefixed by its ns, if it has one.
-    #
-    # @params
-    #   node {Nokogiri::XML::Element} Target element.
-    # @return {string}
-    #   Node name, with namespace if applicable.
-    def get_full_node_name(node)
-      if(node.namespace.prefix.to_s == "")
-        element.name
-      else
-        "#{node.namespace.prefix}:#{node.name}"
-      end
-    end
-  end # End Datastream
-
+  end
 end # End FedoraHelpers
 

@@ -27,21 +27,30 @@ shared_examples_for FedoraHelpers do
       obj.load_resource(pid)
       obj
     end
-    let(:ds) { "DCA-META" }
+    let(:xml_ds) { "DCA-META" }
+    let(:img_ds) { "Thumbnail.png" }
 
     context "with a valid datastream" do
-      it "returns FedoraHelpers::Datastream object" do
-        expect(obj.get_stream(ds).class).to eq(FedoraHelpers::Datastream)
-      end
-
       it "saves new stream to @streams" do
-        obj.get_stream(ds)
-        expect(obj.instance_variable_get(:@streams)).to have_key(ds.to_sym)
+        obj.get_stream(xml_ds)
+        expect(obj.instance_variable_get(:@streams)).to have_key(xml_ds.to_sym)
       end
 
       it "doesn't update @streams if key already exists" do
-        obj.instance_variable_set(:@streams, { ds.to_sym => "different value" } )
-        expect(obj.get_stream(ds)).to eq("different value")
+        obj.instance_variable_set(:@streams, { xml_ds.to_sym => "different value" } )
+        expect(obj.get_stream(xml_ds)).to eq("different value")
+      end
+
+      context "with an XML Datastream" do
+        it "returns FedoraHelpers::XMLDatastream object" do
+          expect(obj.get_stream(xml_ds).class).to eq(FedoraHelpers::XMLDatastream)
+        end
+      end
+
+      context "with an image datastream" do
+        it "returns FedoraHelpers::ImageDatastream object" do
+          expect(obj.get_stream(img_ds).class).to eq(FedoraHelpers::ImageDatastream)
+        end
       end
     end #End context with a valid datastream
 

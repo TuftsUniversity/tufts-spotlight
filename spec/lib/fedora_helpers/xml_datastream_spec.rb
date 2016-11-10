@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe FedoraHelpers::Datastream do
+describe FedoraHelpers::XMLDatastream do
   let(:pid) { "tufts:MS054.003.DO.02108" }
   let(:ds_name) { "DCA-META" }
   let(:obj) {
     stream = ActiveFedora::Base.find(pid).datastreams[ds_name]
-    FedoraHelpers::Datastream.new(stream)
+    FedoraHelpers::XMLDatastream.new(stream)
   }
 
   describe "initialization" do
@@ -21,7 +21,7 @@ describe FedoraHelpers::Datastream do
 
     context "with an invalid stream" do
       it "saves an empty string to xml" do
-        obj = FedoraHelpers::Datastream.new({})
+        obj = FedoraHelpers::XMLDatastream.new({})
         expect(obj.xml).to eq("")
       end
     end
