@@ -20,7 +20,7 @@ describe FedoraHelpers::XMLDatastream do
     end
 
     context "with an invalid stream" do
-      it "saves an empty string to xml" do
+      it "saves an empty string to @xml" do
         obj = FedoraHelpers::XMLDatastream.new({})
         expect(obj.xml).to eq("")
       end
