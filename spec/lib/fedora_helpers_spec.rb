@@ -41,7 +41,7 @@ shared_examples_for FedoraHelpers do
         expect(obj.get_stream(xml_ds)).to eq("different value")
       end
 
-      context "with an XML Datastream" do
+      context "with an xml datastream" do
         it "returns FedoraHelpers::XMLDatastream object" do
           expect(obj.get_stream(xml_ds).class).to eq(FedoraHelpers::XMLDatastream)
         end
