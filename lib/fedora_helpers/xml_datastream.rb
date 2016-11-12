@@ -32,7 +32,7 @@ module FedoraHelpers
     # @return {string}
     #   Root node name, with namespace.
     def get_root
-      get_full_node_name(@xml.root)
+      "/#{get_full_node_name(@xml.root)}"
     end
 
     ##

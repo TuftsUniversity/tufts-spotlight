@@ -37,7 +37,7 @@ describe FedoraHelpers::XMLDatastream do
 
   describe "get_root" do
     it "returns the root element's name" do
-      expect(obj.get_root).to eq("dca_dc:dc")
+      expect(obj.get_root).to eq("/dca_dc:dc")
     end
   end
 

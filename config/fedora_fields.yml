@@ -13,7 +13,7 @@ default_ns: dc
 
 streams:
   DCA-META:
-    elements:
+    elems:
       - { field: description }
       - { field: creator }
       - { field: publisher }

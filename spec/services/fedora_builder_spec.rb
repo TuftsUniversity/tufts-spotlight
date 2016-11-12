@@ -56,6 +56,21 @@ describe FedoraBuilder do
       )
     end
 
+    it "adds the DCA-META metadata to the doc" do
+      expect(doc).to include(
+        "creator_tesim" => ["Rollins, Edwin B."],
+        "description_tesim" => ["3x5, box:  \"Residences\""],
+        "publisher_tesim" => ["Digital Collections and Archives, Tufts University"],
+      )
+    end
+
+    it "adds multiple values for one field to the doc" do
+      expect(doc).to include(
+        "subject_tesim" => ["Houses", "Edwin B. Rollins, papers"]
+      )
+    end
+
+    it "adds fields with custom namespaces to the doc"
   end # End describe to_solr
 
 end # End describe FedoraBuilder
