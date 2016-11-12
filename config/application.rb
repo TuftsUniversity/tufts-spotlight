@@ -25,5 +25,6 @@ module Spotlight
     config.active_record.raise_in_transactional_callbacks = true
 
     config.autoload_paths << Rails.root.join('lib')
+    Spring.watch("#{Rails.root}/config/fedora_fields.yml")
   end
 end

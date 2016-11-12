@@ -54,11 +54,37 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+
+  # Caches a fake FedoraResource for use in the tests.
+  tgt_file = "#{Rails.root}/tmp/fedora_builder_spec.yml"
+  config.before(:suite) do
+    obj = FedoraBuilder.new(FedoraResourceStub.new)
+    f = File.new(tgt_file, 'w')
+    f.write(obj.to_yaml)
+  end
+  config.after(:suite) do
+    FileUtils.rm(tgt_file)
+  end
 end
 
 def clean_fedora_and_solr
   ActiveFedora::Base.delete_all
   solr = ActiveFedora::SolrService.instance.conn
   solr.delete_by_query("*:*", params: { commit: true })
+end
+
+##
+# The stub that represents a resource object coming
+# from spotlight.
+class FedoraResourceStub < FedoraResource
+  def url
+    "tufts:MS054.003.DO.02108"
+  end
+
+  # Usually this is pulled from the exhibit, but the stub has no exhibit.
+  def document_model
+    SolrDocument
+  end
 end
 
