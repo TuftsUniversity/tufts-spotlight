@@ -6,8 +6,8 @@ full_title_field:
   ds: DCA-META
   xpath: "/dca_dc:dc/dc:title"
 
-full_image_ds: Advanced.jpg
-thumb_ds: Thumbnail.png
+full_image: Advanced.jpg
+thumb: Thumbnail.png
 
 default_ns: dc
 

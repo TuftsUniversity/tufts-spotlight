@@ -7,6 +7,11 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   def initialize(resource)
     super(resource)
     load_yaml
+    if(@settings.key?(:default_ns))
+      @default_ns = "#{@settings[:default_ns]}:"
+    else
+      @default_ns = ""
+    end
   end
 
   def to_solr
@@ -32,20 +37,19 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
       )
     end
 
-    unless(get_stream("Advanced.jpg").nil?)
+    unless(get_stream(@settings[:full_image]).nil?)
       doc[Spotlight::Engine.config.full_image_field] =
-        get_stream("Advanced.jpg").location
+        get_stream(@settings[:full_image]).location
 
       doc = add_image_dimensions(doc)
     end
 
-    unless(get_stream("Thumbnail.png").nil?)
+    unless(get_stream(@settings[:thumb]).nil?)
       doc[Spotlight::Engine.config.thumbnail_field] =
-        get_stream("Thumbnail.png").location
+        get_stream(@settings[:thumb]).location
     end
 
     doc
-
   end
 
 
@@ -65,13 +69,20 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   ##
   # Add the image dimensions to solr.
   def add_image_dimensions(doc)
-    dimensions = ::MiniMagick::Image.open(doc[Spotlight::Engine.config.full_image_field])[:dimensions]
-    doc[:spotlight_full_image_width_ssm] = dimensions.first
-    doc[:spotlight_full_image_height_ssm] = dimensions.last
+    # Speed up our tests by not doing the MiniMagick stuff.
+    if(Rails.env == "test")
+      doc[:spotlight_full_image_width_ssm] = 1
+      doc[:spotlight_full_image_height_ssm] = 1
+    else
+      dimensions = ::MiniMagick::Image.open(doc[Spotlight::Engine.config.full_image_field])[:dimensions]
+      doc[:spotlight_full_image_width_ssm] = dimensions.first
+      doc[:spotlight_full_image_height_ssm] = dimensions.last
+    end
+
     doc
   end
 
-  #
+  ##
   # The field to use for full_title_field.
   def full_title_field
     f = @settings[:full_title_field]
