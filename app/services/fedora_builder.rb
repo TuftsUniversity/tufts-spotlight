@@ -82,7 +82,7 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
       @doc[:spotlight_full_image_width_ssm] = 1
       @doc[:spotlight_full_image_height_ssm] = 1
     else
-      dimensions = ::MiniMagick::Image.open(doc[Spotlight::Engine.config.full_image_field])[:dimensions]
+      dimensions = ::MiniMagick::Image.open(@doc[Spotlight::Engine.config.full_image_field])[:dimensions]
       @doc[:spotlight_full_image_width_ssm] = dimensions.first
       @doc[:spotlight_full_image_height_ssm] = dimensions.last
     end
