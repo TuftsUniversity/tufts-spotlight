@@ -15,7 +15,7 @@ describe FedoraHelpers::XMLDatastream do
       end
 
       it "sets attr_accessible @default_root to be the root element" do
-        expect(obj.default_root).to eq("/#{obj.get_root}")
+        expect(obj.default_root).to eq(obj.get_root)
       end
     end
 

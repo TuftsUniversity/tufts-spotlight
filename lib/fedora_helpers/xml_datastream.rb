@@ -22,7 +22,7 @@ module FedoraHelpers
         Rails.logger.warn("Error, #{stream} is not a datastream.")
       else
         @xml = Nokogiri::XML(stream.content.to_s)
-        @default_root = "/#{get_root}"
+        @default_root = get_root
       end
     end
 
