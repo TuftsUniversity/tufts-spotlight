@@ -20,7 +20,7 @@ require 'rspec/rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -59,6 +59,7 @@ RSpec.configure do |config|
   # Caches a fake FedoraResource for use in the tests.
   tgt_file = "#{Rails.root}/tmp/fedora_builder_spec.yml"
   config.before(:suite) do
+    # FedoraResourceStub is in spec/support
     obj = FedoraBuilder.new(FedoraResourceStub.new)
     f = File.new(tgt_file, 'w')
     f.write(obj.to_yaml)
@@ -72,19 +73,5 @@ def clean_fedora_and_solr
   ActiveFedora::Base.delete_all
   solr = ActiveFedora::SolrService.instance.conn
   solr.delete_by_query("*:*", params: { commit: true })
-end
-
-##
-# The stub that represents a resource object coming
-# from spotlight.
-class FedoraResourceStub < FedoraResource
-  def url
-    "tufts:MS054.003.DO.02108"
-  end
-
-  # Usually this is pulled from the exhibit, but the stub has no exhibit.
-  def document_model
-    SolrDocument
-  end
 end
 
