@@ -37,7 +37,6 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     # Fill the rest of the output hash with XML Datastream metadata.
     @settings[:streams].each do |name, props|
       stream = get_stream(name.to_s)
-      @default_root = stream.get_root
       props[:elems].each do |el|
         insert_field(stream, el)
       end
@@ -106,10 +105,11 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   # @param {hash} el
   #   A hash with :field and optionally :ns values.
   def insert_field(stream, el)
+    xpath = build_xpath(el)
     Solrizer.insert_field(
       @doc,
-      el[:field],
-      stream.get_all_text(build_xpath(el)),
+      el.key?(:name) ? el[:name] : el[:field],
+      stream.get_all_text(xpath),
       :stored_searchable
     )
   end
@@ -120,7 +120,14 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   # @param {hash} el
   #   A hash with :field and optionally :ns values.
   def build_xpath(el)
-    ns = el.key?(:ns) ? "#{el[:ns]}:" : @default_ns
+    if(["/", "@"].include?(el[:field][0]))
+      ns = ""
+    elsif(el.key?(:ns))
+      ns = "#{el[:ns]}:"
+    else
+      ns = @default_ns
+    end
+
     "#{ns}#{el[:field]}"
   end
 

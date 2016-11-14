@@ -16,6 +16,9 @@ streams:
     elems:
       - { field: description }
       - { field: creator }
-      - { field: publisher }
+      - { field: publisher, name: published_by }
       - { field: subject, ns: dcadesc }
+  RELS-EXT:
+    elems:
+      - { field: "/rdf:RDF/rdf:Description/rel:isMemberOfCollection/@rdf:resource", name: member_of }
 
