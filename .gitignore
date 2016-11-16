@@ -21,3 +21,7 @@ public/uploads/
 solr/.DS_Store
 config/ldap.yml
 config/blacklight.yml
+config/database.yml
+config/secrets.yml
+config/environments/tdldev.rb
+
