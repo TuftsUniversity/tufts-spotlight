@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160901175508) do
+ActiveRecord::Schema.define(version: 20161116195753) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       null: false
@@ -321,6 +321,7 @@ ActiveRecord::Schema.define(version: 20160901175508) do
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
     t.string   "username"
+    t.string   "remember_token"
   end
 
   add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true
