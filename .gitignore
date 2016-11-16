@@ -23,6 +23,9 @@ solr/.DS_Store
 config/ldap.yml
 config/blacklight.yml
 config/fedora.yml
+config/database.yml
+config/secrets.yml
+config/environments/tdldev.rb
 
 # Ignore jetty
 jetty
