@@ -25,6 +25,7 @@ config/blacklight.yml
 config/fedora.yml
 config/database.yml
 config/secrets.yml
+config/solr.yml
 config/environments/tdldev.rb
 
 # Ignore jetty
