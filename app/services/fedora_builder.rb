@@ -37,8 +37,10 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     # Fill the rest of the output hash with XML Datastream metadata.
     @settings[:streams].each do |name, props|
       stream = get_stream(name.to_s)
-      props[:elems].each do |el|
-        insert_field(stream, el)
+      unless(stream.nil?)
+        props[:elems].each do |el|
+          insert_field(stream, el)
+        end
       end
     end
 
