@@ -102,7 +102,7 @@ module FedoraHelpers
     #   Node name, with namespace if applicable.
     def get_full_node_name(node)
       if(node.namespace.prefix.to_s == "")
-        element.name
+        node.name
       else
         "#{node.namespace.prefix}:#{node.name}"
       end
