@@ -60,7 +60,7 @@ RSpec.configure do |config|
   tgt_file = "#{Rails.root}/tmp/fedora_builder_spec.yml"
   config.before(:suite) do
     # FedoraResourceStub is in spec/support
-    obj = FedoraBuilder.new(FedoraResourceStub.new)
+    obj = FedoraBuilder.new(FedoraResourceStub.new, "spec/support/fedora_fields.yml")
     f = File.new(tgt_file, 'w')
     f.write(obj.to_yaml)
   end

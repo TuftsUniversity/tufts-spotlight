@@ -9,9 +9,9 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   #
   # @param {FedoraResource}
   #   The resource coming from the insert form.
-  def initialize(resource)
+  def initialize(resource, settings_file = "config/fedora_fields.yml")
     super(resource)
-    load_yaml
+    load_yaml(settings_file)
     if(@settings.key?(:default_ns))
       @default_ns = "#{@settings[:default_ns]}:"
     else
@@ -66,10 +66,13 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
 
   ##
   # Load the fedora_fields.yml file.
-  def load_yaml
+  def load_yaml(file)
     # Load the yaml file or error out informatively.
     begin
-      @settings = YAML::load(File.open(Rails.root.join("config/fedora_fields.yml").to_s)).deep_symbolize_keys!
+      unless(file[0] == "/")
+        file = Rails.root.join(file).to_s
+      end
+      @settings = YAML::load(File.open(file)).deep_symbolize_keys!
     rescue
       raise "Unable to find fedora_fields.yml file!"
     end
