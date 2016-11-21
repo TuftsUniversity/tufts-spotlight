@@ -140,7 +140,7 @@ xsi:schemaLocation="info:fedora/fedora-system:def/foxml# http://www.fedora.info/
 				            
                <dc:temporal>1876</dc:temporal>
 				            
-               <dc:creator>Rollins, Edwin B.</dc:creator>
+               <creator>Rollins, Edwin B.</creator>
 				            
                <dc:publisher>Digital Collections and Archives, Tufts University</dc:publisher>
 				            

@@ -12,10 +12,13 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   def initialize(resource, settings_file = "config/fedora_fields.yml")
     super(resource)
     load_yaml(settings_file)
+
+    @settings[:default_element] = {
+      strict: false
+    }
+
     if(@settings.key?(:default_ns))
-      @default_ns = "#{@settings[:default_ns]}:"
-    else
-      @default_ns = ""
+      @settings[:default_element][:ns] = "#{@settings[:default_ns]}"
     end
   end
 
@@ -39,7 +42,7 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
       stream = get_stream(name.to_s)
       unless(stream.nil?)
         props[:elems].each do |el|
-          insert_field(stream, el)
+          insert_field(stream, @settings[:default_element].merge(el) )
         end
       end
     end
@@ -111,10 +114,17 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   #   A hash with :field and optionally :ns values.
   def insert_field(stream, el)
     xpath = build_xpath(el)
+    values = stream.get_all_text(xpath)
+
+    if(values == [] && ! el[:strict])
+      new_xpath = build_xpath(el.except(:ns))
+      values = stream.get_all_text(new_xpath)
+    end
+
     Solrizer.insert_field(
       @doc,
       el.key?(:name) ? el[:name] : el[:field],
-      stream.get_all_text(xpath),
+      values,
       :stored_searchable
     )
   end
@@ -129,8 +139,6 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
       ns = ""
     elsif(el.key?(:ns))
       ns = "#{el[:ns]}:"
-    else
-      ns = @default_ns
     end
 
     "#{ns}#{el[:field]}"

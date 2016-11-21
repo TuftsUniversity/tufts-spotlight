@@ -17,7 +17,7 @@ describe FedoraBuilder do
     end
 
     it "loads the default_ns from @settings" do
-      expect(obj.instance_variable_get(:@default_ns)).to eq("dc:")
+      expect(obj.instance_variable_get(:@settings)[:default_element][:ns]).to eq("dc")
     end
   end
 
@@ -63,10 +63,15 @@ describe FedoraBuilder do
     describe "descriptive metadata" do
       it "adds the DCA-META metadata" do
         expect(doc).to include(
-          "creator_tesim" => ["Rollins, Edwin B."],
           "description_tesim" => ["3x5, box:  \"Residences\""],
           "subject_tesim" => ["Houses", "Edwin B. Rollins, papers"]
         )
+      end
+
+      context "no values found" do
+        it "strips namespace and re-queries if !strict" do
+          expect(doc).to include( "creator_tesim" => ["Rollins, Edwin B."] )
+        end
       end
 
       it "adds fields with non-default namespaces" do
