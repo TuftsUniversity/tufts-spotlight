@@ -102,7 +102,8 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   #   The full title text.
   def full_title_field
     f = @settings[:full_title_field]
-    get_stream(f[:ds]).get_text(f[:xpath])
+    el = @settings[:default_element].merge(f[:element])
+    get_stream(f[:ds]).get_text(build_xpath(el))
   end
 
   ##
@@ -139,6 +140,8 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
       ns = ""
     elsif(el.key?(:ns))
       ns = "#{el[:ns]}:"
+    else
+      ns = ""
     end
 
     "#{ns}#{el[:field]}"

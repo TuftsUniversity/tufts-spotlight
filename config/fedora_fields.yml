@@ -4,7 +4,7 @@
 ---
 full_title_field:
   ds: DCA-META
-  xpath: "/dca_dc:dc/dc:title"
+  element: { field: "title", ns: "dc" }
 
 full_image: Advanced.jpg
 thumb: Thumbnail.png

@@ -16,7 +16,7 @@ describe FedoraBuilder do
       expect(obj.instance_variable_get(:@settings)).not_to be_empty
     end
 
-    it "loads the default_ns from @settings" do
+    it "saves the default namespace to :default_element" do
       expect(obj.instance_variable_get(:@settings)[:default_element][:ns]).to eq("dc")
     end
   end
@@ -68,9 +68,17 @@ describe FedoraBuilder do
         )
       end
 
-      context "no values found" do
-        it "strips namespace and re-queries if !strict" do
-          expect(doc).to include( "creator_tesim" => ["Rollins, Edwin B."] )
+      context "with elements without namespaces" do
+        context "strict is true" do
+          it "returns nothing" do
+            expect(doc).not_to include( "source_tesim" )
+          end
+        end
+
+        context "strict is false" do
+          it "returns namespaceless element's value" do
+            expect(doc).to include( "creator_tesim" => ["Rollins, Edwin B."] )
+          end
         end
       end
 

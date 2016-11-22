@@ -136,9 +136,9 @@ xsi:schemaLocation="info:fedora/fedora-system:def/foxml# http://www.fedora.info/
 				            
                <dc:bibliographicCitation>114 Professors Row (Permanent URL: http://hdl.handle.net/10427/2550), image from the Edwin Rollins Collection, Digital Collections and Archives, Tufts University.</dc:bibliographicCitation>
 				            
-               <dc:source>MS054</dc:source>
+               <source>MS054</source>
 				            
-               <dc:temporal>1876</dc:temporal>
+               <temporal>1876</temporal>
 				            
                <creator>Rollins, Edwin B.</creator>
 				            
