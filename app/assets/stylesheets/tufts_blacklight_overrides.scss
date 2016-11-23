@@ -1,6 +1,26 @@
 $logo_image: 'tufts_logo.png';
+$light_tufts_blue: #3172ae;
+$dark_tufts_blue: #2a5c89;
 
 .dl-horizontal dd:after {
   clear: left;
+}
+
+.navbar-inverse {
+  background-color: $light_tufts_blue;
+
+  .navbar-brand {
+    padding-top: 10px;
+    margin-top: 10px;
+  }
+
+  .navbar-nav > li > a {
+    color: #FFF;
+
+    &:hover {
+      color: #FFF;
+      background-color: $dark_tufts_blue;
+    }
+  }
 }
 
