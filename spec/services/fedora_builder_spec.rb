@@ -64,22 +64,9 @@ describe FedoraBuilder do
       it "adds the DCA-META metadata" do
         expect(doc).to include(
           "description_tesim" => ["3x5, box:  \"Residences\""],
-          "subject_tesim" => ["Houses", "Edwin B. Rollins, papers"]
+          "subject_tesim" => ["Houses", "Edwin B. Rollins, papers"],
+          "creator_tesim" => ["Rollins, Edwin B."]
         )
-      end
-
-      context "with elements without namespaces" do
-        context "strict is true" do
-          it "returns nothing" do
-            expect(doc).not_to include( "source_tesim" )
-          end
-        end
-
-        context "strict is false" do
-          it "returns namespaceless element's value" do
-            expect(doc).to include( "creator_tesim" => ["Rollins, Edwin B."] )
-          end
-        end
       end
 
       it "adds fields with non-default namespaces" do

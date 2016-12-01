@@ -2,14 +2,14 @@
 # Contains the mappings for fields in Fedora => Spotlight
 
 ---
+default_ns: dc
+
 full_title_field:
   ds: DCA-META
   element: { field: "title", ns: "dc" }
 
 full_image: Advanced.jpg
 thumb: Thumbnail.png
-
-default_ns: dc
 
 streams:
   DCA-META:

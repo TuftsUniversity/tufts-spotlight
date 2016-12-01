@@ -13,9 +13,7 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     super(resource)
     load_yaml(settings_file)
 
-    @settings[:default_element] = {
-      strict: false
-    }
+    @settings[:default_element] = {}
 
     if(@settings.key?(:default_ns))
       @settings[:default_element][:ns] = "#{@settings[:default_ns]}"
@@ -116,11 +114,6 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   def insert_field(stream, el)
     xpath = build_xpath(el)
     values = stream.get_all_text(xpath)
-
-    if(values == [] && ! el[:strict])
-      new_xpath = build_xpath(el.except(:ns))
-      values = stream.get_all_text(new_xpath)
-    end
 
     Solrizer.insert_field(
       @doc,
