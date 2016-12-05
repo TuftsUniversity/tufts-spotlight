@@ -28,7 +28,6 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
 
-  include FactoryGirl::Syntax::Methods
   include LoginMacros
 
   @ldap_server = Ladle::Server.new(

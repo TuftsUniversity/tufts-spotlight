@@ -1,19 +1,32 @@
 FactoryGirl.define do
-  factory :my_user, class: User do
+  factory :tufts_user, class: User do
     username 'person1'
     email 'ransom@swaniawwski.org'
     password 'password'
+    ignore do
+      exhibit { FactoryGirl.create(:exhibit) }
+    end
 
-    factory :my_exhibit_admin do
+    factory :tufts_admin do
       after(:create) do |user, _evaluator|
-        user.roles.create role: 'admin', resource: FactoryGirl.create(:exhibit)
+        user.roles.create(role: 'admin', resource: Spotlight::Site.instance)
       end
     end
 
-    factory :admin do
-      after(:create) do |user, _evaluator|
-        user.roles.create role: 'admin', resource: Spotlight::Site.instance
+    factory :tufts_exhibit_admin do
+      after(:create) do |user, evaluator|
+        user.roles.create(role: 'admin', resource: evaluator.exhibit)
       end
     end
-  end #End factory :user
+
+    factory :tufts_exhibit_curator do
+      after(:create) do |user, evaluator|
+        user.roles.create(role: 'curator', resource: evaluator.exhibit)
+      end
+    end
+
+    factory :tufts_visitor do
+    end
+
+  end #End factory :tufts_user
 end
