@@ -56,7 +56,7 @@ class CatalogController < ApplicationController
   end
 
   def guest_username_authentication_key key
-     "spotlight_guest"
+    "spotlight_guest_" + guest_user_unique_suffix
   end
 
 end
