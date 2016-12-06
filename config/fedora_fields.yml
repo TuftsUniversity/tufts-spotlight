@@ -12,8 +12,17 @@ thumb: Thumbnail.png
 streams:
   DCA-META:
     elems:
-      - { field: description }
       - { field: creator }
+      - { field: description }
       - { field: publisher }
+      - { field: temporal, name: Date }
+      - { field: created, name: "Date Created" }
       - { field: subject }
+      - { field: type }
+      - { field: format }
+      - { field: rights }
+      - { field: corpname, name: Corporation }
+      - { field: geogname, name: "Area of Interest" }
+      - { field: funder }
+      - { field: bibliographicCitation, name: Citation }
 

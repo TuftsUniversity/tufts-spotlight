@@ -26,10 +26,23 @@ class CatalogController < ApplicationController
 
     # solr field configuration for search results/index views
     config.index.title_field = 'full_title_tesim'
-    config.add_index_field 'description_tesim', label: 'Description'
-    config.add_index_field 'creator_tesim', label: 'Creator'
-    config.add_index_field 'publisher_tesim', label: 'Publisher'
-    config.add_index_field 'subject_tesim', label: 'Subject'
+
+    # Propagating solr fields from fedora_fields.yml
+    mppr = Solrizer::FieldMapper.new
+    fed_flds = YAML::load(File.open(Rails.root.join('config/fedora_fields.yml'))).deep_symbolize_keys!
+    fed_flds[:streams].each do |name, props|
+      props[:elems].each do |el|
+        if(el[:name].nil?)
+          name = el[:field]
+          label = name.capitalize
+        else
+          name = el[:name]
+          label = name
+        end
+        solr_field = mppr.solr_name(name, :stored_searchable, type: :string)
+        config.add_index_field solr_field, label: label
+      end
+    end
 
     config.add_search_field 'all_fields', label: 'Everything'
 
