@@ -67,11 +67,23 @@ RSpec.configure do |config|
   # Caches a fake FedoraResource for use in the tests.
   tgt_file = "#{Rails.root}/tmp/fedora_builder_spec.yml"
   config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+
     # FedoraResourceStub is in spec/support
     obj = FedoraBuilder.new(FedoraResourceStub.new, "spec/support/fedora_fields.yml")
     f = File.new(tgt_file, 'w')
     f.write(obj.to_yaml)
   end
+
+  config.before(:each) do |v|
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
   config.after(:suite) do
     FileUtils.rm(tgt_file)
   end
