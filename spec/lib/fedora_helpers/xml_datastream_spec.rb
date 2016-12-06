@@ -37,14 +37,14 @@ describe FedoraHelpers::XMLDatastream do
 
   describe "get_root" do
     it "returns the root element's name" do
-      expect(obj.get_root).to eq("/dca_dc:dc")
+      expect(obj.get_root).to eq("/dc")
     end
   end
 
   describe "get_text" do
     context "with valid path" do
       it "returns the text from the first matching element" do
-        expect(obj.get_text("dcadesc:subject")).to eq("Houses")
+        expect(obj.get_text("subject")).to eq("Houses")
       end
     end
 
@@ -60,7 +60,7 @@ describe FedoraHelpers::XMLDatastream do
   describe "get_all_text" do
     it "returns an array of all texts from matching elements" do
       correct_answer = ["Houses", "Edwin B. Rollins, papers"]
-      expect(obj.get_all_text("dcadesc:subject")).to eq(correct_answer)
+      expect(obj.get_all_text("subject")).to eq(correct_answer)
     end
 
     context "with syntax error" do

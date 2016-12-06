@@ -5,19 +5,13 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   include FedoraHelpers
 
   ##
-  # Loads the YAML file and sets the default_ns.
+  # Loads the YAML file.
   #
   # @param {FedoraResource}
   #   The resource coming from the insert form.
   def initialize(resource, settings_file = "config/fedora_fields.yml")
     super(resource)
     load_yaml(settings_file)
-
-    @settings[:default_element] = {}
-
-    if(@settings.key?(:default_ns))
-      @settings[:default_element][:ns] = "#{@settings[:default_ns]}"
-    end
   end
 
   ##
@@ -40,7 +34,7 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
       stream = get_stream(name.to_s)
       unless(stream.nil?)
         props[:elems].each do |el|
-          insert_field(stream, @settings[:default_element].merge(el) )
+          insert_field(stream, el)
         end
       end
     end
@@ -100,8 +94,7 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   #   The full title text.
   def full_title_field
     f = @settings[:full_title_field]
-    el = @settings[:default_element].merge(f[:element])
-    get_stream(f[:ds]).get_text(build_xpath(el))
+    get_stream(f[:ds]).get_text(f[:element][:field])
   end
 
   ##
@@ -110,10 +103,9 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   # @param {FedoraHelpers::XMLDatastream} stream
   #   The datastream that contains the element.
   # @param {hash} el
-  #   A hash with :field and optionally :ns values.
+  #   A hash with :field and optionally :name values.
   def insert_field(stream, el)
-    xpath = build_xpath(el)
-    values = stream.get_all_text(xpath)
+    values = stream.get_all_text(el[:field])
 
     Solrizer.insert_field(
       @doc,
@@ -121,23 +113,6 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
       values,
       :stored_searchable
     )
-  end
-
-  ##
-  # Builds the xpath expression to run through nokogiri.
-  #
-  # @param {hash} el
-  #   A hash with :field and optionally :ns values.
-  def build_xpath(el)
-    if(["/", "@"].include?(el[:field][0]))
-      ns = ""
-    elsif(el.key?(:ns))
-      ns = "#{el[:ns]}:"
-    else
-      ns = ""
-    end
-
-    "#{ns}#{el[:field]}"
   end
 
 end

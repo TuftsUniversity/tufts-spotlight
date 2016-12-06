@@ -22,6 +22,7 @@ module FedoraHelpers
         Rails.logger.warn("Error, #{stream} is not a datastream.")
       else
         @xml = Nokogiri::XML(stream.content.to_s)
+        @xml.remove_namespaces!
         @default_root = get_root
       end
     end
@@ -101,7 +102,7 @@ module FedoraHelpers
     # @return {string}
     #   Node name, with namespace if applicable.
     def get_full_node_name(node)
-      if(node.namespace.prefix.to_s == "")
+      if(node.namespace.nil? || node.namespace.prefix.to_s == "")
         node.name
       else
         "#{node.namespace.prefix}:#{node.name}"

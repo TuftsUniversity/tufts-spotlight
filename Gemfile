@@ -51,7 +51,6 @@ gem 'active-fedora', '~> 7.1.1'
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-  gem 'byebug'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-commands-rspec'
@@ -63,6 +62,7 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 3.5.0'
   gem 'guard-rspec'
+  gem 'byebug'
 end
 
 group :test do

@@ -2,8 +2,6 @@
 # Contains the mappings for fields in Fedora => Spotlight
 
 ---
-default_ns: dc
-
 full_image: Advanced.jpg
 thumb: Thumbnail.png
 
@@ -16,10 +14,10 @@ streams:
     elems:
       - { field: description }
       - { field: creator }
-      - { field: source, strict: true }
+      - { field: source }
       - { field: publisher, name: published_by }
-      - { field: subject, ns: dcadesc }
+      - { field: subject}
   RELS-EXT:
     elems:
-      - { field: "/rdf:RDF/rdf:Description/rel:isMemberOfCollection/@rdf:resource", name: member_of }
+      - { field: "/RDF/Description/isMemberOfCollection/@resource", name: member_of }
 

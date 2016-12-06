@@ -15,10 +15,6 @@ describe FedoraBuilder do
     it "loads the yaml into @settings" do
       expect(obj.instance_variable_get(:@settings)).not_to be_empty
     end
-
-    it "saves the default namespace to :default_element" do
-      expect(obj.instance_variable_get(:@settings)[:default_element][:ns]).to eq("dc")
-    end
   end
 
   describe "to_solr" do
@@ -67,10 +63,6 @@ describe FedoraBuilder do
           "subject_tesim" => ["Houses", "Edwin B. Rollins, papers"],
           "creator_tesim" => ["Rollins, Edwin B."]
         )
-      end
-
-      it "adds fields with non-default namespaces" do
-        expect(doc).to include("subject_tesim")
       end
 
       it "adds multiple values for one field" do
