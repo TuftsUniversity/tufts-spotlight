@@ -77,6 +77,6 @@ guard :rspec, cmd: "spring rspec" do
       rspec.spec.call("lib/fedora_helpers/image_datastream")
     ]
   end
-  watch("config/fedora_fields.yml") { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
+  watch("spec/fixtures/fedora_fields.yml") { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
 
 end
