@@ -20,8 +20,8 @@ before_script:
   - mysql -e 'create database tufts_spotlight_test'
   - bundle exec rake db:migrate
   - mkdir -p tmp && export TMPDIR=tmp
-  - rake jetty:start
-  - rake tufts:fixtures
+  - bundle exec rake jetty:start
+  - bundle exec rake tufts:fixtures
 
 env:
   global:
