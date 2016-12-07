@@ -1,0 +1,30 @@
+language: ruby
+rvm:
+  - 2.3.0
+
+sudo: false
+cache: bundler
+
+notifications:
+  email:
+    - travis.lilleberg@tufts.edu
+
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - cp config/fedora.yml.sample config/fedora.yml
+  - cp config/blacklight.yml.sample config/blacklight.yml
+  #- cp config/jetty.yml.sample config/jetty.yml
+  - cp config/secrets.yml.sample config/secrets.yml
+  #- cp config/application.yml.sample config/application.yml
+  - cp config/ldap.yml.sample config/ldap.yml
+  - mysql -e 'create database tufts_spotlight_test'
+  - bundle exec rake db:migrate
+
+env:
+  global:
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+
+bundler_args: --without development debug
+
+services:
+  - mysql
