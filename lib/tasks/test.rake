@@ -2,6 +2,16 @@ require 'jettywrapper'
 
 namespace :tufts do
 
+  desc "Execute Continuous Integration build (docs, tests with coverage)"
+  task :ci => :environment do
+    Rake::Task["jetty:download"].invoke
+    Rake::Task["jetty:unzip"].invoke
+    Rake::Task["jetty:start"].invoke
+    sleep(45)
+    Rake::Task["tufts:fixtures"].invoke
+    Rake::Task["db:migrate"].invoke
+  end
+
   desc 'Load fixture data'
   task :fixtures => :environment do
     FIXTURES = %w(

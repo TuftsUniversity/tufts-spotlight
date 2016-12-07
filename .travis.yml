@@ -18,10 +18,8 @@ before_script:
   #- cp config/application.yml.sample config/application.yml
   - cp config/ldap.yml.sample config/ldap.yml
   - mysql -e 'create database tufts_spotlight_test'
-  - bundle exec rake db:migrate
   - mkdir -p tmp && export TMPDIR=tmp
-  - bundle exec rake jetty:start
-  - bundle exec rake tufts:fixtures
+  - bundle exec rake tufts:ci
 
 env:
   global:
