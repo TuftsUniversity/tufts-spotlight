@@ -65,9 +65,10 @@ group :development, :test do
 end
 
 group :test do
-  gem "database_cleaner"
+  gem 'mysql2'
+  gem 'database_cleaner'
   gem 'capybara'
   gem 'ladle'
-  gem "factory_girl_rails"
+  gem 'factory_girl_rails'
 end
 

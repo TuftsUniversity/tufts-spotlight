@@ -287,6 +287,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    mysql2 (0.4.5)
     nenv (0.3.0)
     net-http-persistent (2.9.4)
     net-ldap (0.11)
@@ -577,6 +578,7 @@ DEPENDENCIES
   jettywrapper (= 1.8.3)
   jquery-rails
   ladle
+  mysql2
   rails (= 4.2.6)
   riiif (~> 0.4.0)
   rsolr (~> 1.0)
