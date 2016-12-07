@@ -56,13 +56,13 @@ group :development do
   gem 'spring-commands-rspec'
 
   gem 'solr_wrapper', '>= 0.3'
-  gem 'jettywrapper', '1.8.3'
 end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5.0'
   gem 'guard-rspec'
   gem 'byebug'
+  gem 'jettywrapper', '1.8.3'
 end
 
 group :test do
