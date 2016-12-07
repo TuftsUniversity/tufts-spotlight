@@ -19,6 +19,7 @@ before_script:
   - cp config/ldap.yml.sample config/ldap.yml
   - mysql -e 'create database tufts_spotlight_test'
   - bundle exec rake db:migrate
+  - mkdir tmp
 
 env:
   global:
