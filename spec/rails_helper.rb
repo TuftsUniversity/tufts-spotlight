@@ -70,8 +70,7 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
 
-    # FedoraResourceStub is in spec/support
-    obj = FedoraBuilder.new(FedoraResourceStub.new, "spec/fixtures/fedora_fields.yml")
+    obj = FedoraBuilder.new(FactoryGirl.build_stubbed(:fedora_resource), "spec/fixtures/fedora_fields.yml")
     f = File.new(tgt_file, 'w')
     f.write(obj.to_yaml)
   end

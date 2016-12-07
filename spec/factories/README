@@ -1,4 +1,4 @@
-These tests primarily use Spotlight's factories.
+These tests use Spotlight's factories as much as they can.
 
 However, Spotlight uses a non-standard version of FactoryGirl and uses 'transient' in
   its user factories, making it unusable until we upgrade to FactoryGirl 5.0.
