@@ -54,14 +54,13 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-commands-rspec'
-
-  gem 'solr_wrapper', '>= 0.3'
 end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5.0'
   gem 'guard-rspec'
   gem 'byebug'
+  gem 'solr_wrapper', '>= 0.3'
   gem 'jettywrapper', '1.8.3'
 end
 
