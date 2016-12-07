@@ -7,7 +7,7 @@ namespace :tufts do
     Rake::Task["jetty:download"].invoke
     Rake::Task["jetty:unzip"].invoke
     Rake::Task["jetty:start"].invoke
-    sleep(90)
+    sleep(40)
     Rake::Task["tufts:fixtures"].invoke
     Rake::Task["db:migrate"].invoke
   end
