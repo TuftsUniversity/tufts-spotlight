@@ -32,8 +32,8 @@ Spotlight::Engine.config.external_resources_partials = ["fedora_resources/form"]
 # Spotlight::Engine.config.solr_fields.string_suffix = '_ssim'.freeze
 # Spotlight::Engine.config.solr_fields.text_suffix = '_tesim'.freeze
 # Spotlight::Engine.config.resource_global_id_field = :"#{config.solr_fields.prefix}spotlight_resource_id#{config.solr_fields.string_suffix}"
-Spotlight::Engine.config.full_image_field = :full_image_url_ssm
-Spotlight::Engine.config.thumbnail_field = :thumbnail_url_ssm
+#Spotlight::Engine.config.full_image_field = :full_image_url_ssm
+#Spotlight::Engine.config.thumbnail_field = :thumbnail_url_ssm
 # Spotlight::Engine.config.square_image_field = :thumbnail_square_url_ssm
 
 # ==> Uploaded item configuration

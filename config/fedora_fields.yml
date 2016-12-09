@@ -23,6 +23,5 @@ streams:
       - { field: rights }
       - { field: corpname, name: Corporation }
       - { field: geogname, name: "Area of Interest" }
-      - { field: funder }
       - { field: bibliographicCitation, name: Citation }
 
