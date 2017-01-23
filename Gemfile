@@ -33,7 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'blacklight', ' ~> 6.0'
-gem 'blacklight-spotlight', github: 'projectblacklight/spotlight'
+gem 'blacklight-spotlight', '>= 0.30.0', github: 'projectblacklight/spotlight'
 
 gem 'rsolr', '~> 1.0'
 gem 'devise'
