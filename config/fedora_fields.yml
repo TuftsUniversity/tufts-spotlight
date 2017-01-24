@@ -24,4 +24,5 @@ streams:
       - { field: corpname, name: Corporation }
       - { field: geogname, name: "Area of Interest" }
       - { field: bibliographicCitation, name: Citation }
+      - { field: identifier, name: "Permanent URL" }
 
