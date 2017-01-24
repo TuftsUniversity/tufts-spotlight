@@ -13,10 +13,10 @@ before_script:
   - cp config/database.yml.travis config/database.yml
   - cp config/fedora.yml.sample config/fedora.yml
   - cp config/blacklight.yml.sample config/blacklight.yml
-  #- cp config/jetty.yml.sample config/jetty.yml
   - cp config/secrets.yml.sample config/secrets.yml
-  #- cp config/application.yml.sample config/application.yml
   - cp config/ldap.yml.sample config/ldap.yml
+  - sed -i 's:db/test.sqlite3:tufts_spotlight_test:' config/database.yml
+  - sed -i 's:sqlite3:mysql:' config/database.yml
   - mysql -e 'create database tufts_spotlight_test'
   - mkdir -p tmp && export TMPDIR=tmp
   - bundle exec rake tufts:ci
