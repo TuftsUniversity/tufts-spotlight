@@ -10,7 +10,7 @@ notifications:
     - travis.lilleberg@tufts.edu
 
 before_script:
-  - cp config/database.yml.travis config/database.yml
+  - cp config/database.yml.sample config/database.yml
   - cp config/fedora.yml.sample config/fedora.yml
   - cp config/blacklight.yml.sample config/blacklight.yml
   - cp config/secrets.yml.sample config/secrets.yml
