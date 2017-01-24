@@ -9,4 +9,5 @@ development:
 
 test:
   <<: *default
-  database: db/test.sqlite3
+  adapter: mysql2
+  database: tufts_spotlight_test
