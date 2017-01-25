@@ -63,7 +63,7 @@ module FedoraHelpers
       values = []
       elements = xpath(path)
       elements.each do |el|
-        values.push(el.text)
+        values.push(el.text) unless(el.text.empty?)
       end
       values
     end
