@@ -91,6 +91,13 @@ describe FedoraBuilder do
           "member_of_tesim" => ["info:fedora/tufts:UA069.006.DO.MS054"]
         )
       end
+
+      it "adds facet fields" do
+        expect(doc).to include(
+          "subject_sim" => ["Houses", "Edwin B. Rollins, papers"]
+        )
+      end
+
     end # End descriptive metadata
   end # End describe to_solr
 

@@ -41,8 +41,13 @@ class CatalogController < ApplicationController
         end
         solr_field = mppr.solr_name(name, :stored_searchable, type: :string)
         config.add_index_field solr_field, label: label
-      end
-    end
+
+        if(el[:facet])
+          facet_field = mppr.solr_name(name, :facetable, type: :string)
+          config.add_facet_field facet_field, label: label
+        end
+      end # props.each
+    end # fed_flds.each
 
     config.add_search_field 'all_fields', label: 'Everything'
 

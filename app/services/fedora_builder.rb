@@ -107,11 +107,17 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   def insert_field(stream, el)
     values = stream.get_all_text(el[:field])
 
+    # How are we indexing?
+    indexer_args = [:stored_searchable]
+    if(el[:facet])
+      indexer_args.push(:facetable)
+    end
+
     Solrizer.insert_field(
       @doc,
       el.key?(:name) ? el[:name] : el[:field],
       values,
-      :stored_searchable
+      *indexer_args
     )
   end
 

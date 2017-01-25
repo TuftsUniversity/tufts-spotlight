@@ -12,17 +12,17 @@ thumb: Thumbnail.png
 streams:
   DCA-META:
     elems:
-      - { field: creator }
+      - { field: creator, facet: true }
       - { field: description }
-      - { field: publisher }
-      - { field: temporal, name: Date }
+      - { field: publisher, facet: true }
+      - { field: temporal, name: Date, facet: true }
       - { field: created, name: "Date Created" }
-      - { field: subject }
-      - { field: type }
-      - { field: format }
+      - { field: subject, facet: true }
+      - { field: type, facet: true }
+      - { field: format, facet: true }
       - { field: rights }
-      - { field: corpname, name: Corporation }
-      - { field: geogname, name: "Area of Interest" }
+      - { field: corpname, name: Corporation, facet: true }
+      - { field: geogname, name: "Area of Interest", facet: true }
       - { field: bibliographicCitation, name: Citation }
       - { field: identifier, name: "Permanent URL" }
 

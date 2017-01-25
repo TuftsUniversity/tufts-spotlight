@@ -16,7 +16,7 @@ streams:
       - { field: creator }
       - { field: source }
       - { field: publisher, name: published_by }
-      - { field: subject}
+      - { field: subject, facet: true }
   RELS-EXT:
     elems:
       - { field: "/RDF/Description/isMemberOfCollection/@resource", name: member_of }
