@@ -12,13 +12,14 @@ thumb: Thumbnail.png
 streams:
   DCA-META:
     elems:
-      - { field: creator, facet: true }
-      - { field: description }
-      - { field: publisher, facet: true }
-      - { field: temporal, name: Date, facet: true }
+      # facet = show in facets -- results = show in index view
+      - { field: creator, facet: true, results: true }
+      - { field: description, results: true }
+      - { field: publisher, facet: true, results: true }
+      - { field: temporal, name: Date, facet: true, results: true }
       - { field: created, name: "Date Created" }
       - { field: subject, facet: true }
-      - { field: type, facet: true }
+      - { field: type, facet: true, results: true }
       - { field: format, facet: true }
       - { field: rights }
       - { field: corpname, name: Corporation, facet: true }

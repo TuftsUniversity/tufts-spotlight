@@ -40,7 +40,11 @@ class CatalogController < ApplicationController
           label = name
         end
         solr_field = mppr.solr_name(name, :stored_searchable, type: :string)
-        config.add_index_field solr_field, label: label
+        if(el[:results])
+          config.add_index_field solr_field, label: label
+        else
+          config.add_show_field solr_field, label: label
+        end
 
         if(el[:facet])
           facet_field = mppr.solr_name(name, :facetable, type: :string)
