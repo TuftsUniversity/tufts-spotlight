@@ -36,8 +36,8 @@ class CatalogController < ApplicationController
           name = el[:field]
           label = name.capitalize
         else
-          name = el[:name]
-          label = name
+          label = el[:name]
+          name = el[:name].tr(' ', '_')
         end
         solr_field = mppr.solr_name(name, :stored_searchable, type: :string)
         if(el[:results])

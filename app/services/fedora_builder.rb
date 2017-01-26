@@ -112,10 +112,15 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     if(el[:facet])
       indexer_args.push(:facetable)
     end
+    if(el.key?(:name))
+      name = el[:name].tr(' ', '_')
+    else
+      name = el[:field]
+    end
 
     Solrizer.insert_field(
       @doc,
-      el.key?(:name) ? el[:name] : el[:field],
+      name,
       values,
       *indexer_args
     )
