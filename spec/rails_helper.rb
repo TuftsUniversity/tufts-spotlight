@@ -69,10 +69,7 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
-
-    obj = FedoraBuilder.new(FactoryGirl.build_stubbed(:fedora_resource), "spec/fixtures/fedora_fields.yml")
-    f = File.new(tgt_file, 'w')
-    f.write(obj.to_yaml)
+    create_fedora_builder_file(tgt_file)
   end
 
   config.before(:each) do |v|
@@ -86,6 +83,12 @@ RSpec.configure do |config|
   config.after(:suite) do
     FileUtils.rm(tgt_file)
   end
+end
+
+def create_fedora_builder_file(file)
+  obj = FedoraBuilder.new(FactoryGirl.build_stubbed(:fedora_resource), "spec/fixtures/fedora_fields.yml")
+  f = File.new(file, 'w')
+  f.write(obj.to_yaml)
 end
 
 def clean_fedora_and_solr
