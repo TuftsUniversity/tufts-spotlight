@@ -30,7 +30,7 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     })
 
     # Fill the rest of the output hash with XML Datastream metadata.
-    @settings[:streams].each do |name, props|
+    @fedora_settings[:streams].each do |name, props|
       stream = get_stream(name.to_s)
       unless(stream.nil?)
         props[:elems].each do |el|
@@ -40,17 +40,17 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     end
 
     # Add the url to our main image.
-    unless(get_stream(@settings[:full_image]).nil?)
+    unless(get_stream(@fedora_settings[:full_image]).nil?)
       @doc[Spotlight::Engine.config.full_image_field] =
-        get_stream(@settings[:full_image]).location
+        get_stream(@fedora_settings[:full_image]).location
 
       add_image_dimensions
     end
 
     # Add the url to the thumbnail.
-    unless(get_stream(@settings[:thumb]).nil?)
+    unless(get_stream(@fedora_settings[:thumb]).nil?)
       @doc[Spotlight::Engine.config.thumbnail_field] =
-        get_stream(@settings[:thumb]).location
+        get_stream(@fedora_settings[:thumb]).location
     end
 
     @doc
@@ -58,20 +58,6 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
 
 
   private
-
-  ##
-  # Load the fedora_fields.yml file.
-  def load_yaml(file)
-    # Load the yaml file or error out informatively.
-    begin
-      unless(file[0] == "/")
-        file = Rails.root.join(file).to_s
-      end
-      @settings = YAML::load(File.open(file)).deep_symbolize_keys!
-    rescue
-      raise "Unable to find fedora_fields.yml file!"
-    end
-  end
 
   ##
   # Add the image dimensions to solr doc.
@@ -93,7 +79,7 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   # @return {string}
   #   The full title text.
   def full_title_field
-    f = @settings[:full_title_field]
+    f = @fedora_settings[:full_title_field]
     get_stream(f[:ds]).get_text(f[:element][:field])
   end
 
@@ -112,6 +98,7 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     if(el[:facet])
       indexer_args.push(:facetable)
     end
+
     if(el.key?(:name))
       name = el[:name].tr(' ', '_')
     else

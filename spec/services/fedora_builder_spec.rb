@@ -11,12 +11,6 @@ describe FedoraBuilder do
     YAML::load(File.open("#{Rails.root}/tmp/fedora_builder_spec.yml"))
   end
 
-  describe "initialize" do
-    it "loads the yaml into @settings" do
-      expect(obj.instance_variable_get(:@settings)).not_to be_empty
-    end
-  end
-
   describe "to_solr" do
     let(:doc) { obj.to_solr }
 

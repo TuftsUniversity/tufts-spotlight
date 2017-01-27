@@ -7,6 +7,7 @@ module FedoraHelpers
   # @properties
   #   fedora_object - The ActiveFedora Object.
   #   streams - The datastreams, saved after initial load.
+  #   fedora_settings - The settings from your yaml file.
 
 
   ##
@@ -47,6 +48,20 @@ module FedoraHelpers
     else
       Rails.logger.warn("#{name} is not a valid datastream!")
       nil
+    end
+  end
+
+  ##
+  # Load the fedora_fields.yml file.
+  def load_yaml(file)
+    # Load the yaml file or error out informatively.
+    begin
+      unless(file[0] == "/")
+        file = Rails.root.join(file).to_s
+      end
+      @fedora_settings = YAML::load(File.open(file)).deep_symbolize_keys!
+    rescue
+      raise "Unable to find #{file}!"
     end
   end
 
