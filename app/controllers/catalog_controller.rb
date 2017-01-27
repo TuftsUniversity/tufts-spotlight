@@ -2,7 +2,35 @@
 # Simplified catalog controller
 class CatalogController < ApplicationController
   include Blacklight::Catalog
+  ##
+  # Adds a field to blacklight, either indew, show or facet.
+  #
+  # @params
+  #   el_hash {hash} A single element's hash from the yml file.
+  #   display_type {sym} :index, :show, or :facet.
+  #   mapper {obj} A Solrizer::FieldMapper.
+  def self.add_field(el_hash, display_type, mapper)
+    if(el_hash[:name].nil?)
+      name = el_hash[:field]
+      label = name.capitalize
+    else
+      label = el_hash[:name]
+      name = label.tr(" ", "_")
+    end
 
+    solr_index_type = display_type == :facet ? :facetable : :stored_searchable
+    solr_field = mapper.solr_name(name, solr_index_type, type: :string)
+
+    case "display_type"
+    when :index
+      config.add_index_field solr_field, label: label
+    when :show
+      config.add_show_field solr_field, label: label
+    when :facet
+      config.add_facet_field solr_field, label: label
+    end
+  end
+  
   configure_blacklight do |config|
           config.show.oembed_field = :oembed_url_ssm
           config.show.partials.insert(1, :oembed)
@@ -30,33 +58,33 @@ class CatalogController < ApplicationController
     # Propagating solr fields from fedora_fields.yml
     mppr = Solrizer::FieldMapper.new
     fed_flds = YAML::load(File.open(Rails.root.join('config/fedora_fields.yml'))).deep_symbolize_keys!
-    fed_flds[:streams].each do |name, props|
-      props[:elems].each do |el|
-        if(el[:name].nil?)
-          name = el[:field]
-          label = name.capitalize
-        else
-          label = el[:name]
-          name = el[:name].tr(' ', '_')
-        end
-        solr_field = mppr.solr_name(name, :stored_searchable, type: :string)
-        if(el[:results])
-          config.add_index_field solr_field, label: label
-        else
-          config.add_show_field solr_field, label: label
-        end
 
-        if(el[:facet])
-          facet_field = mppr.solr_name(name, :facetable, type: :string)
-          config.add_facet_field facet_field, label: label
-        end
-      end # props.each
-    end # fed_flds.each
+    fed_flds[:streams].each do |name, props|
+      # Do the index fields first
+      props[:elems].select { |el|
+        el.key?(:results)
+      }.each do |el|
+        add_field(el, :index, mppr)
+      end
+
+      # Do the show fields next
+      props[:elems].select { |el|
+        el[:results].nil?
+      }.each do |el|
+        add_field(el, :show, mppr)
+      end
+
+      # Do the facet fields last
+      props[:elems].select { |el|
+        el.key?(:facet)
+      }.each do |el|
+        add_field(el, :facet, mppr)
+      end
+    end
 
     config.add_search_field 'all_fields', label: 'Everything'
 
     config.add_sort_field 'relevance', sort: 'score desc', label: 'Relevance'
-
 
     config.add_field_configuration_to_solr_request!
 
@@ -69,3 +97,4 @@ class CatalogController < ApplicationController
   end
 
 end
+
