@@ -84,6 +84,7 @@ def create_fedora_builder_file(file)
   obj = FedoraBuilder.new(FactoryGirl.build_stubbed(:fedora_resource), "spec/fixtures/fedora_fields.yml")
   f = File.new(file, 'w')
   f.write(obj.to_yaml)
+  f.flush
 end
 
 def clean_fedora_and_solr
