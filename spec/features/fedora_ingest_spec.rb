@@ -1,5 +1,10 @@
 require 'rails_helper'
 
+@ldap_server = Ladle::Server.new(
+  quiet: false,
+  ldif: File.expand_path('../../fixtures/tufts_ldap.ldif', __FILE__)
+).start
+
 feature "Fedora 3 ingest" do
   let(:pid) { pid = "tufts:MS054.003.DO.02108" }
 

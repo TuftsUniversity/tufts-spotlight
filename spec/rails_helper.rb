@@ -30,11 +30,6 @@ RSpec.configure do |config|
 
   include LoginMacros
 
-  @ldap_server = Ladle::Server.new(
-    quiet: false,
-    ldif: File.expand_path('../fixtures/tufts_ldap.ldif', __FILE__)
-  ).start
-
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
