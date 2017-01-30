@@ -69,11 +69,12 @@ guard :rspec, cmd: "spring rspec" do
   end
 
   ## Travis specials
-  #Run FedoraBuilder on changes to FedoraHelpers
-  watch(%r{^(.*/)?lib/fedora_helpers(_spec)?.rb$}) { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
+  #Run FedoraBuilder on changes to FedoraHelpers and datastream helpers.
+  watch(%r{^.*/fedora_helpers.rb$}) { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
+  watch(%r{^(.*/)?lib/fedora_helpers/.+datastream.+$}) { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
 
   #Run CatalogController on changes to ConfigParser
-  watch(%r{^(.*/)?lib/fedora_helpers/config_parser(_spec)?.rb$}) { "#{rspec.spec_dir}/controllers/catalog_controller_spec.rb" }
+  watch(%r{^.*/config_parser.rb$}) { "#{rspec.spec_dir}/controllers/catalog_controller_spec.rb" }
 
   watch("spec/fixtures/fedora_fields.yml") do
     [
