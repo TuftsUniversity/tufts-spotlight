@@ -66,12 +66,6 @@ shared_examples_for FedoraHelpers do
     end # End context with an invalid datastream
   end # End describe get_stream
 
-  describe "load_yaml" do
-    it "loads the yaml into @fedora_settings" do
-      obj.load_yaml("spec/fixtures/fedora_fields.yml")
-      expect(obj.instance_variable_get(:@fedora_settings)).not_to be_empty
-    end
-  end
 
 end
 
