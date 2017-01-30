@@ -11,7 +11,7 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   #   The resource coming from the insert form.
   def initialize(resource, settings_file = "config/fedora_fields.yml")
     super(resource)
-    load_yaml(settings_file)
+    @settings = FedoraHelpers::ConfigParser.load_yaml(settings_file)
   end
 
   ##
@@ -30,7 +30,7 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     })
 
     # Fill the rest of the output hash with XML Datastream metadata.
-    @fedora_settings[:streams].each do |name, props|
+    @settings[:streams].each do |name, props|
       stream = get_stream(name.to_s)
       unless(stream.nil?)
         props[:elems].each do |el|
@@ -40,17 +40,17 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     end
 
     # Add the url to our main image.
-    unless(get_stream(@fedora_settings[:full_image]).nil?)
+    unless(get_stream(@settings[:full_image]).nil?)
       @doc[Spotlight::Engine.config.full_image_field] =
-        get_stream(@fedora_settings[:full_image]).location
+        get_stream(@settings[:full_image]).location
 
       add_image_dimensions
     end
 
     # Add the url to the thumbnail.
-    unless(get_stream(@fedora_settings[:thumb]).nil?)
+    unless(get_stream(@settings[:thumb]).nil?)
       @doc[Spotlight::Engine.config.thumbnail_field] =
-        get_stream(@fedora_settings[:thumb]).location
+        get_stream(@settings[:thumb]).location
     end
 
     @doc
@@ -79,7 +79,7 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   # @return {string}
   #   The full title text.
   def full_title_field
-    f = @fedora_settings[:full_title_field]
+    f = @settings[:full_title_field]
     get_stream(f[:ds]).get_text(f[:element][:field])
   end
 

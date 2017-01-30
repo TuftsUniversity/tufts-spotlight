@@ -56,10 +56,10 @@ class CatalogController < ApplicationController
     config.index.title_field = 'full_title_tesim'
 
     # Propagating solr fields from fedora_fields.yml
+    fedora_settings = FedoraHelpers::ConfigParser.load_yaml("config/fedora_fields.yml")
     mppr = Solrizer::FieldMapper.new
-    fed_flds = YAML::load(File.open(Rails.root.join('config/fedora_fields.yml'))).deep_symbolize_keys!
 
-    fed_flds[:streams].each do |name, props|
+    fedora_settings[:streams].each do |name, props|
       # Do the index fields first
       props[:elems].select { |el|
         el.key?(:results)
