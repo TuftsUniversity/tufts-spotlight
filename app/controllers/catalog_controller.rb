@@ -2,6 +2,8 @@
 # Simplified catalog controller
 class CatalogController < ApplicationController
   include Blacklight::Catalog
+  extend FedoraHelpers::ConfigParser
+
   ##
   # Adds a field to blacklight, either indew, show or facet.
   #
@@ -56,7 +58,7 @@ class CatalogController < ApplicationController
     config.index.title_field = 'full_title_tesim'
 
     # Propagating solr fields from fedora_fields.yml
-    fedora_settings = FedoraHelpers::ConfigParser.load_yaml("config/fedora_fields.yml")
+    fedora_settings = load_yaml("config/fedora_fields.yml")
     mppr = Solrizer::FieldMapper.new
 
     fedora_settings[:streams].each do |name, props|
