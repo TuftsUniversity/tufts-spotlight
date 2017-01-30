@@ -68,15 +68,18 @@ guard :rspec, cmd: "spring rspec" do
     Dir[File.join("**/#{m[1]}.feature")][0] || "spec/acceptance"
   end
 
-  # Travis specials
-  watch("#{rspec.spec_dir}/lib/fedora_helpers_spec.rb") { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
-  watch("lib/fedora_helpers.rb") do
+  ## Travis specials
+  #Run FedoraBuilder on changes to FedoraHelpers
+  watch(%r{^(.*/)?lib/fedora_helpers(_spec)?.rb$}) { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
+
+  #Run CatalogController on changes to ConfigParser
+  watch(%r{^(.*/)?lib/fedora_helpers/config_parser(_spec)?.rb$}) { "#{rspec.spec_dir}/controllers/catalog_controller_spec.rb" }
+
+  watch("spec/fixtures/fedora_fields.yml") do
     [
       rspec.spec.call("services/fedora_builder"),
-      rspec.spec.call("lib/fedora_helpers/xml_datastream"),
-      rspec.spec.call("lib/fedora_helpers/image_datastream")
+      rspec.spec.call("controllers/catalog_controller")
     ]
   end
-  watch("spec/fixtures/fedora_fields.yml") { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
 
 end
