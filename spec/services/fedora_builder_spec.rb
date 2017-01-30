@@ -1,5 +1,3 @@
-require 'yaml'
-
 require 'rails_helper'
 require 'lib/fedora_helpers_spec'
 
