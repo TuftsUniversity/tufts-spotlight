@@ -1,6 +1,16 @@
 require 'rails_helper'
 
+class ConfigParserTestClass
+  include FedoraHelpers::ConfigParser
+
+  def initialize
+    @settings = load_yaml("spec/fixtures/fedora_fields.yml")
+  end
+end
+
+
 describe FedoraHelpers::ConfigParser do
+  let(:obj) { ConfigParserTestClass.new }
 
   # Class method
   describe "load_yaml" do
@@ -9,6 +19,11 @@ describe FedoraHelpers::ConfigParser do
       expect(yaml).to be_a(Hash)
       expect(yaml).to_not be_empty
     end
+
+    it "is available as instance method" do
+      expect(obj.instance_variable_get(:@settings)).to_not be_empty
+    end
   end
+
 end
 
