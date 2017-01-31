@@ -12,8 +12,8 @@ full_title_field:
 streams:
   DCA-META:
     elems:
-      - { field: description }
-      - { field: creator }
+      - { field: description, results: true}
+      - { field: creator, results: true, facet: true  }
       - { field: source }
       - { field: publisher, name: published_by }
       - { field: subject, facet: true }

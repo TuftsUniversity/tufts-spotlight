@@ -21,5 +21,45 @@ module FedoraHelpers
     end
     module_function(:load_yaml)
 
-  end
-end
+
+    ##
+    # Retrieves all fields for show in the config file.
+    def get_show_fields
+      select_fields(lambda { |e| e[:results].nil? })
+    end
+
+    ##
+    # Retrieves all index fields to show in search results from config file.
+    def get_index_fields
+      select_fields(lambda { |e| e.key?(:results) })
+    end
+
+    ##
+    # Retrieves all facet fields from config file.
+    def get_facet_fields
+      select_fields(lambda { |e| e.key?(:facet) })
+    end
+
+
+    private
+
+    ##
+    # Sets fedora_settings instance variable, using load_yaml.
+    def set_fedora_settings(file)
+      @fedora_settings = load_yaml(file)
+    end
+
+    ##
+    # Returns a set of elements, selected by custom proc.
+    def select_fields(filter)
+      fields = []
+      @fedora_settings[:streams].each do |name, props|
+        props[:elems].select(&filter).each { |e| fields.push(e) }
+      end
+
+      fields
+    end
+
+
+  end #End ConfigParser
+end #End FedoraHelpers
