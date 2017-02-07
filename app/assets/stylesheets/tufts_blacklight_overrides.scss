@@ -25,7 +25,6 @@ $dark_tufts_blue: #2a5c89;
 }
 
 .quote {
-  margin-top: 2em;
   margin-left: 6em;
 }
 
@@ -37,7 +36,16 @@ $dark_tufts_blue: #2a5c89;
   margin-left: 2em;
 }
 
-.st__content-block--list {
-  margin-bottom: 1.5em;
+.st__content-block {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.spotlight-flexbox .box {
+  text-align: left;
+}
+
+picture.openseadragon-viewer {
+  border: 1px solid #d3d3d3;
 }
 
