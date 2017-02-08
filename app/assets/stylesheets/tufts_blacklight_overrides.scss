@@ -41,11 +41,13 @@ $dark_tufts_blue: #2a5c89;
   margin-bottom: 1em;
 }
 
-.spotlight-flexbox .box {
-  text-align: left;
-}
-
 picture.openseadragon-viewer {
   border: 1px solid #d3d3d3;
+}
+
+.openseadragon-container .controls {
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
 }
 
