@@ -72,3 +72,5 @@ group :test do
   gem 'factory_girl_rails'
 end
 
+gem 'tufts_spotlight_blocks', path: '../tufts_spotlight_blocks'
+
