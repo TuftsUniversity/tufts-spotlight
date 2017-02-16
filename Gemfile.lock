@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/TuftsUniversity/tufts_spotlight_blocks.git
+  revision: 9dbdf0ded6e448a413f002a99c9f110d6b9e4709
+  specs:
+    tufts_spotlight_blocks (0.1.0)
+      rails (~> 4.2)
+
+GIT
   remote: git://github.com/norman/friendly_id.git
   revision: aff0564584e84ffa505e6e278b65ca3c4ee5d698
   specs:
@@ -591,6 +598,7 @@ DEPENDENCIES
   spring-commands-rspec
   sqlite3
   therubyracer
+  tufts_spotlight_blocks!
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
 

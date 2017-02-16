@@ -48,14 +48,15 @@ gem 'devise_invitable'
 gem 'devise_ldap_authenticatable'
 gem 'active-fedora', '~> 7.1.1'
 
+#gem 'tufts_spotlight_blocks', path: '../tufts_spotlight_blocks'
+gem 'tufts_spotlight_blocks', github: 'TuftsUniversity/tufts_spotlight_blocks'
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-commands-rspec'
-  #gem 'tufts_spotlight_blocks', path: '../tufts_spotlight_blocks'
-  gem 'tufts_spotlight_blocks', github: 'TuftsUniversity/tufts_spotlight_blocks'
 end
 
 group :development, :test do
@@ -65,7 +66,6 @@ group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
   gem 'jettywrapper', '1.8.3'
   gem 'sqlite3'
-#  gem 'tufts_spotlight_blocks', github: 'TuftsUniversity/tufts_spotlight_blocks'
 end
 
 group :test do
@@ -75,7 +75,4 @@ group :test do
   gem 'factory_girl_rails'
 end
 
-group :test, :production, :tdldev do
-  gem 'tufts_spotlight_blocks', github: 'TuftsUniversity/tufts_spotlight_blocks'
-end
 
