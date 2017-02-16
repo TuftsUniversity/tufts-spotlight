@@ -54,6 +54,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-commands-rspec'
+  #gem 'tufts_spotlight_blocks', path: '../tufts_spotlight_blocks'
+  gem 'tufts_spotlight_blocks', github: 'TuftsUniversity/tufts_spotlight_blocks'
 end
 
 group :development, :test do
@@ -63,6 +65,7 @@ group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
   gem 'jettywrapper', '1.8.3'
   gem 'sqlite3'
+#  gem 'tufts_spotlight_blocks', github: 'TuftsUniversity/tufts_spotlight_blocks'
 end
 
 group :test do
@@ -72,5 +75,7 @@ group :test do
   gem 'factory_girl_rails'
 end
 
-gem 'tufts_spotlight_blocks', path: '../tufts_spotlight_blocks'
+group :test, :production, :tdldev do
+  gem 'tufts_spotlight_blocks', github: 'TuftsUniversity/tufts_spotlight_blocks'
+end
 

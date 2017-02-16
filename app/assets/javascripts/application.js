@@ -16,3 +16,6 @@
 //= require blacklight/blacklight
 
 //= require_tree .
+
+//= require tufts_spotlight_blocks/application
+
