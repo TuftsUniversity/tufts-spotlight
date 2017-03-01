@@ -31,3 +31,4 @@ config/environments/tdldev.rb
 # Ignore jetty
 jetty
 
+public/assets
