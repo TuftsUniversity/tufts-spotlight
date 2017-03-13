@@ -7,7 +7,13 @@ module FedoraHelpers
   module ConfigParser
 
     ##
-    # Load the fedora_fields.yml file.
+    # Translates a yaml file into a hash and returns it.
+    # Paths that start with / will be take verbatim, otherwise concat'd to Rails.root.
+    #
+    # Available as either class or instance method.
+    #
+    # @param {string} file
+    #   The file to load.
     def load_yaml(file)
       # Load the yaml file or error out informatively.
       begin
@@ -45,12 +51,20 @@ module FedoraHelpers
 
     ##
     # Sets fedora_settings instance variable, using load_yaml.
+    #
+    # @param {string} file
+    #   The file to load.
     def set_fedora_settings(file)
       @fedora_settings = load_yaml(file)
     end
 
     ##
-    # Returns a set of elements, selected by custom proc.
+    # Returns a set of elements, selected by custom lamba.
+    #
+    # @param {lambda} filter
+    #   A lambda filter to choose specific elements.
+    # @return {array}
+    #   The filtered element list.
     def select_fields(filter)
       fields = []
       @fedora_settings[:streams].each do |name, props|

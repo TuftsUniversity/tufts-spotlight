@@ -5,7 +5,7 @@ class CatalogController < ApplicationController
   extend FedoraHelpers::ConfigParser
 
   ##
-  # Adds a field to blacklight, either indew, show or facet.
+  # Adds a field to blacklight, either index, show or facet.
   #
   # @params
   #   el_hash {hash} A single element's hash from the yml file.

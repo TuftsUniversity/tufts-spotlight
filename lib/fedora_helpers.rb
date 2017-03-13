@@ -13,8 +13,8 @@ module FedoraHelpers
   # Saves a Fedora record into @fedora_object.
   # Saves an empty hash if record not found.
   #
-  # @params
-  #   id {string} Fedora pid.
+  # @param {string} id
+  #   Fedora pid.
   def load_resource(id)
     if(ActiveFedora::Base.exists?(id))
       @fedora_object = ActiveFedora::Base.find(id)
@@ -29,8 +29,8 @@ module FedoraHelpers
   # Retrieves a specific datastream, wrapped in FedoraHelpers::Datastream class.
   # Datastreams are saved to @streams, so we don't keep reloading them.
   #
-  # @params
-  #   name {string} Datastream name.
+  # @params {string} name
+  #   Datastream name.
   # @return {FedoraHelpers::Datastream / hash}
   #   FedoraHelpers::Datastream object or empty hash.
   def get_stream(name)
@@ -57,8 +57,8 @@ module FedoraHelpers
   # Figures out the stream type and loads it into the appropriate Datastream Class.
   # Saves the datastream to @streams, for future use.
   #
-  # @params
-  #   name {string} Datastream name.
+  # @param {string} name
+  #   Datastream name.
   def prepare_stream(name)
     nym = name.to_sym
     ds = @fedora_object.datastreams[name]

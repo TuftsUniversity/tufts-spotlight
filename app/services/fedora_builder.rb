@@ -5,10 +5,19 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
   include FedoraHelpers
 
   ##
+  # @properties
+  #   settings - The fields and datastreams to import.
+  #   doc - The output solr hash.
+  #   fedora_object - ActiveFedora object, from FedoraHelpers.
+
+
+  ##
   # Loads the YAML file.
   #
-  # @param {FedoraResource}
+  # @param {FedoraResource} resource
   #   The resource coming from the insert form.
+  # @param {string} settings_file
+  #   The yaml file to use for meatadata settings.
   def initialize(resource, settings_file = "config/fedora_fields.yml")
     super(resource)
     @settings = FedoraHelpers::ConfigParser.load_yaml(settings_file)
@@ -54,7 +63,7 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     end
 
     @doc
-  end
+  end # End to_solr
 
 
   private
