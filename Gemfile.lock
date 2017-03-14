@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/TuftsUniversity/tufts_spotlight_blocks.git
-  revision: 199e4f45767101ae3563b51087ba08d85159efbc
+  revision: 87d6d72228569d6cc976ab2e0658ab6c18b6881e
   specs:
     tufts_spotlight_blocks (0.1.0)
       rails (~> 4.2)
@@ -603,4 +603,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.14.3
+   1.14.5
