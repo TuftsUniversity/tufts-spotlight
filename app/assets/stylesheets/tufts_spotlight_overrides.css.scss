@@ -2,7 +2,7 @@
  *= require tufts_spotlight_blocks/spotlight_overrides.scss
  */
 
-$logo_image: '/assets/tufts_logo.png';
+$logo_image: 'tufts_logo.png';
 $light_tufts_blue: #3172ae;
 $dark_tufts_blue: #2a5c89;
 
@@ -11,7 +11,7 @@ $dark_tufts_blue: #2a5c89;
 }
 
 #header-navbar .navbar-brand {
-  background-image: url($logo_image);
+  background-image: asset-url($logo_image);
 }
 
 .navbar-inverse {
