@@ -27,6 +27,12 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
+    # These document actions currently don't work. Will readd when they are fixed.
+    config.show.document_actions.delete(:citation)
+    config.show.document_actions.delete(:email)
+    config.show.document_actions.delete(:sms)
+
+
     config.show.oembed_field = :oembed_url_ssm
     config.show.partials.insert(1, :oembed)
 
