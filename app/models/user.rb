@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # Removed :recoverable and :registerable to eliminate unwanted links on login page
   devise :invitable, :ldap_authenticatable,
-         :rememberable, :trackable, :validatable
+         :trackable, :validatable
 
   # Method added by Blacklight; Blacklight uses #to_s on your
   # user class to get a user-displayable login/identifier for

@@ -32,6 +32,11 @@ $dark_tufts_blue: #2a5c89;
   }
 }
 
+/* Add some space between submit and password inputs on login page. */
+#new_user .actions {
+  margin-top: 1em;
+}
+
 picture.openseadragon-viewer {
   border: 1px solid #d3d3d3;
 }
