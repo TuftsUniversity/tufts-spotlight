@@ -51,8 +51,8 @@ Spotlight::Engine.config.external_resources_partials = ["fedora_resources/form"]
 
 # ==> Google Analytics integration
 # Spotlight::Engine.config.analytics_provider = nil
-# Spotlight::Engine.config.ga_pkcs12_key_path = Rails.application.secrets.ga_pkcs12_key_path
-# Spotlight::Engine.config.ga_web_property_id = Rails.application.secrets.ga_web_property_id
-# Spotlight::Engine.config.ga_email = Rails.application.secrets.ga_email
+ Spotlight::Engine.config.ga_pkcs12_key_path = Rails.application.secrets.ga_pkcs12_key_path
+ Spotlight::Engine.config.ga_web_property_id = Rails.application.secrets.ga_web_property_id
+ Spotlight::Engine.config.ga_email = Rails.application.secrets.ga_email
 # Spotlight::Engine.config.ga_analytics_options = {}
 # Spotlight::Engine.config.ga_page_analytics_options = config.ga_analytics_options.merge(limit: 5)
