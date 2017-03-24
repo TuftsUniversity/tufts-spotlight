@@ -49,21 +49,23 @@ picture.openseadragon-viewer {
   border: 1px solid #d3d3d3;
 }
 
-.osd-toolbar {
-  text-align: left;
-}
 
 #document .openseadragon-container .osd-toolbar .controls {
   position: absolute;
   z-index: 100;
   float: none;
   width: 7em;
-  padding-top: .25em;
-  padding-bottom: .25em;
+  top: .75em;
+  padding: .5em 1em;
   border-radius: 0px 75px 75px 0px;
   transition: background-color 0.5s ease;
+  text-align: left;
 
   &:hover {
     background-color: #d3d3d3;
+  }
+
+  a {
+    margin: 0;
   }
 }
