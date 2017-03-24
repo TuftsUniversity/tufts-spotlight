@@ -16,10 +16,11 @@ $dark_tufts_blue: #2a5c89;
 }
 
 .navbar-right {
-  .navbar-nav a {
+  .navbar-nav > li > a {
     padding-top: 21px;
     padding-bottom: 21px;
   }
+
 }
 
 .navbar-inverse {
