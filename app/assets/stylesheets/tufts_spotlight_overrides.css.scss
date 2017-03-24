@@ -12,6 +12,14 @@ $dark_tufts_blue: #2a5c89;
 
 #header-navbar .navbar-brand {
   background-image: asset-url($logo_image);
+
+}
+
+.navbar-right {
+  .navbar-nav a {
+    padding-top: 21px;
+    padding-bottom: 21px;
+  }
 }
 
 .navbar-inverse {
@@ -45,7 +53,7 @@ picture.openseadragon-viewer {
   text-align: left;
 }
 
-.openseadragon-container .controls {
+.openseadragon-container .osd-toolbar .controls {
   position: absolute;
   z-index: 100;
   float: none;
