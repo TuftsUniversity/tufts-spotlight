@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/TuftsUniversity/tufts_spotlight_blocks.git
-  revision: 4105733725af1cda80dc511303d8a5f71013b390
+  revision: b6b078311cd70b1b582fe3a2a1cda6dc1459503c
   specs:
     tufts_spotlight_blocks (0.1.0)
       rails (~> 4.2)
@@ -299,7 +299,7 @@ GEM
     net-http-persistent (2.9.4)
     net-ldap (0.11)
     netrc (0.11.0)
-    nokogiri (1.7.0.1)
+    nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
     nom-xml (0.6.0)
       activesupport (>= 3.2.18)
