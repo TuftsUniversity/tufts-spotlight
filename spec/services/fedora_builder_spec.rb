@@ -85,7 +85,8 @@ describe FedoraBuilder do
 
       it "adds facet fields" do
         expect(doc).to include(
-          "subject_sim" => ["Houses", "Edwin B. Rollins, papers"]
+          "subject_sim" => ["Houses", "Edwin B. Rollins, papers"],
+          "creator_sim" => ["Rollins, Edwin B."]
         )
       end
 
