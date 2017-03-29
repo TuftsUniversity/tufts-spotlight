@@ -33,9 +33,9 @@ describe FedoraBuilder do
       it "sets the correct image urls" do
         expect(doc).to include({
           Spotlight::Engine.config.full_image_field =>
-            "http://bucket01.lib.tufts.edu/data01/tufts/central/dca/MS054/advanced_jpg/MS054.003.DO.02108.advanced.jpg",
+            "https://dl.tufts.edu/file_assets/advanced/tufts:MS054.003.DO.02108",
           Spotlight::Engine.config.thumbnail_field =>
-             "http://bucket01.lib.tufts.edu/data01/tufts/central/dca/MS054/thumb_png/MS054.003.DO.02108.thumb.png"
+             "https://dl.tufts.edu/file_assets/thumb/tufts:MS054.003.DO.02108"
         })
       end
 
