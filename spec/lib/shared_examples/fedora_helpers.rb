@@ -66,6 +66,5 @@ shared_examples_for FedoraHelpers do
     end # End context with an invalid datastream
   end # End describe get_stream
 
-
 end
 
