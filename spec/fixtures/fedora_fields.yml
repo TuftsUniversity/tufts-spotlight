@@ -1,23 +1,25 @@
 #@file
-# Contains the mappings for fields in Fedora => Spotlight
+# This file is not actually used in tests.
+# It's what the tests expect to see in config/fedora_fields.yml for the test env.
 
 ---
-full_image: Advanced.jpg
-thumb: Thumbnail.png
+test:
+  full_image: Advanced.jpg
+  thumb: Thumbnail.png
 
-full_title_field:
-  ds: DCA-META
-  element: { field: title }
+  full_title_field:
+    ds: DCA-META
+    element: { field: title }
 
-streams:
-  DCA-META:
-    elems:
-      - { field: description, results: true}
-      - { field: creator, results: true, facet: true  }
-      - { field: source }
-      - { field: publisher, name: published_by }
-      - { field: subject, facet: true }
-  RELS-EXT:
-    elems:
-      - { field: "/RDF/Description/isMemberOfCollection/@resource", name: member_of }
+  streams:
+    DCA-META:
+      elems:
+        - { field: description, results: true}
+        - { field: creator, results: true, facet: true  }
+        - { field: source }
+        - { field: publisher, name: published_by }
+        - { field: subject, facet: true }
+    RELS-EXT:
+      elems:
+        - { field: "/RDF/Description/isMemberOfCollection/@resource", name: member_of }
 

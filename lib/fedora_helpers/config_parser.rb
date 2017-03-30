@@ -20,9 +20,9 @@ module FedoraHelpers
         unless(file[0] == "/")
           file = Rails.root.join(file).to_s
         end
-        YAML::load(File.open(file)).deep_symbolize_keys!
+        YAML::load(File.open(file)).deep_symbolize_keys![Rails.env.to_sym]
       rescue
-        raise "Unable to find #{file}!"
+        raise "Unable to load #{file}!"
       end
     end
     module_function(:load_yaml)

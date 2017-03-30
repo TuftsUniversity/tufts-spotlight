@@ -73,10 +73,10 @@ guard :rspec, cmd: "spring rspec" do
   watch(%r{^.*/fedora_helpers.rb$}) { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
   watch(%r{^(.*/)?lib/fedora_helpers/.+datastream.+$}) { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
 
-  watch("spec/fixtures/fedora_fields.yml") do
+  watch("config/fedora_fields.yml") do
     [
       rspec.spec.call("services/fedora_builder"),
-      rspec.spec.call("controllers/catalog_controller")
+      rspec.spec.call("features/config_parser_display")
     ]
   end
 
