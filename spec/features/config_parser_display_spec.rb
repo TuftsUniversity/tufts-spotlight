@@ -1,8 +1,10 @@
 # @file
 # Tests that the display from CatalogController actually matches fedora_fields.yml
+# This file uses a lot of FedoraFieldMacros
 
 require 'rails_helper'
 include FedoraHelpers::ConfigParser
+include FedoraFieldMacros
 
 feature "ConfigParser fields display" do
 
@@ -18,43 +20,15 @@ feature "ConfigParser fields display" do
   end
 
   scenario "Checking facet fields" do
-    config_fields = []
-    displayed_fields = []
-
-    get_facet_fields.each do |f|
-      if(f[:name].nil?)
-        config_fields << f[:field].capitalize
-      else
-        config_fields << f[:name]
-      end
-    end
-
-    all("#facets .panel h3").each do |el|
-      if(el.text)
-        displayed_fields << el.text
-      end
-    end
+    config_fields = get_field_names(get_facet_fields)
+    displayed_fields = get_element_texts("#facets .panel h3")
 
     expect(config_fields).to eq(displayed_fields)
   end
 
   scenario "Checking index fields" do
-    config_fields = []
-    displayed_fields = []
-
-    get_index_fields.each do |f|
-      if(f[:name].nil?)
-        config_fields << f[:field].capitalize + ":"
-      else
-        config_fields << f[:name] + ":"
-      end
-    end
-
-    all("#documents .document dt").each do |el|
-      if(el.text)
-        displayed_fields << el.text
-      end
-    end
+    config_fields = get_field_names(get_index_fields) { |name| name + ":" }
+    displayed_fields = get_element_texts("#documents .document dt")
 
     expect(config_fields).to eq(displayed_fields)
   end
@@ -62,32 +36,8 @@ feature "ConfigParser fields display" do
   scenario "Checking show fields" do
     first("#documents .document h3 a").click
 
-    config_fields = []
-    displayed_fields = []
-
-    get_index_fields.each do |f|
-      if(f[:name].nil?)
-        config_fields << f[:field].capitalize + ":"
-      else
-        config_fields << f[:name] + ":"
-      end
-    end
-
-    get_show_fields.each do |f|
-      if(f[:name].nil?)
-        config_fields << f[:field].capitalize + ":"
-      else
-        config_fields << f[:name] + ":"
-      end
-    end
-
-    all("#document dt").each do |el|
-      if(el.text)
-        displayed_fields << el.text
-      else
-        puts el
-      end
-    end
+    config_fields = get_field_names(get_index_fields+get_show_fields) { |name| name + ":" }
+    displayed_fields = get_element_texts("#document dt")
 
     expect(config_fields).to eq(displayed_fields)
   end
