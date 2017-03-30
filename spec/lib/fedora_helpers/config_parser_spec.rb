@@ -42,7 +42,7 @@ describe FedoraHelpers::ConfigParser do
     it "retrieves from all datastreams" do
       expect(results).to include( {field: "source"} )
       expect(results).to include(
-        {field: "/RDF/Description/isMemberOfCollection/@resource", name: "member_of"} 
+        {field: "/RDF/Description/isMemberOfCollection/@resource", name: "Member Of"}
       )
     end
   end #End get_show_fields
