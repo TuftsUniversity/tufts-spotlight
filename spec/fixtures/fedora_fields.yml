@@ -17,9 +17,9 @@ test:
         - { field: description, results: true}
         - { field: creator, results: true, facet: true  }
         - { field: source }
-        - { field: publisher, name: published_by }
+        - { field: publisher, name: Published By }
         - { field: subject, facet: true }
     RELS-EXT:
       elems:
-        - { field: "/RDF/Description/isMemberOfCollection/@resource", name: member_of }
+        - { field: "/RDF/Description/isMemberOfCollection/@resource", name: Member Of }
 
