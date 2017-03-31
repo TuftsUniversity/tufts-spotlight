@@ -2,4 +2,5 @@
 # port: 8983
 collection:
   dir: solr/config/
-  name: blacklight-core
+  name: test
+  port: 8984

@@ -10,7 +10,6 @@ notifications:
     - travis.lilleberg@tufts.edu
 
 before_script:
-  - solr_wrapper -d solr/config -p 8984 --collection_name test
   - mysql -e 'create database tufts_spotlight_test'
   - mkdir -p tmp && export TMPDIR=tmp
   - bundle exec rake tufts:ci

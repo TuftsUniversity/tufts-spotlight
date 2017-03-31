@@ -1,4 +1,5 @@
 require 'jettywrapper'
+require 'solr_wrapper/rake_task'
 
 namespace :tufts do
 
@@ -7,6 +8,7 @@ namespace :tufts do
     Rake::Task["jetty:download"].invoke
     Rake::Task["jetty:unzip"].invoke
     Rake::Task["jetty:start"].invoke
+    Rake::Task["solr:start"].invoke
     sleep(30)
 
     Rake::Task["tufts:configs"].invoke
