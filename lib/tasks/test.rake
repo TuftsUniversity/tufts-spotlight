@@ -7,7 +7,11 @@ namespace :tufts do
     Rake::Task["jetty:download"].invoke
     Rake::Task["jetty:unzip"].invoke
     Rake::Task["jetty:start"].invoke
-    sleep(40)
+
+    solr_wrapper -d solr/config -p 8984 --collection_name test
+
+    sleep(30)
+
     Rake::Task["tufts:fixtures"].invoke
     Rake::Task["db:migrate"].invoke
   end
