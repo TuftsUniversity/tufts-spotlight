@@ -7,13 +7,21 @@ namespace :tufts do
     Rake::Task["jetty:download"].invoke
     Rake::Task["jetty:unzip"].invoke
     Rake::Task["jetty:start"].invoke
-
-    solr_wrapper -d solr/config -p 8984 --collection_name test
-
     sleep(30)
 
+    Rake::Task["tufts:configs"].invoke
     Rake::Task["tufts:fixtures"].invoke
     Rake::Task["db:migrate"].invoke
+  end
+
+  desc 'Copy config files'
+  task :configs => :environment do
+    %w(database fedora blacklight secrets solr ldap).each do |f|
+      FileUtils::cp(
+        Rails.root.join("config/#{f}.yml.sample"),
+        Rails.root.join("config/#{f}.yml")
+      )
+    end
   end
 
   desc 'Load fixture data'
@@ -93,6 +101,5 @@ namespace :tufts do
       loader.import_and_index(pid)
     end
 
-  end
-
+  end # End task ci
 end
