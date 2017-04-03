@@ -16,7 +16,7 @@ before_script:
   - mkdir -p tmp && export TMPDIR=tmp
   - bundle exec rake tufts:ci
 
-script
+script:
   - bundle exec rake tufts:spec
 
 env:
