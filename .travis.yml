@@ -16,6 +16,9 @@ before_script:
   - mkdir -p tmp && export TMPDIR=tmp
   - bundle exec rake tufts:ci
 
+script
+  - bundle exec rake tufts:spec
+
 env:
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true

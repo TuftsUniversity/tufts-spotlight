@@ -1,6 +1,0 @@
-# Place any default configuration for solr_wrapper here
-# port: 8983
-port: 8984
-collection:
-  dir: solr/config/
-  name: test

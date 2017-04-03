@@ -1,5 +1,13 @@
 require 'jettywrapper'
+SolrWrapper.default_instance_options = {
+  verbose: true,
+  port: 8984,
+  version: "6.3.0",
+  instance_dir: "solr/install"
+}
 require 'solr_wrapper/rake_task'
+
+task :default => ["tufts:spec"]
 
 namespace :tufts do
 
@@ -8,12 +16,21 @@ namespace :tufts do
     Rake::Task["jetty:download"].invoke
     Rake::Task["jetty:unzip"].invoke
     Rake::Task["jetty:start"].invoke
-    Rake::Task["solr:start"].invoke
+
     sleep(30)
 
     Rake::Task["tufts:configs"].invoke
-    Rake::Task["tufts:fixtures"].invoke
     Rake::Task["db:migrate"].invoke
+  end
+
+  desc "Runs tests inside solr wrapper"
+  task :spec => :environment do
+    SolrWrapper.wrap do |solr|
+      solr.with_collection(dir: Rails.root.join("solr/config/"), name: "test") do |col|
+        Rake::Task["tufts:fixtures"].invoke
+        Rake::Task["spec"].invoke
+      end
+    end
   end
 
   desc 'Copy config files'
@@ -22,7 +39,7 @@ namespace :tufts do
       FileUtils::cp(
         Rails.root.join("config/#{f}.yml.sample"),
         Rails.root.join("config/#{f}.yml")
-      )
+      ) unless File.exist?("config/#{f}.yml")
     end
   end
 
