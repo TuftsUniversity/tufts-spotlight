@@ -10,8 +10,13 @@ feature "ConfigParser fields display" do
 
   before(:all) do
     set_fedora_settings("config/fedora_fields.yml")
+    # Can't use let() because it doesn't work in before(:all) scope.
     @exhibit = FactoryGirl.create(:exhibit)
     FactoryGirl.create(:fedora_resource, exhibit: @exhibit).reindex
+  end
+
+  after(:all) do
+    @exhibit.delete
   end
 
   before(:each) do
