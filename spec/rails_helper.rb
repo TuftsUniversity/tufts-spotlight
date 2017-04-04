@@ -60,13 +60,9 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  # Caches a fake FedoraResource for use in the tests.
-  tgt_file = "#{Rails.root}/tmp/fedora_builder_spec.yml"
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
-    create_fedora_builder_file(tgt_file)
-
   end
 
   config.before(:each) do |v|
@@ -78,16 +74,8 @@ RSpec.configure do |config|
   end
 
   config.after(:suite) do
-    FileUtils.rm(tgt_file)
     stop_ldap
   end
-end
-
-def create_fedora_builder_file(file)
-  obj = FedoraBuilder.new(FactoryGirl.build_stubbed(:fedora_resource), "config/fedora_fields.yml")
-  f = File.new(file, 'w')
-  f.write(obj.to_yaml)
-  f.flush
 end
 
 def clean_fedora_and_solr

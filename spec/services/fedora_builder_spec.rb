@@ -1,11 +1,19 @@
 require 'rails_helper'
+include FedoraBuilderCacheMaker
 
 describe FedoraBuilder do
   it_behaves_like FedoraHelpers
 
+  before(:all) do
+    create_builder_stub
+  end
+
+  after(:all) do
+    delete_builder_stub
+  end
+
   let(:obj) do
-    # This file is created/deleted in rails_helper
-    YAML::load(File.open("#{Rails.root}/tmp/fedora_builder_spec.yml"))
+    load_builder_stub
   end
 
   describe "to_solr" do

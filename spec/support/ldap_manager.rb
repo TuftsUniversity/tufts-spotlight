@@ -1,3 +1,5 @@
+##
+# Manages the start/stopping of the ladle server.
 module LdapManager
 
   ##
