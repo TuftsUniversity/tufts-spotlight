@@ -78,8 +78,15 @@ RSpec.configure do |config|
   end
 end
 
-def clean_fedora_and_solr
+##
+# Deletes everything in Fedora.
+def clean_fedora
   ActiveFedora::Base.delete_all
+end
+
+##
+# Deletes everything in Solr.
+def clean_solr
   solr = ActiveFedora::SolrService.instance.conn
   solr.delete_by_query("*:*", params: { commit: true })
 end

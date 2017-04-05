@@ -16,7 +16,8 @@ feature "ConfigParser fields display" do
   end
 
   after(:all) do
-    @exhibit.delete
+    @exhibit.destroy
+    clean_solr
   end
 
   before(:each) do

@@ -18,6 +18,10 @@ feature "Fedora 3 ingest" do
     visit(spotlight.new_exhibit_resource_path(exhibit))
   end
 
+  after(:all) do
+    clean_solr
+  end
+
   scenario "Ingesting valid Fedora record" do
     expect {
       within("#new_resource") do
