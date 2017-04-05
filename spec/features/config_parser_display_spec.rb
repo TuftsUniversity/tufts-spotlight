@@ -12,11 +12,13 @@ feature "ConfigParser fields display" do
     set_fedora_settings("config/fedora_fields.yml")
     # Can't use let() because it doesn't work in before(:all) scope.
     @exhibit = FactoryGirl.create(:exhibit)
-    FactoryGirl.create(:fedora_resource, exhibit: @exhibit).reindex
+    @resource = FactoryGirl.create(:fedora_resource, exhibit: @exhibit)
+    @resource.reindex
   end
 
   after(:all) do
     @exhibit.destroy
+    @resource.destroy
     clean_solr
   end
 
