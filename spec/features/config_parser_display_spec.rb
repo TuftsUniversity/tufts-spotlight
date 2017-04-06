@@ -1,6 +1,5 @@
 # @file
 # Tests that the display from CatalogController actually matches fedora_fields.yml
-# This file uses a lot of FedoraFieldMacros
 
 require 'rails_helper'
 include FedoraHelpers::ConfigParser

@@ -73,6 +73,7 @@ group :test do
   gem 'capybara'
   gem 'ladle'
   gem 'factory_girl_rails'
+  gem 'selenium-webdriver'
 end
 
 
