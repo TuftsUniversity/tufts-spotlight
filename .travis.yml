@@ -5,14 +5,24 @@ language: ruby
 rvm:
   - 2.3.0
 
-sudo: false
+sudo: required
+dist: trusty
 cache: bundler
 
 notifications:
   email:
     - travis.lilleberg@tufts.edu
 
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install chromium-chromedriver
+
 before_script:
+  #Chrome testing stuff
+  - export PATH=$PATH:/usr/lib/chromium-browser/
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3 # give xvfb some time to start
   - cp config/database.yml.sample config/database.yml
   - cp config/secrets.yml.sample config/secrets.yml
   - mysql -e 'create database tufts_spotlight_test'
