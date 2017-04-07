@@ -20,8 +20,10 @@ feature "Tufts Spotlight Blocks customizations" do
   scenario "adds captions to the solr documents embed block", js: true do
     within("#st-editor-1") do
       click_button(class: "st-block-replacer")
-      save_and_open_page
+      find(:xpath, '//button[@data-type="solr_documents_embed"]').click
     end
+
+    expect(page).to have_css(".primary-caption")
   end
 end
 
