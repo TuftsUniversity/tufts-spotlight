@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/TuftsUniversity/tufts_spotlight_blocks.git
-  revision: b6b078311cd70b1b582fe3a2a1cda6dc1459503c
+  revision: 40c89f47d69b076b647bd44508c70f829ed2e2e0
   specs:
     tufts_spotlight_blocks (0.1.0)
       rails (~> 4.2)
@@ -545,7 +545,7 @@ GEM
       actionpack (>= 3.1)
       jquery-rails
       railties (>= 3.1)
-    tzinfo (1.2.2)
+    tzinfo (1.2.3)
       thread_safe (~> 0.1)
     uber (0.0.15)
     uglifier (3.0.3)
@@ -609,4 +609,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.14.5
+   1.14.6

@@ -38,7 +38,11 @@ feature "Tufts Spotlight Blocks customizations" do
     add_block("featured_pages")
 
     ac = find("#st-editor-1 .twitter-typeahead")
-    warning = find("p", text: "This feature row is at the maximum number of items.")
+    warning = find(
+      "p",
+      text: "This feature row is at the maximum number of items.",
+      visible: false
+    )
 
     # Ac on - warning off, by default
     expect(ac.visible?).to be(true)
