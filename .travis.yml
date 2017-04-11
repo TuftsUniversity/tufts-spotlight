@@ -1,6 +1,3 @@
-language: java
-jdk:
-  - oraclejdk8
 language: ruby
 rvm:
   - 2.3.0
@@ -30,6 +27,7 @@ before_script:
   - bundle exec rake tufts:ci
 
 script:
+  - jdk_switcher use oraclejdk8
   - bundle exec rake tufts:spec
 
 env:
