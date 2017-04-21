@@ -51,6 +51,8 @@ gem 'active-fedora', '~> 7.1.1'
 #gem 'tufts_spotlight_blocks', path: '../tufts_spotlight_blocks'
 gem 'tufts_spotlight_blocks', github: 'TuftsUniversity/tufts_spotlight_blocks'
 
+gem 'solr_wrapper', '>= 0.3'
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -63,7 +65,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5.0'
   gem 'guard-rspec'
   gem 'byebug'
-  gem 'solr_wrapper', '>= 0.3'
   gem 'jettywrapper', '1.8.3'
   gem 'sqlite3'
 end
