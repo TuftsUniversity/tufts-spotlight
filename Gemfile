@@ -49,7 +49,7 @@ gem 'devise_ldap_authenticatable'
 gem 'active-fedora', '~> 7.1.1'
 
 #gem 'tufts_spotlight_blocks', path: '../tufts_spotlight_blocks'
-gem 'tufts_spotlight_blocks', github: 'TuftsUniversity/tufts_spotlight_blocks'
+#gem 'tufts_spotlight_blocks', github: 'TuftsUniversity/tufts_spotlight_blocks'
 
 gem 'solr_wrapper', '>= 0.3'
 

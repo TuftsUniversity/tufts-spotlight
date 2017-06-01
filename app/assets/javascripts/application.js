@@ -17,5 +17,3 @@
 
 //= require_tree .
 
-//= require tufts_spotlight_blocks/application
-
