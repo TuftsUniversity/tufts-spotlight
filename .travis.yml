@@ -5,6 +5,7 @@ rvm:
 sudo: required
 dist: trusty
 cache: bundler
+group: deprecated-2017Q2
 
 notifications:
   email:
