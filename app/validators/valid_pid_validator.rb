@@ -4,7 +4,11 @@
 
 class ValidPidValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    unless(ActiveFedora::Base.exists?(value))
+    begin
+      unless(ActiveFedora::Base.exists?(value))
+        record.errors[attribute] << ("is not a valid pid")
+      end
+    rescue
       record.errors[attribute] << ("is not a valid pid")
     end
   end

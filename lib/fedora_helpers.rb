@@ -16,10 +16,15 @@ module FedoraHelpers
   # @param {string} id
   #   Fedora pid.
   def load_resource(id)
-    if(ActiveFedora::Base.exists?(id))
-      @fedora_object = ActiveFedora::Base.find(id)
-      Rails.logger.info("Successfully loaded #{id}.")
-    else
+    begin
+      if(ActiveFedora::Base.exists?(id))
+        @fedora_object = ActiveFedora::Base.find(id)
+        Rails.logger.info("Successfully loaded #{id}.")
+      else
+        @fedora_object = {}
+        Rails.logger.warn("#{id} is not a valid Fedora ID!")
+      end
+    rescue
       @fedora_object = {}
       Rails.logger.warn("#{id} is not a valid Fedora ID!")
     end
