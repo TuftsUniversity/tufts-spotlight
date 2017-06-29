@@ -44,6 +44,7 @@ gem 'sitemap_generator'
 gem 'blacklight-gallery', '>= 0.3.0'
 gem 'blacklight-oembed', '>= 0.1.0'
 gem 'devise_invitable'
+gem 'sir_trevor_rails'
 
 gem 'devise_ldap_authenticatable'
 gem 'active-fedora', '~> 7.1.1'
