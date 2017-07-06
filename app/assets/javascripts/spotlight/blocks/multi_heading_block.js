@@ -8,7 +8,7 @@ SirTrevor.Blocks.MultiHeading = (function() {
       return this.blockID + "_" + id;
     },
 
-    title: function() { return "Heading"; },
+    title: function() { return "New Heading"; },
 
     template: [
       '<div class="field">',

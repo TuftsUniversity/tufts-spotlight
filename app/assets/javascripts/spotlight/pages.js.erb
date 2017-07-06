@@ -22,7 +22,7 @@ Spotlight.onLoad(function(){
   if (instance.length) {
     var editor = new SirTrevor.Editor({
       el: instance[0],
-      blockTypes:["MultiHeading", "Text", "List","Quote","Iframe", "Video", "Oembed", "Rule", "UploadedItems",
+      blockTypes:["Heading", "MultiHeading", "Text", "List","Quote","Iframe", "Video", "Oembed", "Rule", "UploadedItems",
                  "Browse", "FeaturedPages", "SolrDocuments",  "SolrDocumentsCarousel", "SolrDocumentsEmbed", "SolrDocumentsFeatures", "SolrDocumentsGrid", "SearchResults"],
       defaultType:["Text"],
       onEditorRender: function() {
