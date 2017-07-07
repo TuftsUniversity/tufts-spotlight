@@ -2,13 +2,23 @@ $logo_image: 'tufts_logo.png';
 $light_tufts_blue: #3172ae;
 $dark_tufts_blue: #2a5c89;
 
+
+h2 {
+  color: #646469;
+  font-size: 24px;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 18px;
+}
+
 .dl-horizontal dd:after {
   clear: left;
 }
 
 #header-navbar .navbar-brand {
   background-image: asset-url($logo_image);
-
 }
 
 .navbar-right {
@@ -16,7 +26,6 @@ $dark_tufts_blue: #2a5c89;
     padding-top: 21px;
     padding-bottom: 21px;
   }
-
 }
 
 .navbar-inverse {
