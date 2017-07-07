@@ -23,7 +23,7 @@ module FeatureMacros
   #   data_type {string} The value of the "data-type" attribute on the sir trevor icon.
   def add_block(data_type)
     within("#st-editor-1") do
-      click_button(class: "st-block-replacer")
+      click_button(class: "st-block-replacer", match: :first)
       find(:xpath, "//button[@data-type='#{data_type}']").click
     end
   end
