@@ -591,7 +591,6 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   selenium-webdriver
-  sir_trevor_rails
   sitemap_generator
   solr_wrapper (>= 0.3)
   spring
