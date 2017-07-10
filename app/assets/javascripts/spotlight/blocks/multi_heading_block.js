@@ -26,7 +26,7 @@ SirTrevor.Blocks.MultiHeading = (function() {
         '<label for="<%= formId(heading_key + "-h2") %>"><h2>Heading</h2></label>',
         '<input data-key="<%= heading_key %>" type="radio" name="<%= heading_key %>" id="<%= formId(heading_key + "-h3") %>" value="h3" <%= isH3() %>>',
         '<label for="<%= formId(heading_key + "-h3") %>"><h3>Subheading</h3></label>',
-        '<h2 class="st-required st-text-block st-text-block--heading" contenteditable="true"></h2>',
+        '<h2 class="st-required st-text-block st-text-block--multi-heading" contenteditable="true"></h2>',
       '</div>',
     ].join("\n"),
 

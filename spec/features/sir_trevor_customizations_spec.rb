@@ -34,7 +34,6 @@ feature "Tufts Spotlight Blocks customizations" do
   scenario "shows and hides the autocomplete for feature page blocks", js: true do
     # Lazy loading our feature page.
     feature_page
-
     add_block("featured_pages")
 
     ac = find("#st-editor-1 .twitter-typeahead")
@@ -87,5 +86,25 @@ feature "Tufts Spotlight Blocks customizations" do
     expect(page).to have_content("This feature row is at the maximum number of items.")
   end
 
+  scenario "replaces heading block with multi-heading block", js: true do
+    add_block("multi_heading")
+
+    # Make sure the inputs are there on the edit page.
+    within(".heading-type-editor") do
+      expect(page).to have_css('input[name="heading-type"]', count: 2)
+      expect(page).to have_css("h2.st-text-block--multi-heading")
+    end
+
+    # Checking heading
+    find(".st-text-block--multi-heading").set("test heading")
+    click_button("Save changes")
+    expect(find("h2").text).to eq("test heading")
+
+    # Checking subheading
+    visit(spotlight.edit_exhibit_home_page_path(exhibit))
+    choose("Subheading")
+    click_button("Save changes")
+    expect(find("h3").text).to eq("test heading")
+  end
 end
 
