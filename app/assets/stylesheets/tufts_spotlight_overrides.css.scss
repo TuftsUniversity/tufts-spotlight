@@ -51,11 +51,10 @@ h3 {
   margin-top: 1em;
 }
 
+/* Sprucing up the image viewer */
 picture.openseadragon-viewer {
   border: 1px solid #d3d3d3;
 }
-
-
 .openseadragon-container .osd-toolbar .controls,
 #document .openseadragon-container .osd-toolbar .controls {
   position: absolute;
@@ -74,5 +73,13 @@ picture.openseadragon-viewer {
 
   a {
     margin: 0;
+  }
+}
+
+/* Fedora Object Import form */
+#new_resources_fedora {
+  .form-control {
+    width: 50%;
+    margin-bottom: 1em;
   }
 }
