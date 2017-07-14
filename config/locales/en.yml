@@ -24,4 +24,5 @@ en:
   fedora_resources:
     form:
       title: "Fedora Object"
-      add_item: "Do It!"
+      add_item: "Import Objects"
+
