@@ -6,6 +6,8 @@ class FedoraResourcesController < Spotlight::ResourcesController
     success = 0
 
     ids.each do |id|
+      id.strip!
+
       if(id.empty?)
         next
       end
