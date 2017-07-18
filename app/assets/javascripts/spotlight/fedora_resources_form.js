@@ -18,7 +18,7 @@
     button.on("click", function add3BtnHndlr(e) {
       e.preventDefault();
 
-      for(i = 0; i < 4; i++) {
+      for(i = 0; i < 3; i++) {
         insert_here.before(clean_copy.clone());
       }
 

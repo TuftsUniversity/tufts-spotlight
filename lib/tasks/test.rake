@@ -47,6 +47,9 @@ namespace :tufts do
   task :fixtures => :environment do
     FIXTURES = %w(
       tufts:MS054.003.DO.02108
+      tufts:TBS.VW0001.000113
+      tufts:TBS.VW0001.000386
+      tufts:TBS.VW0001.002493
     )
 #    FIXTURES = %w(
 #      tufts:UA069.001.DO.UP029

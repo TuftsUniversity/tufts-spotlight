@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<foxml:digitalObject VERSION="1.1" PID="tufts:TBS.VW0001.000113"
+xmlns:foxml="info:fedora/fedora-system:def/foxml#"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="info:fedora/fedora-system:def/foxml# http://www.fedora.info/definitions/1/0/foxml1-1.xsd">
+<foxml:objectProperties>
+<foxml:property NAME="info:fedora/fedora-system:def/model#state" VALUE="Active"/>
+<foxml:property NAME="info:fedora/fedora-system:def/model#label" VALUE="Beacon Street after a snow storm, 1901"/>
+<foxml:property NAME="info:fedora/fedora-system:def/model#ownerId" VALUE=""/>
+<foxml:property NAME="info:fedora/fedora-system:def/model#createdDate" VALUE="2005-12-12T16:30:54.000Z"/>
+<foxml:property NAME="info:fedora/fedora-system:def/view#lastModifiedDate" VALUE="2010-09-06T19:54:16.181Z"/>
+</foxml:objectProperties>
+<foxml:datastream ID="AUDIT" STATE="A" CONTROL_GROUP="X" VERSIONABLE="false">
+<foxml:datastreamVersion ID="AUDIT.0" LABEL="Audit Trail for this object" CREATED="2005-12-12T16:30:54.000Z" MIMETYPE="text/xml" FORMAT_URI="info:fedora/fedora-system:format/xml.fedora.audit">
+<foxml:xmlContent>
+<audit:auditTrail xmlns:audit="info:fedora/fedora-system:def/audit#">
+<audit:record ID="AUDREC1">
+<audit:process type="Fedora API-M"/>
+<audit:action>modifyDatastreamByValue</audit:action>
+<audit:componentID>RELS-EXT</audit:componentID>
+<audit:responsibility>fedoraAdmin</audit:responsibility>
+<audit:date>2010-09-06T19:54:16.181Z</audit:date>
+<audit:justification>Added itemID for OAI harvesting</audit:justification>
+</audit:record>
+</audit:auditTrail>
+</foxml:xmlContent>
+</foxml:datastreamVersion>
+</foxml:datastream>
+<foxml:datastream ID="Advanced.jpg" STATE="A" CONTROL_GROUP="E" VERSIONABLE="true">
+<foxml:datastreamVersion ID="Advanced.jpg.0" LABEL="High-quality image" CREATED="2005-12-12T16:30:54.000Z" MIMETYPE="image/jpeg">
+<foxml:contentLocation TYPE="URL" REF="http://bucket01.lib.tufts.edu/data01/tufts/central/dca/TBS/advanced_jpg/TBS.VW0001.000113.advanced.jpg"/>
+</foxml:datastreamVersion>
+</foxml:datastream>
+<foxml:datastream ID="RELS-EXT" STATE="A" CONTROL_GROUP="X" VERSIONABLE="true">
+<foxml:datastreamVersion ID="RELS-EXT.0" LABEL="Relationships to other objects" CREATED="2005-12-12T16:30:54.000Z" MIMETYPE="application/rdf+xml" FORMAT_URI="info:fedora/fedora-system:FedoraRELSExt-1.0" SIZE="937">
+<foxml:xmlContent>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/TR/xlink" xmlns:rel="info:fedora/fedora-system:def/relations-external#">
+		            
+               <rdf:Description rdf:about="info:fedora/tufts:TBS.VW0001.000113"><fedora-model:hasModel xmlns:fedora-model="info:fedora/fedora-system:def/model#" rdf:resource="info:fedora/cm:Image.3DS"></fedora-model:hasModel>
+		               
+                  <rel:isMemberOfCollection rdf:resource="info:fedora/tufts:UA069.006.DO.MS102"></rel:isMemberOfCollection>
+		               
+                  <rel:isMemberOfCollection rdf:resource="info:fedora/tufts:MS102.001.DO"></rel:isMemberOfCollection>
+		               
+                  <rel:hasDescription rdf:resource="info:fedora/tufts:UA069.001.DO.MS102"></rel:hasDescription>
+		            
+               </rdf:Description>
+		         
+            </rdf:RDF>
+</foxml:xmlContent>
+</foxml:datastreamVersion>
+<foxml:datastreamVersion ID="RELS-EXT.1" LABEL="Relationships to other objects" CREATED="2010-09-06T19:54:16.181Z" MIMETYPE="text/xml" FORMAT_URI="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<foxml:xmlContent>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rel="info:fedora/fedora-system:def/relations-external#" xmlns:xlink="http://www.w3.org/TR/xlink">
+  <rdf:Description rdf:about="info:fedora/tufts:TBS.VW0001.000113">
+    <fedora-model:hasModel rdf:resource="info:fedora/cm:Image.3DS" xmlns:fedora-model="info:fedora/fedora-system:def/model#"/>
+    <rel:isMemberOfCollection rdf:resource="info:fedora/tufts:UA069.006.DO.MS102"/>
+    <rel:isMemberOfCollection rdf:resource="info:fedora/tufts:MS102.001.DO"/>
+    <rel:hasDescription rdf:resource="info:fedora/tufts:UA069.001.DO.MS102"/>
+    <itemID xmlns="http://www.openarchives.org/OAI/2.0/">oai:tufts:TBS.VW0001.000113</itemID>
+  </rdf:Description>
+</rdf:RDF>
+</foxml:xmlContent>
+</foxml:datastreamVersion>
+</foxml:datastream>
+<foxml:datastream ID="Basic.jpg" STATE="A" CONTROL_GROUP="E" VERSIONABLE="true">
+<foxml:datastreamVersion ID="Basic.jpg.0" LABEL="Medium-quality image" CREATED="2005-12-12T16:30:54.000Z" MIMETYPE="image/jpeg">
+<foxml:contentLocation TYPE="URL" REF="http://bucket01.lib.tufts.edu/data01/tufts/central/dca/TBS/basic_jpg/TBS.VW0001.000113.basic.jpg"/>
+</foxml:datastreamVersion>
+</foxml:datastream>
+<foxml:datastream ID="DC" STATE="A" CONTROL_GROUP="X" VERSIONABLE="true">
+<foxml:datastreamVersion ID="DC.1" LABEL="Dublin Core Metadata" CREATED="2005-12-12T16:30:54.000Z" MIMETYPE="text/xml" FORMAT_URI="http://www.openarchives.org/OAI/2.0/oai_dc/" SIZE="1489">
+<foxml:xmlContent>
+<oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <dc:title>Beacon Street after a snow storm, 1901</dc:title>
+  <dc:creator>Unknown</dc:creator>
+  <dc:subject>Massachusetts</dc:subject>
+  <dc:subject>Boston (Mass.)</dc:subject>
+  <dc:subject>Back Bay (Mass.)</dc:subject>
+  <dc:subject>Beacon Street</dc:subject>
+  <dc:subject>Buildings</dc:subject>
+  <dc:subject>Dwellings</dc:subject>
+  <dc:subject>Houses</dc:subject>
+  <dc:subject>Snow</dc:subject>
+  <dc:subject>Horse-drawn vehicles</dc:subject>
+  <dc:subject>Sleighs and sledges</dc:subject>
+  <dc:description>Elevated view of homes along Beacon Street in the Back Bay area after a snow storm.  Snow covers the roofs and grounds of the houses, as well as the street.  A horse-drawn sleigh facing westward is visible on Beacon Street.  2 5/16 x 3 3/8, 3 1/8 x 3 3/8 overall Photographs</dc:description>
+  <dc:publisher>Digital Collections and Archives, Tufts University</dc:publisher>
+  <dc:date>04/26/2004</dc:date>
+  <dc:type>image/jpeg</dc:type>
+  <dc:format>image</dc:format>
+  <dc:identifier>http://hdl.handle.net/10427/12306</dc:identifier>
+  <dc:identifier>tufts:TBS.VW0001.000113</dc:identifier>
+  <dc:source>The Bostonian Society</dc:source>
+  <dc:relation>VW0001</dc:relation>
+  <dc:relation>MS102</dc:relation>
+  <dc:coverage>The Bostonian Society</dc:coverage>
+  <dc:rights>http://bostonhistory.org/photorequest.html</dc:rights>
+</oai_dc:dc>
+</foxml:xmlContent>
+</foxml:datastreamVersion>
+</foxml:datastream>
+<foxml:datastream ID="DCA-ADMIN" STATE="A" CONTROL_GROUP="X" VERSIONABLE="true">
+<foxml:datastreamVersion ID="DCA-ADMIN.1" LABEL="DCA Administrative Metadata" CREATED="2005-12-12T16:30:54.000Z" MIMETYPE="text/xml" SIZE="2021">
+<foxml:xmlContent>
+<dca_admin:admin xmlns:dca_admin="http://nils.lib.tufts.edu/dca_admin/" xmlns:admin="http://nils.lib.tufts.edu/admin/" xmlns:xlink="http://www.w3.org/TR/xlink" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+				            
+               <admin:status>current</admin:status>
+				            
+               <admin:accessPoint>Tufts Digital Library</admin:accessPoint>
+				            
+               <admin:los>Long-Term/Public</admin:los>
+				            
+               <admin:responsibleParty>Digital Collections and Archives/Bostonian Society</admin:responsibleParty>
+				            
+               <admin:contact>Bostonian Society</admin:contact>
+				            
+               <admin:transferDate>2005-09-30</admin:transferDate>
+				            
+               <admin:accessionDate>null</admin:accessionDate>
+				            
+               <admin:provenance>Image from the Bostonian Society&apos;s Boston Streets Image Collection.</admin:provenance>
+				            
+               <admin:subAgreement>n/a</admin:subAgreement>
+				            
+               <admin:disposition>archival</admin:disposition>
+				            
+               <admin:bdefSubscriptions>bdef:AssetDef, bdef:TuftsAccess, bdef:TuftsAccessRights, bdef:TuftsArchival, bdef:TuftsImage, bdef:TuftsMetadata, bdef:TuftsReference, bdef:TuftsType</admin:bdefSubscriptions>
+				            
+               <admin:accessRights>This image is freely available for research or educational use. Use of the image for publication or redistribution is prohibited except by permission of the Digital Collections and Archives, Tufts University</admin:accessRights>
+				            
+               <admin:notes>On Wed May 20 16:40:06 2009 GMT-5, this file was modified to transform URNs from the Tufts naming service to point to CNRI Handles. Old URN: </admin:notes>
+				            
+               <admin:checksum>null</admin:checksum>
+			         
+            </dca_admin:admin>
+</foxml:xmlContent>
+</foxml:datastreamVersion>
+</foxml:datastream>
+<foxml:datastream ID="DCA-META" STATE="A" CONTROL_GROUP="X" VERSIONABLE="true">
+<foxml:datastreamVersion ID="DCA-META.1" LABEL="DCA Descriptive Metadata" CREATED="2005-12-12T16:30:54.000Z" MIMETYPE="text/xml" SIZE="2876">
+<foxml:xmlContent>
+<dca_dc:dc xmlns:dca_dc="http://nils.lib.tufts.edu/dca_dc/" xmlns:dcadesc="http://nils.lib.tufts.edu/dcadesc/" xmlns:xlink="http://www.w3.org/TR/xlink" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dcatech="http://nils.lib.tufts.edu/dcatech/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+				            
+               <dc:title>Beacon Street after a snow storm, 1901</dc:title>
+				            
+               <dc:description>Elevated view of homes along Beacon Street in the Back Bay area after a snow storm.  Snow covers the roofs and grounds of the houses, as well as the street.  A horse-drawn sleigh facing westward is visible on Beacon Street.  2 5/16 x 3 3/8, 3 1/8 x 3 3/8 overall Photographs</dc:description>
+				            
+               <dc:source>VW0001</dc:source>
+				            
+               <dc:coverage>The Bostonian Society</dc:coverage>
+				            
+               <dc:temporal>1901</dc:temporal>
+				            
+               <dcterms:isPartOf>VW0001</dcterms:isPartOf>
+				            
+               <dcterms:isPartOf>MS102</dcterms:isPartOf>
+				            
+               <dc:creator>Unknown</dc:creator>
+				            
+               <dc:publisher>Digital Collections and Archives, Tufts University</dc:publisher>
+				            
+               <dc:bibliographicCitation>Image (Permanent URL: http://hdl.handle.net/10427/12306) from the Bostonian Society Boston Streets Image Collection.</dc:bibliographicCitation>
+				            
+               <dc:rights>http://bostonhistory.org/photorequest.html</dc:rights>
+				            
+               <dc:identifier>http://hdl.handle.net/10427/12306</dc:identifier>
+				            
+               <dcterms:created>04/26/2004</dcterms:created>
+				            
+               <dcterms:available>04/26/2004</dcterms:available>
+				            
+               <dc:type>image</dc:type>
+				            
+               <dc:format>image/jpeg</dc:format>
+				            
+               <dcadesc:geogname>Massachusetts</dcadesc:geogname>
+            
+               <dcadesc:geogname>Boston (Mass.)</dcadesc:geogname>
+            
+               <dcadesc:geogname>Back Bay (Mass.)</dcadesc:geogname>
+            
+               <dcadesc:geogname>Beacon Street</dcadesc:geogname>
+				            
+               <dcadesc:subject>Buildings</dcadesc:subject>
+            
+               <dcadesc:subject>Dwellings</dcadesc:subject>
+            
+               <dcadesc:subject>Houses</dcadesc:subject>
+            
+               <dcadesc:subject>Snow</dcadesc:subject>
+            
+               <dcadesc:subject>Horse-drawn vehicles</dcadesc:subject>
+            
+               <dcadesc:subject>Sleighs and sledges</dcadesc:subject>
+				            
+               <dcadesc:funder>The Bostonian Society</dcadesc:funder>
+			         
+            </dca_dc:dc>
+</foxml:xmlContent>
+</foxml:datastreamVersion>
+</foxml:datastream>
+<foxml:datastream ID="Thumbnail.png" STATE="A" CONTROL_GROUP="E" VERSIONABLE="true">
+<foxml:datastreamVersion ID="Thumbnail.png.0" LABEL="Thumbnail" CREATED="2005-12-12T16:30:54.000Z" MIMETYPE="image/png">
+<foxml:contentLocation TYPE="URL" REF="http://bucket01.lib.tufts.edu/data01/tufts/central/dca/TBS/thumb_png/TBS.VW0001.000113.thumb.png"/>
+</foxml:datastreamVersion>
+</foxml:datastream>
+</foxml:digitalObject>
