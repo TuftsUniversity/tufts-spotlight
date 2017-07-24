@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161116195753) do
+ActiveRecord::Schema.define(version: 20170721184808) do
+
+  create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "ar_internal_metadata", ["key"], name: "sqlite_autoindex_ar_internal_metadata_1", unique: true
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       null: false
@@ -108,8 +116,10 @@ ActiveRecord::Schema.define(version: 20161116195753) do
     t.integer  "avatar_crop_y"
     t.integer  "avatar_crop_w"
     t.integer  "avatar_crop_h"
+    t.integer  "avatar_id"
   end
 
+  add_index "spotlight_contacts", ["avatar_id"], name: "index_spotlight_contacts_on_avatar_id"
   add_index "spotlight_contacts", ["exhibit_id"], name: "index_spotlight_contacts_on_exhibit_id"
 
   create_table "spotlight_custom_fields", force: :cascade do |t|
@@ -138,6 +148,7 @@ ActiveRecord::Schema.define(version: 20161116195753) do
     t.integer  "thumbnail_id"
     t.integer  "weight",         default: 50
     t.integer  "site_id"
+    t.string   "theme"
   end
 
   add_index "spotlight_exhibits", ["site_id"], name: "index_spotlight_exhibits_on_site_id"
@@ -155,6 +166,11 @@ ActiveRecord::Schema.define(version: 20161116195753) do
     t.integer  "image_crop_h"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "iiif_region"
+    t.string   "iiif_manifest_url"
+    t.string   "iiif_canvas_id"
+    t.string   "iiif_image_id"
+    t.string   "iiif_tilesource"
   end
 
   create_table "spotlight_filters", force: :cascade do |t|
@@ -207,11 +223,24 @@ ActiveRecord::Schema.define(version: 20161116195753) do
     t.boolean  "display_sidebar"
     t.boolean  "display_title"
     t.integer  "thumbnail_id"
+    t.boolean  "in_sidebar",        default: true, null: false
   end
 
   add_index "spotlight_pages", ["exhibit_id"], name: "index_spotlight_pages_on_exhibit_id"
   add_index "spotlight_pages", ["parent_page_id"], name: "index_spotlight_pages_on_parent_page_id"
   add_index "spotlight_pages", ["slug", "scope"], name: "index_spotlight_pages_on_slug_and_scope", unique: true
+
+  create_table "spotlight_reindexing_log_entries", force: :cascade do |t|
+    t.integer  "items_reindexed_count"
+    t.integer  "items_reindexed_estimate"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "job_status"
+    t.integer  "exhibit_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "spotlight_resources", force: :cascade do |t|
     t.integer  "exhibit_id"
@@ -223,9 +252,11 @@ ActiveRecord::Schema.define(version: 20161116195753) do
     t.datetime "updated_at"
     t.binary   "metadata"
     t.integer  "index_status"
+    t.integer  "upload_id"
   end
 
   add_index "spotlight_resources", ["index_status"], name: "index_spotlight_resources_on_index_status"
+  add_index "spotlight_resources", ["upload_id"], name: "index_spotlight_resources_on_upload_id"
 
   create_table "spotlight_roles", force: :cascade do |t|
     t.integer "user_id"
@@ -273,8 +304,11 @@ ActiveRecord::Schema.define(version: 20161116195753) do
     t.string   "document_type"
     t.integer  "resource_id"
     t.string   "resource_type"
+    t.binary   "index_status"
   end
 
+  add_index "spotlight_solr_document_sidecars", ["document_type", "document_id"], name: "spotlight_solr_document_sidecars_solr_document"
+  add_index "spotlight_solr_document_sidecars", ["exhibit_id", "document_type", "document_id"], name: "spotlight_solr_document_sidecars_exhibit_document"
   add_index "spotlight_solr_document_sidecars", ["exhibit_id"], name: "index_spotlight_solr_document_sidecars_on_exhibit_id"
   add_index "spotlight_solr_document_sidecars", ["resource_type", "resource_id"], name: "spotlight_solr_document_sidecars_resource"
 
