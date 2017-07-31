@@ -20,9 +20,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
   fedora_resources:
     form:
       title: "Fedora Object"
       add_item: "Import Objects"
+  activerecord:
+    attributes:
+      "spotlight/page":
+        in_menu?: "In menu"
 

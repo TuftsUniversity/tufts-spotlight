@@ -1,7 +1,7 @@
-require File.expand_path('../../app/models/spotlight/page', Spotlight::Engine.called_from)
+require_dependency Spotlight::Engine.root.join('app', 'models', 'spotlight', 'page').to_s
 
 module Spotlight
-  class Page
-    scope :in_sidebar, -> { where(in_sidebar: true) }
+  class Page < ActiveRecord::Base
+    scope :in_menu, -> { where(in_menu: true) }
   end
 end
