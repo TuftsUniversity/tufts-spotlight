@@ -73,6 +73,7 @@ guard :rspec, cmd: "spring rspec" do
   watch(%r{^.*/fedora_helpers.rb$}) { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
   watch(%r{^(.*/)?lib/fedora_helpers/.+datastream.+$}) { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
 
+  #FedoraBuilder and ConfigParser both use fedora_fields.yml
   watch("config/fedora_fields.yml") do
     [
       rspec.spec.call("services/fedora_builder"),
@@ -80,4 +81,7 @@ guard :rspec, cmd: "spring rspec" do
     ]
   end
 
+  #Changes to the page model should also call the feature pages customizations spec.
+  watch('app/models/spotlight/page.rb') { rspec.spec.call("features/feature_page_customizations") }
+  watch('app/controllers/spotlight/feature_pages_controller.rb') { rspec.spec.call("features/feature_page_customizations") }
 end
