@@ -84,4 +84,6 @@ guard :rspec, cmd: "spring rspec" do
   #Changes to the page model should also call the feature pages customizations spec.
   watch('app/models/spotlight/page.rb') { rspec.spec.call("features/feature_page_customizations") }
   watch('app/controllers/spotlight/feature_pages_controller.rb') { rspec.spec.call("features/feature_page_customizations") }
+  watch(%r{^app/views/spotlight/feature_pages/.+}) { rspec.spec.call("features/feature_page_customizations") }
+  watch('app/views/shared/_curated_features_navbar.html.erb') { rspec.spec.call("features/feature_page_customizations") }
 end
