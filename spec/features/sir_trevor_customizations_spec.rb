@@ -24,6 +24,7 @@ feature "Tufts Spotlight Blocks customizations" do
   before(:each) do
     sign_in(exhibit_admin)
     visit(spotlight.edit_exhibit_home_page_path(exhibit))
+    sleep(1)
   end
 
   scenario "adds captions to the solr documents embed block", js: true do
