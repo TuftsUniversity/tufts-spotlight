@@ -10,9 +10,8 @@ notifications:
   email:
     - travis.lilleberg@tufts.edu
 
-before_install:
-  - sudo apt-get update
-  - sudo apt-get install chromium-chromedriver
+#addons:
+#  chrome: stable
 
 before_script:
   #Chrome testing stuff

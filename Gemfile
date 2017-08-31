@@ -75,6 +75,7 @@ group :test do
   gem 'ladle'
   gem 'factory_girl_rails'
   gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
 end
 
 
