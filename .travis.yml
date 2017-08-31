@@ -10,9 +10,6 @@ notifications:
   email:
     - travis.lilleberg@tufts.edu
 
-#addons:
-#  chrome: stable
-
 before_script:
   #Chrome testing stuff
   - export PATH=$PATH:/usr/lib/chromium-browser/
