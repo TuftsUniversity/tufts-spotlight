@@ -65,7 +65,6 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     @doc
   end # End to_solr
 
-
   private
 
   ##

@@ -4,3 +4,5 @@ Style/Next:
   Enabled: false
 Style/ParenthesesAroundCondition:
   Enabled: false
+Metrics/BlockLength:
+  Enabled: false
