@@ -2,9 +2,14 @@ $logo_image: 'tufts_logo.png';
 $light_tufts_blue: #3172ae;
 $dark_tufts_blue: #2a5c89;
 
-
 .exhibit-card, .card-face {
-  height: 360px;
+  height: 340px;
+}
+
+@media (min-width: 1200px) {
+  .exhibit-card, .card-face {
+    height: 360px;
+  }
 }
 
 h2 {
