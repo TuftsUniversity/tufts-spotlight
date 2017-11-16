@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/norman/friendly_id.git
-  revision: aff0564584e84ffa505e6e278b65ca3c4ee5d698
+  revision: 7fddca3b0789251b30afa529819cef1c39ecbc02
   specs:
-    friendly_id (5.2.0.beta.1)
+    friendly_id (5.2.3)
       activerecord (>= 4.0.0)
 
 GIT
