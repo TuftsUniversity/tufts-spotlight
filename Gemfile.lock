@@ -10,13 +10,6 @@ GIT
       logger
 
 GIT
-  remote: git://github.com/norman/friendly_id.git
-  revision: 80bc0022910ecee73dc2a063aee564afbc3dd499
-  specs:
-    friendly_id (5.2.3)
-      activerecord (>= 4.0.0)
-
-GIT
   remote: git://github.com/projectblacklight/spotlight.git
   revision: 3973dd4cd06808a7018223cb8e94d5f701bb12fb
   specs:
@@ -231,6 +224,8 @@ GEM
       faraday (>= 0.7.4, < 1.0)
     ffi (1.9.23)
     formatador (0.2.5)
+    friendly_id (5.2.3)
+      activerecord (>= 4.0.0)
     github-markup (2.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -648,7 +643,7 @@ DEPENDENCIES
   devise_invitable
   devise_ldap_authenticatable
   factory_girl_rails
-  friendly_id!
+  friendly_id
   guard-rspec
   jbuilder (~> 2.5)
   jettywrapper!
