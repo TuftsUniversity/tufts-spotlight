@@ -182,8 +182,8 @@ GEM
       warden (~> 1.2.3)
     devise-guests (0.6.0)
       devise
-    devise_invitable (1.7.0)
-      actionmailer (>= 4.0.0)
+    devise_invitable (1.7.2)
+      actionmailer (>= 4.1.0)
       devise (>= 4.0.0)
     devise_ldap_authenticatable (0.8.5)
       devise (>= 3.4.1)
