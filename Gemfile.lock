@@ -639,7 +639,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   database_cleaner
   devise
-  devise-guests (~> 0.5)
+  devise-guests (~> 0.6)
   devise_invitable
   devise_ldap_authenticatable
   factory_girl_rails
@@ -652,7 +652,7 @@ DEPENDENCIES
   mysql2
   rails (~> 5.0.5)
   riiif (~> 1.0)
-  rsolr (~> 1.0)
+  rsolr (>= 1.0)
   rspec-rails (~> 3.5.0)
   sass-rails (~> 5.0)
   selenium-webdriver
