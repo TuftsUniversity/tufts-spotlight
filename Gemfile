@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'blacklight', ' ~> 6.0'
 gem 'blacklight-spotlight', '>= 0.30.0', github: 'projectblacklight/spotlight'
+#gem 'blacklight-spotlight', github: 'projectblacklight/spotlight'
 
 gem 'rsolr', '>= 1.0'
 gem 'devise'
@@ -44,17 +45,22 @@ gem 'devise_invitable'
 gem 'devise_ldap_authenticatable'
 gem 'active-fedora', '~> 7.1.1'
 
-gem 'solr_wrapper', '>= 0.3'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '>= 3.3.0'
+
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-commands-rspec'
+
+  # Speeds things up more, but possibly unnecessary for our purposes
+  #gem 'listen', '~> 3.0.5'
+  #gem 'spring-commands-rspec'
 end
 
 group :development, :test do
+  gem 'solr_wrapper', '>= 0.3'
+
   gem 'rspec-rails', '~> 3.5.0'
   gem 'guard-rspec'
   gem 'byebug'
@@ -70,5 +76,4 @@ group :test do
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
 end
-
 
