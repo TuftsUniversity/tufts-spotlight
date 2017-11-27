@@ -70,8 +70,8 @@ guard :rspec, cmd: "spring rspec" do
 
   ## Travis specials
   #Run FedoraBuilder on changes to FedoraHelpers and datastream helpers.
-  watch(%r{^.*/fedora_helpers.rb$}) { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
-  watch(%r{^(.*/)?lib/fedora_helpers/.+datastream.+$}) { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
+  watch(%r{^lib/fedora_helpers.rb$}) { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
+  watch(%r{^lib/fedora_helpers/.+datastream.+$}) { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
 
   #FedoraBuilder and ConfigParser both use fedora_fields.yml
   watch("config/fedora_fields.yml") do
