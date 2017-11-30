@@ -61,7 +61,7 @@ end
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
 
-  gem 'rspec-rails', '~> 3.5.0'
+  gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'byebug'
   gem 'jettywrapper', github: 'TuftsUniversity/jettywrapper', branch: 'fedora3'
