@@ -29,8 +29,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'puma', '~> 3.0'
 
 gem 'blacklight', ' ~> 6.0'
-gem 'blacklight-spotlight', ref: '89cf011', github: 'projectblacklight/spotlight'
-#gem 'blacklight-spotlight', github: 'projectblacklight/spotlight'
+gem 'blacklight-spotlight', github: 'projectblacklight/spotlight'
 
 gem 'rsolr', '>= 1.0'
 gem 'devise'
