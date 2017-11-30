@@ -65,7 +65,7 @@ group :development, :test do
   #gem 'guard-rspec'
   gem 'byebug'
   gem 'jettywrapper', github: 'TuftsUniversity/jettywrapper', branch: 'fedora3'
-  gem 'sqlite3'
+  #gem 'sqlite3'
 end
 
 group :test do
