@@ -434,6 +434,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    retriable (3.1.1)
     riiif (1.5.0)
       railties (>= 4.2, < 6)
     roar (1.1.0)
@@ -469,7 +470,7 @@ GEM
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
     ruby-oembed (0.12.0)
-    ruby-progressbar (1.8.1)
+    ruby-progressbar (1.9.0)
     ruby_dep (1.5.0)
     rubydora (1.9.0)
       activemodel
@@ -506,8 +507,9 @@ GEM
     sitemap_generator (6.0.0)
       builder (~> 3.0)
     slop (3.6.0)
-    solr_wrapper (0.18.1)
+    solr_wrapper (1.2.0)
       faraday
+      retriable
       ruby-progressbar
       rubyzip
     solrizer (3.4.0)
