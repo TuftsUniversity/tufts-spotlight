@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   include Spotlight::User
   if Blacklight::Utils.needs_attr_accessible?
     attr_accessible :email, :password, :password_confirmation
@@ -18,9 +18,11 @@ class User < ActiveRecord::Base
     email
   end
 
+  ## Remove?
   # Added this so validation will succeed when the user first logs in via ldap and the account is created.
   def ldap_before_save
     self.email = Devise::LDAP::Adapter.get_ldap_param(self.username, "mail").first
   end
+  ##
 
 end
