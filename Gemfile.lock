@@ -582,7 +582,7 @@ DEPENDENCIES
   jquery-rails
   ladle
   mysql2
-  rails (~> 5.0.5)
+  rails (~> 5.0.6)
   riiif (~> 1.0)
   rsolr (>= 1.0)
   rspec-rails
