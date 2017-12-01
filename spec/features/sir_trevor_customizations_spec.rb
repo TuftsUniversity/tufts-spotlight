@@ -7,17 +7,17 @@ i_need_ldap
 
 
 feature "Tufts Spotlight Blocks customizations" do
-  let(:exhibit) { FactoryGirl.create(:exhibit) }
+  let(:exhibit) { FactoryBot.create(:exhibit) }
 
   let(:exhibit_admin) do
-    FactoryGirl.create(:tufts_exhibit_admin, exhibit: exhibit)
+    FactoryBot.create(:tufts_exhibit_admin, exhibit: exhibit)
   end
 
   let(:feature_page) do
-    FactoryGirl.create(
+    FactoryBot.create(
       :feature_page,
       exhibit: exhibit,
-      thumbnail: FactoryGirl.create(:featured_image)
+      thumbnail: FactoryBot.create(:featured_image)
     )
   end
 

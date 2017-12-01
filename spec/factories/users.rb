@@ -1,10 +1,10 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :tufts_user, class: User do
     username 'person1'
     email 'ransom@swaniawwski.org'
     password 'password'
     ignore do
-      exhibit { FactoryGirl.create(:exhibit) }
+      exhibit { FactoryBot.create(:exhibit) }
     end
 
     factory :tufts_admin do
