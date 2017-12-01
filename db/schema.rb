@@ -10,43 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171117123455) do
+ActiveRecord::Schema.define(version: 20171201124773) do
 
-  create_table "bookmarks", force: :cascade do |t|
-    t.integer  "user_id",       null: false
+  create_table "bookmarks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+    t.integer  "user_id",                     null: false
     t.string   "user_type"
     t.string   "document_id"
     t.string   "document_type"
-    t.binary   "title"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["document_id"], name: "index_bookmarks_on_document_id"
-    t.index ["document_type", "document_id"], name: "index_bookmarks_on_document_type_and_document_id"
-    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+    t.binary   "title",         limit: 65535
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["document_id"], name: "index_bookmarks_on_document_id", using: :btree
+    t.index ["document_type", "document_id"], name: "index_bookmarks_on_document_type_and_document_id", using: :btree
+    t.index ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
   end
 
-  create_table "friendly_id_slugs", force: :cascade do |t|
+  create_table "friendly_id_slugs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
     t.string   "sluggable_type", limit: 50
     t.string   "scope"
     t.datetime "created_at"
-    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
-    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
   end
 
-  create_table "searches", force: :cascade do |t|
-    t.binary   "query_params"
+  create_table "searches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+    t.binary   "query_params", limit: 65535
     t.integer  "user_id"
     t.string   "user_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["user_id"], name: "index_searches_on_user_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["user_id"], name: "index_searches_on_user_id", using: :btree
   end
 
-  create_table "spotlight_attachments", force: :cascade do |t|
+  create_table "spotlight_attachments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string   "name"
     t.string   "file"
     t.string   "uid"
@@ -55,24 +55,24 @@ ActiveRecord::Schema.define(version: 20171117123455) do
     t.datetime "updated_at"
   end
 
-  create_table "spotlight_blacklight_configurations", force: :cascade do |t|
+  create_table "spotlight_blacklight_configurations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.integer  "exhibit_id"
-    t.text     "facet_fields"
-    t.text     "index_fields"
-    t.text     "search_fields"
-    t.text     "sort_fields"
-    t.text     "default_solr_params"
-    t.text     "show"
-    t.text     "index"
+    t.text     "facet_fields",              limit: 65535
+    t.text     "index_fields",              limit: 65535
+    t.text     "search_fields",             limit: 65535
+    t.text     "sort_fields",               limit: 65535
+    t.text     "default_solr_params",       limit: 65535
+    t.text     "show",                      limit: 65535
+    t.text     "index",                     limit: 65535
     t.integer  "default_per_page"
-    t.text     "per_page"
-    t.text     "document_index_view_types"
+    t.text     "per_page",                  limit: 65535
+    t.text     "document_index_view_types", limit: 65535
     t.string   "thumbnail_size"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "spotlight_contact_emails", force: :cascade do |t|
+  create_table "spotlight_contact_emails", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.integer  "exhibit_id"
     t.string   "email",                default: "", null: false
     t.string   "confirmation_token"
@@ -81,11 +81,11 @@ ActiveRecord::Schema.define(version: 20171117123455) do
     t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["confirmation_token"], name: "index_spotlight_contact_emails_on_confirmation_token", unique: true
-    t.index ["email", "exhibit_id"], name: "index_spotlight_contact_emails_on_email_and_exhibit_id", unique: true
+    t.index ["confirmation_token"], name: "index_spotlight_contact_emails_on_confirmation_token", unique: true, using: :btree
+    t.index ["email", "exhibit_id"], name: "index_spotlight_contact_emails_on_email_and_exhibit_id", unique: true, using: :btree
   end
 
-  create_table "spotlight_contacts", force: :cascade do |t|
+  create_table "spotlight_contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string   "slug"
     t.string   "name"
     t.string   "email"
@@ -93,50 +93,53 @@ ActiveRecord::Schema.define(version: 20171117123455) do
     t.string   "location"
     t.string   "telephone"
     t.boolean  "show_in_sidebar"
-    t.integer  "weight",          default: 50
+    t.integer  "weight",                        default: 50
     t.integer  "exhibit_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "contact_info"
+    t.text     "contact_info",    limit: 65535
     t.string   "avatar"
     t.integer  "avatar_crop_x"
     t.integer  "avatar_crop_y"
     t.integer  "avatar_crop_w"
     t.integer  "avatar_crop_h"
-    t.index ["exhibit_id"], name: "index_spotlight_contacts_on_exhibit_id"
+    t.integer  "avatar_id"
+    t.index ["avatar_id"], name: "index_spotlight_contacts_on_avatar_id", using: :btree
+    t.index ["exhibit_id"], name: "index_spotlight_contacts_on_exhibit_id", using: :btree
   end
 
-  create_table "spotlight_custom_fields", force: :cascade do |t|
+  create_table "spotlight_custom_fields", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.integer  "exhibit_id"
     t.string   "slug"
     t.string   "field"
-    t.text     "configuration"
+    t.text     "configuration",  limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "field_type"
-    t.boolean  "readonly_field", default: false
+    t.boolean  "readonly_field",               default: false
   end
 
-  create_table "spotlight_exhibits", force: :cascade do |t|
-    t.string   "title",                          null: false
+  create_table "spotlight_exhibits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+    t.string   "title",                                        null: false
     t.string   "subtitle"
     t.string   "slug"
-    t.text     "description"
+    t.text     "description",    limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "layout"
-    t.boolean  "published",      default: false
+    t.boolean  "published",                    default: false
     t.datetime "published_at"
     t.string   "featured_image"
     t.integer  "masthead_id"
     t.integer  "thumbnail_id"
-    t.integer  "weight",         default: 50
+    t.integer  "weight",                       default: 50
     t.integer  "site_id"
-    t.index ["site_id"], name: "index_spotlight_exhibits_on_site_id"
-    t.index ["slug"], name: "index_spotlight_exhibits_on_slug", unique: true
+    t.string   "theme"
+    t.index ["site_id"], name: "index_spotlight_exhibits_on_site_id", using: :btree
+    t.index ["slug"], name: "index_spotlight_exhibits_on_slug", unique: true, using: :btree
   end
 
-  create_table "spotlight_featured_images", force: :cascade do |t|
+  create_table "spotlight_featured_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string   "type"
     t.boolean  "display"
     t.string   "image"
@@ -148,28 +151,33 @@ ActiveRecord::Schema.define(version: 20171117123455) do
     t.integer  "image_crop_h"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "iiif_region"
+    t.string   "iiif_manifest_url"
+    t.string   "iiif_canvas_id"
+    t.string   "iiif_image_id"
+    t.string   "iiif_tilesource"
   end
 
-  create_table "spotlight_filters", force: :cascade do |t|
+  create_table "spotlight_filters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string   "field"
     t.string   "value"
     t.integer  "exhibit_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["exhibit_id"], name: "index_spotlight_filters_on_exhibit_id"
+    t.index ["exhibit_id"], name: "index_spotlight_filters_on_exhibit_id", using: :btree
   end
 
-  create_table "spotlight_locks", force: :cascade do |t|
-    t.string   "on_type"
+  create_table "spotlight_locks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.integer  "on_id"
-    t.string   "by_type"
+    t.string   "on_type"
     t.integer  "by_id"
+    t.string   "by_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["on_id", "on_type"], name: "index_spotlight_locks_on_on_id_and_on_type", unique: true
+    t.index ["on_id", "on_type"], name: "index_spotlight_locks_on_on_id_and_on_type", unique: true, using: :btree
   end
 
-  create_table "spotlight_main_navigations", force: :cascade do |t|
+  create_table "spotlight_main_navigations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string   "label"
     t.integer  "weight",     default: 20
     t.string   "nav_type"
@@ -177,16 +185,16 @@ ActiveRecord::Schema.define(version: 20171117123455) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "display",    default: true
-    t.index ["exhibit_id"], name: "index_spotlight_main_navigations_on_exhibit_id"
+    t.index ["exhibit_id"], name: "index_spotlight_main_navigations_on_exhibit_id", using: :btree
   end
 
-  create_table "spotlight_pages", force: :cascade do |t|
+  create_table "spotlight_pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string   "title"
     t.string   "type"
     t.string   "slug"
     t.string   "scope"
-    t.text     "content"
-    t.integer  "weight",            default: 50
+    t.text     "content",           limit: 65535
+    t.integer  "weight",                          default: 50
     t.boolean  "published"
     t.integer  "exhibit_id"
     t.integer  "created_by_id"
@@ -197,13 +205,13 @@ ActiveRecord::Schema.define(version: 20171117123455) do
     t.boolean  "display_sidebar"
     t.boolean  "display_title"
     t.integer  "thumbnail_id"
-    t.boolean  "in_menu",           default: true, null: false
-    t.index ["exhibit_id"], name: "index_spotlight_pages_on_exhibit_id"
-    t.index ["parent_page_id"], name: "index_spotlight_pages_on_parent_page_id"
-    t.index ["slug", "scope"], name: "index_spotlight_pages_on_slug_and_scope", unique: true
+    t.boolean  "in_menu",                         default: true, null: false
+    t.index ["exhibit_id"], name: "index_spotlight_pages_on_exhibit_id", using: :btree
+    t.index ["parent_page_id"], name: "index_spotlight_pages_on_parent_page_id", using: :btree
+    t.index ["slug", "scope"], name: "index_spotlight_pages_on_slug_and_scope", unique: true, using: :btree
   end
 
-  create_table "spotlight_reindexing_log_entries", force: :cascade do |t|
+  create_table "spotlight_reindexing_log_entries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "items_reindexed_count"
     t.integer  "items_reindexed_estimate"
     t.datetime "start_time"
@@ -215,34 +223,36 @@ ActiveRecord::Schema.define(version: 20171117123455) do
     t.datetime "updated_at"
   end
 
-  create_table "spotlight_resources", force: :cascade do |t|
+  create_table "spotlight_resources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.integer  "exhibit_id"
     t.string   "type"
     t.string   "url"
-    t.text     "data"
+    t.text     "data",         limit: 65535
     t.datetime "indexed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.binary   "metadata"
+    t.binary   "metadata",     limit: 65535
     t.integer  "index_status"
-    t.index ["index_status"], name: "index_spotlight_resources_on_index_status"
+    t.integer  "upload_id"
+    t.index ["index_status"], name: "index_spotlight_resources_on_index_status", using: :btree
+    t.index ["upload_id"], name: "index_spotlight_resources_on_upload_id", using: :btree
   end
 
-  create_table "spotlight_roles", force: :cascade do |t|
+  create_table "spotlight_roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.integer "user_id"
     t.string  "role"
     t.integer "resource_id"
     t.string  "resource_type"
-    t.index ["resource_type", "resource_id", "user_id"], name: "index_spotlight_roles_on_resource_and_user_id", unique: true
+    t.index ["resource_type", "resource_id", "user_id"], name: "index_spotlight_roles_on_resource_and_user_id", unique: true, using: :btree
   end
 
-  create_table "spotlight_searches", force: :cascade do |t|
+  create_table "spotlight_searches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string   "title"
     t.string   "slug"
     t.string   "scope"
-    t.text     "short_description"
-    t.text     "long_description"
-    t.text     "query_params"
+    t.text     "short_description",       limit: 65535
+    t.text     "long_description",        limit: 65535
+    t.text     "query_params",            limit: 65535
     t.integer  "weight"
     t.boolean  "published"
     t.integer  "exhibit_id"
@@ -252,49 +262,59 @@ ActiveRecord::Schema.define(version: 20171117123455) do
     t.integer  "masthead_id"
     t.integer  "thumbnail_id"
     t.string   "default_index_view_type"
-    t.index ["exhibit_id"], name: "index_spotlight_searches_on_exhibit_id"
-    t.index ["slug", "scope"], name: "index_spotlight_searches_on_slug_and_scope", unique: true
+    t.index ["exhibit_id"], name: "index_spotlight_searches_on_exhibit_id", using: :btree
+    t.index ["slug", "scope"], name: "index_spotlight_searches_on_slug_and_scope", unique: true, using: :btree
   end
 
-  create_table "spotlight_sites", force: :cascade do |t|
+  create_table "spotlight_sites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string  "title"
     t.string  "subtitle"
     t.integer "masthead_id"
   end
 
-  create_table "spotlight_solr_document_sidecars", force: :cascade do |t|
+  create_table "spotlight_solr_document_sidecars", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.integer  "exhibit_id"
-    t.boolean  "public",        default: true
-    t.text     "data"
+    t.boolean  "public",                         default: true
+    t.text     "data",          limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "document_id"
     t.string   "document_type"
     t.integer  "resource_id"
     t.string   "resource_type"
-    t.index ["exhibit_id"], name: "index_spotlight_solr_document_sidecars_on_exhibit_id"
-    t.index ["resource_type", "resource_id"], name: "spotlight_solr_document_sidecars_resource"
+    t.binary   "index_status",  limit: 16777215
+    t.index ["document_type", "document_id"], name: "spotlight_solr_document_sidecars_solr_document", using: :btree
+    t.index ["exhibit_id", "document_type", "document_id"], name: "spotlight_solr_document_sidecars_exhibit_document", using: :btree
+    t.index ["exhibit_id"], name: "index_spotlight_solr_document_sidecars_on_exhibit_id", using: :btree
+    t.index ["resource_type", "resource_id"], name: "spotlight_solr_document_sidecars_resource", using: :btree
   end
 
-  create_table "taggings", force: :cascade do |t|
+  create_table "taggings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.integer  "tag_id"
     t.string   "taggable_id"
     t.string   "taggable_type"
-    t.string   "tagger_type"
     t.integer  "tagger_id"
+    t.string   "tagger_type"
     t.string   "context",       limit: 128
     t.datetime "created_at"
-    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
-    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+    t.index ["context"], name: "index_taggings_on_context", using: :btree
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+    t.index ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy", using: :btree
+    t.index ["taggable_id"], name: "index_taggings_on_taggable_id", using: :btree
+    t.index ["taggable_type"], name: "index_taggings_on_taggable_type", using: :btree
+    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type", using: :btree
+    t.index ["tagger_id"], name: "index_taggings_on_tagger_id", using: :btree
   end
 
-  create_table "tags", force: :cascade do |t|
+  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string  "name"
     t.integer "taggings_count", default: 0
-    t.index ["name"], name: "index_tags_on_name", unique: true
+    t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
@@ -313,26 +333,26 @@ ActiveRecord::Schema.define(version: 20171117123455) do
     t.datetime "invitation_sent_at"
     t.datetime "invitation_accepted_at"
     t.integer  "invitation_limit"
-    t.string   "invited_by_type"
     t.integer  "invited_by_id"
+    t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
     t.string   "username"
     t.string   "remember_token"
-    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
-    t.index ["invitations_count"], name: "index_users_on_invitations_count"
-    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["username"], name: "index_users_on_username", unique: true
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
+    t.index ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
+    t.index ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
 
-  create_table "versions", force: :cascade do |t|
+  create_table "versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string   "item_type",                     null: false
     t.integer  "item_id",                       null: false
     t.string   "event",                         null: false
     t.string   "whodunnit"
-    t.text     "object",     limit: 1073741823
+    t.text     "object",     limit: 4294967295
     t.datetime "created_at"
-    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
   end
 
 end
