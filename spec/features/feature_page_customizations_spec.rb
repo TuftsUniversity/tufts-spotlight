@@ -6,20 +6,20 @@ include FeatureMacros
 i_need_ldap
 
 feature "Feature Page customizations" do
-  let(:exhibit) { FactoryGirl.create(:exhibit) }
+  let(:exhibit) { FactoryBot.create(:exhibit) }
   let(:exhibit_admin) do
-    FactoryGirl.create(:tufts_exhibit_admin, exhibit: exhibit)
+    FactoryBot.create(:tufts_exhibit_admin, exhibit: exhibit)
   end
 
   let(:visible_page) do
-    FactoryGirl.create(
+    FactoryBot.create(
       :feature_page,
       title: "Visible",
       exhibit: exhibit
     )
   end
   let(:hidden_page) do
-    FactoryGirl.create(
+    FactoryBot.create(
       :feature_page,
       title: "Hidden",
       exhibit: exhibit,
@@ -28,7 +28,7 @@ feature "Feature Page customizations" do
   end
   # Blank page just exists to force a dropdown menu.
   let(:blank_page) do
-    FactoryGirl.create(
+    FactoryBot.create(
       :feature_page,
       title: "Filler",
       exhibit: exhibit

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Spotlight::Page do
-  let(:page) { FactoryGirl.build(:feature_page) }
+  let(:page) { FactoryBot.build(:feature_page) }
 
   it "has a valid factory" do
     expect(page).to be_valid

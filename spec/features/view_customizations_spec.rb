@@ -15,11 +15,11 @@ feature "Views customizations" do
 
   let(:tisch_tag) { "Tisch Library" }
   let(:tisch_title) { "Tisch Library Exhibits" }
-  let(:tisch_exhibit) { FactoryGirl.create(:exhibit, tag_list: tisch_tag) }
+  let(:tisch_exhibit) { FactoryBot.create(:exhibit, tag_list: tisch_tag) }
 
   let(:dca_tag) { "Tufts Archives" }
   let(:dca_title) { "Tufts Archives Exhibits" }
-  let(:dca_exhibit) { FactoryGirl.create(:exhibit, tag_list: dca_tag) }
+  let(:dca_exhibit) { FactoryBot.create(:exhibit, tag_list: dca_tag) }
 
   scenario "Dynamic header for tisch/dca" do
     tisch_exhibit

@@ -14,11 +14,11 @@ feature "Fedora 3 ingest" do
   end
 
   let(:exhibit) do
-    FactoryGirl.create(:exhibit)
+    FactoryBot.create(:exhibit)
   end
 
   let(:exhibit_admin) do
-    FactoryGirl.create(:tufts_exhibit_admin, exhibit: exhibit)
+    FactoryBot.create(:tufts_exhibit_admin, exhibit: exhibit)
   end
 
   before(:each) do

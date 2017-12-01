@@ -15,9 +15,9 @@ module FedoraBuilderCacheMaker
   #   filepath {string} The full path of the file to create.
   def create_builder_stub(filepath = "#{Rails.root}/tmp/fedora_builder_spec.yml")
     @filepath = filepath
-    @exhibit = FactoryGirl.create(:exhibit)
+    @exhibit = FactoryBot.create(:exhibit)
     obj = FedoraBuilder.new(
-      FactoryGirl.build_stubbed(:fedora_resource, exhibit: @exhibit)
+      FactoryBot.build_stubbed(:fedora_resource, exhibit: @exhibit)
     )
     f = File.new(@filepath, 'w')
     f.write(obj.to_yaml)

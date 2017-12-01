@@ -1,7 +1,7 @@
 These tests use Spotlight's factories as much as they can.
 
-However, Spotlight uses a non-standard version of FactoryGirl and uses 'transient' in
-  its user factories, making it unusable until we upgrade to FactoryGirl 5.0.
+However, Spotlight uses a non-standard version of FactoryBot and uses 'transient' in
+  its user factories, making it unusable until we upgrade to FactoryBot 5.0.
 
 https://github.com/thoughtbot/factory_girl/issues/658
 
