@@ -71,7 +71,7 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'ladle'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
 end
