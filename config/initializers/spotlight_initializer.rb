@@ -32,9 +32,8 @@ Spotlight::Engine.config.external_resources_partials = ["fedora_resources/form"]
 # Spotlight::Engine.config.solr_fields.string_suffix = '_ssim'.freeze
 # Spotlight::Engine.config.solr_fields.text_suffix = '_tesim'.freeze
 # Spotlight::Engine.config.resource_global_id_field = :"#{config.solr_fields.prefix}spotlight_resource_id#{config.solr_fields.string_suffix}"
-#Spotlight::Engine.config.full_image_field = :full_image_url_ssm
-#Spotlight::Engine.config.thumbnail_field = :thumbnail_url_ssm
-# Spotlight::Engine.config.square_image_field = :thumbnail_square_url_ssm
+# Spotlight::Engine.config.full_image_field = :full_image_url_ssm
+# Spotlight::Engine.config.thumbnail_field = :thumbnail_url_ssm
 
 # ==> Uploaded item configuration
 # Spotlight::Engine.config.upload_fields = [
@@ -51,8 +50,15 @@ Spotlight::Engine.config.external_resources_partials = ["fedora_resources/form"]
 
 # ==> Google Analytics integration
 # Spotlight::Engine.config.analytics_provider = nil
- Spotlight::Engine.config.ga_pkcs12_key_path = Rails.application.secrets.ga_pkcs12_key_path
- Spotlight::Engine.config.ga_web_property_id = Rails.application.secrets.ga_web_property_id
- Spotlight::Engine.config.ga_email = Rails.application.secrets.ga_email
+Spotlight::Engine.config.ga_pkcs12_key_path = Rails.application.secrets.ga_pkcs12_key_path
+Spotlight::Engine.config.ga_web_property_id = Rails.application.secrets.ga_web_property_id
+Spotlight::Engine.config.ga_email = Rails.application.secrets.ga_email
 # Spotlight::Engine.config.ga_analytics_options = {}
 # Spotlight::Engine.config.ga_page_analytics_options = config.ga_analytics_options.merge(limit: 5)
+
+# ==> Sir Trevor Widget Configuration
+# Spotlight::Engine.config.sir_trevor_widgets = %w(
+#   Heading Text List Quote Iframe Video Oembed Rule UploadedItems Browse
+#   FeaturedPages SolrDocuments SolrDocumentsCarousel SolrDocumentsEmbed
+#   SolrDocumentsFeatures SolrDocumentsGrid SearchResults
+# )
