@@ -1,5 +1,6 @@
 class FedoraResourcesController < Spotlight::ResourcesController
 
+  # Custom create method to handle bulk importing of Fedora resources.
   def create
     ids = params["resource"]["ids"]
     bad_ids = []
@@ -35,6 +36,7 @@ class FedoraResourcesController < Spotlight::ResourcesController
 
   private
 
+  ## Remove?
   def resource_class
     FedoraResource
   end
