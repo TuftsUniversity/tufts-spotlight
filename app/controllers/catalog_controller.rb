@@ -27,11 +27,11 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
+    ## Remove?
     # These document actions currently don't work. Will readd when they are fixed.
-    config.show.document_actions.delete(:citation)
-    config.show.document_actions.delete(:email)
-    config.show.document_actions.delete(:sms)
-
+    #config.show.document_actions.delete(:citation)
+    #config.show.document_actions.delete(:email)
+    #config.show.document_actions.delete(:sms
 
     config.show.oembed_field = :oembed_url_ssm
     config.show.partials.insert(1, :oembed)
@@ -41,7 +41,9 @@ class CatalogController < ApplicationController
     config.view.slideshow.partials = [:index]
 
 
-    config.show.tile_source_field = Spotlight::Engine.config.full_image_field
+    # Old, pre-iiif image handling
+    #config.show.tile_source_field = Spotlight::Engine.config.full_image_field
+    config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
     config.show.partials.insert(1, :openseadragon)
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = {
@@ -94,9 +96,10 @@ class CatalogController < ApplicationController
     config.add_facet_fields_to_solr_request!
   end
 
-  def guest_username_authentication_key key
-    "spotlight_guest_" + guest_user_unique_suffix
-  end
-
+  ## Remove?
+  #def guest_username_authentication_key key
+  #  "spotlight_guest_" + guest_user_unique_suffix
+  #end
+  ##
 end
 
