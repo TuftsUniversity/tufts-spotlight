@@ -1,9 +1,6 @@
 These tests use Spotlight's factories as much as they can.
 
-However, Spotlight uses a non-standard version of FactoryBot and uses 'transient' in
-  its user factories, making it unusable until we upgrade to FactoryBot 5.0.
-
-https://github.com/thoughtbot/factory_girl/issues/658
+We need a special user because we use ldap, and 'username' instead of 'email'.
 
 -- Travis Lilleberg
 
