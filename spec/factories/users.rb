@@ -3,7 +3,7 @@ FactoryBot.define do
     username 'person1'
     email 'ransom@swaniawwski.org'
     password 'password'
-    ignore do
+    transient do
       exhibit { FactoryBot.create(:exhibit) }
     end
 
