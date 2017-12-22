@@ -7,8 +7,15 @@ SirTrevor.Blocks.FeaturedPages = (function(){
 
     icon_name: "pages",
 
-    autocomplete_url: function() { return $(this.inner).closest('form[data-autocomplete-exhibit-feature-pages-path]').data('autocomplete-exhibit-feature-pages-path').replace("%25QUERY", "%QUERY"); },
-    autocomplete_template: function() { return '<div class="autocomplete-item{{#unless published}} blacklight-private{{/unless}}">{{log "Look at me"}}{{log thumbnail_image_url}}{{#if thumbnail_image_url}}<div class="document-thumbnail thumbnail"><img src="{{thumbnail_image_url}}" /></div>{{/if}}<span class="autocomplete-title">{{title}}</span><br/><small>&nbsp;&nbsp;{{description}}</small></div>' },
+    autocomplete_url: function() {
+      return $(this.inner)
+        .closest('form[data-autocomplete-exhibit-pages-path]')
+        .data('autocomplete-exhibit-pages-path')
+        .replace("%25QUERY", "%QUERY");
+    },
+    autocomplete_template: function() {
+      return '<div class="autocomplete-item{{#unless published}} blacklight-private{{/unless}}">{{log "Look at me"}}{{log thumbnail_image_url}}{{#if thumbnail_image_url}}<div class="document-thumbnail thumbnail"><img src="{{thumbnail_image_url}}" /></div>{{/if}}<span class="autocomplete-title">{{title}}</span><br/><small>&nbsp;&nbsp;{{description}}</small></div>'
+    },
     bloodhoundOptions: function() {
       return {
         prefetch: {
@@ -40,7 +47,7 @@ SirTrevor.Blocks.FeaturedPages = (function(){
      */
     setLimit: function() {
       if(this.sidebarEl === false) {
-        this.sidebarEl = $('#home_page_display_sidebar');
+        this.sidebarEl = $('#feature_page_display_sidebar');
       }
 
       this.limit = $(this.sidebarEl).is(':checked') ? 3 : 5;
@@ -115,7 +122,7 @@ SirTrevor.Blocks.FeaturedPages = (function(){
      */
     afterPanelDelete: function() {
       this.resetAc();
-    },
+    }
 
 
   }); // End extend Spotlight.Block.Resources.

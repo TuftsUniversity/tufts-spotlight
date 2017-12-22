@@ -23,7 +23,7 @@ feature "Tufts Spotlight Blocks customizations" do
 
   before(:each) do
     sign_in(exhibit_admin)
-    visit(spotlight.edit_exhibit_home_page_path(exhibit))
+    visit(spotlight.edit_exhibit_feature_page_path(exhibit, feature_page))
   end
 
   scenario "adds captions to the solr documents embed block", js: true do
@@ -32,11 +32,9 @@ feature "Tufts Spotlight Blocks customizations" do
   end
 
   scenario "shows and hides the autocomplete for feature page blocks", js: true do
-    # Lazy loading our feature page.
-    feature_page
     add_block("featured_pages")
 
-    ac = find("#st-editor-1 .twitter-typeahead")
+    ac = find("#st-editor-1 [data-twitter-typeahead]")
     warning = find(
       "p",
       text: "This feature row is at the maximum number of items.",
@@ -74,17 +72,15 @@ feature "Tufts Spotlight Blocks customizations" do
     expect(warning.visible?).to be(false)
 
     # Ac off - warning on, when re-adding sidebar (4 items)
-    toggle_sidebar()
+    toggle_sidebar
     expect(ac.visible?).to be(false)
     expect(warning.visible?).to be(true)
 
     # Ac off - warning on, after page save/reload
     click_button("Save changes")
     sleep(1)
-    visit(spotlight.edit_exhibit_home_page_path(exhibit))
+    visit(spotlight.edit_exhibit_feature_page_path(exhibit, feature_page))
     expect(page).to have_no_css("#st-editor-1 .twitter-typeahead")
     expect(page).to have_content("This feature row is at the maximum number of items.")
   end
-
 end
-
