@@ -17,4 +17,4 @@ development:
 
 test:
   <<: *default
-  database: spotlight_test
+  database: ests_spotlight_test
