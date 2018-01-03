@@ -96,8 +96,5 @@ class CatalogController < ApplicationController
     config.add_facet_fields_to_solr_request!
   end
 
-  def guest_username_authentication_key key
-    "spotlight_guest_" + guest_user_unique_suffix
-  end
 end
 
