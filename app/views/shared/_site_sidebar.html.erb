@@ -11,6 +11,7 @@
 
 <% if can?(:manage, Spotlight::Site.instance) || can?(:create, Spotlight::Exhibit) %>
 <h4 class="nav-heading"><%=t(:'.header') %></h4>
+<hr>
 <ul class="nav sidenav">
   <li><%= link_to t('.documentation'), 'https://github.com/projectblacklight/spotlight/wiki/Configuration-settings' %></li>
 
@@ -18,7 +19,7 @@
     <li><%= link_to t(:'spotlight.sites.edit.page_title'), spotlight.edit_site_path %></li>
   <% end %>
 
-  <% if can? :manange, Spotlight::Exhibit %>
+  <% if can? :manage, Spotlight::Exhibit %>
     <li><%= link_to t(:'spotlight.sites.edit_exhibits.page_title'), spotlight.edit_site_exhibits_path %></li>
     <li><%= link_to t(:'spotlight.admin_users.index.page_title'), spotlight.admin_users_path %></li>
   <% end %>
