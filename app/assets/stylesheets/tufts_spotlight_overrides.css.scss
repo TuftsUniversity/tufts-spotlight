@@ -1,9 +1,51 @@
+@font-face{
+  font-family:"Meta Serif";
+  src:font-url("b95879a4-6677-40bf-9528-ffecf9b247e4.eot?#iefix");
+  src:font-url("b95879a4-6677-40bf-9528-ffecf9b247e4.eot?#iefix") format("eot"),
+  font-url("540baff3-1dae-4349-b607-d71e6a8d5a3e.woff2") format("woff2"),
+  font-url("329d96cf-0721-417a-9888-cc6b095163c3.woff") format("woff"),
+  font-url("c46c5707-21ab-4331-99d5-197ac889ffc7.ttf") format("truetype");
+}
+
 $logo_image: 'tufts_logo.png';
 $light_tufts_blue: #3172ae;
 $dark_tufts_blue: #2a5c89;
 
+body {
+  background-color: #FEFEFA;
+
+  font-family: "Gotham SSm A", "Gotham SSm B";
+  // font-family: "Whitney SSm A", "Whitney SSm B";
+
+font-size: 16px;
+}
+
+
+
+h1, h2, h3, .h1, .h1 small {
+  //font-family: "Meta Serif";
+}
+
+.nav-pills li {
+  background-color: #e8e3e7;
+  margin-right: 7px;
+  border-radius: 4px;
+}
+
+.nav-pills li a:hover {
+  background-color: #a9a3a9;
+  color: #eef0f3;
+}
+
 .exhibit-card, .card-face {
   height: 340px;
+}
+
+
+.card-title {
+  /*
+  font-family: "Whitney SSm A", "Whitney SSm B";
+  font-weight: 500; */
 }
 
 @media (min-width: 1200px) {
@@ -17,9 +59,18 @@ h2 {
   font-size: 24px;
 }
 
+.nav-heading {
+  padding-bottom: 5px;
+}
+
 h3 {
-  font-weight: bold;
   font-size: 18px;
+}
+
+hr {
+  margin: 0 0 7px 10px;
+  padding: 0;
+  border: .5px solid #B8B8B8;
 }
 
 .dl-horizontal dd:after {
