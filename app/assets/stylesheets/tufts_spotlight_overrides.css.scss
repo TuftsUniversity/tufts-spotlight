@@ -37,11 +37,12 @@ h1, h2, h3, .h1, .h1 small {
   height: 340px;
 }
 
+.image-masthead .h1 {
+  color: #FEFEFA;
+}
 
 .card-title {
-  /*
-  font-family: "Whitney SSm A", "Whitney SSm B";
-  font-weight: 500; */
+  font-size: 15px;
 }
 
 @media (min-width: 1200px) {
