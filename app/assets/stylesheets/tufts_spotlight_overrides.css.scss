@@ -13,15 +13,13 @@ $dark_tufts_blue: #2a5c89;
 
 body {
   background-color: #FEFEFA;
-
-  font-family: "Gotham SSm A", "Gotham SSm B";
-  // font-family: "Whitney SSm A", "Whitney SSm B";
-
-font-size: 16px;
+  //font-family: "Gotham SSm A", "Gotham SSm B";
+  font-family: "Whitney SSm A", "Whitney SSm B";
+  font-size: 13px;
 }
 
 h1, h2, h3, .h1, .h1 small {
-  //font-family: "Meta Serif";
+   font-family: "Meta Serif";
 }
 
 .nav-pills li {
@@ -63,7 +61,7 @@ h2 {
 }
 
 h3 {
-  font-size: 18px;
+  font-size: 15px;
 }
 
 hr {
