@@ -11,335 +11,335 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721184808) do
+ActiveRecord::Schema.define(version: 20180327164646) do
 
   create_table "bookmarks", force: :cascade do |t|
-    t.integer  "user_id",       null: false
-    t.string   "user_type"
-    t.string   "document_id"
-    t.string   "document_type"
-    t.binary   "title"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "user_id",       limit: 4,     null: false
+    t.string   "user_type",     limit: 255
+    t.string   "document_id",   limit: 255
+    t.string   "document_type", limit: 255
+    t.binary   "title",         limit: 65535
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
-  add_index "bookmarks", ["document_id"], name: "index_bookmarks_on_document_id"
-  add_index "bookmarks", ["document_type", "document_id"], name: "index_bookmarks_on_document_type_and_document_id"
-  add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id"
+  add_index "bookmarks", ["document_id"], name: "index_bookmarks_on_document_id", using: :btree
+  add_index "bookmarks", ["document_type", "document_id"], name: "index_bookmarks_on_document_type_and_document_id", using: :btree
+  add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
-    t.string   "slug",                      null: false
-    t.integer  "sluggable_id",              null: false
+    t.string   "slug",           limit: 255, null: false
+    t.integer  "sluggable_id",   limit: 4,   null: false
     t.string   "sluggable_type", limit: 50
-    t.string   "scope"
+    t.string   "scope",          limit: 255
     t.datetime "created_at"
   end
 
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "searches", force: :cascade do |t|
-    t.binary   "query_params"
-    t.integer  "user_id"
-    t.string   "user_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.binary   "query_params", limit: 65535
+    t.integer  "user_id",      limit: 4
+    t.string   "user_type",    limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
-  add_index "searches", ["user_id"], name: "index_searches_on_user_id"
+  add_index "searches", ["user_id"], name: "index_searches_on_user_id", using: :btree
 
   create_table "spotlight_attachments", force: :cascade do |t|
-    t.string   "name"
-    t.string   "file"
-    t.string   "uid"
-    t.integer  "exhibit_id"
+    t.string   "name",       limit: 255
+    t.string   "file",       limit: 255
+    t.string   "uid",        limit: 255
+    t.integer  "exhibit_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "spotlight_blacklight_configurations", force: :cascade do |t|
-    t.integer  "exhibit_id"
-    t.text     "facet_fields"
-    t.text     "index_fields"
-    t.text     "search_fields"
-    t.text     "sort_fields"
-    t.text     "default_solr_params"
-    t.text     "show"
-    t.text     "index"
-    t.integer  "default_per_page"
-    t.text     "per_page"
-    t.text     "document_index_view_types"
-    t.string   "thumbnail_size"
+    t.integer  "exhibit_id",                limit: 4
+    t.text     "facet_fields",              limit: 65535
+    t.text     "index_fields",              limit: 65535
+    t.text     "search_fields",             limit: 65535
+    t.text     "sort_fields",               limit: 65535
+    t.text     "default_solr_params",       limit: 65535
+    t.text     "show",                      limit: 65535
+    t.text     "index",                     limit: 65535
+    t.integer  "default_per_page",          limit: 4
+    t.text     "per_page",                  limit: 65535
+    t.text     "document_index_view_types", limit: 65535
+    t.string   "thumbnail_size",            limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "spotlight_contact_emails", force: :cascade do |t|
-    t.integer  "exhibit_id"
-    t.string   "email",                default: "", null: false
-    t.string   "confirmation_token"
+    t.integer  "exhibit_id",           limit: 4
+    t.string   "email",                limit: 255, default: "", null: false
+    t.string   "confirmation_token",   limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
+    t.string   "unconfirmed_email",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "spotlight_contact_emails", ["confirmation_token"], name: "index_spotlight_contact_emails_on_confirmation_token", unique: true
-  add_index "spotlight_contact_emails", ["email", "exhibit_id"], name: "index_spotlight_contact_emails_on_email_and_exhibit_id", unique: true
+  add_index "spotlight_contact_emails", ["confirmation_token"], name: "index_spotlight_contact_emails_on_confirmation_token", unique: true, using: :btree
+  add_index "spotlight_contact_emails", ["email", "exhibit_id"], name: "index_spotlight_contact_emails_on_email_and_exhibit_id", unique: true, using: :btree
 
   create_table "spotlight_contacts", force: :cascade do |t|
-    t.string   "slug"
-    t.string   "name"
-    t.string   "email"
-    t.string   "title"
-    t.string   "location"
-    t.string   "telephone"
+    t.string   "slug",            limit: 255
+    t.string   "name",            limit: 255
+    t.string   "email",           limit: 255
+    t.string   "title",           limit: 255
+    t.string   "location",        limit: 255
+    t.string   "telephone",       limit: 255
     t.boolean  "show_in_sidebar"
-    t.integer  "weight",          default: 50
-    t.integer  "exhibit_id"
+    t.integer  "weight",          limit: 4,     default: 50
+    t.integer  "exhibit_id",      limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "contact_info"
-    t.string   "avatar"
-    t.integer  "avatar_crop_x"
-    t.integer  "avatar_crop_y"
-    t.integer  "avatar_crop_w"
-    t.integer  "avatar_crop_h"
+    t.text     "contact_info",    limit: 65535
+    t.string   "avatar",          limit: 255
+    t.integer  "avatar_crop_x",   limit: 4
+    t.integer  "avatar_crop_y",   limit: 4
+    t.integer  "avatar_crop_w",   limit: 4
+    t.integer  "avatar_crop_h",   limit: 4
   end
 
-  add_index "spotlight_contacts", ["exhibit_id"], name: "index_spotlight_contacts_on_exhibit_id"
+  add_index "spotlight_contacts", ["exhibit_id"], name: "index_spotlight_contacts_on_exhibit_id", using: :btree
 
   create_table "spotlight_custom_fields", force: :cascade do |t|
-    t.integer  "exhibit_id"
-    t.string   "slug"
-    t.string   "field"
-    t.text     "configuration"
+    t.integer  "exhibit_id",     limit: 4
+    t.string   "slug",           limit: 255
+    t.string   "field",          limit: 255
+    t.text     "configuration",  limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "field_type"
-    t.boolean  "readonly_field", default: false
+    t.string   "field_type",     limit: 255
+    t.boolean  "readonly_field",               default: false
   end
 
   create_table "spotlight_exhibits", force: :cascade do |t|
-    t.string   "title",                          null: false
-    t.string   "subtitle"
-    t.string   "slug"
-    t.text     "description"
+    t.string   "title",          limit: 255,                   null: false
+    t.string   "subtitle",       limit: 255
+    t.string   "slug",           limit: 255
+    t.text     "description",    limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "layout"
-    t.boolean  "published",      default: false
+    t.string   "layout",         limit: 255
+    t.boolean  "published",                    default: false
     t.datetime "published_at"
-    t.string   "featured_image"
-    t.integer  "masthead_id"
-    t.integer  "thumbnail_id"
-    t.integer  "weight",         default: 50
-    t.integer  "site_id"
+    t.string   "featured_image", limit: 255
+    t.integer  "masthead_id",    limit: 4
+    t.integer  "thumbnail_id",   limit: 4
+    t.integer  "weight",         limit: 4,     default: 50
+    t.integer  "site_id",        limit: 4
   end
 
-  add_index "spotlight_exhibits", ["site_id"], name: "index_spotlight_exhibits_on_site_id"
-  add_index "spotlight_exhibits", ["slug"], name: "index_spotlight_exhibits_on_slug", unique: true
+  add_index "spotlight_exhibits", ["site_id"], name: "index_spotlight_exhibits_on_site_id", using: :btree
+  add_index "spotlight_exhibits", ["slug"], name: "index_spotlight_exhibits_on_slug", unique: true, using: :btree
 
   create_table "spotlight_featured_images", force: :cascade do |t|
-    t.string   "type"
+    t.string   "type",               limit: 255
     t.boolean  "display"
-    t.string   "image"
-    t.string   "source"
-    t.string   "document_global_id"
-    t.integer  "image_crop_x"
-    t.integer  "image_crop_y"
-    t.integer  "image_crop_w"
-    t.integer  "image_crop_h"
+    t.string   "image",              limit: 255
+    t.string   "source",             limit: 255
+    t.string   "document_global_id", limit: 255
+    t.integer  "image_crop_x",       limit: 4
+    t.integer  "image_crop_y",       limit: 4
+    t.integer  "image_crop_w",       limit: 4
+    t.integer  "image_crop_h",       limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "spotlight_filters", force: :cascade do |t|
-    t.string   "field"
-    t.string   "value"
-    t.integer  "exhibit_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "field",      limit: 255
+    t.string   "value",      limit: 255
+    t.integer  "exhibit_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  add_index "spotlight_filters", ["exhibit_id"], name: "index_spotlight_filters_on_exhibit_id"
+  add_index "spotlight_filters", ["exhibit_id"], name: "index_spotlight_filters_on_exhibit_id", using: :btree
 
   create_table "spotlight_locks", force: :cascade do |t|
-    t.integer  "on_id"
-    t.string   "on_type"
-    t.integer  "by_id"
-    t.string   "by_type"
+    t.integer  "on_id",      limit: 4
+    t.string   "on_type",    limit: 255
+    t.integer  "by_id",      limit: 4
+    t.string   "by_type",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "spotlight_locks", ["on_id", "on_type"], name: "index_spotlight_locks_on_on_id_and_on_type", unique: true
+  add_index "spotlight_locks", ["on_id", "on_type"], name: "index_spotlight_locks_on_on_id_and_on_type", unique: true, using: :btree
 
   create_table "spotlight_main_navigations", force: :cascade do |t|
-    t.string   "label"
-    t.integer  "weight",     default: 20
-    t.string   "nav_type"
-    t.integer  "exhibit_id"
+    t.string   "label",      limit: 255
+    t.integer  "weight",     limit: 4,   default: 20
+    t.string   "nav_type",   limit: 255
+    t.integer  "exhibit_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "display",    default: true
+    t.boolean  "display",                default: true
   end
 
-  add_index "spotlight_main_navigations", ["exhibit_id"], name: "index_spotlight_main_navigations_on_exhibit_id"
+  add_index "spotlight_main_navigations", ["exhibit_id"], name: "index_spotlight_main_navigations_on_exhibit_id", using: :btree
 
   create_table "spotlight_pages", force: :cascade do |t|
-    t.string   "title"
-    t.string   "type"
-    t.string   "slug"
-    t.string   "scope"
-    t.text     "content"
-    t.integer  "weight",            default: 50
+    t.string   "title",             limit: 255
+    t.string   "type",              limit: 255
+    t.string   "slug",              limit: 255
+    t.string   "scope",             limit: 255
+    t.text     "content",           limit: 16777215
+    t.integer  "weight",            limit: 4,        default: 50
     t.boolean  "published"
-    t.integer  "exhibit_id"
-    t.integer  "created_by_id"
-    t.integer  "last_edited_by_id"
+    t.integer  "exhibit_id",        limit: 4
+    t.integer  "created_by_id",     limit: 4
+    t.integer  "last_edited_by_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "parent_page_id"
+    t.integer  "parent_page_id",    limit: 4
     t.boolean  "display_sidebar"
     t.boolean  "display_title"
-    t.integer  "thumbnail_id"
-    t.boolean  "in_menu",           default: true, null: false
+    t.integer  "thumbnail_id",      limit: 4
+    t.boolean  "in_menu",                            default: true, null: false
   end
 
-  add_index "spotlight_pages", ["exhibit_id"], name: "index_spotlight_pages_on_exhibit_id"
-  add_index "spotlight_pages", ["parent_page_id"], name: "index_spotlight_pages_on_parent_page_id"
-  add_index "spotlight_pages", ["slug", "scope"], name: "index_spotlight_pages_on_slug_and_scope", unique: true
+  add_index "spotlight_pages", ["exhibit_id"], name: "index_spotlight_pages_on_exhibit_id", using: :btree
+  add_index "spotlight_pages", ["parent_page_id"], name: "index_spotlight_pages_on_parent_page_id", using: :btree
+  add_index "spotlight_pages", ["slug", "scope"], name: "index_spotlight_pages_on_slug_and_scope", unique: true, using: :btree
 
   create_table "spotlight_resources", force: :cascade do |t|
-    t.integer  "exhibit_id"
-    t.string   "type"
-    t.string   "url"
-    t.text     "data"
+    t.integer  "exhibit_id",   limit: 4
+    t.string   "type",         limit: 255
+    t.string   "url",          limit: 255
+    t.text     "data",         limit: 65535
     t.datetime "indexed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.binary   "metadata"
-    t.integer  "index_status"
+    t.binary   "metadata",     limit: 65535
+    t.integer  "index_status", limit: 4
   end
 
-  add_index "spotlight_resources", ["index_status"], name: "index_spotlight_resources_on_index_status"
+  add_index "spotlight_resources", ["index_status"], name: "index_spotlight_resources_on_index_status", using: :btree
 
   create_table "spotlight_roles", force: :cascade do |t|
-    t.integer "user_id"
-    t.string  "role"
-    t.integer "resource_id"
-    t.string  "resource_type"
+    t.integer "user_id",       limit: 4
+    t.string  "role",          limit: 255
+    t.integer "resource_id",   limit: 4
+    t.string  "resource_type", limit: 255
   end
 
-  add_index "spotlight_roles", ["resource_type", "resource_id", "user_id"], name: "index_spotlight_roles_on_resource_and_user_id", unique: true
+  add_index "spotlight_roles", ["resource_type", "resource_id", "user_id"], name: "index_spotlight_roles_on_resource_and_user_id", unique: true, using: :btree
 
   create_table "spotlight_searches", force: :cascade do |t|
-    t.string   "title"
-    t.string   "slug"
-    t.string   "scope"
-    t.text     "short_description"
-    t.text     "long_description"
-    t.text     "query_params"
-    t.integer  "weight"
+    t.string   "title",                   limit: 255
+    t.string   "slug",                    limit: 255
+    t.string   "scope",                   limit: 255
+    t.text     "short_description",       limit: 65535
+    t.text     "long_description",        limit: 65535
+    t.text     "query_params",            limit: 65535
+    t.integer  "weight",                  limit: 4
     t.boolean  "published"
-    t.integer  "exhibit_id"
+    t.integer  "exhibit_id",              limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "featured_item_id"
-    t.integer  "masthead_id"
-    t.integer  "thumbnail_id"
-    t.string   "default_index_view_type"
+    t.string   "featured_item_id",        limit: 255
+    t.integer  "masthead_id",             limit: 4
+    t.integer  "thumbnail_id",            limit: 4
+    t.string   "default_index_view_type", limit: 255
   end
 
-  add_index "spotlight_searches", ["exhibit_id"], name: "index_spotlight_searches_on_exhibit_id"
-  add_index "spotlight_searches", ["slug", "scope"], name: "index_spotlight_searches_on_slug_and_scope", unique: true
+  add_index "spotlight_searches", ["exhibit_id"], name: "index_spotlight_searches_on_exhibit_id", using: :btree
+  add_index "spotlight_searches", ["slug", "scope"], name: "index_spotlight_searches_on_slug_and_scope", unique: true, using: :btree
 
   create_table "spotlight_sites", force: :cascade do |t|
-    t.string  "title"
-    t.string  "subtitle"
-    t.integer "masthead_id"
+    t.string  "title",       limit: 255
+    t.string  "subtitle",    limit: 255
+    t.integer "masthead_id", limit: 4
   end
 
   create_table "spotlight_solr_document_sidecars", force: :cascade do |t|
-    t.integer  "exhibit_id"
-    t.boolean  "public",        default: true
-    t.text     "data"
+    t.integer  "exhibit_id",    limit: 4
+    t.boolean  "public",                      default: true
+    t.text     "data",          limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "document_id"
-    t.string   "document_type"
-    t.integer  "resource_id"
-    t.string   "resource_type"
+    t.string   "document_id",   limit: 255
+    t.string   "document_type", limit: 255
+    t.integer  "resource_id",   limit: 4
+    t.string   "resource_type", limit: 255
   end
 
-  add_index "spotlight_solr_document_sidecars", ["exhibit_id"], name: "index_spotlight_solr_document_sidecars_on_exhibit_id"
-  add_index "spotlight_solr_document_sidecars", ["resource_type", "resource_id"], name: "spotlight_solr_document_sidecars_resource"
+  add_index "spotlight_solr_document_sidecars", ["exhibit_id"], name: "index_spotlight_solr_document_sidecars_on_exhibit_id", using: :btree
+  add_index "spotlight_solr_document_sidecars", ["resource_type", "resource_id"], name: "spotlight_solr_document_sidecars_resource", using: :btree
 
   create_table "taggings", force: :cascade do |t|
-    t.integer  "tag_id"
-    t.string   "taggable_id"
-    t.string   "taggable_type"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
+    t.integer  "tag_id",        limit: 4
+    t.string   "taggable_id",   limit: 255
+    t.string   "taggable_type", limit: 255
+    t.integer  "tagger_id",     limit: 4
+    t.string   "tagger_type",   limit: 255
     t.string   "context",       limit: 128
     t.datetime "created_at"
   end
 
-  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
   create_table "tags", force: :cascade do |t|
-    t.string  "name"
-    t.integer "taggings_count", default: 0
+    t.string  "name",           limit: 255
+    t.integer "taggings_count", limit: 4,   default: 0
   end
 
-  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "",    null: false
+    t.string   "encrypted_password",     limit: 255, default: "",    null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.boolean  "guest",                  default: false
-    t.string   "invitation_token"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.boolean  "guest",                              default: false
+    t.string   "invitation_token",       limit: 255
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
     t.datetime "invitation_accepted_at"
-    t.integer  "invitation_limit"
-    t.integer  "invited_by_id"
-    t.string   "invited_by_type"
-    t.integer  "invitations_count",      default: 0
-    t.string   "username"
-    t.string   "remember_token"
+    t.integer  "invitation_limit",       limit: 4
+    t.integer  "invited_by_id",          limit: 4
+    t.string   "invited_by_type",        limit: 255
+    t.integer  "invitations_count",      limit: 4,   default: 0
+    t.string   "username",               limit: 255
+    t.string   "remember_token",         limit: 255
   end
 
-  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true
-  add_index "users", ["invitations_count"], name: "index_users_on_invitations_count"
-  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id"
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
+  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
+  add_index "users", ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
+  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "versions", force: :cascade do |t|
-    t.string   "item_type",                     null: false
-    t.integer  "item_id",                       null: false
-    t.string   "event",                         null: false
-    t.string   "whodunnit"
-    t.text     "object",     limit: 1073741823
+    t.string   "item_type",  limit: 255,        null: false
+    t.integer  "item_id",    limit: 4,          null: false
+    t.string   "event",      limit: 255,        null: false
+    t.string   "whodunnit",  limit: 255
+    t.text     "object",     limit: 4294967295
     t.datetime "created_at"
   end
 
-  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
 end
