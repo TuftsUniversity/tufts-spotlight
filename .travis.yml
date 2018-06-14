@@ -37,4 +37,3 @@ services:
 
 addons:
   chrome: stable
-
