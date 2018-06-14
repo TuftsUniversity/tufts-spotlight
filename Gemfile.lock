@@ -593,7 +593,7 @@ DEPENDENCIES
   blacklight (~> 6.0)
   blacklight-gallery (>= 0.3.0)
   blacklight-oembed (>= 0.1.0)
-  blacklight-spotlight!
+  blacklight-spotlight (<= 1.4.1)!
   byebug
   capybara
   chromedriver-helper
@@ -624,4 +624,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
