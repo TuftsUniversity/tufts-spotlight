@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20180327164646) do
 
-  create_table "bookmarks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "bookmarks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "user_id",                     null: false
     t.string   "user_type"
     t.string   "document_id"
@@ -25,19 +25,19 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.index ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
   end
 
-  create_table "friendly_id_slugs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "friendly_id_slugs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
     t.string   "sluggable_type", limit: 50
     t.string   "scope"
     t.datetime "created_at"
-    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
-    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, length: { slug: 70, scope: 70 }, using: :btree
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", length: { slug: 140 }, using: :btree
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
   end
 
-  create_table "searches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "searches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.binary   "query_params", limit: 65535
     t.integer  "user_id"
     t.string   "user_type"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.index ["user_id"], name: "index_searches_on_user_id", using: :btree
   end
 
-  create_table "spotlight_attachments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "spotlight_attachments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "name"
     t.string   "file"
     t.string   "uid"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.datetime "updated_at"
   end
 
-  create_table "spotlight_blacklight_configurations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "spotlight_blacklight_configurations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "exhibit_id"
     t.text     "facet_fields",              limit: 65535
     t.text     "index_fields",              limit: 65535
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.datetime "updated_at"
   end
 
-  create_table "spotlight_contact_emails", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "spotlight_contact_emails", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "exhibit_id"
     t.string   "email",                default: "", null: false
     t.string   "confirmation_token"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.index ["email", "exhibit_id"], name: "index_spotlight_contact_emails_on_email_and_exhibit_id", unique: true, using: :btree
   end
 
-  create_table "spotlight_contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "spotlight_contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "slug"
     t.string   "name"
     t.string   "email"
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.index ["exhibit_id"], name: "index_spotlight_contacts_on_exhibit_id", using: :btree
   end
 
-  create_table "spotlight_custom_fields", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "spotlight_custom_fields", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "exhibit_id"
     t.string   "slug"
     t.string   "field"
@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.boolean  "readonly_field",               default: false
   end
 
-  create_table "spotlight_exhibits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "spotlight_exhibits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "title",                                        null: false
     t.string   "subtitle"
     t.string   "slug"
@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.index ["slug"], name: "index_spotlight_exhibits_on_slug", unique: true, using: :btree
   end
 
-  create_table "spotlight_featured_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "spotlight_featured_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "type"
     t.boolean  "display"
     t.string   "image"
@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.string   "iiif_tilesource"
   end
 
-  create_table "spotlight_filters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "spotlight_filters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "field"
     t.string   "value"
     t.integer  "exhibit_id"
@@ -167,7 +167,7 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.index ["exhibit_id"], name: "index_spotlight_filters_on_exhibit_id", using: :btree
   end
 
-  create_table "spotlight_locks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "spotlight_locks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "on_id"
     t.string   "on_type"
     t.integer  "by_id"
@@ -177,7 +177,7 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.index ["on_id", "on_type"], name: "index_spotlight_locks_on_on_id_and_on_type", unique: true, using: :btree
   end
 
-  create_table "spotlight_main_navigations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "spotlight_main_navigations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "label"
     t.integer  "weight",     default: 20
     t.string   "nav_type"
@@ -188,7 +188,7 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.index ["exhibit_id"], name: "index_spotlight_main_navigations_on_exhibit_id", using: :btree
   end
 
-  create_table "spotlight_pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "spotlight_pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "title"
     t.string   "type"
     t.string   "slug"
@@ -223,7 +223,7 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.datetime "updated_at"
   end
 
-  create_table "spotlight_resources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "spotlight_resources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "exhibit_id"
     t.string   "type"
     t.string   "url"
@@ -238,7 +238,7 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.index ["upload_id"], name: "index_spotlight_resources_on_upload_id", using: :btree
   end
 
-  create_table "spotlight_roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "spotlight_roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "user_id"
     t.string  "role"
     t.integer "resource_id"
@@ -246,7 +246,7 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.index ["resource_type", "resource_id", "user_id"], name: "index_spotlight_roles_on_resource_and_user_id", unique: true, using: :btree
   end
 
-  create_table "spotlight_searches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "spotlight_searches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "title"
     t.string   "slug"
     t.string   "scope"
@@ -267,13 +267,13 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.index ["slug", "scope"], name: "index_spotlight_searches_on_slug_and_scope", unique: true, using: :btree
   end
 
-  create_table "spotlight_sites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "spotlight_sites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string  "title"
     t.string  "subtitle"
     t.integer "masthead_id"
   end
 
-  create_table "spotlight_solr_document_sidecars", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "spotlight_solr_document_sidecars", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "exhibit_id"
     t.boolean  "public",                         default: true
     t.text     "data",          limit: 65535
@@ -290,7 +290,7 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.index ["resource_type", "resource_id"], name: "spotlight_solr_document_sidecars_resource", using: :btree
   end
 
-  create_table "taggings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "taggings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "tag_id"
     t.string   "taggable_id"
     t.string   "taggable_type"
@@ -309,8 +309,8 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.index ["tagger_id"], name: "index_taggings_on_tagger_id", using: :btree
   end
 
-  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
-    t.string  "name"
+  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string  "name",                       collation: "utf8_bin"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
   end
@@ -327,7 +327,7 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.index ["exhibit_id"], name: "index_translations_on_exhibit_id", using: :btree
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
@@ -358,8 +358,8 @@ ActiveRecord::Schema.define(version: 20180327164646) do
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
 
-  create_table "versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
-    t.string   "item_type",                     null: false
+  create_table "versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.string   "item_type",  limit: 191,        null: false
     t.integer  "item_id",                       null: false
     t.string   "event",                         null: false
     t.string   "whodunnit"
