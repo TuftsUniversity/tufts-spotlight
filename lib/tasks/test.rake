@@ -1,12 +1,14 @@
   # frozen_string_literal: true
 
 require 'jettywrapper'
-SolrWrapper.default_instance_options = {
-  verbose: true,
-  port: 8984,
-  version: '6.3.0',
-  instance_dir: 'solr/install'
-}
+if(Rails.env == "test" || Rails.env == "development")
+  SolrWrapper.default_instance_options = {
+    verbose: true,
+    port: 8984,
+    version: '6.3.0',
+    instance_dir: 'solr/install'
+  }
+end
 require 'solr_wrapper/rake_task'
 
 task default: ['tufts:spec']
