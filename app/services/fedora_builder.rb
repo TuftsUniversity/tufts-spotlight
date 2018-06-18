@@ -1,5 +1,6 @@
 require 'solrizer'
 require 'yaml'
+require "mini_magick"
 
 class FedoraBuilder < Spotlight::SolrDocumentBuilder
   include FedoraHelpers
