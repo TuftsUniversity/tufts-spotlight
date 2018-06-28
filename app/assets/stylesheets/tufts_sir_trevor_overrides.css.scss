@@ -25,3 +25,8 @@
   }
 }
 
+// Non-IIIF images look super weird in the carousel.
+.carousel-inner img {
+  object-fit: scale-down;
+}
+
