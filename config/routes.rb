@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   mount Blacklight::Oembed::Engine, at: 'oembed'
   mount Riiif::Engine => '/images', as: 'riiif'
   root to: 'spotlight/exhibits#index'
+
   mount Spotlight::Engine, at: 'spotlight'
   mount Blacklight::Engine => '/'
 #  root to: "catalog#index" # replaced by spotlight root path
@@ -30,6 +31,9 @@ Rails.application.routes.draw do
   # Our fedora resources
   resources :exhibits, only: [] do
     resources :fedora_resources, only: [:create, :update] do
+    end
+
+    resources :tdl_resources, only: [:create, :update] do
     end
   end
 
