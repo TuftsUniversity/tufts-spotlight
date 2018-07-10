@@ -1,9 +1,14 @@
-<%= bootstrap_form_for([current_exhibit, @resource.becomes(TdlResource)], as: :resource) do |f| %>
-  <%= f.text_field :url  %>
+<% form_target = [current_exhibit, @resource.becomes(TdlResource)] %>
+<% html_opts = {id: "new_resources_tdl"} %>
+
+<%= bootstrap_form_for(form_target, as: :resource, html: html_opts) do |f| %>
+  <%= f.label(:resource, "TDL IDs:") %>
+  <%= text_field_tag("resource[ids][]", nil, {class: "form-control", id: ''}) %>
   <div class="form-actions">
+    <%= button_tag("Three More Fields", {type: nil, class: 'btn btn-default 3-more-btn'}) %>
     <div class="primary-actions">
-      <%= cancel_link @resource, :back, class: 'btn btn-default' %>
-      <%= f.submit t('.add_item'), class: 'btn btn-primary' %>
+      <%= cancel_link(@resource, :back, class: 'btn btn-default') %>
+      <%= f.submit(t('.add_item'), class: 'btn btn-primary') %>
     </div>
   </div>
 <% end if can? :manage, @resource %>

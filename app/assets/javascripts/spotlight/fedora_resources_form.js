@@ -9,10 +9,12 @@
    * @param form {element} The form containing the inputs and button.
    */
   var fedoraResourceInputs = function fedoraResourceInputSetup(form) {
+
     var times_run = 0,
-      button = form.find("#3-more-btn"),
-      clean_copy = form.find("input.form-control").clone(),
-      insert_here = form.find(".form-actions"),
+      $form = $(form),
+      button = $form.find(".3-more-btn"),
+      clean_copy = $form.find("input.form-control").clone(),
+      insert_here = $form.find(".form-actions"),
       i;
 
     button.on("click", function add3BtnHndlr(e) {
@@ -31,7 +33,9 @@
 
 
   $(document).ready(function (){
-    var form = $("#new_resources_fedora");
-    if(form.length > 0) { fedoraResourceInputs(form); }
+    var forms = $(".new_resource");
+    if(forms.length > 0) {
+      forms.each(function() { fedoraResourceInputs( this ); });
+    }
   });
 })();
