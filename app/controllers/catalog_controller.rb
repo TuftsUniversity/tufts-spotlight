@@ -17,7 +17,7 @@ class CatalogController < ApplicationController
       label = name.capitalize
     else
       label = el_hash[:name]
-      name = label.tr(" ", "_")
+      name = label.tr(" ", "_").downcase
     end
 
     solr_index_type = display_type == :facet ? :facetable : :stored_searchable

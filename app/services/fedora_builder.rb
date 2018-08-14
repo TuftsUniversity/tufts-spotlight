@@ -109,7 +109,7 @@ class FedoraBuilder < Spotlight::SolrDocumentBuilder
     end
 
     if(el.key?(:name))
-      name = el[:name].tr(' ', '_')
+      name = el[:name].tr(' ', '_').downcase
     else
       name = el[:field]
     end
