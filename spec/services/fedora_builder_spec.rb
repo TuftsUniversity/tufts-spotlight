@@ -71,23 +71,23 @@ describe FedoraBuilder do
       end
 
       it "adds fields from multiple datastreams" do
-        expect(doc).to include("Member_Of_tesim")
+        expect(doc).to include("member_of_tesim")
       end
 
       it "adds fields with custom solr names" do
-        expect(doc).to include("Member_Of_tesim")
-        expect(doc).to include("Published_By_tesim")
+        expect(doc).to include("member_of_tesim")
+        expect(doc).to include("published_by_tesim")
       end
 
       it "adds fields with full xpath in config file" do
         expect(doc).to include(
-          "Member_Of_tesim" => ["info:fedora/tufts:UA069.006.DO.MS054"]
+          "member_of_tesim" => ["info:fedora/tufts:UA069.006.DO.MS054"]
         )
       end
 
       it "adds fields from attributes" do
         expect(doc).to include(
-          "Member_Of_tesim" => ["info:fedora/tufts:UA069.006.DO.MS054"]
+          "member_of_tesim" => ["info:fedora/tufts:UA069.006.DO.MS054"]
         )
       end
 
