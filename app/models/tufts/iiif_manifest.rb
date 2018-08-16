@@ -2,7 +2,16 @@ module Tufts
   class IiifManifest < Spotlight::Resources::IiifManifest
 
     ##
-    # The spotlight manifest handler submits all fields as exhibit-specific fields
+    # @function
+    # Overrides Spotlight's handling of IIIF Manifest metadata.
+    #
+    # The Spotlight manifest handler submits all fields as exhibit-specific fields.
+    #
+    # This submits them as core blacklight fields - so they must be defined
+    #   in catalog_controller to display.
+    #
+    # However, this lets us define them as facets. I don't see any way to use IIIF
+    #   fields as facets in the current Spotlight setup.
     def manifest_metadata
       metadata = metadata_class.new(manifest).to_solr
       return {} unless metadata.present?

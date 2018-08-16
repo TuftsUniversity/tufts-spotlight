@@ -1,7 +1,7 @@
 module Tufts
   class TdlResource < Spotlight::Resources::IiifHarvester
 
-    # No customizations needed for builder. So still using Spotlight's builder.tdl
+    # No customizations needed for builder - still using Spotlight's builder.
     self.document_builder_class = Spotlight::Resources::IiifBuilder
 
     ##
