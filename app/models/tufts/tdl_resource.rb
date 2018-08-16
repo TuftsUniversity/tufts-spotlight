@@ -1,14 +1,29 @@
 module Tufts
+  ##
+  # @class
+  # TdlResource is a slightly customized IIIF resource.
   class TdlResource < Spotlight::Resources::IiifHarvester
-
-    # No customizations needed for builder - still using Spotlight's builder.
-    self.document_builder_class = Spotlight::Resources::IiifBuilder
-
     ##
     # @function
+    # Overrides Spotlight::Resources::IiifHarvester.iiif_manifests
+    #
     # Using our custom IiifService.
     def iiif_manifests
       @iiif_manifests ||= Tufts::IiifService.parse(url)
+    end
+
+    ##
+    # @function
+    # Overrides Spotlight::Resources::IiifHarvester.url_is_iiif?
+    #
+    # Wrapping super function in exception handling,
+    #   so users don't see uncaught exceptions if the url is bad.
+    def url_is_iiif?(url)
+      begin
+        super
+      rescue Faraday::ConnectionFailed
+        false
+      end
     end
   end
 end

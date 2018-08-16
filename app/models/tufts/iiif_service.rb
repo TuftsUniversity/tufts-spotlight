@@ -3,6 +3,8 @@ module Tufts
 
     ##
     # @function
+    # Overrides Spotlight::Resources::IiifService.create_iiif_manifest
+    #
     # Use the Tufts custom IIIF Manifest implementation.
     def create_iiif_manifest(manifest, collection = nil)
       Tufts::IiifManifest.new(url: manifest['@id'], manifest: manifest, collection: collection)

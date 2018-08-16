@@ -3,7 +3,7 @@ module Tufts
 
     ##
     # @function
-    # Overrides Spotlight's handling of IIIF Manifest metadata.
+    # Overrides Spotlight::Resources::IiifManifest.manifest_metadata
     #
     # The Spotlight manifest handler submits all fields as exhibit-specific fields.
     #
