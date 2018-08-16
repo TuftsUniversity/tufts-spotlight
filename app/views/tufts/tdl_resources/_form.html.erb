@@ -1,0 +1,12 @@
+<% form_target = [current_exhibit, @resource.becomes(Tufts::TdlResource)] %>
+<% html_opts = {id: "new_resources_tdl"} %>
+
+<%= bootstrap_form_for(form_target, as: :resource, html: html_opts) do |f| %>
+  <%= f.text_field :url, label: t('.manifest') %>
+  <div class="form-actions">
+    <div class="primary-actions">
+      <%= cancel_link @resource, :back, class: 'btn btn-default' %>
+      <%= f.submit t('.add_item'), class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end if can? :manage, @resource %>
