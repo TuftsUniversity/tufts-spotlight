@@ -10,6 +10,7 @@ module Tufts
       ids = params["resource"]["ids"]
       bad_ids = []
       successes = 0
+      tufts_settings = Tufts::Settings.load
 
       ids.each do |id|
         id.strip!
@@ -37,17 +38,6 @@ module Tufts
       end
 
       redirect_to spotlight.admin_exhibit_catalog_path(@resource.exhibit)
-    end
-
-    ##
-    # @function
-    # Loads and saves config from config/tufts.yml to @tufts_settings.
-    def tufts_settings
-      if(@tufts_settings.nil?)
-        file = Rails.root.join("config/tufts.yml").to_s
-        @tufts_settings = YAML::load(File.open(file)).deep_symbolize_keys![Rails.env.to_sym]
-      end
-      @tufts_settings
     end
 
     def resource_class
