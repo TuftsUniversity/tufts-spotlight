@@ -4,6 +4,8 @@ i_need_ldap
 
 
 feature "TDL ingest" do
+  before { skip("Tests ready, but need TDL migration to prod finished. TravisCI can't connect to dev.") }
+
   let(:ids) do
    ids = [
      "ua136_002_do_00426",
