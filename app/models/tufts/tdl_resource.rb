@@ -6,7 +6,7 @@ module Tufts
 
     ##
     # @function
-    # Using our custom IiifService, over Spotlight stock one.
+    # Using our custom IiifService.
     def iiif_manifests
       @iiif_manifests ||= Tufts::IiifService.parse(url)
     end
