@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     resources :fedora_resources, only: [:create, :update] do
     end
 
-    resources :tdl_resources, only: [:create, :update] do
+    resources :tdl_resources, controller: 'tufts/tdl_resources', only: :create, as: 'tufts_tdl_resources' do
     end
   end
 

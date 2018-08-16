@@ -24,10 +24,11 @@ en:
     form:
       title: "Fedora Object"
       add_item: "Import Objects"
-  tdl_resources:
-    form:
-      title: "Tufts Digital Library Object"
-      add_item: "Import Objects"
+  tufts:
+    tdl_resources:
+      form:
+        title: "Tufts Digital Library Object"
+        add_item: "Import Objects"
   activerecord:
     attributes:
       "spotlight/page":
