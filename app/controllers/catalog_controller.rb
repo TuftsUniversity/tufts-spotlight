@@ -70,6 +70,12 @@ class CatalogController < ApplicationController
       end
     end
 
+    # config.add_indexfield("creator_tesim", label: "Creator")
+    # config.add_index_field("description_tesim", label: "Description")
+    # config.add_index_field("publisher_tesim", label: "Publisher")
+    # config.add_index_field("date_tesim", label: "Date")
+    # config.add_index_field("type_tesim", label: "Type")
+
     # Do the show fields next
     get_show_fields.each do |el|
       get_field_values(el, :show, mppr) do |field, label|
@@ -77,6 +83,20 @@ class CatalogController < ApplicationController
         Rails.logger.info("Adding show field: #{label} - #{field}")
       end
     end
+
+    # config.add_show_field("creator_tesim", label: "Creator")
+    # config.add_show_field("description_tesim", label: "Description")
+    # config.add_show_field("publisher_tesim", label: "Publisher")
+    # config.add_show_field("date_tesim", label: "Date")
+    # config.add_show_field("date_created_tesim", label: "Date Created")
+    # config.add_show_field("subject_tesim", label: "Subject")
+    # config.add_show_field("type_tesim", label: "Type")
+    # config.add_show_field("format_tesim", label: "Format")
+    # config.add_show_field("rights_tesim", label: "Rights")
+    # config.add_show_field("corporation_tesim", label: "Corporation")
+    # config.add_show_field("area_of_interest_tesim", label: "Area of Interest")
+    # config.add_show_field("citation_tesim", label: "Citation")
+    # config.add_show_field("permanent_url_tesim", label: "Permanent URL")
 
     config.add_search_field 'all_fields', label: 'Everything'
 
@@ -92,7 +112,16 @@ class CatalogController < ApplicationController
       end
     end
 
+    # config.add_facet_field("creator_sim", label: "Creator")
+    # config.add_facet_field("publisher_sim", label: "Publisher")
+    # config.add_facet_field("date_sim", label: "Date")
+    # config.add_facet_field("subject_sim", label: "Subject")
+    # config.add_facet_field("type_sim", label: "Type")
+    # config.add_facet_field("format_sim", label: "Format")
+    # config.add_facet_field("corporation_sim", label: "Corporation")
+    # config.add_facet_field("area_of_interest_sim", label: "Area of Interest")
     config.add_facet_field 'spotlight_upload_date_tesim', label: 'Date', limit: 7
+
     config.add_facet_fields_to_solr_request!
   end
 
