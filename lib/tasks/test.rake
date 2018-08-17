@@ -1,4 +1,4 @@
-  # frozen_string_literal: true
+# frozen_string_literal: true
 
 require 'jettywrapper'
 if(Rails.env == "test" || Rails.env == "development")
@@ -39,7 +39,7 @@ namespace :tufts do
 
   desc 'Copy config files'
   task configs: :environment do
-    %w[database fedora blacklight secrets solr ldap].each do |f|
+    %w[database fedora blacklight secrets solr ldap tufts].each do |f|
       unless File.exist?("config/#{f}.yml")
         FileUtils.cp(
           Rails.root.join("config/#{f}.yml.sample"),
