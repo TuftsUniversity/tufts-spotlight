@@ -16,9 +16,6 @@ before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - sleep 3 # give xvfb some time to start
-  - cp config/database.yml.sample config/database.yml
-  - cp config/secrets.yml.sample config/secrets.yml
-  - cp config/tufts.yml.sample config/tufts.yml
   - mysql -e 'create database ests_spotlight_test'
   - mkdir -p tmp && export TMPDIR=tmp
   - bundle exec rake tufts:ci
