@@ -39,7 +39,7 @@ namespace :tufts do
 
   desc 'Copy config files'
   task configs: :environment do
-    %w[database fedora blacklight secrets solr ldap tufts].each do |f|
+    %w[fedora blacklight solr ldap tufts].each do |f|
       unless File.exist?("config/#{f}.yml")
         FileUtils.cp(
           Rails.root.join("config/#{f}.yml.sample"),
