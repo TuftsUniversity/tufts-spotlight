@@ -7,7 +7,7 @@ module Tufts
     # @function
     # Overrides Spotlight::Resources::IiifHarvester.iiif_manifests
     #
-    # Using our custom IiifService.
+    # Uses our custom IiifService.
     def iiif_manifests
       @iiif_manifests ||= Tufts::IiifService.parse(url)
     end
