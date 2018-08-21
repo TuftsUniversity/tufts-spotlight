@@ -22,7 +22,7 @@ module Tufts
 
         Solrizer.insert_field(
           hash,
-          key.downcase,
+          key.tr(' ', '_').downcase,
           value,
           *indexer_args
         )
