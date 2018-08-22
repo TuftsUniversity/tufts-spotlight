@@ -29,9 +29,12 @@ module Tufts
       sleep(1)
 
       exhibit_name = Spotlight::Exhibit.find(new_resource.exhibit_id).title
+      puts
       puts "Migrating FedoraResource: #{record.id} to TdlResource #{new_resource.id} in #{exhibit_name}"
 
       merge_sidecars(record, new_resource)
+      Spotlight::ReindexJob.perform_now(new_resource)
+      sleep(1)
 
       return new_resource
     end
@@ -72,13 +75,22 @@ module Tufts
         if(old_sidecar.data.empty? || old_sidecar.data.nil?)
           puts "INFO: FedoraResource: #{old_r.id} has no data in its sidecar."
         else
+          puts "INFO: Merging FedoraResource: #{old_r.id} sidecar data with #{new_r.id} sidecar. "
           new_sidecar.data.merge!(old_sidecar.data)
           needs_update = true
         end
 
         # If the old sidecar has public set to false, set the new car to false as well.
-        if(old_sidecar.public == false)
-          new_sidecar.public = false
+        unless(old_sidecar.public?)
+          puts "INFO: FedoraResource: #{old_r.id} is not public. Changing TdlResource: #{new_r.id}."
+          new_sidecar.public = false # Not using the private! method because that saves immediately.
+          needs_update = true
+        end
+
+        unless(old_sidecar.taggings.empty?)
+          puts "INFO: Merging FedoraResource: #{old_r.id} tags into TdlResource: #{new_r.id} sidecar."
+          new_sidecar.tags = old_sidecar.tags
+          new_sidecar.taggings = old_sidecar.taggings
           needs_update = true
         end
 
