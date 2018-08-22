@@ -25,5 +25,26 @@ module Tufts
         false
       end
     end
+
+    ##
+    # @function
+    # Retrieves the SolrDocument id via the shared sidecar.
+    def solr_doc_id
+      sidecar.document_id
+    end
+
+    ##
+    # @function
+    # An easy way to get to the SolrDocument created from this resource.
+    def solr_doc
+      SolrDocument.find(solr_doc_id)
+    end
+
+    ##
+    # @function
+    # An easy way to get to the SolrDocumentSidecar of this resource.
+    def sidecar
+      solr_document_sidecars.where(exhibit_id: exhibit_id).first
+    end
   end
 end

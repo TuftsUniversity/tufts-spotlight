@@ -28,5 +28,17 @@ module Tufts
         )
       end
     end
+
+    ##
+    # @function
+    # Overrides Spotlight::Resources::IiifManifest.add_metadata
+    #
+    # Because the default IiifManifest saves fields as custom fields,
+    #   this method adds all the metadata to the sidecar.
+    #
+    # We're not doing custom fields, so we don't need data in the sidecar .
+    def add_metadata
+      solr_hash.merge!(manifest_metadata)
+    end
   end
 end
