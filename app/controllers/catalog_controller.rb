@@ -88,7 +88,6 @@ class CatalogController < ApplicationController
     # config.add_show_field("description_tesim", label: "Description")
     # config.add_show_field("publisher_tesim", label: "Publisher")
     # config.add_show_field("date_tesim", label: "Date")
-    # config.add_show_field("date_created_tesim", label: "Date Created")
     # config.add_show_field("subject_tesim", label: "Subject")
     # config.add_show_field("type_tesim", label: "Type")
     # config.add_show_field("format_tesim", label: "Format")
