@@ -1,13 +1,17 @@
 namespace :tufts do
   desc 'Run the FedoraResource to TdlResource migration'
   task migrate_to_tdl: :environment do
-    all_fedora_resources = FedoraResource.all
     # i = 0
     # max = 100
 
-    FedoraResource.all.each do |record|
+    # Set up the migration data table. Either create it or clear it.
+    data_table = Tufts::MigrationData.new
+    data_table.create_table
+    data_table.clear_table
+
+    FedoraResource.all.each do |resource|
       # break if(i >= max)
-      Tufts::TdlMigrator.migrate_record(record)
+      Tufts::TdlMigrator.migrate_resource(resource)
       # i += 1
     end
   end

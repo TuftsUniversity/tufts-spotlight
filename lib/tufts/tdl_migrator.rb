@@ -7,34 +7,32 @@ module Tufts
   class TdlMigrator
 
     ##
-    # Migrates a single record.
-    # @param {FedoraResource} record
+    # Migrates a single resource.
+    # @param {FedoraResource} old_resource
     #   The FedoraResource object to change into TdlResource.
-    def self.migrate_record(record)
-      if(record.exhibit_id.nil? || !record.has_exhibit?)
-        puts "No exhibit (#{record.exhibit_id}) for item #{record.id}: #{record.url}"
+    def self.migrate_resource(old_resource)
+      if(old_resource.exhibit_id.nil? || !old_resource.has_exhibit?)
+        puts "No exhibit (#{old_resource.exhibit_id}) for item #{old_resource.id}: #{old_resource.url}"
         return false
       end
 
-      new_id = get_new_id(record.url)
+      new_id = get_new_id(old_resource.url)
       unless(new_id)
-        puts "Couldn't find a record with the legacy pid: #{record.url}."
+        puts "Couldn't find a resource with the legacy pid: #{old_resource.url}."
         return false
       end
 
       manifest_url = "#{tufts_settings[:tdl_url]}#{new_id}/manifest.json"
-      new_resource = TdlResource.new({url: manifest_url, exhibit_id: record.exhibit_id})
+      new_resource = TdlResource.new({url: manifest_url, exhibit_id: old_resource.exhibit_id})
       new_resource.save
       Spotlight::ReindexJob.perform_now(new_resource)
       sleep(1)
 
       exhibit_name = Spotlight::Exhibit.find(new_resource.exhibit_id).title
-      puts
-      puts "Migrating FedoraResource: #{record.id} to TdlResource #{new_resource.id} in #{exhibit_name}"
+      puts "\nMigrating FedoraResource: #{old_resource.id} to TdlResource #{new_resource.id} in #{exhibit_name}"
 
-      merge_sidecars(record, new_resource)
-      Spotlight::ReindexJob.perform_now(new_resource)
-      sleep(1)
+      merge_sidecars(old_resource, new_resource)
+      save_migration_data(old_resource, new_resource)
 
       return new_resource
     end
@@ -54,7 +52,7 @@ module Tufts
       end
 
       ##
-      # Merges the old record's sidecar data into the new record's sidecar data.
+      # Merges the old resource's sidecar data into the new resource's sidecar data.
       # @param {FedoraResource} old_r
       #   The old, FedoraResource.
       # @param {TdlResource} new_r
@@ -65,11 +63,11 @@ module Tufts
           return
         end
 
-        # Sometimes sidecars won't change.
+        # Some sidecars have nothing in them. No need for a database call.
         needs_update = false
 
         old_sidecar = old_r.sidecar
-        new_sidecar = new_r.solr_document_sidecars.first
+        new_sidecar = new_r.sidecar
 
         # If the old sidecar has exhibit-specific data, copy it to the new one.
         if(old_sidecar.data.empty? || old_sidecar.data.nil?)
@@ -94,7 +92,18 @@ module Tufts
           needs_update = true
         end
 
-        new_sidecar.save if(needs_update)
+        if(needs_update)
+          new_sidecar.save
+          Spotlight::ReindexJob.perform_now(new_r)
+          sleep(1)
+        end
+      end
+
+      ##
+      # Saves the FedoraResource, TdlResource and both SolrDocument ids to the migration table.
+      # Need to map back and forth when migrating the item references in page content.
+      def self.save_migration_data(old_r, new_r)
+        migration_data.add_row(new_r.id, new_r.doc_id, old_r.id, old_r.doc_id)
       end
 
       ##
@@ -107,6 +116,12 @@ module Tufts
       # Settings from tufts.yml in config.
       def self.tufts_settings
         @tufts_settings ||= Tufts::Settings.load
+      end
+
+      ##
+      # Class that saves migration-specific data to the database.
+      def self.migration_data
+        @migration_data ||= Tufts::MigrationData.new
       end
   end
 end

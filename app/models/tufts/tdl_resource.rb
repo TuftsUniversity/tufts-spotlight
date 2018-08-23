@@ -29,7 +29,7 @@ module Tufts
     ##
     # @function
     # Retrieves the SolrDocument id via the shared sidecar.
-    def solr_doc_id
+    def doc_id
       sidecar.document_id
     end
 
@@ -37,7 +37,7 @@ module Tufts
     # @function
     # An easy way to get to the SolrDocument created from this resource.
     def solr_doc
-      SolrDocument.find(solr_doc_id)
+      SolrDocument.find(doc_id)
     end
 
     ##
