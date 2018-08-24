@@ -27,11 +27,16 @@ namespace :tufts do
       puts "\n----------- Removing Duplicates -----------"
 
       FedoraResource.all.each do |r|
-        puts "\n############ #{r.id} ###########"
+        heading = "\n############ #{r.id} ###########"
+        errors = []
 
-        # next if(pmc_bad_exhibit?(r))
-        next if(pmc_is_bad?(r))
-        pmc_check_for_duplicates(r)
+        next if(pmc_is_bad?(r, errors))
+        pmc_check_for_duplicates(r, errors)
+
+        if(errors.count > 0)
+          puts heading
+          puts errors.join("\n")
+        end
       end
 
       pmc_destroy_bad_resources
@@ -44,13 +49,15 @@ namespace :tufts do
     # Duplicates are determined to be the records without a sidecar.
     # @param {FedoraResource} resource
     #   The FedoraResource to check.
-    def pmc_check_for_duplicates(resource)
+    # @param {arr} errors
+    #   The errors array to store errors in.
+    def pmc_check_for_duplicates(resource, errors)
       resources = FedoraResource.where(exhibit_id: resource.exhibit_id, url: resource.url)
 
       return if(resources.count == 1)
 
       # Resources without sidecars are the bad ones.
-      puts "WARNING: Found duplicates."
+      errors << "WARNING: Found duplicates."
       duplicates = resources.each_with_object([]) do |r, dupes|
         dupes << r if(r.solr_document_sidecars.empty?)
       end
@@ -59,19 +66,23 @@ namespace :tufts do
       prime_resource = resources - duplicates
       if(prime_resource.count == 1 && !prime_resource.first.solr_document_sidecars.empty?)
         duplicates.each { |d| pmc_bad_resources << d.id unless pmc_bad_resources.include?(d.id) }
-        puts "Prime resource is #{prime_resource.first.id}"
-        puts "Saved Duplicates to delete later"
+        errors << "Prime resource is #{prime_resource.first.id}"
+        errors << "Saved Duplicates to delete later"
       else
-        puts "WARNING: Couldn't determine which were duplicates!"
+        errors << "WARNING: Couldn't determine which were duplicates!"
         # puts resources
       end
     end
 
     ##
     # Check if already in the bad_resources array.
-    def pmc_is_bad?(resource)
+    # @param {FedoraResource} resource
+    #   The FedoraResource to check.
+    # @param {arr} errors
+    #   The errors array to store errors in.
+    def pmc_is_bad?(resource, errors)
       if(pmc_bad_resources.include?(resource.id))
-        puts "This is a bad record already."
+        errors << "This is a bad record already."
         true
       else
         false
