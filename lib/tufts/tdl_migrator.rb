@@ -86,7 +86,7 @@ module Tufts
         end
 
         unless(old_sidecar.taggings.empty?)
-          puts "INFO: Merging FedoraResource: #{old_r.id} tags into TdlResource: #{new_r.id} sidecar."
+          puts "INFO: Moving FedoraResource: #{old_r.id} tags to TdlResource: #{new_r.id} sidecar."
           new_sidecar.tags = old_sidecar.tags
           new_sidecar.taggings = old_sidecar.taggings
           needs_update = true
