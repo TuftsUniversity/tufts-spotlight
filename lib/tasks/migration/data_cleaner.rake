@@ -18,11 +18,27 @@ namespace :tufts do
     end
   end
 
+  desc 'Deletes uploads that are missing an upload_id.'
+  task delete_uploads_with_no_image: :environment do
+    puts "\n----------- Removing Uploads with no Image -----------"
+
+    bad_resources = []
+    Spotlight::Resources::Upload.all.each do |r|
+      if(r.upload_id.nil?)
+        puts "WARNING: (#{r.id}) #{r.data['full_title_tesim']} has no Featured Image."
+        bad_resources << r.id unless bad_resources.include?(r.id)
+      end
+    end
+
+    bad_resources.each { |br| Spotlight::Resources::Upload.find(br).destroy }
+  end
+
   namespace :migration do
     desc 'Cleans up broken resources before migration, so they don"t mess up the migration.'
     task pre_migrate_cleanup: :environment do
 
       Rake::Task['tufts:delete_orphans'].invoke
+      Rake::Task['tufts:delete_uploads_with_no_image'].invoke
 
       puts "\n----------- Removing Duplicates -----------"
 

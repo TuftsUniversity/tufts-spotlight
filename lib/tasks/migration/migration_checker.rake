@@ -126,6 +126,7 @@ namespace :tufts do
 
   ##
   # The descriptive metadata fields.
+  #
   # rights_tesim and date_tesim may be changed by the Fedora migration, so we can't really test those.
   # date_created will no longer exist.
   def tcm_solr_fields
