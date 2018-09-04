@@ -40,6 +40,19 @@ module Tufts
     end
 
     ##
+    # Retrieves data based on FedoraResource id.
+    def search_by_fed_doc_id(fed_doc_id)
+      results = execute(<<-EOT)
+        SELECT * FROM #{@table_name}
+        WHERE #{@fedora_solr_column} = "#{fed_doc_id}";
+      EOT
+
+      return {} if(results.count == 0)
+
+      add_column_names_to_result(results.first)
+    end
+
+    ##
     # Turns the results array into an array of hashes with column names as keys.
     def add_column_names_to_result(result)
       cols = [@tdl_column,@tdl_solr_column,@fedora_column,@fedora_solr_column]
