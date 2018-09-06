@@ -50,7 +50,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  #gem 'spring'
 
   # Speeds things up more, but possibly unnecessary for our purposes
   #gem 'listen', '~> 3.0.5'
