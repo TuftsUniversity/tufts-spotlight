@@ -40,16 +40,21 @@ module Tufts
     end
 
     ##
-    # Retrieves data based on FedoraResource id.
+    # Retrieves data based on SolrDocument (FedoraResource) id.
     def search_by_fed_doc_id(fed_doc_id)
       results = execute(<<-EOT)
         SELECT * FROM #{@table_name}
         WHERE #{@fedora_solr_column} = "#{fed_doc_id}";
       EOT
 
-      return {} if(results.count == 0)
+      return [] if(results.count == 0)
 
-      add_column_names_to_result(results.first)
+      return_arr = []
+      results.each do |r|
+        return_arr << add_column_names_to_result(r)
+      end
+
+      return_arr
     end
 
     ##

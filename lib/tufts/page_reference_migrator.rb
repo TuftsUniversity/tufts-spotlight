@@ -35,9 +35,14 @@ module Tufts
 
           puts "Processing item: #{item['id']}:  #{item['full_image_url']}"
 
-          new_solr_id = migration_data.search_by_fed_doc_id(item['id'])[:tdl_solr_id]
-          new_doc = SolrDocument.find(new_solr_id)
+          migration_map_results = migration_data.search_by_fed_doc_id(item['id'])
+          if(migration_map_results.count == 1)
+            new_solr_id = migration_map_results[0][:tdl_solr_id]
+          else
+            new_solr_id = find_correct_tdl_solr_id(migration_map_results, page.exhibit_id)
+          end
 
+          new_doc = SolrDocument.find(new_solr_id)
           manifest = new_doc["iiif_manifest_url_ssi"]
           img_info = new_doc["content_metadata_image_iiif_info_ssm"].first
 
@@ -63,6 +68,16 @@ module Tufts
       # The class that draws from the migration table in the db.
       def self.migration_data
         @migration_data ||= Tufts::MigrationData.new
+      end
+
+      ##
+      # Some SolrDocuments point to two different FedoraResources.
+      # This figures out which one we want and returns the requisite TDLResource-based SolrDocument id.
+      # @param {array} results
+      #   The results from the database call.
+      def self.find_correct_tdl_solr_id(results, exhibit_id)
+        target = results.detect { |r| FedoraResource.find(r[:fedora_id]).exhibit_id == exhibit_id }
+        target[:tdl_solr_id]
       end
 
       ##
