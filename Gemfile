@@ -42,8 +42,6 @@ gem 'blacklight-oembed', '>= 0.1.0'
 gem 'devise_invitable'
 
 gem 'devise_ldap_authenticatable'
-gem 'active-fedora', '~> 7.1.1'
-
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
@@ -63,7 +61,6 @@ group :development, :test do
   gem 'rspec-rails'
   #gem 'guard-rspec'
   gem 'byebug'
-  gem 'jettywrapper', github: 'TuftsUniversity/jettywrapper', branch: 'fedora3'
   #gem 'sqlite3'
 end
 

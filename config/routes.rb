@@ -28,11 +28,8 @@ Rails.application.routes.draw do
     end
   end
 
-  # Our fedora resources
+  # Our TDL resources
   resources :exhibits, only: [] do
-    resources :fedora_resources, only: [:create, :update] do
-    end
-
     resources :tdl_resources, controller: 'tufts/tdl_resources', only: :create, as: 'tufts_tdl_resources' do
     end
   end

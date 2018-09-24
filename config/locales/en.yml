@@ -20,10 +20,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  fedora_resources:
-    form:
-      title: "Fedora Object"
-      add_item: "Import Objects"
   tufts:
     tdl_resources:
       form:

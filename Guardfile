@@ -68,19 +68,6 @@ guard :rspec, cmd: "spring rspec" do
     Dir[File.join("**/#{m[1]}.feature")][0] || "spec/acceptance"
   end
 
-  ## Travis specials
-  #Run FedoraBuilder on changes to FedoraHelpers and datastream helpers.
-  watch(%r{^lib/fedora_helpers.rb$}) { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
-  watch(%r{^lib/fedora_helpers/.+datastream.+$}) { "#{rspec.spec_dir}/services/fedora_builder_spec.rb" }
-
-  #FedoraBuilder and ConfigParser both use fedora_fields.yml
-  watch("config/fedora_fields.yml") do
-    [
-      rspec.spec.call("services/fedora_builder"),
-      rspec.spec.call("features/config_parser_display")
-    ]
-  end
-
   #Changes to the page model should also call the feature pages customizations spec.
   watch(%r{^lib/in_menu_behavior/.+}) { rspec.spec.call("features/feature_page_customizations") }
   watch('app/models/spotlight/page.rb') { rspec.spec.call("features/feature_page_customizations") }

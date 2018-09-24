@@ -1,6 +1,6 @@
-// Code for creating multiple inputs on the fedora resource form.
+// Code for creating multiple inputs on the tdl resource form.
 
-(function fedoraResourceInputsScope() {
+(function tdlResourceInputsScope() {
 
   /**
    * @function
@@ -8,7 +8,7 @@
    *
    * @param form {element} The form containing the inputs and button.
    */
-  var fedoraResourceInputs = function fedoraResourceInputSetup(form) {
+  var tdlResourceInputs = function tdlResourceInputSetup(form) {
 
     var times_run = 0,
       $form = $(form),
@@ -29,13 +29,13 @@
         $(button).attr("disabled", "true");
       }
     }); // End click handler
-  }; // fedoraResourceInputs function
+  }; // tdlResourceInputs function
 
 
   $(document).ready(function (){
     var forms = $(".new_resource");
     if(forms.length > 0) {
-      forms.each(function() { fedoraResourceInputs( this ); });
+      forms.each(function() { tdlResourceInputs( this ); });
     }
   });
 })();

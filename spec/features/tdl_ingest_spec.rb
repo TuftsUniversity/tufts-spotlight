@@ -2,9 +2,8 @@ require 'rails_helper'
 include FeatureMacros
 i_need_ldap
 
-
 feature "TDL ingest" do
-  before { skip("Tests ready, but need TDL migration to prod finished. TravisCI can't connect to dev.") }
+#  before { skip("Tests ready, but need TDL migration to prod finished. TravisCI can't connect to dev.") }
 
   let(:ids) do
    ids = [
