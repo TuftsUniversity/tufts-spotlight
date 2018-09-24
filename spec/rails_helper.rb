@@ -92,15 +92,9 @@ RSpec.configure do |config|
 end
 
 ##
-# Deletes everything in Fedora.
-def clean_fedora
-  ActiveFedora::Base.delete_all
-end
-
-##
 # Deletes everything in Solr.
 def clean_solr
-  solr = ActiveFedora::SolrService.instance.conn
+  solr = Blacklight::Solr::Repository.new(Spotlight::Engine.blacklight_config).connection
   solr.delete_by_query("*:*", params: { commit: true })
 end
 
