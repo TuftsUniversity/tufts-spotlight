@@ -7,10 +7,10 @@ feature "TDL ingest" do
 
   let(:ids) do
    ids = [
-     "ua136_002_do_00426",
-     "ua046_003_do_04605",
-     "ua001_009_do_01623",
-     "ms054_003_do_02194"
+     "4b29bg82c",
+     "3x816x422",
+     "8336hb39g",
+     "dv140335h"
    ]
   end
 
