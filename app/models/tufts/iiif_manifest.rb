@@ -20,7 +20,7 @@ module Tufts
         # Storing everything as potentially facetable for now.
         indexer_args = [:stored_searchable, :facetable]
 
-        Solrizer.insert_field(
+        ::Solrizer.insert_field(
           hash,
           key.tr(' ', '_').downcase,
           value,

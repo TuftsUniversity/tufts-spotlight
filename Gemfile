@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.6'
 # Use sqlite3 as the database for Active Record
@@ -32,6 +31,8 @@ gem 'blacklight', ' ~> 6.0'
 gem 'blacklight-spotlight', '<= 1.4.1', github: 'projectblacklight/spotlight'
 
 gem 'rsolr', '>= 1.0'
+gem 'solrizer'
+
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'friendly_id'
@@ -40,6 +41,9 @@ gem 'sitemap_generator'
 gem 'blacklight-gallery', '>= 0.3.0'
 gem 'blacklight-oembed', '>= 0.1.0'
 gem 'devise_invitable'
+
+gem 'bootstrap-sass', '~> 3.0'
+gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 
 gem 'devise_ldap_authenticatable'
 
