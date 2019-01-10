@@ -9,6 +9,7 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Adding chromedriver for js testing.
+Capybara.server = :webrick
 Capybara.register_driver(:chrome) do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end

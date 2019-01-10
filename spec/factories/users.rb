@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :tufts_user, class: User do
-    username 'person1'
-    email 'ransom@swaniawwski.org'
-    password 'password'
+    username { 'person1' }
+    email { 'ransom@swaniawwski.org' }
+    password { 'password' }
     transient do
       exhibit { FactoryBot.create(:exhibit) }
     end
