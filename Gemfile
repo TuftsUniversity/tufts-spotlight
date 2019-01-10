@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.6'
+gem 'rails', '~> 5.1.6'
 # Use sqlite3 as the database for Active Record
 gem 'mysql2', '~> 0.3.18'
 # Use SCSS for stylesheets
@@ -11,7 +11,8 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'therubyracer', platforms: :ruby
+#gem 'therubyracer', platforms: :ruby
+gem 'mini_racer'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -28,7 +29,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'puma', '~> 3.0'
 
 gem 'blacklight', ' ~> 6.0'
-gem 'blacklight-spotlight', '<= 1.4.1', github: 'projectblacklight/spotlight'
+gem 'blacklight-spotlight', github: 'projectblacklight/spotlight'
 
 gem 'rsolr', '>= 1.0'
 gem 'solrizer'
@@ -70,7 +71,7 @@ end
 
 group :test do
   gem 'database_cleaner'
-  gem 'capybara'
+  gem 'capybara', '~> 2.13'
   gem 'ladle'
   gem 'factory_bot_rails'
   gem 'selenium-webdriver'
