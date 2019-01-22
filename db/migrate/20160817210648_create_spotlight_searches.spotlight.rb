@@ -15,7 +15,7 @@ class CreateSpotlightSearches < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    add_index :spotlight_searches, :exhibit_id
+    # add_index :spotlight_searches, :exhibit_id - Breaking rails for some reason
     add_index :spotlight_searches, [:slug,:scope], unique: true
   end
 end
