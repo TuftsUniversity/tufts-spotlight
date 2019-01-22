@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/projectblacklight/spotlight.git
-  revision: b0fd4e729e1bbeece0be6e5de3526693972aa294
+  revision: b26e1684c1f1a99262053d3ef91a41ed07df9f0f
   specs:
-    blacklight-spotlight (2.3.1)
+    blacklight-spotlight (2.3.2)
       acts-as-taggable-on (>= 5.0, < 7)
       almond-rails (~> 0.1)
       autoprefixer-rails
@@ -82,14 +82,14 @@ GEM
       tzinfo (~> 1.1)
     acts-as-taggable-on (6.0.0)
       activerecord (~> 5.0)
-    addressable (2.5.2)
+    addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
     almond-rails (0.1.0)
       rails (>= 4.2, < 6)
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (8.0.0)
-    autoprefixer-rails (9.4.4)
+    autoprefixer-rails (9.4.6)
       execjs
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -97,7 +97,7 @@ GEM
       execjs (~> 2.0)
     bcrypt (3.1.12)
     bindex (0.5.0)
-    blacklight (6.19.1)
+    blacklight (6.19.2)
       bootstrap-sass (~> 3.2)
       deprecation
       globalid
@@ -181,13 +181,13 @@ GEM
       railties (>= 3.0.0)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
-    faraday_middleware (0.12.2)
+    faraday_middleware (0.13.0)
       faraday (>= 0.7.4, < 1.0)
     ffi (1.9.25)
     friendly_id (5.2.5)
       activerecord (>= 4.0.0)
     github-markup (3.0.2)
-    globalid (0.4.1)
+    globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
@@ -249,7 +249,7 @@ GEM
     mysql2 (0.5.2)
     net-ldap (0.16.1)
     nio4r (2.3.1)
-    nokogiri (1.10.0)
+    nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
     oauth2 (1.4.1)
       faraday (>= 0.8, < 0.16.0)
@@ -302,9 +302,9 @@ GEM
       uber (< 0.2.0)
     request_store (1.4.1)
       rack (>= 1.4)
-    responders (2.4.0)
-      actionpack (>= 4.2.0, < 5.3)
-      railties (>= 4.2.0, < 5.3)
+    responders (2.4.1)
+      actionpack (>= 4.2.0, < 6.0)
+      railties (>= 4.2.0, < 6.0)
     retriable (3.1.2)
     riiif (1.7.1)
       deprecation (>= 1.0.0)
@@ -329,7 +329,7 @@ GEM
     rspec-mocks (3.8.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
-    rspec-rails (3.8.1)
+    rspec-rails (3.8.2)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
