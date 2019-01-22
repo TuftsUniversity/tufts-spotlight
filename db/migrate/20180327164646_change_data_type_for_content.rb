@@ -1,4 +1,4 @@
-class ChangeDataTypeForContent < ActiveRecord::Migration
+class ChangeDataTypeForContent < ActiveRecord::Migration[5.1]
   def self.up
     change_column :spotlight_pages, :content, :text, limit: 16.megabytes - 1
   end
