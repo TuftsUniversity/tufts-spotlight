@@ -14,6 +14,6 @@ class CreateContacts < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    add_index :spotlight_contacts, :exhibit_id
+    #add_index :spotlight_contacts, :exhibit_id - breaking Rails 5
   end
 end
