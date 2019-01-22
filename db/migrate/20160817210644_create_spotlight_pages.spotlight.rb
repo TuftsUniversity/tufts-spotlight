@@ -17,7 +17,7 @@ class CreateSpotlightPages < ActiveRecord::Migration[5.1]
       t.boolean :display_sidebar
       t.boolean :display_title
     end
-    add_index :spotlight_pages, :exhibit_id
+    # add_index :spotlight_pages, :exhibit_id - TravisCI is failing here
     add_index :spotlight_pages, :parent_page_id
     add_index :spotlight_pages, [:slug,:scope], unique: true
   end
