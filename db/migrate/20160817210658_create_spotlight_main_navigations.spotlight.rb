@@ -8,6 +8,6 @@ class CreateSpotlightMainNavigations < ActiveRecord::Migration[5.1]
       t.references :exhibit
       t.timestamps
     end
-    add_index :spotlight_main_navigations, :exhibit_id
+    # add_index :spotlight_main_navigations, :exhibit_id - breaking Rails 5
   end
 end
