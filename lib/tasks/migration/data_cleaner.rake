@@ -3,7 +3,7 @@ namespace :tufts do
   task delete_orphans: :environment do
     puts "\n----------- Removing Orphans -----------"
 
-    [FedoraResource, Spotlight::Resources::Upload].each do |resource_type|
+    [Tufts::TdlResource, Spotlight::Resources::Upload].each do |resource_type|
       bad_resources = []
       puts "\nWorking on #{resource_type.to_s}"
 
