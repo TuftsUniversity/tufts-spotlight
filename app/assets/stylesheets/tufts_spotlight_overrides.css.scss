@@ -1,3 +1,4 @@
+/** General **/
 @font-face{
   font-family:"Meta Serif";
   src:font-url("b95879a4-6677-40bf-9528-ffecf9b247e4.eot?#iefix");
@@ -22,35 +23,6 @@ h1, h2, h3, .h1, .h1 small {
    font-family: "Meta Serif";
 }
 
-.nav-pills li {
-  background-color: #e8e3e7;
-  margin-right: 7px;
-  border-radius: 4px;
-}
-
-.nav-pills li a:hover {
-  background-color: #a9a3a9;
-  color: #eef0f3;
-}
-
-.exhibit-card, .card-face {
-  height: 340px;
-}
-
-.image-masthead .h1 {
-  color: #FEFEFA;
-}
-
-.card-title {
-  font-size: 15px;
-}
-
-@media (min-width: 1200px) {
-  .exhibit-card, .card-face {
-    height: 360px;
-  }
-}
-
 h2 {
   color: #646469;
   font-size: 24px;
@@ -73,6 +45,11 @@ hr {
 
 .dl-horizontal dd:after {
   clear: left;
+}
+
+/** Masthead **/
+.image-masthead .h1 {
+  color: #FEFEFA;
 }
 
 #header-navbar .navbar-brand {
@@ -101,6 +78,36 @@ hr {
       color: #FFF;
       background-color: $dark_tufts_blue;
     }
+  }
+}
+
+.site-title small {
+  white-space: normal;
+}
+
+/** Front Page **/
+.nav-pills li {
+  background-color: #e8e3e7;
+  margin-right: 7px;
+  border-radius: 4px;
+}
+
+.nav-pills li a:hover {
+  background-color: #a9a3a9;
+  color: #eef0f3;
+}
+
+.exhibit-card, .card-face {
+  height: 340px;
+}
+
+.card-title {
+  font-size: 15px;
+}
+
+@media (min-width: 1200px) {
+  .exhibit-card, .card-face {
+    height: 360px;
   }
 }
 
