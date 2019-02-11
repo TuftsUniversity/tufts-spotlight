@@ -21,7 +21,7 @@ module Tufts
     def url_is_iiif?(url)
       begin
         super
-      rescue Faraday::ClientError
+      rescue StandardError
         false
       end
     end
