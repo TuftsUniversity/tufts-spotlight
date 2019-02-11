@@ -3,10 +3,10 @@
 # @tdl_url: The URL to the TDL site, for IIIF gathering.
 
 development:
-  tdl_url: "https://tdl-dev-01.uit.tufts.edu/concern/images/"
+  tdl_url: "https://dl.tufts.edu/concern/images/"
 tdldev:
-  tdl_url: "https://tdl-dev-01.uit.tufts.edu/concern/images/"
+  tdl_url: "https://dl.tufts.edu/concern/images/"
 test:
-  tdl_url: "https://tdl-dev-01.uit.tufts.edu/concern/images/"
+  tdl_url: "https://dl.tufts.edu/concern/images/"
 production:
-  tdl_url: "https://tdl-prod-01.uit.tufts.edu/concern/images/"
+  tdl_url: "https://dl.tufts.edu/concern/images/"
