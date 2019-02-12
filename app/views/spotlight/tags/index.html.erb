@@ -1,0 +1,34 @@
+<%
+#@file
+# Monkey patch - Spotlight doesn't show correct tag counts on this page, because it
+#    doesn't do count by exhibit. If two exhibits have the same tag, the numbers get
+#    combined in this display.
+  real_tagging_counts =  @exhibit.owned_taggings.all.group(:tag_id).count
+%>
+
+<%= render 'spotlight/shared/exhibit_sidebar' %>
+<div id="content" class="col-md-9">
+  <%= curation_page_title t(:".header") %>
+
+  <% if @tags.empty? %>
+    <p><%= t :'.no_tags' %></p>
+  <% else %>
+  <table class="table table-striped tags">
+    <thead>
+      <th><%= t '.name' %></th>
+      <th><%= t '.taggings.count' %></th>
+      <%# TODO last used? %>
+      <th><%= t '.actions' %></th>
+    </thead>
+    <tbody>
+    <% @tags.each do |tag| %>
+      <tr>
+        <td><%= link_to tag.name, url_to_tag_facet(tag.name) %></td>
+        <td><%= real_tagging_counts[tag.id] %></td><%# PATCHED HERE %>
+        <td><%= delete_link(tag, exhibit_tag_path(current_exhibit, tag), class: 'btn btn-danger btn-xs') %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <% end %>
+</div>
