@@ -88,6 +88,7 @@ RSpec.configure do |config|
   end
 
   config.after(:suite) do
+    clean_solr
     stop_ldap
   end
 end
