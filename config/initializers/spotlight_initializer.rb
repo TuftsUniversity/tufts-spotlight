@@ -36,21 +36,24 @@ Spotlight::Engine.config.external_resources_partials = ['tufts/tdl_resources/for
 # Spotlight::Engine.config.thumbnail_field = :thumbnail_url_ssm
 
 # ==> Uploaded item configuration
-# Spotlight::Engine.config.upload_fields = [
-#   UploadFieldConfig.new(
-#     field_name: config.upload_description_field,
-#     label: -> { I18n.t(:"spotlight.search.fields.#{config.upload_description_field}") },
-#     form_field_type: :text_area
-#   ),
-#   UploadFieldConfig.new(
-#     field_name: :spotlight_upload_attribution_tesim,
-#     label: -> { I18n.t(:'spotlight.search.fields.spotlight_upload_attribution_tesim') }
-#   ),
-#   UploadFieldConfig.new(
-#     field_name: :spotlight_upload_date_tesim,
-#     label: -> { I18n.t(:'spotlight.search.fields.spotlight_upload_date_tesim') }
-#   )
-# ]
+Spotlight::Engine.config.upload_fields << Spotlight::UploadFieldConfig.new(
+  field_name: :tufts_source_location_tesim,
+  label: -> { t(:"tufts.uploads.fields.external_url.label") },
+  blacklight_options: { helper_method: 'make_source_location_link' }
+)
+#  Spotlight::UploadFieldConfig.new(
+#    field_name: config.upload_description_field,
+#    label: -> { I18n.t(:"spotlight.search.fields.#{config.upload_description_field}") },
+#    form_field_type: :text_area
+#  ),
+#  Spotlight::UploadFieldConfig.new(
+#    field_name: :spotlight_upload_attribution_tesim,
+#    label: -> { I18n.t(:'spotlight.search.fields.spotlight_upload_attribution_tesim') }
+#  ),
+#  Spotlight::UploadFieldConfig.new(
+#    field_name: :spotlight_upload_date_tesim,
+#    label: -> { I18n.t(:'spotlight.search.fields.spotlight_upload_date_tesim') }
+#  )
 # Spotlight::Engine.config.upload_title_field = nil # OpenStruct.new(...)
 # Spotlight::Engine.config.uploader_storage = :file
 # Spotlight::Engine.config.allowed_upload_extensions = %w(jpg jpeg png)

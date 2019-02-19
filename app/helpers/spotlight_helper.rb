@@ -13,4 +13,12 @@ module SpotlightHelper
     last_space_within_range = text.slice(0..125).rindex(/\s/)
     text.slice(0..last_space_within_range) + "  . . ."
   end
+
+  def make_source_location_link(field)
+    link_to(
+      t(:"tufts.uploads.fields.external_url.value"),
+      field[:value].first,
+      target: "_blank"
+    )
+  end
 end

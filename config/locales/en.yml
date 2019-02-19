@@ -25,6 +25,11 @@ en:
       form:
         title: "Tufts Digital Library Object"
         add_item: "Import Objects"
+    uploads:
+      fields:
+        external_url:
+          label: 'External URL'
+          value: 'Click to view object'
   activerecord:
     attributes:
       "spotlight/page":
