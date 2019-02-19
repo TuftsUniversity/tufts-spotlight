@@ -38,7 +38,7 @@ Spotlight::Engine.config.external_resources_partials = ['tufts/tdl_resources/for
 # ==> Uploaded item configuration
 Spotlight::Engine.config.upload_fields << Spotlight::UploadFieldConfig.new(
   field_name: :tufts_source_location_tesim,
-  label: -> { t(:"tufts.uploads.fields.external_url.label") },
+  label: -> { I18n.t(:"tufts.uploads.fields.external_url.label") },
   blacklight_options: { helper_method: 'make_source_location_link' }
 )
 #  Spotlight::UploadFieldConfig.new(
