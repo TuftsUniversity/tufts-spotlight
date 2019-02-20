@@ -44,7 +44,7 @@ class CatalogController < ApplicationController
     config.add_show_field("corporation_tesim", label: "Corporation")
     config.add_show_field("area_of_interest_tesim", label: "Area of Interest")
     config.add_show_field("citation_tesim", label: "Citation")
-    config.add_show_field("permanent_url_tesim", label: "Permanent URL")
+    config.add_show_field("permanent_url_tesim", label: "Permanent URL", helper_method: 'make_this_a_link')
 
     config.add_search_field 'all_fields', label: 'Everything'
 

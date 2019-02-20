@@ -20,15 +20,23 @@ module SpotlightHelper
   end
 
   ##
+  # Makes a field into a link. Used in field configuration in CatalogController.
+  #
+  # @param {Hash} field
+  #   The field options.
+  def make_this_a_link(field = {}, link_text = '')
+    url = field[:value].first
+    text = link_text.empty? ? url : link_text
+
+    link_to(text, url, target: '_blank')
+  end
+
+  ##
   # Makes tufts_source_location_tesim fields into clickable links on display.
   #
   # @param {Hash} field
   #   The field to display.
   def make_source_location_link(field)
-    link_to(
-      t(:"tufts.uploads.fields.external_url.value"),
-      field[:value].first,
-      target: "_blank"
-    )
+    make_this_a_link(field, t(:"tufts.uploads.fields.external_url.value"))
   end
 end
