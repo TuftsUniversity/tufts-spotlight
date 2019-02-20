@@ -4,6 +4,11 @@ module SpotlightHelper
   include ::BlacklightHelper
   include Spotlight::MainAppHelpers
 
+  ##
+  # Cuts text fields down to a specific length and adds ellipses.
+  #
+  # @param {String} text
+  #   The text to cut.
   def abbrev_field(text)
     if(text.length <= 140)
       return text
@@ -14,6 +19,11 @@ module SpotlightHelper
     text.slice(0..last_space_within_range) + "  . . ."
   end
 
+  ##
+  # Makes tufts_source_location_tesim fields into clickable links on display.
+  #
+  # @param {Hash} field
+  #   The field to display.
   def make_source_location_link(field)
     link_to(
       t(:"tufts.uploads.fields.external_url.value"),
