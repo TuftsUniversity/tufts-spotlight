@@ -18,12 +18,16 @@ module Tufts
     def self.fix_tdl_resource(resource)
       puts "\n\n--------------- Fixing #{resource.id} ---------------"
       puts "Old URL: #{resource.url}"
-      resource.url[old_host] = new_host
-      puts "New URL: #{resource.url}"
-      resource.save
-      resource.reindex
-      sleep(2)
-      fix_sidecars(resource)
+      begin
+        resource.url[old_host] = new_host
+        puts "New URL: #{resource.url}"
+        resource.save
+        resource.reindex
+        sleep(2)
+        fix_sidecars(resource)
+      rescue
+        puts "#{resource.url} doesn't match #{old_host}"
+      end
     end
 
     ##
