@@ -1,6 +1,9 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Don't need deprecation warnings on prod
+  Deprecation.default_deprecation_behavior = :silence
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
