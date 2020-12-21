@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.6'
+gem 'rails', '~> 5.2'
 # Use sqlite3 as the database for Active Record
 gem 'mysql2'
 # Use SCSS for stylesheets
@@ -29,7 +29,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'puma', '~> 3.0'
 
 gem 'blacklight', ' ~> 6.0'
-gem 'blacklight-spotlight', github: 'projectblacklight/spotlight'
+gem 'blacklight-spotlight', tag: 'v2.13.0', github: 'projectblacklight/spotlight'
 
 gem 'rsolr', '>= 1.0'
 gem 'solrizer'
@@ -37,7 +37,7 @@ gem 'solrizer'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'friendly_id'
-gem 'riiif', '~> 1.0'
+gem 'riiif'
 gem 'sitemap_generator'
 gem 'blacklight-gallery', '>= 0.3.0'
 gem 'blacklight-oembed', '>= 0.1.0'
