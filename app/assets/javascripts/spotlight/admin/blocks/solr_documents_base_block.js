@@ -1,4 +1,4 @@
-//= require spotlight/blocks/resources_block
+//= require spotlight/admin/blocks/resources_block
 // Bug Fix on line 80 -- Travis
 
 SirTrevor.Blocks.SolrDocumentsBase = (function(){
