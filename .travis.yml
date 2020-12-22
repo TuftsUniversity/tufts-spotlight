@@ -3,15 +3,17 @@ rvm:
   - 2.6.0
 
 sudo: required
-dist: trusty
+dist: xenial
 cache: bundler
 
 notifications:
   email:
     - travis.lilleberg@tufts.edu
 
+jdk:
+  - openjdk8
+
 before_script:
-  #Chrome testing stuff
   - cp config/database.yml.sample config/database.yml
   - cp config/secrets.yml.sample config/secrets.yml
   - cp config/tufts.yml.sample config/tufts.yml
@@ -20,7 +22,6 @@ before_script:
   - bundle exec rake tufts:ci
 
 script:
-  - jdk_switcher use oraclejdk8
   - bundle exec rake tufts:spec
 
 env:

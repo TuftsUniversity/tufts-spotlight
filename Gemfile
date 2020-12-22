@@ -54,19 +54,13 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   #gem 'spring'
-
-  # Speeds things up more, but possibly unnecessary for our purposes
-  #gem 'listen', '~> 3.0.5'
   #gem 'spring-commands-rspec'
 end
 
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
-
   gem 'rspec-rails'
-  #gem 'guard-rspec'
   gem 'byebug'
-  #gem 'sqlite3'
 end
 
 group :test do
