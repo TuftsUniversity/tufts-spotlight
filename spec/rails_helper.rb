@@ -15,6 +15,7 @@ Capybara.register_driver :headless_chrome do |app|
   browser_options = ::Selenium::WebDriver::Chrome::Options.new
   browser_options.headless!
   browser_options.args << '--window-size=1920,1080'
+  browser_options.args << '-no-sandbox'
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
 end
 
