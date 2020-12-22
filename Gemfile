@@ -71,7 +71,7 @@ end
 
 group :test do
   gem 'database_cleaner'
-  gem 'capybara', '~> 2.13'
+  gem 'capybara', '>= 2.15'
   gem 'ladle'
   gem 'factory_bot_rails'
   gem 'selenium-webdriver'
