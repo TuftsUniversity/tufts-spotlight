@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'webdrivers/chromedriver'
 include FeatureMacros
 i_need_ldap
 

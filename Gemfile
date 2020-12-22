@@ -75,6 +75,6 @@ group :test do
   gem 'ladle'
   gem 'factory_bot_rails'
   gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
+  gem 'webdrivers', '~> 4.0', require: false
 end
 

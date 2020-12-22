@@ -1,7 +1,7 @@
 # @file
 # Tests for the Sir Trevor customizations in tufts_spotlight_blocks.
-
 require 'rails_helper'
+require 'webdrivers/chromedriver'
 include FeatureMacros
 i_need_ldap
 
