@@ -35,4 +35,4 @@ bundler_args: --without development debug
 
 services:
   - mysql
-
+  - xvfb
