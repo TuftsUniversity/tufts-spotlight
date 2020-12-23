@@ -24,14 +24,15 @@ before_script:
 script:
   - bundle exec rake tufts:spec
 
-env:
-  global:
-    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+addons:
+  chrome: stable
+
+  #env:
+  #  global:
+  #    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
 
 bundler_args: --without development debug
 
 services:
   - mysql
 
-addons:
-  chrome: stable
