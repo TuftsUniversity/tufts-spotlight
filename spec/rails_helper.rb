@@ -15,7 +15,6 @@ Capybara.register_driver :headless_chrome do |app|
   browser_options = ::Selenium::WebDriver::Chrome::Options.new
   browser_options.headless!
   browser_options.args << '--window-size=1920,1080'
-  browser_options.args << '-no-sandbox'
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
 end
 
@@ -24,7 +23,8 @@ Capybara.register_driver(:chrome) do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
-# Change to :chrome for js test debugging
+# Current version of chromedriver doesn't work as headless on TravisCI for some reason.
+# Should change back to headless, when possible.
 Capybara.javascript_driver = :chrome
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
