@@ -19,7 +19,14 @@ namespace :tufts do
 
         if(all_ok)
           puts "Reindexing: #{r.id}"
-          r.reindex
+          begin
+            r.reindex
+          rescue JSON::ParserError => e
+            puts "\n"
+            logger.error e.message
+            e.backtrace.each { |line| logger.error line }
+            puts "\n"
+          end
         end
       end # End each resource.
     end # End each resource_type.
