@@ -23,7 +23,7 @@ namespace :tufts do
             r.reindex
           rescue JSON::ParserError => e
             puts "\n"
-            logger.error e.message
+            Rails.logger.error e.message
             e.backtrace.each { |line| logger.error line }
             puts "\n"
           end
