@@ -57,7 +57,7 @@ Spotlight::Engine.config.upload_fields << Spotlight::UploadFieldConfig.new(
 # Spotlight::Engine.config.upload_title_field = nil # OpenStruct.new(...)
 # Spotlight::Engine.config.uploader_storage = :file
 # Spotlight::Engine.config.allowed_upload_extensions = %w(jpg jpeg png)
-Spotlight::Engine.config.allowed_upload_extensions = %w(jpg jpeg png tif)
+Spotlight::Engine.config.allowed_upload_extensions = %w(jpg jpeg png tif pdf)
 
 # Spotlight::Engine.config.featured_image_thumb_size = [400, 300]
 # Spotlight::Engine.config.featured_image_square_size = [400, 400]
