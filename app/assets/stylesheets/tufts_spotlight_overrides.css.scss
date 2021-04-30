@@ -130,6 +130,11 @@ hr {
 picture.openseadragon-viewer {
   border: 1px solid #d3d3d3;
 }
+.openseadragon-container #download_pdf_link {
+  float: right;
+  padding-top: .5em;
+  font-weight: bold
+}
 .openseadragon-container .osd-toolbar .controls,
 #document .openseadragon-container .osd-toolbar .controls {
   position: absolute;
