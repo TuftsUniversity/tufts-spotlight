@@ -4,8 +4,6 @@ include FeatureMacros
 i_need_ldap
 
 feature "TDL ingest" do
-#  before { skip("Tests ready, but need TDL migration to prod finished. TravisCI can't connect to dev.") }
-
   let(:ids) do
    ids = [
      "4b29bg82c",
@@ -54,7 +52,7 @@ feature "TDL ingest" do
 
     expect(current_path).to eq(spotlight.admin_exhibit_catalog_path(exhibit))
     expect(page).to have_content("There was an error with the following ids -- boo")
-  end # End Invalid PID submission
+  end
 
   scenario "'Three More Fields' button adds fields, up to 15", js: true do
     click_on('Tufts Digital Library Object')
@@ -90,6 +88,6 @@ feature "TDL ingest" do
     expect(current_path).to eq(spotlight.admin_exhibit_catalog_path(exhibit))
     expect(page).to have_content("Successfully created 4 records.")
     expect(page).to have_content("There was an error with the following ids -- garbage -- moregarbage")
-  end # End Ingesting a record
+  end
 
 end
