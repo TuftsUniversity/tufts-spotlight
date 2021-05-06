@@ -17,7 +17,7 @@ module LdapManager
     unless(@ldap_running)
       @ldap_server = Ladle::Server.new(
         quiet: false,
-        ldif: Rails.root.join("spec/fixtures/tufts_ldap.ldif")
+        ldif: File.join(FIXTURES_PATH, "tufts_ldap.ldif")
       ).start
 
       @ldap_running = true;
