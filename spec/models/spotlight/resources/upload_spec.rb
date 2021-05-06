@@ -28,7 +28,7 @@ describe Spotlight::Resources::Upload, type: :model do
       resource.save
 
       doc_builder = resource.document_builder
-      expect(doc_builder.to_solr).to include(type_tesim: 'Image')
+      expect(doc_builder.to_solr).to include(type_tesim: ['Image'])
     end
 
     it 'indexes pdfs as pdfs' do
@@ -36,7 +36,7 @@ describe Spotlight::Resources::Upload, type: :model do
       resource.save
 
       doc_builder = resource.document_builder
-      expect(doc_builder.to_solr).to include(type_tesim: 'Pdf')
+      expect(doc_builder.to_solr).to include(type_tesim: ['Pdf'])
     end
   end
 end
