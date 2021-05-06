@@ -20,7 +20,7 @@ feature 'Views customizations' do
     let(:image) do
       FactoryBot.create(
         :featured_image,
-        image: File.open(File.join(Rails.root, 'spec', 'fixtures', 'stego.jpg'))
+        image: File.open(File.join(FIXTURES_PATH, 'stego.jpg'))
       )
     end
     let(:upload) do

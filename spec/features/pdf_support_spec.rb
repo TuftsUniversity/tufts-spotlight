@@ -8,7 +8,7 @@ feature "PDF Support" do
   let(:image) do
     FactoryBot.create(
       :featured_image,
-      image: File.open(File.join(Rails.root, 'spec', 'fixtures', 'stego.jpg'))
+      image: File.open(File.join(FIXTURES_PATH, 'stego.jpg'))
     )
   end
   let(:image_upload) do
@@ -21,7 +21,7 @@ feature "PDF Support" do
   let(:pdf) do
     FactoryBot.create(
       :featured_image,
-      image: File.open(File.join(Rails.root, 'spec', 'fixtures', 'test.pdf'))
+      image: File.open(File.join(FIXTURES_PATH, 'test.pdf'))
     )
   end
   let(:pdf_upload) do
