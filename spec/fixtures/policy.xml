@@ -42,18 +42,19 @@
   <!-- <policy domain="resource" name="throttle" value="0"/> -->
   <!-- <policy domain="resource" name="time" value="3600"/> -->
   <!-- <policy domain="system" name="precision" value="6"/> -->
-  <policy domain="cache" name="shared-secret" value="passphrase"/>
-  <policy domain="coder" rights="none" pattern="EPHEMERAL" />
-  <policy domain="coder" rights="none" pattern="URL" />
-  <policy domain="coder" rights="none" pattern="HTTPS" />
-  <policy domain="coder" rights="none" pattern="MVG" />
-  <policy domain="coder" rights="none" pattern="MSL" />
-  <policy domain="coder" rights="none" pattern="TEXT" />
-  <policy domain="coder" rights="none" pattern="SHOW" />
-  <policy domain="coder" rights="none" pattern="WIN" />
-  <policy domain="coder" rights="none" pattern="PLT" />
-  <policy domain="path" rights="none" pattern="@*" />
+<!--  <policy domain="cache" name="shared-secret" value="passphrase"/>-->
+<!--  <policy domain="coder" rights="none" pattern="EPHEMERAL" />-->
+<!--  <policy domain="coder" rights="none" pattern="URL" />-->
+<!--  <policy domain="coder" rights="none" pattern="HTTPS" />-->
+<!--  <policy domain="coder" rights="none" pattern="MVG" />-->
+<!--  <policy domain="coder" rights="none" pattern="MSL" />-->
+<!--  <policy domain="coder" rights="none" pattern="TEXT" />-->
+<!--  <policy domain="coder" rights="none" pattern="SHOW" />-->
+<!--  <policy domain="coder" rights="none" pattern="WIN" />-->
+<!--  <policy domain="coder" rights="none" pattern="PLT" />-->
+<!--  <policy domain="path" rights="none" pattern="@*" />-->
   <policy domain="coder" rights="read|write" pattern="PDF" />
+  <policy domain="coder" rights="read|write" pattern="LABEL" />
   <!-- disable ghostscript format types
   <policy domain="coder" rights="none" pattern="PS" />
   <policy domain="coder" rights="none" pattern="PS2" />
