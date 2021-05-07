@@ -37,6 +37,9 @@ feature "PDF Support" do
     sleep(1)
     visit(spotlight.exhibit_solr_document_path(exhibit, pdf_upload.compound_id))
     expect(page).to have_content("View PDF")
+
+    click_on('View PDF')
+    expect(page.response_headers['Content-Type']).to eq('application/pdf')
   end
 
   scenario 'Images should not have "View PDF" link on display' do
