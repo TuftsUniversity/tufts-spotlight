@@ -14,7 +14,7 @@ jdk:
   - openjdk8
 
 before_script:
-  - cat /etc/ImageMagick-6/policy.xml
+  - cp spec/fixtures/policy.xml /etc/ImageMagick-6/policy.xml
   - cp config/database.yml.sample config/database.yml
   - cp config/secrets.yml.sample config/secrets.yml
   - cp config/tufts.yml.sample config/tufts.yml
