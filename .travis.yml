@@ -14,13 +14,15 @@ jdk:
   - openjdk8
 
 before_script:
-  - cp spec/fixtures/policy.xml /etc/ImageMagick-6/policy.xml
+  # Replacing stock policy.xml with our own, so that the PDF tests will work
+  - sudo cp spec/fixtures/policy.xml /etc/ImageMagick-6/policy.xml
+  # Ghostscript needed for pdf tests
+  - sudo apt-get install -y ghostscript
   - cp config/database.yml.sample config/database.yml
   - cp config/secrets.yml.sample config/secrets.yml
   - cp config/tufts.yml.sample config/tufts.yml
   - mysql -e 'create database ests_spotlight_test'
   - mkdir -p tmp && export TMPDIR=tmp
-  - sudo apt-get install -y ghostscript
   - bundle exec rake tufts:ci
 
 script:
