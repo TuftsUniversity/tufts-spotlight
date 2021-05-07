@@ -31,6 +31,7 @@ before_script:
   - cp config/tufts.yml.sample config/tufts.yml
   - mysql -e 'create database ests_spotlight_test'
   - mkdir -p tmp && export TMPDIR=tmp
+  - sudo apt-get install -y ghostscript
   - bundle exec rake tufts:ci
 
 script:
