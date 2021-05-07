@@ -1,4 +1,5 @@
 <% image = document.to_openseadragon(blacklight_config.view_config(:show)) %>
+<% is_pdf = document[:type_tesim].present? && document[:type_tesim] == ['Pdf'] %>
 <%
   osd_config = {
     crossOriginPolicy: false,
@@ -39,9 +40,11 @@
           <a id="osd-full-page"><span class="glyphicon glyphicon-fullscreen"></span></a>
         </div>
     </div>
-    <!-- Tufts adding PDF Link -->
-    <a href='' id="download_pdf_link">View PDF</a>
-    <!-- End Tufts addition -->
+    <% if(is_pdf) %>
+      <!-- Tufts adding PDF Link -->
+      <a href='' id="download_pdf_link">View PDF</a>
+      <!-- End Tufts addition -->
+    <% end %>
     <%= openseadragon_picture_tag image, class: 'osd-image row', data: { openseadragon: osd_config } %>
   </div>
 
