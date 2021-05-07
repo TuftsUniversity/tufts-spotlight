@@ -41,9 +41,7 @@
         </div>
     </div>
     <% if(is_pdf) %>
-      <!-- Tufts adding PDF Link -->
-      <a href='' id="download_pdf_link">View PDF</a>
-      <!-- End Tufts addition -->
+      <a href='<%= document.uploaded_resource.upload.image.url %>' id="download_pdf_link">View PDF</a> <!-- Tufts adding PDF Link -->
     <% end %>
     <%= openseadragon_picture_tag image, class: 'osd-image row', data: { openseadragon: osd_config } %>
   </div>
