@@ -12,6 +12,23 @@ class CatalogController < ApplicationController
     config.view.slideshow.partials = [:index]
 
 
+    # Parses whether an item is an Image or Pdf and loads the appropriate view.
+    before_action only: :show do
+      begin
+        record = repository.connection.get(
+          'select',
+          params: { q: "id:#{params[:id]}", fl: 'type_tesim' }
+        )
+        type = record['response']['docs'].first['type_tesim'].first
+        if(type.present? && type == 'Pdf')
+          seadragon_index = blacklight_config.show.partials.index(:openseadragon)
+          blacklight_config.show.partials[seadragon_index] = :pdf_viewer unless seadragon_index.nil?
+        end
+      rescue
+        # If the process fails, let Spotlight do the default.
+      end
+    end
+
     config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
     config.show.partials.insert(1, :openseadragon)
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
