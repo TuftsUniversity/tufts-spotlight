@@ -58,17 +58,17 @@ group :development do
 end
 
 group :development, :test do
-  gem 'solr_wrapper', '>= 0.3'
+  gem 'solr_wrapper', '~> 2' #hi
   gem 'rspec-rails', '~> 3.0'
   gem 'byebug'
 end
 
 group :test do
-  gem 'database_cleaner'
-  gem 'capybara', '>= 2.15'
+  gem 'database_cleaner', '~> 1' #hi
+  gem 'capybara', '>= 2.15' #hi
   gem 'ladle'
-  gem 'factory_bot_rails'
-  gem 'selenium-webdriver', '~> 3.0'
+  gem 'factory_bot_rails', '~> 5' #hi
+  gem 'selenium-webdriver', '~> 3' #hi
   gem 'webdrivers', '~> 4.0', require: false
 end
 
