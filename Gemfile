@@ -59,7 +59,7 @@ end
 
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.0'
   gem 'byebug'
 end
 
@@ -68,7 +68,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'ladle'
   gem 'factory_bot_rails'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 3.0'
   gem 'webdrivers', '~> 4.0', require: false
 end
 
