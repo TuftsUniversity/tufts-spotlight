@@ -59,12 +59,12 @@ end
 
 group :development, :test do
   gem 'solr_wrapper', '~> 2' #hi
-  gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-rails', '~> 4' # Can update to 5.x after updating to Rails 6.x
   gem 'byebug'
 end
 
 group :test do
-  gem 'database_cleaner', '~> 1' #hi
+  gem 'database_cleaner'
   gem 'capybara', '>= 2.15' #hi
   gem 'ladle'
   gem 'factory_bot_rails', '~> 5' #hi
