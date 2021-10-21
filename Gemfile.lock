@@ -183,11 +183,11 @@ GEM
     diffy (3.4.0)
     erubi (1.10.0)
     execjs (2.8.1)
-    factory_bot (5.2.0)
-      activesupport (>= 4.2.0)
-    factory_bot_rails (5.2.0)
-      factory_bot (~> 5.2.0)
-      railties (>= 4.2.0)
+    factory_bot (6.2.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     faraday (1.8.0)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
@@ -485,7 +485,7 @@ DEPENDENCIES
   devise-guests (~> 0.6)
   devise_invitable
   devise_ldap_authenticatable
-  factory_bot_rails (~> 5)
+  factory_bot_rails
   friendly_id
   jbuilder (~> 2.5)
   jquery-rails

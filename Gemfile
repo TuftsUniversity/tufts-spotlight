@@ -65,9 +65,9 @@ end
 
 group :test do
   gem 'database_cleaner'
-  gem 'capybara', '>= 2.15' #hi
+  gem 'capybara', '>= 2.15'
   gem 'ladle'
-  gem 'factory_bot_rails', '~> 5' #hi
+  gem 'factory_bot_rails'
   gem 'selenium-webdriver', '~> 3' #hi
   gem 'webdrivers', '~> 4.0', require: false
 end
