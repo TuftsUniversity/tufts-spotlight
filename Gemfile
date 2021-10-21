@@ -68,7 +68,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'ladle'
   gem 'factory_bot_rails'
-  gem 'selenium-webdriver', '~> 3' #hi
+  gem 'selenium-webdriver'
   gem 'webdrivers', '~> 4.0', require: false
 end
 
