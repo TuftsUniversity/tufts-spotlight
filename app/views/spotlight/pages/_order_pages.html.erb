@@ -1,4 +1,4 @@
-<% # Patch line #2 and #24: polymorphic_path no longer accepts string arguments. %>
+<% # Patch line #3 and #24: polymorphic_path no longer accepts string arguments. %>
 <%= curation_page_title t(:"spotlight.pages.index.#{page_collection_name}.header") %>
 <%= bootstrap_form_for @exhibit, url: polymorphic_path([:update_all, @exhibit, page_collection_name.to_sym]), layout: :horizontal, control_col: 'col-sm-10', html: {:'data-form-observer' => true} do |f| %>
 
