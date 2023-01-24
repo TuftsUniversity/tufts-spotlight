@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if(Rails.env == "test" || Rails.env == "development")
+if(Rails.env == "test")
   SolrWrapper.default_instance_options = {
     verbose: true,
     port: 8984,
