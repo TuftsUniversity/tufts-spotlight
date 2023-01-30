@@ -17,7 +17,7 @@ jobs:
       DATA_STORAGE: ./public
       TEMP_STORAGE: ./public
       ALLOW_NOTIFICATIONS: true
-      DB_NAME: elections_test
+      DB_NAME: spotlight_test
       DB_USERNAME: root
       DB_PASSWORD: root
       RAILS_MAX_THREADS: 5
