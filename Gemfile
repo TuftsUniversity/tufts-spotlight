@@ -29,7 +29,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'puma', '~> 3.0'
 
 gem 'blacklight', ' ~> 6.0'
-gem 'blacklight-spotlight', tag: 'v2.13.0', github: 'projectblacklight/spotlight'
+gem 'blacklight-spotlight', tag: 'v2.13.0', git: 'https://github.com/projectblacklight/spotlight.git'
 
 gem 'rsolr', '>= 1.0'
 gem 'solrizer'
