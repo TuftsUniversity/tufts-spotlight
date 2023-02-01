@@ -60,7 +60,7 @@ jobs:
     - name: Set up MySQL
       run: |
         sudo /etc/init.d/mysql start
-        mysql -e 'CREATE DATABASE ${{ env.DB_NAME }};' -u${{ env.DB_USERNAME }} -p${{ env.DB_PASSWORD }}
+        mysql -e 'CREATE DATABASE ${{ env.DB_NAME }} CHARACTER SET latin1 COLLATE latin1_swedish_ci;' -u${{ env.DB_USERNAME }} -p${{ env.DB_PASSWORD }}
     - name: Configure test environment
       run: |
         cp config/database.yml.sample config/database.yml
