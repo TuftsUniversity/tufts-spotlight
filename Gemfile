@@ -30,7 +30,6 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'blacklight', ' ~> 6.0'
 gem 'blacklight-spotlight', tag: 'v2.13.0', git: 'https://github.com/projectblacklight/spotlight.git'
-
 gem 'rsolr', '>= 1.0'
 gem 'solrizer'
 
@@ -69,6 +68,8 @@ group :test do
   gem 'ladle'
   gem 'factory_bot_rails'
   gem 'selenium-webdriver'
+  gem 'simplecov'
+  gem 'simplecov-lcov', '~> 0.8.0'
   gem 'webdrivers', '~> 4.0', require: false
 end
 

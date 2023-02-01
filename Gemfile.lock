@@ -173,6 +173,7 @@ GEM
       net-ldap (>= 0.16.0)
     diff-lcs (1.4.4)
     diffy (3.4.2)
+    docile (1.4.0)
     erubi (1.10.0)
     execjs (2.8.1)
     factory_bot (6.2.0)
@@ -393,6 +394,13 @@ GEM
       faraday (>= 0.17.5, < 3.a)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.12.3)
+    simplecov-lcov (0.8.0)
+    simplecov_json_formatter (0.1.4)
     sir_trevor_rails (0.6.1)
       multi_json (~> 1.0)
       rails (>= 3, < 7)
@@ -497,6 +505,8 @@ DEPENDENCIES
   rspec-rails (~> 4)
   sass-rails (~> 5.0)
   selenium-webdriver
+  simplecov
+  simplecov-lcov (~> 0.8.0)
   sitemap_generator
   solr_wrapper (~> 2)
   solrizer
