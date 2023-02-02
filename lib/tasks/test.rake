@@ -6,12 +6,6 @@ if(Rails.env == "test")
     port: 8985,
     version: '6.3.0',
     instance_dir: 'solr/install'
-    version: 6.6.1,
-    collection: {
-      persist: false,
-      dir: solr/conf,
-      name: hydra-test
-    }
   }
 end
 require 'solr_wrapper/rake_task'
@@ -29,7 +23,7 @@ namespace :tufts do
   desc 'Runs tests inside solr wrapper'
   task spec: :environment do
     SolrWrapper.wrap do |solr|
-      solr.with_collection(dir: Rails.root.join('solr/config/'), name: 'test') do
+      solr.with_collection(dir: Rails.root.join('solr/config/'), name: 'hydra-test') do
         Rake::Task['spec'].invoke
       end
     end
