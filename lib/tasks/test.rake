@@ -3,7 +3,7 @@
 if(Rails.env == "test")
   SolrWrapper.default_instance_options = {
     verbose: true,
-    port: 8984,
+    port: 8985,
     version: '6.3.0',
     instance_dir: 'solr/install'
   }
