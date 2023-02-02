@@ -79,7 +79,7 @@ jobs:
     #  run: |
     #     bundle exec rails assets:precompile &> /dev/null
     - name: Run tests
-      run: bundle exec rake tufts:ci
+      run: bundle exec rake tufts:spec
       env:
         RAILS_ENV: test
         TMPDIR: /tmp
