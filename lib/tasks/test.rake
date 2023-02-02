@@ -6,6 +6,12 @@ if(Rails.env == "test")
     port: 8985,
     version: '6.3.0',
     instance_dir: 'solr/install'
+    version: 6.6.1,
+    collection: {
+      persist: false,
+      dir: solr/conf,
+      name: hydra-test
+    }
   }
 end
 require 'solr_wrapper/rake_task'
