@@ -1,0 +1,89 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['**']
+
+jobs:
+  build:
+    #continue-on-error: ${{ matrix.experimental }}
+    runs-on: ubuntu-latest
+
+    env:
+      NOKOGIRI_USE_SYSTEM_LIBRARIES: true
+      DEFAULT_ADMIN_SET: 'default'
+      DATA_STORAGE: ./public
+      TEMP_STORAGE: ./public
+      ALLOW_NOTIFICATIONS: true
+      DB_NAME: spotlight_test
+      DB_USERNAME: root
+      DB_PASSWORD: root
+      RAILS_MAX_THREADS: 5
+      DB_HOST: localhost
+      DB_PORT: 3306
+      CI: true
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby-version: ['2.6']
+        experimental: [false]
+        # include:
+        #  - ruby-version: 2.6
+        #    experimental: true
+
+    steps:
+    - name: Install OS packages
+      run: |
+        sudo apt-get update
+        sudo apt-get install unzip imagemagick ghostscript libpq-dev libxslt-dev
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+    # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
+    # change this to (see https://github.com/ruby/setup-ruby#versioning):
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+        bundler: "1.17.3"
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - name: Update rubygems
+      run: |
+        gem update --system
+        gem install bundler:1.17.3
+
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+
+    - name: Set up MySQL
+      run: |
+        sudo /etc/init.d/mysql start
+        mysql -e 'CREATE DATABASE ${{ env.DB_NAME }} CHARACTER SET latin1 COLLATE latin1_swedish_ci;' -u${{ env.DB_USERNAME }} -p${{ env.DB_PASSWORD }}
+    - name: Configure test environment
+      run: |
+        cp config/database.yml.sample config/database.yml
+        cp config/blacklight.yml.sample config/blacklight.yml
+        cp config/ldap.yml.sample config/ldap.yml
+        cp config/solr.yml.sample config/solr.yml
+        cp config/tufts.yml.sample config/tufts.yml
+    - name: Create database
+      run: |
+        RAILS_ENV=test bundle exec rake db:create
+        RAILS_ENV=test bundle exec rake db:migrate --trace
+    #- name: Rubbocop
+    #  run: |
+    #    bundle exec rubocop
+    #- name: Compile assets
+    #  run: |
+    #     bundle exec rails assets:precompile &> /dev/null
+    - name: Run tests
+      run: xvfb-run -a bundle exec rake tufts:spec
+      env:
+        RAILS_ENV: test
+        TMPDIR: /tmp
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}

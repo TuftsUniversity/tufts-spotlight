@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-if(Rails.env == "test" || Rails.env == "development")
+if(Rails.env == "test")
   SolrWrapper.default_instance_options = {
     verbose: true,
-    port: 8984,
+    port: 8985,
     version: '6.3.0',
     instance_dir: 'solr/install'
   }
@@ -23,7 +23,7 @@ namespace :tufts do
   desc 'Runs tests inside solr wrapper'
   task spec: :environment do
     SolrWrapper.wrap do |solr|
-      solr.with_collection(dir: Rails.root.join('solr/config/'), name: 'test') do
+      solr.with_collection(dir: Rails.root.join('solr/config/'), name: 'hydra-test') do
         Rake::Task['spec'].invoke
       end
     end
