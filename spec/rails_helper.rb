@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-#
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'simplecov'
 
@@ -18,20 +16,34 @@ SimpleCov.start 'rails' do
   add_filter %w[version.rb initializer.rb]
 end
 
-ENV['RAILS_ENV'] ||= 'test'
 
+ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
-require 'capybara/rails'
-require 'capybara/rspec'
-require 'capybara-screenshot/rspec'
-require 'selenium-webdriver'
-require 'webdrivers' unless ENV['IN_DOCKER'].present? || ENV['HUB_URL'].present?
 
 # Add additional requires below this line. Rails is not loaded until this point!
+
+Capybara.server = :webrick
+
+# Adding chromedriver for js testing.
+Capybara.register_driver :headless_chrome do |app|
+  browser_options = ::Selenium::WebDriver::Chrome::Options.new
+  browser_options.headless!
+  browser_options.args << '--window-size=1920,1080'
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
+end
+
+# For debugging JS tests - some tests involving mouse movements require headless mode.
+Capybara.register_driver(:chrome) do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
+# Current version of chromedriver doesn't work as headless on TravisCI for some reason.
+# Should change back to headless, when possible.
+Capybara.javascript_driver = :chrome
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -46,44 +58,24 @@ require 'webdrivers' unless ENV['IN_DOCKER'].present? || ENV['HUB_URL'].present?
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/lib/shared_examples/*.rb')].each { |f| require f }
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+RSpec.configure do |config|
 
-Capybara::Screenshot.autosave_on_failure = false
-Capybara.raise_server_errors = false
-Selenium::WebDriver.logger.level = :fatal
-
-# Add additional requires below this line. Rails is not loaded until this point!
-  Capybara.server = :webrick
-
-  # Adding chromedriver for js testing.
-  Capybara.register_driver :headless_chrome do |app|
-    browser_options = ::Selenium::WebDriver::Chrome::Options.new
-    browser_options.headless!
-    browser_options.args << '--window-size=1920,1080'
-    Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
-  end
-
-  # For debugging JS tests - some tests involving mouse movements require headless mode.
-  Capybara.register_driver(:chrome) do |app|
-    Capybara::Selenium::Driver.new(app, browser: :chrome)
-  end
-
-  RSpec.configure do |config|
   include LdapManager
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  # config.use_transactional_fixtures = true
-  config.include FactoryBot::Syntax::Methods
+  #config.use_transactional_fixtures = false
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -104,14 +96,12 @@ Selenium::WebDriver.logger.level = :fatal
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-  config.order = "random"
-  config.include Capybara::DSL
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
   end
 
-  config.before do
+  config.before(:each) do
     DatabaseCleaner.strategy = :transaction
   end
 
@@ -119,19 +109,19 @@ Selenium::WebDriver.logger.level = :fatal
     DatabaseCleaner.strategy = :truncation
   end
 
-  config.before do
+  config.before(:each) do
     DatabaseCleaner.start
   end
 
-  config.after do
+  config.after(:each) do
     DatabaseCleaner.clean
   end
 
   config.after(:suite) do
+    clean_solr
     stop_ldap
   end
 end
-
 
 ##
 # Deletes everything in Solr.
