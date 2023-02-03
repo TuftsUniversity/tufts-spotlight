@@ -34,3 +34,6 @@ jetty
 .idea
 
 public/assets
+
+.env
+coverage/**

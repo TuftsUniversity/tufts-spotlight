@@ -1,0 +1,153 @@
+version: '3'
+
+networks:
+  external:
+    name: external-network
+    external: true
+  internal:
+    name: internal-network
+    external: true
+
+volumes:
+  db-dev:
+  fcrepo-dev:
+  solr-dev:
+  redis-dev:
+  bundled:
+  derivatives:
+    external:
+      name: mira_on_hyrax_derivatives
+
+services:
+  ##
+  # Basic Rails application build image
+  exhibits-app: &exhibits-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: root
+    volumes:
+      - .:/data # mount current directory into the image
+      - bundled:/usr/local/bundle
+      - derivatives:/data/tmp/derivatives
+    networks:
+      external:
+      internal:
+    # use tmpfs for tmp and log for performance and to allow
+    # multiple builds in parallel. Both directories are mounted
+    # into the image AFTER the working directory is mounted.
+    tmpfs:
+      - /data/log
+
+  ##
+  # Development environment for application
+  exhibits-dev: &exhibits-dev
+    <<: *exhibits-app
+    environment:
+      - CACHE_PATH=/data/tmp/uploads/cache
+      - DB_NAME=development
+      - DB_HOST=exhibits-db-dev
+      - DB_PASSWORD=postgres
+      - DB_PORT='3306'
+      - DB_USERNAME=postgres
+      - DERIVATIVES_PATH=/data/tmp/derivatives
+      - FEDORA_URL=http://fcrepo-dev:8080/rest
+      - FITS_PATH=/opt/fits-1.0.5/fits.sh
+      - RAILS_ENV=development
+      - RAILS_LOG_TO_STDOUT=true
+      - REDIS_HOST=redis-dev
+      - REDIS_PORT=6379
+      - SECRET_KEY_BASE=bobross
+      - SOLR_URL=http://solr-dev:8983/solr/development
+      - UPLOADS_PATH=/data/tmp/uploads
+    depends_on:
+      - exhibits-db-dev
+      - chrome
+    expose:
+      - 4000
+  server:
+    <<: *exhibits-dev
+    command: >
+      bash -c "./build/entrypoint.sh &&
+      bundle exec rails s -p 4000 -b '0.0.0.0'"
+    ports:
+       - "${SERVER_PORTS}"
+    expose:
+       - "${SERVER_EXPOSE}"
+  ##
+  # Test environment for application
+  test: &exhibits-test
+    <<: *exhibits-app
+    environment:
+      - CACHE_PATH=/data/tmp/uploads/cache
+      - IN_DOCKER=true
+      - HUB_URL=http://chrome:4444/wd/hub
+      - DB_NAME=test
+      - DB_HOST=exhibits-db-test
+      - DB_PASSWORD=postgres
+      - DB_PORT='3306'
+      - DB_USERNAME=postgres
+      - DERIVATIVES_PATH=/data/tmp/derivatives
+      - FEDORA_URL=http://fcrepo-test:8080/rest
+      - FITS_PATH=/opt/fits-1.0.5/fits.sh
+      - RAILS_ENV=test
+      - REDIS_HOST=redis-test
+      - REDIS_PORT=6379
+      - SECRET_KEY_BASE=bobross
+      - SOLR_URL=http://solr-test:8983/solr/test
+      - UPLOADS_PATH=/data/tmp/uploads
+      - DISABLE_SPRING=1
+    depends_on:
+      - exhibits-db-test
+      - chrome
+    volumes:
+      - .:/data # mount current directory into the image
+      - ./tmp:/tmp
+      - bundled:/usr/local/bundle
+    command: >
+      bash -c "./build/entrypoint.sh &&
+      RAILS_ENV=test bundle exec rails s -p 4001 -b '0.0.0.0'"
+    ports:
+      - "${TEST_PORTS}"
+    expose:
+      - "${TEST_EXPOSE}"
+##
+  # Mariadb database server
+  db: &db
+    image: mariadb:10
+    networks:
+      internal:
+  exhibits-db-dev:
+    <<: *db
+    environment:
+      - MYSQL_DATABASE=development
+      - MYSQL_USER=postgres
+      - MYSQL_PASSWORD=postgres
+      - MYSQL_ROOT_PASSWORD=postgres
+    ports:
+      - 3317:3317
+    volumes:
+      - db-dev:/var/lib/mysql
+  exhibits-db-test:
+    <<: *db
+    environment:
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=postgres
+      - MYSQL_PASSWORD=postgres
+      - MYSQL_ROOT_PASSWORD=postgres
+    ports:
+      - 3318:3318
+    tmpfs: /var/lib/mysql
+  chrome:
+    image: "${SELENIUM_IMAGE}"
+    platform: "${SELENIUM_PLATFORM}"
+    restart: always
+    logging:
+      driver: none
+    volumes:
+      - /dev/shm:/dev/shm
+      - ./tmp/downloads:/home/seluser/Downloads
+    shm_size: 2G
+    ports:
+      - "4434:4444"
+      - "5954:5900"
