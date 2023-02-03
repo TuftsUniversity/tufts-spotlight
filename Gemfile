@@ -25,9 +25,6 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use Puma as the app server
-# gem 'puma', '~> 3.0'
-
 gem 'blacklight', ' ~> 6.0'
 gem 'blacklight-spotlight', tag: 'v2.13.0', git: 'https://github.com/projectblacklight/spotlight.git'
 gem 'rsolr', '>= 1.0'
@@ -64,7 +61,9 @@ end
 
 group :test do
   gem 'database_cleaner'
-  gem 'capybara', '>= 2.15'
+  gem 'capybara'
+  gem 'capybara-maleficent', require: false
+  gem 'capybara-screenshot'
   gem 'ladle'
   gem 'factory_bot_rails'
   gem 'selenium-webdriver'

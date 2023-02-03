@@ -75,9 +75,9 @@ jobs:
     #- name: Rubbocop
     #  run: |
     #    bundle exec rubocop
-    #- name: Compile assets
-    #  run: |
-    #     bundle exec rails assets:precompile &> /dev/null
+    - name: Compile assets
+      run: |
+         bundle exec rails assets:precompile &> /dev/null
     - name: Run tests
       run: xvfb-run -a bundle exec rake tufts:spec
       env:

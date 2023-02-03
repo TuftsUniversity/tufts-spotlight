@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'webdrivers/chromedriver'
 include FeatureMacros
-i_need_ldap
+
 
 feature "TDL ingest" do
 #  before { skip("Tests ready, but need TDL migration to prod finished. TravisCI can't connect to dev.") }
