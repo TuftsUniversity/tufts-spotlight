@@ -82,10 +82,19 @@ else
   end
 end
 
+# For debugging JS tests - some tests involving mouse movements require headless mode.
+Capybara.register_driver(:chrome) do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
 Capybara.server = :webrick
 # Uses faster rack_test driver when JavaScript support not needed
 Capybara.default_driver = :rack_test # This is a faster driver
-Capybara.javascript_driver = :selenium_chrome_headless_sandboxless # This is slower
+if ENV['IN_DOCKER'].present? || ENV['HUB_URL'].present?
+  Capybara.javascript_driver = :selenium_chrome_headless_sandboxless # This is slower
+else
+  Capybara.javascript_driver = :chrome
+end
 
 Capybara.default_max_wait_time = 20
 
