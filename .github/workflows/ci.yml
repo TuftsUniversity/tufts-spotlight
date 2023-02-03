@@ -63,11 +63,11 @@ jobs:
         mysql -e 'CREATE DATABASE ${{ env.DB_NAME }} CHARACTER SET latin1 COLLATE latin1_swedish_ci;' -u${{ env.DB_USERNAME }} -p${{ env.DB_PASSWORD }}
     - name: Configure test environment
       run: |
-        cp config/database.yml.sample config/database.yml
+        `cp config/database.yml.sample config/database.yml
         cp config/blacklight.yml.sample config/blacklight.yml
         cp config/ldap.yml.sample config/ldap.yml
         cp config/solr.yml.sample config/solr.yml
-        cp config/tufts.yml.sample config/tufts.yml
+        cp config/tufts.yml.sample config/tufts.yml`
     - name: Create database
       run: |
         RAILS_ENV=test bundle exec rake db:create
@@ -75,9 +75,9 @@ jobs:
     #- name: Rubbocop
     #  run: |
     #    bundle exec rubocop
-    #- name: Compile assets
-    #  run: |
-    #     bundle exec rails assets:precompile &> /dev/null
+    - name: Compile assets
+      run: |
+         bundle exec rails assets:precompile &> /dev/null
     - name: Run tests
       run: xvfb-run -a bundle exec rake tufts:spec
       env:
