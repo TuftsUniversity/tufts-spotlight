@@ -298,6 +298,7 @@ GEM
       activerecord (>= 4.2)
       request_store (~> 1.1)
     public_suffix (5.0.1)
+    puma (3.12.6)
     racc (1.6.2)
     rack (2.2.6.2)
     rack-test (2.0.2)
@@ -511,6 +512,7 @@ DEPENDENCIES
   ladle
   mini_racer
   mysql2
+  puma (~> 3.12)
   rails (~> 5.2)
   riiif
   rsolr (>= 1.0)
