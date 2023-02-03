@@ -92,7 +92,6 @@ else
     browser_options.headless!
     browser_options.args << '--window-size=1920,1080'
     browser_options.add_preference(:download, prompt_for_download: false, default_directory: DownloadHelpers::PATH.to_s)
-    browser_options.add_argument("--proxy-server=#{Billy.proxy.host}:#{Billy.proxy.port}")
     Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
   end
 end
