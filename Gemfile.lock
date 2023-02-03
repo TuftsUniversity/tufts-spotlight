@@ -260,7 +260,7 @@ GEM
     legato (0.7.0)
       multi_json
     libv8-node (15.14.0.1)
-    loofah (2.12.0)
+    loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -280,7 +280,7 @@ GEM
     mysql2 (0.5.3)
     net-ldap (0.17.0)
     nio4r (2.5.8)
-    nokogiri (1.13.10)
+    nokogiri (1.14.1)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     oauth2 (2.0.9)
