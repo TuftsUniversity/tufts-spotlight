@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+#
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'simplecov'
 
@@ -16,13 +18,21 @@ SimpleCov.start 'rails' do
   add_filter %w[version.rb initializer.rb]
 end
 
-
 ENV['RAILS_ENV'] ||= 'test'
+
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
+require 'capybara/rails'
+require 'capybara/rspec'
+require 'capybara-screenshot/rspec'
+require 'active_fedora/cleaner'
+require 'selenium-webdriver'
+require 'webdrivers' unless ENV['IN_DOCKER'].present? || ENV['HUB_URL'].present?
+
+# Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -37,23 +47,28 @@ require 'rspec/rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
-Dir[Rails.root.join('spec/lib/shared_examples/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+Capybara::Screenshot.autosave_on_failure = false
+Capybara.raise_server_errors = false
+Selenium::WebDriver.logger.level = :fatal
+
 if ENV['IN_DOCKER'].present? || ENV['HUB_URL'].present?
   args = %w[disable-gpu no-sandbox whitelisted-ips window-size=1400,1400]
   args.push('headless') if ActiveModel::Type::Boolean.new.cast(ENV['CHROME_HEADLESS_MODE'])
+
+  Selenium::WebDriver.logger.output = '/data/log/selenium.log'
 
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome("goog:chromeOptions" => { args: args })
 
   Capybara.register_driver :selenium_chrome_headless_sandboxless do |app|
     driver = Capybara::Selenium::Driver.new(app,
                                        browser: :remote,
-                                       desired_capabilities: capabilities,
+                                       capabilities: capabilities,
                                        url: ENV['HUB_URL'])
 
     # Fix for capybara vs remote files. Selenium handles this for us
@@ -78,38 +93,28 @@ else
     browser_options.headless!
     browser_options.args << '--window-size=1920,1080'
     browser_options.add_preference(:download, prompt_for_download: false, default_directory: DownloadHelpers::PATH.to_s)
+    browser_options.add_argument("--proxy-server=#{Billy.proxy.host}:#{Billy.proxy.port}")
     Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
   end
 end
 
-# For debugging JS tests - some tests involving mouse movements require headless mode.
-Capybara.register_driver(:chrome) do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
-end
-
-Capybara.server = :webrick
 # Uses faster rack_test driver when JavaScript support not needed
 Capybara.default_driver = :rack_test # This is a faster driver
-
-if ENV['IN_DOCKER'].present? || ENV['HUB_URL'].present?
-  Capybara.javascript_driver = :selenium_chrome_headless_sandboxless # This is slower
-else
-  Capybara.javascript_driver = :chrome
-end
+Capybara.javascript_driver = :selenium_chrome_headless_sandboxless # This is slower
 
 Capybara.default_max_wait_time = 20
 
 RSpec.configure do |config|
-
   include LdapManager
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  #config.use_transactional_fixtures = false
+  # config.use_transactional_fixtures = true
+  config.include FactoryBot::Syntax::Methods
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -130,12 +135,16 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.order = "random"
+  config.include Capybara::DSL
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
+    # Noid minting causes extra LDP requests which slow the test suite.
+    Hyrax.config.enable_noids = false
   end
 
-  config.before(:each) do
+  config.before do
     DatabaseCleaner.strategy = :transaction
   end
 
@@ -143,24 +152,27 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :truncation
   end
 
-  config.before(:each) do
+  config.before do
     DatabaseCleaner.start
   end
 
-  config.after(:each) do
+  config.after do
     DatabaseCleaner.clean
   end
 
   config.after(:suite) do
-    clean_solr
     stop_ldap
   end
+end
+
+# Deletes everything in Fedora.
+def clean_fedora
+  ActiveFedora::Cleaner.clean!
 end
 
 ##
 # Deletes everything in Solr.
 def clean_solr
-  solr = Blacklight::Solr::Repository.new(Spotlight::Engine.blacklight_config).connection
+  solr = ActiveFedora::SolrService.instance.conn
   solr.delete_by_query("*:*", params: { commit: true })
 end
-
