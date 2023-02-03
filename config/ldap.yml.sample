@@ -1,3 +1,5 @@
+
+
 # Uncomment out the merging for each enviornment that you'd like to include.
 # You can also just copy and paste the tree (do not include the "authorizations") to each
 # enviornment if you need something different per enviornment.
@@ -29,22 +31,15 @@ development:
   ssl: true
   # <<: *AUTHORIZATIONS
 test:
-  host: ldap.tufts.edu
-  port: 636
+  host: localhost
+  port: 3897
   attribute: uid
-  base: dc=tufts, dc=edu
-  admin_user: some_user
-  admin_password: some_password
-  ssl: true
+  base: ou=people,dc=example,dc=org
+  admin_user: cn=admin,dc=example,dc=org
+  admin_password: admin_password
+  ssl: false
   # <<: *AUTHORIZATIONS
 
-#test:
-#  host: localhost
-#  port: 3389
-#  attribute: cn
-#  base: ou=people,dc=example,dc=org
-#  ssl: false
-  # <<: *AUTHORIZATIONS
 production:
   host: localhost
   port: 636
