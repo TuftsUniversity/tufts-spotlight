@@ -90,6 +90,7 @@ end
 Capybara.server = :webrick
 # Uses faster rack_test driver when JavaScript support not needed
 Capybara.default_driver = :rack_test # This is a faster driver
+
 if ENV['IN_DOCKER'].present? || ENV['HUB_URL'].present?
   Capybara.javascript_driver = :selenium_chrome_headless_sandboxless # This is slower
 else
