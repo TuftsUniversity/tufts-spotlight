@@ -139,8 +139,6 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
-    # Noid minting causes extra LDP requests which slow the test suite.
-    Hyrax.config.enable_noids = false
   end
 
   config.before do
