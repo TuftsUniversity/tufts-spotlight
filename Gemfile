@@ -25,9 +25,6 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use Puma as the app server
-gem 'puma', '~> 3.12'
-
 gem 'blacklight', ' ~> 6.0'
 gem 'blacklight-spotlight', tag: 'v2.13.0', git: 'https://github.com/projectblacklight/spotlight.git'
 gem 'rsolr', '>= 1.0'
