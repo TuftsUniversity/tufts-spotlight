@@ -28,7 +28,6 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'capybara-screenshot/rspec'
-require 'active_fedora/cleaner'
 require 'selenium-webdriver'
 require 'webdrivers' unless ENV['IN_DOCKER'].present? || ENV['HUB_URL'].present?
 
@@ -165,10 +164,6 @@ RSpec.configure do |config|
   end
 end
 
-# Deletes everything in Fedora.
-def clean_fedora
-  ActiveFedora::Cleaner.clean!
-end
 
 ##
 # Deletes everything in Solr.
