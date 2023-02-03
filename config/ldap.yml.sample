@@ -1,7 +1,6 @@
-## Authorizations
-# Uncomment out the merging for each environment that you'd like to include.
+# Uncomment out the merging for each enviornment that you'd like to include.
 # You can also just copy and paste the tree (do not include the "authorizations") to each
-# environment if you need something different per enviornment.
+# enviornment if you need something different per enviornment.
 authorizations: &AUTHORIZATIONS
   group_base: ou=groups,dc=test,dc=com
   ## Requires config.ldap_check_group_membership in devise.rb be true
@@ -18,28 +17,34 @@ authorizations: &AUTHORIZATIONS
     objectClass: inetOrgPerson
     authorizationRole: postsAdmin
 
-## Environment
+## Enviornments
 
 development:
-  host: localhost
+  host: ldap.tufts.edu
   port: 636
-  attribute: cn
-  base: ou=people,dc=test,dc=com
-  admin_user: cn=admin,dc=test,dc=com
-  admin_password: admin_password
-  ssl: false
-  # <<: *AUTHORIZATIONS
-
-test:
-  host: localhost
-  port: 3897
   attribute: uid
-  base: ou=people,dc=example,dc=org
-  admin_user: cn=admin,dc=example,dc=org
-  admin_password: admin_password
-  ssl: false
+  base: dc=tufts, dc=edu
+  admin_user: some_user
+  admin_password: some_password
+  ssl: true
+  # <<: *AUTHORIZATIONS
+test:
+  host: ldap.tufts.edu
+  port: 636
+  attribute: uid
+  base: dc=tufts, dc=edu
+  admin_user: some_user
+  admin_password: some_password
+  ssl: true
   # <<: *AUTHORIZATIONS
 
+#test:
+#  host: localhost
+#  port: 3389
+#  attribute: cn
+#  base: ou=people,dc=example,dc=org
+#  ssl: false
+  # <<: *AUTHORIZATIONS
 production:
   host: localhost
   port: 636
