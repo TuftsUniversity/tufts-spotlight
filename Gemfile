@@ -66,7 +66,7 @@ group :test do
   gem 'capybara-screenshot'
   gem 'ladle'
   gem 'factory_bot_rails'
-  gem 'selenium-webdriver'
+  gem "selenium-webdriver", "~> 4.1.0"
   gem 'simplecov'
   gem 'simplecov-lcov', '~> 0.8.0'
   gem 'webdrivers', '~> 4.0', require: false
