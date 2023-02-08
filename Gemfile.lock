@@ -265,7 +265,9 @@ GEM
       rails (>= 4.2.0)
     legato (0.7.0)
       multi_json
+    libv8-node (16.10.0.0)
     libv8-node (16.10.0.0-aarch64-linux)
+    libv8-node (16.10.0.0-x86_64-linux)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -279,6 +281,7 @@ GEM
     method_source (1.0.0)
     mini_magick (4.12.0)
     mini_mime (1.1.2)
+    mini_portile2 (2.8.1)
     mini_racer (0.6.3)
       libv8-node (~> 16.10.0.0)
     minitest (5.17.0)
@@ -297,7 +300,12 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.8)
+    nokogiri (1.14.1)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
     nokogiri (1.14.1-aarch64-linux)
+      racc (~> 1.4)
+    nokogiri (1.14.1-x86_64-linux)
       racc (~> 1.4)
     oauth2 (2.0.9)
       faraday (>= 0.17.3, < 3.0)
@@ -505,6 +513,8 @@ GEM
 
 PLATFORMS
   aarch64-linux
+  ruby
+  x86_64-linux
 
 DEPENDENCIES
   blacklight (~> 6.0)
