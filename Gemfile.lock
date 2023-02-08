@@ -512,7 +512,6 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
-  aarch64-linux
   x86_64-linux
 
 DEPENDENCIES
