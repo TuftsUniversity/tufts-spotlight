@@ -57,6 +57,7 @@ group :development, :test do
   gem 'solr_wrapper', '~> 2' #hi
   gem 'rspec-rails', '~> 4' # Can update to 5.x after updating to Rails 6.x
   gem 'byebug'
+  gem 'rubocop', require: false
 end
 
 group :test do
