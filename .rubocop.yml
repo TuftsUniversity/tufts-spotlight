@@ -6,3 +6,4 @@ Style/ParenthesesAroundCondition:
   Enabled: false
 Metrics/BlockLength:
   Enabled: false
+TargetRubyVersion: 2.7
