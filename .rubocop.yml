@@ -1,9 +1,10 @@
-Metrics/LineLength:
-  Max: 120
-Style/Next:
-  Enabled: false
-Style/ParenthesesAroundCondition:
-  Enabled: false
-Metrics/BlockLength:
-  Enabled: false
-TargetRubyVersion: 2.7
+AllCops:
+  Metrics/LineLength:
+    Max: 120
+  Style/Next:
+    Enabled: false
+  Style/ParenthesesAroundCondition:
+    Enabled: false
+  Metrics/BlockLength:
+    Enabled: false
+  TargetRubyVersion: 2.7
