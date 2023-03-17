@@ -1,8 +1,8 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   include Spotlight::User
-  if Blacklight::Utils.needs_attr_accessible?
-    attr_accessible :email, :password, :password_confirmation
-  end
+  attr_accessible :email, :password, :password_confirmation if Blacklight::Utils.needs_attr_accessible?
   # Connects this user object to Blacklights Bookmarks.
   include Blacklight::User
   # Include default devise modules. Others available are:
@@ -21,8 +21,7 @@ class User < ApplicationRecord
   ## Remove?
   # Added this so validation will succeed when the user first logs in via ldap and the account is created.
   def ldap_before_save
-    self.email = Devise::LDAP::Adapter.get_ldap_param(self.username, "mail").first
+    self.email = Devise::LDAP::Adapter.get_ldap_param(username, 'mail').first
   end
   ##
-
 end

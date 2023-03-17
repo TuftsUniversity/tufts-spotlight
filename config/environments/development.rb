@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -10,7 +12,7 @@ Rails.application.configure do
   config.eager_load = false
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
 
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp/caching-dev.txt').exist?
@@ -18,7 +20,7 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-        'Cache-Control' => 'public, max-age=172800'
+      'Cache-Control' => 'public, max-age=172800'
     }
   else
     config.action_controller.perform_caching = false
@@ -28,10 +30,10 @@ Rails.application.configure do
 
   ## Remove?
   # Added for Tufts spotlight experiment - the installation script said to do this
-  #config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  #config.action_mailer.default_options = {
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # config.action_mailer.default_options = {
   #  from: "spotlight_no_reply@tufts.edu"
-  #}
+  # }
   ##
 
   # Don't care if the mailer can't send.
@@ -41,10 +43,10 @@ Rails.application.configure do
 
   ## Remove?
   # Added this for Tufts spotlight experiment - needed for batch imports.
-  #config.action_mailer.smtp_settings = {
+  # config.action_mailer.smtp_settings = {
   #  :address => "smtp.tufts.edu",
   #  :port => 25,
-  #}
+  # }
   ##
 
   # Print deprecation notices to the Rails logger.
@@ -64,12 +66,12 @@ Rails.application.configure do
   ## Remove?
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
-  #config.assets.digest = true
+  # config.assets.digest = true
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
-  #config.assets.raise_runtime_errors = true
+  # config.assets.raise_runtime_errors = true
   ##
 
   # Raises error for missing translations
@@ -77,5 +79,5 @@ Rails.application.configure do
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
-  #config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end

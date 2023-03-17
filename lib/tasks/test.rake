@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if(Rails.env == "test")
+if Rails.env == 'test'
   SolrWrapper.default_instance_options = {
     verbose: true,
     port: 8985,
@@ -32,13 +32,12 @@ namespace :tufts do
   desc 'Copy config files'
   task configs: :environment do
     %w[blacklight solr ldap].each do |f|
-      unless File.exist?("config/#{f}.yml")
-        FileUtils.cp(
-          Rails.root.join("config/#{f}.yml.sample"),
-          Rails.root.join("config/#{f}.yml")
-        )
-      end
+      next if File.exist?("config/#{f}.yml")
+
+      FileUtils.cp(
+        Rails.root.join("config/#{f}.yml.sample"),
+        Rails.root.join("config/#{f}.yml")
+      )
     end
   end
-  # rubocop:enable Metrics/BlockLength
 end

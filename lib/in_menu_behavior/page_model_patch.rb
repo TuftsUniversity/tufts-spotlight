@@ -1,4 +1,6 @@
-#@file
+# frozen_string_literal: true
+
+# @file
 # Add in_menu scope to the page model.
 
 module InMenuBehavior
@@ -9,4 +11,3 @@ module InMenuBehavior
     end
   end
 end
-

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'simplecov'
 
@@ -16,11 +18,10 @@ SimpleCov.start 'rails' do
   add_filter %w[version.rb initializer.rb]
 end
 
-
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../../config/environment')
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
 
@@ -37,8 +38,8 @@ require 'rspec/rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
-Dir[Rails.root.join('spec/lib/shared_examples/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
+Dir[Rails.root.join('spec/lib/shared_examples/*.rb')].sort.each { |f| require f }
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -48,13 +49,13 @@ if ENV['IN_DOCKER'].present? || ENV['HUB_URL'].present?
   args = %w[disable-gpu no-sandbox whitelisted-ips window-size=1400,1400]
   args.push('headless') if ActiveModel::Type::Boolean.new.cast(ENV['CHROME_HEADLESS_MODE'])
 
-  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome("goog:chromeOptions" => { args: args })
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome('goog:chromeOptions' => { args: args })
 
   Capybara.register_driver :selenium_chrome_headless_sandboxless do |app|
     driver = Capybara::Selenium::Driver.new(app,
-                                       browser: :remote,
-                                       desired_capabilities: capabilities,
-                                       url: ENV['HUB_URL'])
+                                            browser: :remote,
+                                            desired_capabilities: capabilities,
+                                            url: ENV['HUB_URL'])
 
     # Fix for capybara vs remote files. Selenium handles this for us
     driver.browser.file_detector = lambda do |argss|
@@ -91,16 +92,15 @@ Capybara.server = :webrick
 # Uses faster rack_test driver when JavaScript support not needed
 Capybara.default_driver = :rack_test # This is a faster driver
 
-if ENV['IN_DOCKER'].present? || ENV['HUB_URL'].present?
-  Capybara.javascript_driver = :selenium_chrome_headless_sandboxless # This is slower
-else
-  Capybara.javascript_driver = :chrome
-end
+Capybara.javascript_driver = if ENV['IN_DOCKER'].present? || ENV['HUB_URL'].present?
+                               :selenium_chrome_headless_sandboxless # This is slower
+                             else
+                               :chrome
+                             end
 
 Capybara.default_max_wait_time = 20
 
 RSpec.configure do |config|
-
   include LdapManager
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -109,7 +109,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  #config.use_transactional_fixtures = false
+  # config.use_transactional_fixtures = false
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -161,5 +161,5 @@ end
 # Deletes everything in Solr.
 def clean_solr
   solr = Blacklight::Solr::Repository.new(Spotlight::Engine.blacklight_config).connection
-  solr.delete_by_query("*:*", params: { commit: true })
+  solr.delete_by_query('*:*', params: { commit: true })
 end

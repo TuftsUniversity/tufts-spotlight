@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :tufts_user, class: User do
     username { 'zz882' }
@@ -27,6 +29,6 @@ FactoryBot.define do
 
     factory :tufts_visitor do
     end
-
-  end #End factory :tufts_user
+  end
+  # End factory :tufts_user
 end

@@ -1,41 +1,38 @@
+# frozen_string_literal: true
+
 module Tufts
   class TdlResourcesController < Spotlight::ResourcesController
-
     ##
     # @function
     #
     # Lets users input just the id of the resource, instead of the full manifest URL.
     # Also allows bulk importing.
     def create
-      ids = params["resource"]["ids"]
+      ids = params['resource']['ids']
       bad_ids = []
       successes = 0
       tufts_settings = Tufts::Settings.load
 
       ids.each do |id|
         id.strip!
-        if(id.empty?)
-          next
-        end
+        next if id.empty?
 
         manifest_url = "#{tufts_settings[:tdl_url]}#{id}/manifest.json"
-        resource = TdlResource.new({url: manifest_url, exhibit_id: @resource.exhibit_id})
-        if(resource.save_and_index)
-         successes += 1
+        resource = TdlResource.new({ url: manifest_url, exhibit_id: @resource.exhibit_id })
+        if resource.save_and_index
+          successes += 1
         else
-         bad_ids << id
+          bad_ids << id
         end
       end
 
-      if(successes > 0)
-       plural = successes > 1 ? "s" : ""
-       flash[:notice] = "Successfully created #{successes} record#{plural}. Indexing now. "\
-                        "You may need to wait a second and reload the page to see your items."
+      if successes.positive?
+        plural = successes > 1 ? 's' : ''
+        flash[:notice] = "Successfully created #{successes} record#{plural}. Indexing now. "\
+                         'You may need to wait a second and reload the page to see your items.'
       end
 
-      unless(bad_ids.empty?)
-       flash[:error] = "There was an error with the following ids -- " + bad_ids.join(" -- ")
-      end
+      flash[:error] = "There was an error with the following ids -- #{bad_ids.join(' -- ') unless bad_ids.empty?}"
 
       redirect_to spotlight.admin_exhibit_catalog_path(@resource.exhibit)
     end

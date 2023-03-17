@@ -1,4 +1,8 @@
 AllCops:
+  Exclude:
+    - bin/*
+    - db/**/*
+    - spec/fixtures/**/*
   Metrics/LineLength:
     Max: 120
   Style/Next:
@@ -8,3 +12,54 @@ AllCops:
   Metrics/BlockLength:
     Enabled: false
   TargetRubyVersion: 2.7
+  EnforcedStyle: braces_for_chaining # todo not working
+Metrics/AbcSize:
+  Exclude:
+    - app/controllers/spotlight/pages_controller.rb
+    - app/controllers/tufts/tdl_resources_controller.rb
+    - app/models/search_builder.rb
+    - lib/tufts/hostname_fixer.rb
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - lib/tufts/hostname_fixer.rb
+Metrics/PerceivedComplexity:
+  Exclude:
+    - lib/tufts/hostname_fixer.rb
+Metrics/ClassLength:
+  Exclude:
+    - lib/tufts/hostname_fixer.rb
+Metrics/MethodLength:
+  Exclude:
+    - app/controllers/tufts/tdl_resources_controller.rb
+    - app/models/tufts/iiif_manifest.rb
+    - lib/tufts/hostname_fixer.rb
+Metrics/BlockLength:
+  Exclude: 
+    - app/controllers/catalog_controller.rb
+    - config/**/*
+    - lib/tasks/data_cleaner.rake
+    - lib/tasks/reindexer.rake
+    - spec/features/feature_page_customizations_spec.rb
+    - spec/features/sir_trevor_customizations_spec.rb
+    - spec/features/tdl_ingest_spec.rb
+    - spec/features/view_customizations_spec.rb
+    - Guardfile
+Naming/MethodParameterName:
+  Exclude:
+    - lib/in_menu_behavior/helper.rb
+Lint/Debugger:
+  Exclude:
+    - lib/tufts/hostname_fixer.rb
+Style/SymbolArray:
+  StyleGuide: '#brackets'
+Style/Documentation:
+  Exclude:
+    - app/**/*
+    - test/*
+    - app/models/user.rb
+    - lib/**/*
+    - spec/**/*
+    - config/**/*
+Layout/LineLength:
+  Exclude:
+    - config/**/*

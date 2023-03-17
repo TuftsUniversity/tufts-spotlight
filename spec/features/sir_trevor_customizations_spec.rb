@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 # @file
 # Tests for the Sir Trevor customizations in tufts_spotlight_blocks.
 require 'rails_helper'
 require 'webdrivers/chromedriver'
-include FeatureMacros
 i_need_ldap
 
-
-feature "Tufts Spotlight Blocks customizations" do
+feature 'Tufts Spotlight Blocks customizations' do
+  include FeatureMacros
   let(:exhibit) { FactoryBot.create(:exhibit) }
 
   let(:exhibit_admin) do
@@ -26,18 +27,18 @@ feature "Tufts Spotlight Blocks customizations" do
     visit(spotlight.edit_exhibit_feature_page_path(exhibit, feature_page))
   end
 
-  scenario "adds captions to the solr documents embed block", js: true do
-    add_block("solr_documents_embed")
-    expect(page).to have_css(".primary-caption")
+  scenario 'adds captions to the solr documents embed block', js: true do
+    add_block('solr_documents_embed')
+    expect(page).to have_css('.primary-caption')
   end
 
-  scenario "shows and hides the autocomplete for feature page blocks", js: true do
-    add_block("featured_pages")
+  scenario 'shows and hides the autocomplete for feature page blocks', js: true do
+    add_block('featured_pages')
 
-    ac = find("#st-editor-1 [data-twitter-typeahead]")
+    ac = find('#st-editor-1 [data-twitter-typeahead]')
     warning = find(
-      "p",
-      text: "This feature row is at the maximum number of items.",
+      'p',
+      text: 'This feature row is at the maximum number of items.',
       visible: false
     )
 
@@ -54,7 +55,7 @@ feature "Tufts Spotlight Blocks customizations" do
     expect(warning.visible?).to be(true)
 
     # Ac on - warning off, when removing sidebar (3 items)
-    toggle_sidebar("remove")
+    toggle_sidebar('remove')
     expect(ac.visible?).to be(true)
     expect(warning.visible?).to be(false)
 
@@ -77,10 +78,10 @@ feature "Tufts Spotlight Blocks customizations" do
     expect(warning.visible?).to be(true)
 
     # Ac off - warning on, after page save/reload
-    click_button("Save changes")
+    click_button('Save changes')
     sleep(1)
     visit(spotlight.edit_exhibit_feature_page_path(exhibit, feature_page))
-    expect(page).to have_no_css("#st-editor-1 .twitter-typeahead")
-    expect(page).to have_content("This feature row is at the maximum number of items.")
+    expect(page).to have_no_css('#st-editor-1 .twitter-typeahead')
+    expect(page).to have_content('This feature row is at the maximum number of items.')
   end
 end

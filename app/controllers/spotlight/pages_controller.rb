@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Patch line #13 and #23: polymorphic_path no longer accepts string arguments.
 
 require_dependency Spotlight::Engine.root.join('app', 'controllers', 'spotlight', 'pages_controller').to_s

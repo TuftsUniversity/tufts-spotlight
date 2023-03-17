@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Tufts
   ##
   # @class
@@ -19,11 +21,9 @@ module Tufts
     # Wrapping super function in exception handling,
     #   so users don't see uncaught exceptions if the url is bad.
     def url_is_iiif?(url)
-      begin
-        super
-      rescue StandardError
-        false
-      end
+      super
+    rescue StandardError
+      false
     end
 
     ##

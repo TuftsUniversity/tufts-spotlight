@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Tufts
   class IiifManifest < Spotlight::Resources::IiifManifest
-
     ##
     # @function
     # Overrides Spotlight::Resources::IiifManifest.manifest_metadata
@@ -18,7 +19,7 @@ module Tufts
 
       metadata.each_with_object({}) do |(key, value), hash|
         # Storing everything as potentially facetable for now.
-        indexer_args = [:stored_searchable, :facetable]
+        indexer_args = %i[stored_searchable facetable]
 
         ::Solrizer.insert_field(
           hash,
