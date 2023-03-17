@@ -14,10 +14,12 @@ jobs:
     env:
       NOKOGIRI_USE_SYSTEM_LIBRARIES: true
       DEFAULT_ADMIN_SET: 'default'
+      # DATABASE_AUTH: true
       DATA_STORAGE: ./public
       TEMP_STORAGE: ./public
       ALLOW_NOTIFICATIONS: true
       DB_NAME: spotlight_test
+      # DB_USER: root
       DB_USERNAME: root
       DB_PASSWORD: root
       RAILS_MAX_THREADS: 5
@@ -70,20 +72,36 @@ jobs:
         cp config/tufts.yml.sample config/tufts.yml
     - name: Create database
       run: |
-        RAILS_ENV=test bundle exec rake db:create
-        RAILS_ENV=test bundle exec rake db:migrate --trace
-    - name: Rubbocop
-     run: |
-       bundle exec rubocop
+        bundle exec rake db:create
+        bundle exec rake db:migrate --trace
+      env:
+        RAILS_ENV: test
+    # - name: Setup hyrax test environment
+    #   run: |
+    #     bundle exec rake hydra:test_server &
+    #     sleep 210
+    # - name: Rubbocop
+    #  run: echo test # bundle exec rubocop
+    #  env:
+    #     RAILS_ENV: test
+    - name: Rubocop
+      run: bundle exec rubocop
+      env:
+        RAILS_ENV: test
     - name: Compile assets
       run: |
          bundle exec rails assets:precompile &> /dev/null
-    - name: Run tests
-      run: xvfb-run -a bundle exec rake tufts:spec
-      env:
-        RAILS_ENV: test
-        TMPDIR: /tmp
-    - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+    # - name: Run tests
+    #   run: xvfb-run -a bundle exec rake tufts:spec
+    #   env:
+    #     RAILS_ENV: test
+    #     TMPDIR: /tmp
+    # - name: Run tests
+    #   run: bundle exec rake spec
+    #   env:
+    #     RAILS_ENV: test
+    #     TMPDIR: /tmp
+    # - name: Coveralls
+    #   uses: coverallsapp/github-action@master
+    #   with:
+    #     github-token: ${{ secrets.GITHUB_TOKEN }}

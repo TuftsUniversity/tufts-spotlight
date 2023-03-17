@@ -1,24 +1,31 @@
+inherit_gem:
+  bixby: bixby_default.yml
+
 AllCops:
   Exclude:
     - bin/*
     - db/**/*
     - spec/fixtures/**/*
-  Metrics/LineLength:
-    Max: 120
-  Style/Next:
-    Enabled: false
-  Style/ParenthesesAroundCondition:
-    Enabled: false
-  Metrics/BlockLength:
-    Enabled: false
+    - vendor/**/*
   TargetRubyVersion: 2.7
-  EnforcedStyle: braces_for_chaining # todo not working
+
 Metrics/AbcSize:
   Exclude:
     - app/controllers/spotlight/pages_controller.rb
     - app/controllers/tufts/tdl_resources_controller.rb
     - app/models/search_builder.rb
     - lib/tufts/hostname_fixer.rb
+Metrics/BlockLength:
+  Exclude: 
+    - app/controllers/catalog_controller.rb
+    - config/**/*
+    - lib/tasks/data_cleaner.rake
+    - lib/tasks/reindexer.rake
+    - spec/features/feature_page_customizations_spec.rb
+    - spec/features/sir_trevor_customizations_spec.rb
+    - spec/features/tdl_ingest_spec.rb
+    - spec/features/view_customizations_spec.rb
+    - Guardfile
 Metrics/CyclomaticComplexity:
   Exclude:
     - lib/tufts/hostname_fixer.rb
@@ -33,17 +40,6 @@ Metrics/MethodLength:
     - app/controllers/tufts/tdl_resources_controller.rb
     - app/models/tufts/iiif_manifest.rb
     - lib/tufts/hostname_fixer.rb
-Metrics/BlockLength:
-  Exclude: 
-    - app/controllers/catalog_controller.rb
-    - config/**/*
-    - lib/tasks/data_cleaner.rake
-    - lib/tasks/reindexer.rake
-    - spec/features/feature_page_customizations_spec.rb
-    - spec/features/sir_trevor_customizations_spec.rb
-    - spec/features/tdl_ingest_spec.rb
-    - spec/features/view_customizations_spec.rb
-    - Guardfile
 Naming/MethodParameterName:
   Exclude:
     - lib/in_menu_behavior/helper.rb
@@ -63,3 +59,6 @@ Style/Documentation:
 Layout/LineLength:
   Exclude:
     - config/**/*
+RSpec/ExampleLength:
+  Exclude:
+    - spec/features/tdl_ingest_spec.rb
