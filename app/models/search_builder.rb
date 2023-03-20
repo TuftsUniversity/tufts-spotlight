@@ -10,9 +10,8 @@ class SearchBuilder < Blacklight::SearchBuilder
   # Autocomplete wasn't using the full_image field and messing up stuff.
   # We need to always have thumbs and full images available.
   def add_non_iiif_image_field_to_searches(solr_parameters)
-    unless solr_parameters['fl'].include? Spotlight::Engine.config.full_image_field.to_s
-      solr_parameters['fl'] << " #{Spotlight::Engine.config.full_image_field}"
-    end
+    solr_parameters['fl'] << " #{Spotlight::Engine.config.full_image_field}" if solr_parameters['fl'].include? Spotlight::Engine.config.full_image_field.to_s
+
     return if solr_parameters['fl'].include? Spotlight::Engine.config.thumbnail_field.to_s
 
     solr_parameters['fl'] << " #{Spotlight::Engine.config.thumbnail_field}"

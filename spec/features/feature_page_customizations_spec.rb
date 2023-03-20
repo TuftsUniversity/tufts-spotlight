@@ -37,7 +37,7 @@ feature 'Feature Page customizations' do
     )
   end
 
-  before(:each) do
+  before do
     visible_page
     sign_in(exhibit_admin)
   end

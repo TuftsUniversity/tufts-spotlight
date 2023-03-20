@@ -44,7 +44,7 @@ module Tufts
     # @function
     # An easy way to get to the SolrDocumentSidecar of this resource.
     def sidecar
-      solr_document_sidecars.where(exhibit_id: exhibit_id).first
+      solr_document_sidecars.find_by(exhibit_id: exhibit_id)
     end
   end
 end

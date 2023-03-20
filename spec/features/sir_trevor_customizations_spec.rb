@@ -22,7 +22,7 @@ feature 'Tufts Spotlight Blocks customizations' do
     )
   end
 
-  before(:each) do
+  before do
     sign_in(exhibit_admin)
     visit(spotlight.edit_exhibit_feature_page_path(exhibit, feature_page))
   end

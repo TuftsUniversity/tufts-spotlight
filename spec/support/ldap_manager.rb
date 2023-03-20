@@ -19,7 +19,7 @@ module LdapManager
 
     @ldap_server = Ladle::Server.new(
       quiet: false,
-      ldif: Rails.root.join('spec/fixtures/tufts_ldap.ldif')
+      ldif: Rails.root.join('spec', 'fixtures', 'tufts_ldap.ldif')
     ).start
 
     @ldap_running = true

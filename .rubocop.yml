@@ -56,9 +56,24 @@ Style/Documentation:
     - lib/**/*
     - spec/**/*
     - config/**/*
+Lint/UnusedMethodArgument:
+  Exclude:
+    - app/controllers/application_controller.rb
 Layout/LineLength:
   Exclude:
     - config/**/*
+Rails/ApplicationRecord:
+  Exclude:
+    - app/models/spotlight/*
+Rails/FilePath:
+  Exclude:
+    - lib/tasks/test.rake
+Rails/Output:
+  Exclude:
+      - lib/tufts/hostname_fixer.rb
 RSpec/ExampleLength:
   Exclude:
+    - spec/features/feature_page_customizations_spec.rb
+    - spec/features/sir_trevor_customizations_spec.rb
     - spec/features/tdl_ingest_spec.rb
+    - spec/features/view_customizations_spec.rb

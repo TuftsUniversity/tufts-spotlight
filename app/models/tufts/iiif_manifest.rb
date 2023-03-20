@@ -15,7 +15,7 @@ module Tufts
     #   fields as facets in the current Spotlight setup.
     def manifest_metadata
       metadata = metadata_class.new(manifest).to_solr
-      return {} unless metadata.present?
+      return {} if metadata.blank?
 
       metadata.each_with_object({}) do |(key, value), hash|
         # Storing everything as potentially facetable for now.

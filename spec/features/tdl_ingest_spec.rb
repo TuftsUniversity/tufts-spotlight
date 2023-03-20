@@ -24,7 +24,7 @@ feature 'TDL ingest' do
     FactoryBot.create(:tufts_exhibit_admin, exhibit: exhibit)
   end
 
-  before(:each) do
+  before do
     sign_in(exhibit_admin)
     visit(spotlight.new_exhibit_resource_path(exhibit))
   end

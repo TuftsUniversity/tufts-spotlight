@@ -28,7 +28,7 @@ module SpotlightHelper
     url = field[:value].first
     text = link_text.empty? ? url : link_text
 
-    link_to(text, url, target: '_blank')
+    link_to(text, url, target: '_blank', rel: 'noopener')
   end
 
   ##

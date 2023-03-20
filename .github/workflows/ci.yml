@@ -96,11 +96,11 @@ jobs:
     #   env:
     #     RAILS_ENV: test
     #     TMPDIR: /tmp
-    # - name: Run tests
-    #   run: bundle exec rake spec
-    #   env:
-    #     RAILS_ENV: test
-    #     TMPDIR: /tmp
+    - name: Run tests
+      run: xvfb-run -a bundle exec rake tufts:spec
+      env:
+        RAILS_ENV: test
+        TMPDIR: /tmp
     # - name: Coveralls
     #   uses: coverallsapp/github-action@master
     #   with:

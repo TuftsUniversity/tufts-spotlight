@@ -87,12 +87,12 @@ module Tufts
         end
 
         block['data']['item'].each do |_, item|
-          if !item['full_image_url'].nil? && !item['full_image_url'].empty?
+          if item['full_image_url'].present?
             puts "#{item['full_image_url']} is an upload."
             next
           end
 
-          unless item['iiif_tilesource'].present?
+          if item['iiif_tilesource'].blank?
             puts "#{item['id']} has no tilesource - #{item['iiif_tilesource']}"
             next
           end
@@ -143,7 +143,7 @@ module Tufts
     ##
     # Map file location.
     def self.solr_map_file
-      "#{Rails.root}/tmp/fix_iiif.json"
+      Rails.root.join('tmp', 'fix_iiif.json')
     end
 
     ##
@@ -151,7 +151,7 @@ module Tufts
     # @param {json} block
     #   The data of a single Sir Trevor Block
     def self.no_items?(block)
-      block['data'].nil? || block['data'].empty? || block['data']['item'].nil? || block['data']['item'].empty?
+      block['data'].blank? || block['data']['item'].blank?
     end
 
     # Blocks that don't have images.

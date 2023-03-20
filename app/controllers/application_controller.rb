@@ -21,6 +21,6 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from DeviseLdapAuthenticatable::LdapException do |exception|
-    render text: exception, status: 500
+    render text: exception, status: :internal_server_error
   end
 end
