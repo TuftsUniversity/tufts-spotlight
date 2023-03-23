@@ -32,7 +32,7 @@ module Tufts
                          'You may need to wait a second and reload the page to see your items.'
       end
 
-      flash[:error] = "There was an error with the following ids -- #{bad_ids.join(' -- ') unless bad_ids.empty?}"
+      flash[:error] = "There was an error with the following ids -- #{bad_ids.join(' -- ')}" unless bad_ids.empty?
 
       redirect_to spotlight.admin_exhibit_catalog_path(@resource.exhibit)
     end
