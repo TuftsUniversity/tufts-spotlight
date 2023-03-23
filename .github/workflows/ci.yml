@@ -80,10 +80,6 @@ jobs:
     #   run: |
     #     bundle exec rake hydra:test_server &
     #     sleep 210
-    # - name: Rubbocop
-    #  run: echo test # bundle exec rubocop
-    #  env:
-    #     RAILS_ENV: test
     - name: Rubocop
       run: bundle exec rubocop
       env:
@@ -91,17 +87,12 @@ jobs:
     - name: Compile assets
       run: |
          bundle exec rails assets:precompile &> /dev/null
-    # - name: Run tests
-    #   run: xvfb-run -a bundle exec rake tufts:spec
-    #   env:
-    #     RAILS_ENV: test
-    #     TMPDIR: /tmp
     - name: Run tests
       run: xvfb-run -a bundle exec rake tufts:spec
       env:
         RAILS_ENV: test
         TMPDIR: /tmp
-    # - name: Coveralls
-    #   uses: coverallsapp/github-action@master
-    #   with:
-    #     github-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
