@@ -14,12 +14,10 @@ jobs:
     env:
       NOKOGIRI_USE_SYSTEM_LIBRARIES: true
       DEFAULT_ADMIN_SET: 'default'
-      # DATABASE_AUTH: true
       DATA_STORAGE: ./public
       TEMP_STORAGE: ./public
       ALLOW_NOTIFICATIONS: true
       DB_NAME: spotlight_test
-      # DB_USER: root
       DB_USERNAME: root
       DB_PASSWORD: root
       RAILS_MAX_THREADS: 5
@@ -76,10 +74,6 @@ jobs:
         bundle exec rake db:migrate --trace
       env:
         RAILS_ENV: test
-    # - name: Setup hyrax test environment
-    #   run: |
-    #     bundle exec rake hydra:test_server &
-    #     sleep 210
     - name: Rubocop
       run: bundle exec rubocop
       env:
