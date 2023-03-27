@@ -14,6 +14,7 @@ Rails.application.configure do
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
+  config.active_record.yaml_column_permitted_classes = [Symbol, Hash, HashWithIndifferentAccess]
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
