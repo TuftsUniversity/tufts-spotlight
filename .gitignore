@@ -36,3 +36,5 @@ public/assets
 
 .env
 coverage/**
+
+.DS_Store
