@@ -10,6 +10,8 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
+  # This resolves an issue loading symbols causing pysch disallowed class error
+  # Check out https://discuss.rubyonrails.org/t/cve-2022-32224-possible-rce-escalation-bug-with-serialized-columns-in-active-record/81017
   config.active_record.yaml_column_permitted_classes = [Symbol, Hash, HashWithIndifferentAccess]
 
   # Show full error reports and disable caching.

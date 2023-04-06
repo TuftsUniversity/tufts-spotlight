@@ -42,7 +42,7 @@ feature 'Feature Page customizations' do
     sign_in(exhibit_admin)
   end
 
-  scenario "In menu' checkbox exists in form, and sets value in db" do
+  scenario "'In menu' checkbox exists in form, and sets value in db" do
     visit(spotlight.edit_exhibit_feature_page_path(exhibit, visible_page))
 
     expect(Spotlight::FeaturePage.find(visible_page.id).in_menu).to be(true)

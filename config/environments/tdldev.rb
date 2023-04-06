@@ -7,6 +7,8 @@ Rails.application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
+  # This resolves an issue loading symbols causing pysch disallowed class error
+  # Check out https://discuss.rubyonrails.org/t/cve-2022-32224-possible-rce-escalation-bug-with-serialized-columns-in-active-record/81017
   config.active_record.yaml_column_permitted_classes = [Symbol, Hash, HashWithIndifferentAccess]
   # Do not eager load code on boot.
   config.eager_load = false
