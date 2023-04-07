@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 tufts_settings = Tufts::Settings.load
 
 FactoryBot.define do

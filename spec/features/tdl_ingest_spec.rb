@@ -1,18 +1,19 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'webdrivers/chromedriver'
-include FeatureMacros
 
-
-feature "TDL ingest" do
-#  before { skip("Tests ready, but need TDL migration to prod finished. TravisCI can't connect to dev.") }
+feature 'TDL ingest' do
+  include FeatureMacros
+  #  before { skip('Tests ready, but need TDL migration to prod finished. TravisCI can't connect to dev.') }
 
   let(:ids) do
-   ids = [
-     "4b29bg82c",
-     "3x816x422",
-     "8336hb39g",
-     "dv140335h"
-   ]
+    %w[
+      4b29bg82c
+      3x816x422
+      8336hb39g
+      dv140335h
+    ]
   end
 
   let(:exhibit) do
@@ -23,7 +24,7 @@ feature "TDL ingest" do
     FactoryBot.create(:tufts_exhibit_admin, exhibit: exhibit)
   end
 
-  before(:each) do
+  before do
     sign_in(exhibit_admin)
     visit(spotlight.new_exhibit_resource_path(exhibit))
   end
@@ -32,64 +33,63 @@ feature "TDL ingest" do
     clean_solr
   end
 
-  scenario "Valid id submission" do
-    expect {
-      within("#new_resources_tdl") do
-        all("input").first.set(ids[0])
-        click_button("Import Objects")
+  scenario 'Valid id submission' do
+    expect do
+      within('#new_resources_tdl') do
+        all('input').first.set(ids[0])
+        click_button('Import Objects')
       end
-    }.to change(Tufts::TdlResource, :count).by(1)
+    end.to change(Tufts::TdlResource, :count).by(1)
 
     expect(current_path).to eq(spotlight.admin_exhibit_catalog_path(exhibit))
-    expect(page).to have_content("Successfully created 1 record.")
+    expect(page).to have_content('Successfully created 1 record.')
   end
 
-  scenario "Invalid id submission" do
-    expect {
-      within("#new_resources_tdl") do
-        all("input").first.set("boo")
-        click_button("Import Objects")
+  scenario 'Invalid id submission' do
+    expect do
+      within('#new_resources_tdl') do
+        all('input').first.set('boo')
+        click_button('Import Objects')
       end
-    }.to change(Tufts::TdlResource, :count).by(0)
+    end.to change(Tufts::TdlResource, :count).by(0)
 
     expect(current_path).to eq(spotlight.admin_exhibit_catalog_path(exhibit))
-    expect(page).to have_content("There was an error with the following ids -- boo")
-  end # End Invalid PID submission
+    expect(page).to have_content('There was an error with the following ids -- boo')
+  end
 
-  scenario "'Three More Fields' button adds fields, up to 15", js: true do
+  scenario "Three More Fields' button adds fields, up to 15", js: true do
     click_on('Tufts Digital Library Object')
 
-    within("#new_resources_tdl") do
-      expect(all('input[type="text"]').length).to eq(1)
-      click_button("Three More Fields")
-      expect(all('input[type="text"]').length).to eq(4)
+    within('#new_resources_tdl') do
+      expect(all("input[type='text']").length).to eq(1)
+      click_button('Three More Fields')
+      expect(all("input[type='text']").length).to eq(4)
       4.times do
-        click_button("Three More Fields")
+        click_button('Three More Fields')
       end
-      expect(all('input[type="text"]').length).to eq(16)
+      expect(all("input[type='text']").length).to eq(16)
     end
   end
 
-  scenario "Combining valid ids, invalid ids, and blank fields.", js: true do
+  scenario 'Combining valid ids, invalid ids, and blank fields.', js: true do
     click_on('Tufts Digital Library Object')
 
-    expect {
-      within("#new_resources_tdl") do
-        3.times { click_button("Three More Fields") }
-        inputs = all('input[type="text"]')
+    expect do
+      within('#new_resources_tdl') do
+        3.times { click_button('Three More Fields') }
+        inputs = all("input[type='text']")
         inputs[0].set(ids[0])
         inputs[1].set(ids[1])
-        inputs[3].set("garbage")
+        inputs[3].set('garbage')
         inputs[5].set(ids[2])
-        inputs[6].set("moregarbage")
+        inputs[6].set('moregarbage')
         inputs[7].set(ids[3])
-        click_button("Import Objects")
+        click_button('Import Objects')
       end
-    }.to change(Tufts::TdlResource, :count).by(4)
+    end.to change(Tufts::TdlResource, :count).by(4)
 
     expect(current_path).to eq(spotlight.admin_exhibit_catalog_path(exhibit))
-    expect(page).to have_content("Successfully created 4 records.")
-    expect(page).to have_content("There was an error with the following ids -- garbage -- moregarbage")
-  end # End Ingesting a record
-
+    expect(page).to have_content('Successfully created 4 records.')
+    expect(page).to have_content('There was an error with the following ids -- garbage -- moregarbage')
+  end
 end

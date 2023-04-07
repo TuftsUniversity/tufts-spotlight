@@ -1,4 +1,6 @@
-#@file
+# frozen_string_literal: true
+
+# @file
 # View helpers for in_menu behavior
 
 module InMenuBehavior
@@ -12,4 +14,3 @@ module InMenuBehavior
     end
   end
 end
-

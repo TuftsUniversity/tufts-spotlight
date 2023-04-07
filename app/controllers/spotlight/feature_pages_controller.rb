@@ -1,4 +1,6 @@
-#@file
+# frozen_string_literal: true
+
+# @file
 # Monkey Patches for Feature Pages Controller
 
 require_dependency Spotlight::Engine.root.join('app', 'controllers', 'spotlight', 'feature_pages_controller').to_s
@@ -8,4 +10,3 @@ module Spotlight
     include InMenuBehavior::FeaturePagesControllerPatch
   end
 end
-

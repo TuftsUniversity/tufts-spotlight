@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :tufts do
   desc 'Fixes bad IIIF urls in Tufts::TdlResources'
   task fix_tdl_resources: :environment do

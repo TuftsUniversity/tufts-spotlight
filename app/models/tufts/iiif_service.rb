@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Tufts
   class IiifService < Spotlight::Resources::IiifService
-
     ##
     # @function
     # Overrides Spotlight::Resources::IiifService.create_iiif_manifest

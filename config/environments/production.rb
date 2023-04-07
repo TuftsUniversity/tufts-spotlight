@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -12,6 +14,9 @@ Rails.application.configure do
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
+  # This resolves an issue loading symbols causing pysch disallowed class error
+  # Check out https://discuss.rubyonrails.org/t/cve-2022-32224-possible-rce-escalation-bug-with-serialized-columns-in-active-record/81017
+  config.active_record.yaml_column_permitted_classes = [Symbol, Hash, HashWithIndifferentAccess]
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
@@ -32,7 +37,7 @@ Rails.application.configure do
   ## Remove?
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
-  #config.assets.digest = true
+  # config.assets.digest = true
   ##
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
@@ -57,7 +62,7 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
@@ -76,16 +81,16 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   ## Remove?
-  #config.action_mailer.default_url_options = { host: 'spotlightweb-prod-01.uit.tufts.edu' }
+  # config.action_mailer.default_url_options = { host: 'spotlightweb-prod-01.uit.tufts.edu' }
 
-  #config.action_mailer.smtp_settings = {
+  # config.action_mailer.smtp_settings = {
   #  :address => "smtp.tufts.edu",
   #  :port => 25,
-  #}
+  # }
 
-  #config.action_mailer.default_options = {
+  # config.action_mailer.default_options = {
   #  from: "spotlight_do_not_reply@tufts.edu"
-  #}
+  # }
   ##
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
@@ -98,8 +103,8 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
+    logger           = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end

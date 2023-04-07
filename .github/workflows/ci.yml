@@ -27,7 +27,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby-version: ['2.6']
+        ruby-version: ['2.7']
         experimental: [false]
         # include:
         #  - ruby-version: 2.6
@@ -45,7 +45,7 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby-version }}
-        bundler: "1.17.3"
+        bundler: "2.3.26"
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Update rubygems
       run: |
@@ -70,11 +70,14 @@ jobs:
         cp config/tufts.yml.sample config/tufts.yml
     - name: Create database
       run: |
-        RAILS_ENV=test bundle exec rake db:create
-        RAILS_ENV=test bundle exec rake db:migrate --trace
-    #- name: Rubbocop
-    #  run: |
-    #    bundle exec rubocop
+        bundle exec rake db:create
+        bundle exec rake db:migrate --trace
+      env:
+        RAILS_ENV: test
+    - name: Rubocop
+      run: bundle exec rubocop
+      env:
+        RAILS_ENV: test
     - name: Compile assets
       run: |
          bundle exec rails assets:precompile &> /dev/null

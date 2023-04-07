@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Tufts
   ##
   # @class
@@ -26,7 +28,7 @@ module Tufts
         resource.reindex
         sleep(2)
         fix_sidecars(resource)
-      rescue
+      rescue StandardError
         puts "#{resource.url} doesn't match #{old_host}"
       end
     end
@@ -39,12 +41,12 @@ module Tufts
     # @param #{Tufts::TdlResource} resource
     #   The resource to fix.
     def self.fix_sidecars(resource)
-      puts "\n------- Fixing Sidecar -------"
+      puts '\n------- Fixing Sidecar -------'
       all_sidecars = resource.solr_document_sidecars
-        .where(exhibit_id: resource.exhibit_id)
-        .sort_by(&:created_at)
+                             .where(exhibit_id: resource.exhibit_id)
+                             .sort_by(&:created_at)
 
-      if(all_sidecars.count != 2)
+      if all_sidecars.count != 2
         puts "#{resource.id} has #{all_sidecars.count} sidecars!"
         return
       end
@@ -77,27 +79,27 @@ module Tufts
 
       blocks = JSON.parse(page.content.to_s)
       blocks['data'].each do |block|
-        next if(ignore_blocks.include?(block['type']))
+        next if ignore_blocks.include?(block['type'])
 
-        if(no_items?(block))
+        if no_items?(block)
           puts "No items: #{block['data']['item']}"
           next
         end
 
         block['data']['item'].each do |_, item|
-          if(!item['full_image_url'].nil? &&  !item['full_image_url'].empty?)
+          if item['full_image_url'].present?
             puts "#{item['full_image_url']} is an upload."
             next
           end
 
-          if(!item['iiif_tilesource'].present?)
+          if item['iiif_tilesource'].blank?
             puts "#{item['id']} has no tilesource - #{item['iiif_tilesource']}"
             next
           end
 
-          if(item['iiif_tilesource'].include?(old_host))
+          if item['iiif_tilesource'].include?(old_host)
             fix_item(item, old_host)
-          elsif(item['iiif_tilesource'].include?(other_host))
+          elsif item['iiif_tilesource'].include?(other_host)
             fix_item(item, other_host)
           else
             puts "#{item['id']}'s tilesource doesn't match  - #{item['iiif_tilesource']}"
@@ -109,83 +111,80 @@ module Tufts
       page.save
     end
 
-    private
+    ##
+    # Fix page item
+    #
+    # @param {hash} item
+    def self.fix_item(item, old_url)
+      puts "Fixing #{item['id']} - #{item['iiif_tilesource']}"
+      new_solr_id = @solr_map[item['id']]
+      item['id'] = new_solr_id
+      item['iiif_tilesource'][old_url] = new_host
+      item['iiif_manifest_url'][old_url] = new_host
+      item['iiif_canvas_id'][old_url] = new_host
+    rescue StandardError
+      byebug
+    end
 
-      ##
-      # Fix page item
-      #
-      # @param {hash} item
-      def self.fix_item(item, old_url)
-        begin
-          puts "Fixing #{item['id']} - #{item['iiif_tilesource']}"
-          new_solr_id = @solr_map[item['id']]
-          item['id'] = new_solr_id
-          item['iiif_tilesource'][old_url]  = new_host
-          item['iiif_manifest_url'][old_url]  = new_host
-          item['iiif_canvas_id'][old_url]  = new_host
-        rescue StandardError
-          byebug
-        end
-      end
+    ##
+    # Write solr_map to a tmp file.
+    def self.save_solr_map
+      f = File.open(solr_map_file, 'w+')
+      f.write(@solr_map.to_json)
+      f.close
+    end
 
-      ##
-      # Write solr_map to a tmp file.
-      def self.save_solr_map
-        f = File.open(solr_map_file, 'w+')
-        f.write(@solr_map.to_json)
-        f.close
-      end
+    ##
+    # Read the solr_map file into a hash.
+    def self.load_solr_map
+      @solr_map = JSON.parse(File.read(solr_map_file))
+    end
 
-      ##
-      # Read the solr_map file into a hash.
-      def self.load_solr_map
-        @solr_map = JSON.parse(File.read(solr_map_file))
-      end
+    ##
+    # Map file location.
+    def self.solr_map_file
+      Rails.root.join('tmp', 'fix_iiif.json')
+    end
 
-      ##
-      # Map file location.
-      def self.solr_map_file
-        "#{Rails.root}/tmp/fix_iiif.json"
-      end
+    ##
+    # SirTrevorBlock has no items?
+    # @param {json} block
+    #   The data of a single Sir Trevor Block
+    def self.no_items?(block)
+      block['data'].blank? || block['data']['item'].blank?
+    end
 
-      ##
-      # SirTrevorBlock has no items?
-      # @param {json} block
-      #   The data of a single Sir Trevor Block
-      def self.no_items?(block)
-        block['data'].nil? || block['data'].empty? || block['data']['item'].nil? || block['data']['item'].empty?
-      end
+    # Blocks that don't have images.
+    def self.ignore_blocks
+      %w[
+        text
+        heading
+        rule
+        quote
+        featured_pages
+        iframe
+        list
+        browse
+      ]
+    end
 
-      # Blocks that don't have images.
-      def self.ignore_blocks
-        [
-          "text",
-          "heading",
-          "rule",
-          "quote",
-          "featured_pages",
-          "iframe",
-          "list",
-          "browse"
-        ]
-      end
+    def self.old_host
+      'tdl-prod-01.uit.tufts.edu'
+    end
 
-      ##
-      # The old hostname.
-      def self.old_host
-        'tdl-prod-01.uit.tufts.edu'
-      end
+    ##
+    # The old hostname.
+    def self.new_host
+      'dl.tufts.edu'
+    end
 
-      ##
-      # The old hostname.
-      def self.new_host
-        'dl.tufts.edu'
-      end
+    ##
+    # Another old hostname.
+    def self.other_host
+      'dl1.tufts.edu'
+    end
 
-      ##
-      # Another old hostname.
-      def self.other_host
-        'dl1.tufts.edu'
-      end
+    private_class_method :fix_item, :save_solr_map, :load_solr_map, :solr_map_file,
+                         :no_items?, :ignore_blocks, :old_host, :new_host, :other_host
   end
 end

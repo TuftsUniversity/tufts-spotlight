@@ -1,4 +1,6 @@
-# A sample Guardfile
+# frozen_string_literal: true
+
+# A   rails =sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
 ## Uncomment and set this to only include directories you want to watch
@@ -15,7 +17,7 @@
 #
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
 
-# Note: The cmd option is now required due to the increasing number of ways
+# NOTE: The cmd option is now required due to the increasing number of ways
 #       rspec may be run, below are examples of the most common uses.
 #  * bundler: 'bundle exec rspec'
 #  * bundler binstubs: 'bin/rspec'
@@ -24,8 +26,8 @@
 #  * zeus: 'zeus rspec' (requires the server to be started separately)
 #  * 'just' rspec: 'rspec'
 
-guard :rspec, cmd: "spring rspec" do
-  require "guard/rspec/dsl"
+guard :rspec, cmd: 'spring rspec' do
+  require 'guard/rspec/dsl'
   dsl = Guard::RSpec::Dsl.new(self)
 
   # Feel free to open issues for suggestions and improvements
@@ -41,7 +43,7 @@ guard :rspec, cmd: "spring rspec" do
   dsl.watch_spec_files_for(ruby.lib_files)
 
   # Rails files
-  rails = dsl.rails(view_extensions: %w(erb haml slim))
+  rails = dsl.rails(view_extensions: %w[erb haml slim])
   dsl.watch_spec_files_for(rails.app_files)
   dsl.watch_spec_files_for(rails.views)
 
@@ -65,14 +67,17 @@ guard :rspec, cmd: "spring rspec" do
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$}) do |m|
-    Dir[File.join("**/#{m[1]}.feature")][0] || "spec/acceptance"
+    Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance'
   end
 
-  #Changes to the page model should also call the feature pages customizations spec.
-  watch(%r{^lib/in_menu_behavior/.+}) { rspec.spec.call("features/feature_page_customizations") }
-  watch('app/models/spotlight/page.rb') { rspec.spec.call("features/feature_page_customizations") }
-  watch('app/controllers/spotlight/feature_pages_controller.rb') { rspec.spec.call("features/feature_page_customizations") }
-  watch(%r{^app/views/spotlight/feature_pages/.+}) { rspec.spec.call("features/feature_page_customizations") }
-  watch('app/views/shared/_curated_features_navbar.html.erb') { rspec.spec.call("features/feature_page_customizations") }
-
+  # Changes to the page model should also call the feature pages customizations spec.
+  watch(%r{^lib/in_menu_behavior/.+}) { rspec.spec.call('features/feature_page_customizations') }
+  watch('app/models/spotlight/page.rb') { rspec.spec.call('features/feature_page_customizations') }
+  watch('app/controllers/spotlight/feature_pages_controller.rb') do
+    rspec.spec.call('features/feature_page_customizations')
+  end
+  watch(%r{^app/views/spotlight/feature_pages/.+}) { rspec.spec.call('features/feature_page_customizations') }
+  watch('app/views/shared/_curated_features_navbar.html.erb') do
+    rspec.spec.call('features/feature_page_customizations')
+  end
 end

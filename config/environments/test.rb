@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -11,11 +13,14 @@ Rails.application.configure do
   # just for the purpose of running a single test. If you are using a tool that
   # preloads Rails for running tests, you may have to set it to true.
   config.eager_load = false
+  # This resolves an issue loading symbols causing pysch disallowed class error
+  # Check out https://discuss.rubyonrails.org/t/cve-2022-32224-possible-rce-escalation-bug-with-serialized-columns-in-active-record/81017
+  config.active_record.yaml_column_permitted_classes = [Symbol, Hash, HashWithIndifferentAccess]
 
   # Configure static file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true
   config.public_file_server.headers = {
-      'Cache-Control' => 'public, max-age=3600'
+    'Cache-Control' => 'public, max-age=3600'
   }
 
   # Show full error reports and disable caching.

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ##
 # Global Spotlight helpers
 module SpotlightHelper
@@ -10,13 +12,11 @@ module SpotlightHelper
   # @param {String} text
   #   The text to cut.
   def abbrev_field(text)
-    if(text.length <= 140)
-      return text
-    end
+    return text if text.length <= 140
 
     # Using 110 and 100 as ranges because little point in cutting a single word off.
     last_space_within_range = text.slice(0..125).rindex(/\s/)
-    text.slice(0..last_space_within_range) + "  . . ."
+    "#{text.slice(0..last_space_within_range)}  . . ."
   end
 
   ##
@@ -28,7 +28,7 @@ module SpotlightHelper
     url = field[:value].first
     text = link_text.empty? ? url : link_text
 
-    link_to(text, url, target: '_blank')
+    link_to(text, url, target: '_blank', rel: 'noopener')
   end
 
   ##
