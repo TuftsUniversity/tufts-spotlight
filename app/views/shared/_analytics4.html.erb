@@ -1,0 +1,10 @@
+<% if Rails.env.production? %>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RNX4KV6B5Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RNX4KV6B5Y');
+</script>
+<% end %>
