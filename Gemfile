@@ -46,6 +46,10 @@ gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 
 gem 'devise_ldap_authenticatable'
 
+# shib login
+gem 'omniauth', '1.9.1'
+gem 'omniauth-shibboleth'
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '>= 3.3.0'

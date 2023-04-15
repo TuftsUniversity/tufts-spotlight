@@ -26,10 +26,11 @@
             </li>
             <li class="divider"></li>
           <% end %>
-
-          <li>
-            <%= link_to t('spotlight.header_links.logout'), main_app.destroy_user_session_path %>
-          </li>
+          <% if Rails.env.production? || Rails.env.tdldev? %>
+            <li><%= link_to t("hyrax.toolbar.profile.logout"), "#{request.base_url}/Shibboleth.sso/Logout?return=#{request.base_url}/sign_out" %> </li>
+          <% else %>
+            <li><%= link_to t("hyrax.toolbar.profile.logout"), main_app.destroy_user_session_path %></li>
+          <% end %>
         </ul>
       </li>
     <% end %>

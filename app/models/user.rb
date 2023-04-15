@@ -5,6 +5,20 @@ class User < ApplicationRecord
   attr_accessible :email, :password, :password_confirmation if Blacklight::Utils.needs_attr_accessible?
   # Connects this user object to Blacklights Bookmarks.
   include Blacklight::User
+
+  if Rails.env.development? || Rails.env.test?
+    # Include default devise modules. Others available are:
+    # :confirmable, :lockable, :timeoutable and :omniauthable
+    # Removed :recoverable and :registerable to eliminate unwanted links on login page
+    devise :invitable, :ldap_authenticatable,
+         :trackable, :validatable
+    # copied devise,think through these modules and there differeneces.
+    # devise :ldap_authenticatable, :registerable,
+    #         :recoverable, :rememberable, :trackable, :validatable
+  else
+    devise_modules = [:omniauthable, :rememberable, :trackable, omniauth_providers: [:shibboleth], authentication_keys: [:username]]
+    devise(*devise_modules)
+  end
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # Removed :recoverable and :registerable to eliminate unwanted links on login page
@@ -23,5 +37,23 @@ class User < ApplicationRecord
   def ldap_before_save
     self.email = Devise::LDAP::Adapter.get_ldap_param(username, 'mail').first
   end
-  ##
+
+  # allow omniauth (including shibboleth) logins
+  #   this will create a local user based on an omniauth/shib login
+  #   if they haven't logged in before
+  def self.from_omniauth(auth)
+    logger.warn "Finding omni user auth:: #{auth}"
+    user = find_by(username: auth[:uid])
+    if user.nil?
+      user = User.create(
+        email: auth[:mail],
+        username: auth[:uid]
+      )
+    else
+      user.username = auth[:uid]
+      user.email = auth[:mail]
+      user.save
+    end
+    user
+  end
 end

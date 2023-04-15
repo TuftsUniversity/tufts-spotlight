@@ -37,6 +37,7 @@ Metrics/ClassLength:
     - lib/tufts/hostname_fixer.rb
 Metrics/MethodLength:
   Exclude:
+    - app/controllers/omniauthcallbacks_controller.rb
     - app/controllers/tufts/tdl_resources_controller.rb
     - app/models/tufts/iiif_manifest.rb
     - lib/tufts/hostname_fixer.rb
@@ -77,3 +78,9 @@ RSpec/ExampleLength:
     - spec/features/sir_trevor_customizations_spec.rb
     - spec/features/tdl_ingest_spec.rb
     - spec/features/view_customizations_spec.rb
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - development
+    - test
+    - tdldev
