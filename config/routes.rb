@@ -14,7 +14,18 @@ Rails.application.routes.draw do
     concerns :searchable
   end
 
-  devise_for :users
+  if Rails.env.production? || Rails.env.tdldev?
+    devise_for :users, controllers: { omniauth_callbacks: "omniauthcallbacks" }, skip: [:sessions]
+    devise_scope :user do
+      get 'users/sign_in', to: 'omniauth#new'
+      post 'sign_in', to: 'omniauth#new', as: :new_user_session
+      post 'sign_in', to: 'omniauth_callbacks#shibboleth', as: :new_session
+      get 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
+    end
+  else
+    devise_for :users
+  end
+
   concern :exportable, Blacklight::Routes::Exportable.new
 
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
