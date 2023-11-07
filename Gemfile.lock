@@ -139,9 +139,10 @@ GEM
       rubocop-performance
       rubocop-rails
       rubocop-rspec
-    blacklight (7.24.0)
+    blacklight (7.26.1)
       deprecation
       globalid
+      hashdiff
       i18n (>= 1.7.0)
       jbuilder (~> 2.7)
       kaminari (>= 0.15)
@@ -263,6 +264,7 @@ GEM
       execjs (~> 2.0)
       sprockets (>= 2.0.0)
       tilt (>= 1.2)
+    hashdiff (1.0.1)
     hashie (5.0.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
@@ -599,7 +601,7 @@ PLATFORMS
 
 DEPENDENCIES
   bixby (= 3.0.2)
-  blacklight (= 7.24.0)
+  blacklight (= 7.26.1)
   blacklight-gallery
   blacklight-oembed
   blacklight-spotlight!

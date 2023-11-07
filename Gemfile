@@ -27,7 +27,8 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'blacklight', '7.24.0'
+# from 7.24 to 7.26 to fix  uninitialized constant Blacklight::Utils (NameError)
+gem 'blacklight', '7.26.1'
 # this version is a guess come back ad decide this
 # First verison v3.4.0 that supports Rails 7
 # https://github.com/projectblacklight/spotlight/releases
