@@ -7,10 +7,7 @@ class ApplicationController < ActionController::Base
   include Blacklight::Controller
   include Spotlight::Controller
 
-  layout 'blacklight'
-
-  # Removes annoying deprecation notice. Can be removed when upgrading to Blacklight 7.0
-  skip_after_action :discard_flash_if_xhr
+  layout :determine_layout if respond_to? :layout
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

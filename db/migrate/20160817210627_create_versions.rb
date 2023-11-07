@@ -16,7 +16,8 @@ class CreateVersions < ActiveRecord::Migration[5.1]
   TEXT_BYTES = 1_073_741_823
 
   def change
-    create_table :versions, versions_table_options do |t|
+    # this is probabbly bad, but I am removing ", versions_table_options" from below
+    create_table :versions do |t|
       t.string   :item_type, item_type_options
       t.integer  :item_id,   null: false
       t.string   :event,     null: false
