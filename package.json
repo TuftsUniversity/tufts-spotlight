@@ -1,0 +1,15 @@
+{
+  "name": "spotlight",
+  "private": true,
+  "repository": "git@github.com:projectblacklight/spotlight.git",
+  "scripts": {
+    "install-uv": "yarn install --modules-folder ./public/uv"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-methods": "^7.18.6"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "universalviewer": "^3.0.16"
+  }
+}

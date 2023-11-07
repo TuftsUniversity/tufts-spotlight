@@ -1,0 +1,23 @@
+<div class="blue-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <%= link_to image_tag('tuftsuniversity.png', :alt => 'Go to tufts.edu'), "http://www.tufts.edu" %>
+      </div>
+
+      <div class="row pull-right col-md-3">
+
+        <ul class="nav navbar-nav">
+          <% unless user_signed_in? %>
+            <% if Rails.env.production? || Rails.env.stage? %>
+              <li><%= link_to t('blacklight.header_links.login'), user_shibboleth_omniauth_authorize_path, method: :post %></li>
+            <% else %>
+              <li><%= link_to t('blacklight.header_links.login'), main_app.new_user_session_path, method: :post %></li>
+            <% end %>
+          <% end %>
+          <!-- sign out in _user_util_links.html.erb -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

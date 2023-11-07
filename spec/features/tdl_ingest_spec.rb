@@ -79,6 +79,8 @@ feature 'TDL ingest' do
         3.times { click_button('Three More Fields') }
         inputs = all("input[type='text']")
         inputs[0].set(ids[0])
+        # NOTE: 3x816x422 is no longer a valid id. Need to figure out why
+        # This stopped being an issue so I am leaving the comment for later.
         inputs[1].set(ids[1])
         inputs[3].set('garbage')
         inputs[5].set(ids[2])

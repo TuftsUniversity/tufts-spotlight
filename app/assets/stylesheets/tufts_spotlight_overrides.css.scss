@@ -52,7 +52,15 @@ hr {
   color: #FEFEFA;
 }
 
+masthead .h1 {
+  color: #FEFEFA;
+}
+
 #header-navbar .navbar-brand {
+  background-image: asset-url($logo_image);
+}
+
+.navbar .container .navbar-brand {
   background-image: asset-url($logo_image);
 }
 
@@ -63,16 +71,26 @@ hr {
   }
 }
 
-.navbar-inverse {
-  background-color: $light_tufts_blue;
+.topbar {
+  background-color: $light_tufts_blue !important;
+}
 
-  .navbar-brand {
-    padding-top: 10px;
-    margin-top: 10px;
-  }
+.navbar-brand {
+  padding-top: 10px;
+  margin-top: 10px;
+}
 
+/** Navbrand image feels like it crowds to bottom of the nav bar. **/
+.navbar .container {
+  padding-bottom: 5px;
+}
+
+.topbar .container .navbar-collapse {
   .navbar-nav > li > a {
     color: #FFF;
+    /** this should realy be a pr3 pl3 class but it is hidden away on an "action"**/
+    padding-left: 10px;
+    padding-right: 10px;
 
     &:hover {
       color: #FFF;
@@ -80,6 +98,13 @@ hr {
     }
   }
 }
+
+.sidenav > li {
+  &:hover {
+    background-color: #e8e3e7;
+  }
+}
+
 
 .site-title small {
   white-space: normal;
