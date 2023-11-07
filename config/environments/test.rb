@@ -14,6 +14,10 @@ Rails.application.configure do
   # preloads Rails for running tests, you may have to set it to true.
   config.eager_load = false
 
+  # This resolves an issue loading symbols causing pysch disallowed class error
+  # Check out https://discuss.rubyonrails.org/t/cve-2022-32224-possible-rce-escalation-bug-with-serialized-columns-in-active-record/81017
+  # config.active_record.yaml_column_permitted_classes += [Symbol, Hash, HashWithIndifferentAccess]
+
   # Configure static file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true
   config.public_file_server.headers = {
@@ -44,4 +48,8 @@ Rails.application.configure do
 
   # Temp Understand this line more fully/ put it in dev and prod
   config.active_record.legacy_connection_handling = false
+
+  config.after_initialize do
+    config.active_record.yaml_column_permitted_classes = [Symbol, Hash, HashWithIndifferentAccess]
+  end
 end
