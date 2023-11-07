@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2'
+gem 'rails', '7.0.2'
 # Use sqlite3 as the database for Active Record
 gem 'mysql2'
 # Use SCSS for stylesheets
@@ -27,13 +27,17 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'blacklight', ' ~> 6.0'
-gem 'blacklight-spotlight', tag: 'v2.13.0', git: 'https://github.com/projectblacklight/spotlight.git'
+gem 'blacklight', '7.24.0'
+# this version is a guess come back ad decide this
+# First verison v3.4.0 that supports Rails 7
+# https://github.com/projectblacklight/spotlight/releases
+# First version v3.0.0 to supports Rails 6
+gem 'blacklight-spotlight', tag: 'v3.4.0', git: 'https://github.com/projectblacklight/spotlight.git'
 gem 'rsolr', '>= 1.0'
 gem 'solrizer'
 
-gem 'blacklight-gallery', '>= 0.3.0'
-gem 'blacklight-oembed', '>= 0.1.0'
+gem 'blacklight-gallery'
+gem 'blacklight-oembed'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'devise_invitable'
