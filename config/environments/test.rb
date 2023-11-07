@@ -41,4 +41,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Temp Understand this line more fully/ put it in dev and prod
+  config.active_record.legacy_connection_handling = false
 end
