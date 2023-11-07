@@ -13,3 +13,50 @@
  *= require_tree .
  *= require_self
  */
+
+
+/* Bootstrap 3 Blue */
+/* I (Rayn Orlando) thought the new blue (from Bootstrap 4) did not go with the tufts blue */
+a {
+  color: #337ab7;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show >.nav-link {
+    background-color: #337ab7 !important;
+}
+
+.btn-primary {
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+
+.navbar-nav>.nav-link>a{
+  height: 100%;
+}
+
+/* overide bootstrap 4 margin so footer looks like a footer */
+body {
+    margin-bottom: 0 !important;
+}
+
+.navbar {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding: 0 !important;
+}
+.navbar .container {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+}
+
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.twitter-typeahead[style*="display: none"] {
+    display:none !important;
+}

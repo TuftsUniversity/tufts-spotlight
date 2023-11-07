@@ -41,3 +41,5 @@ coverage/**
 
 # ignore bundled assets
 vendor/
+
+public/uv/
