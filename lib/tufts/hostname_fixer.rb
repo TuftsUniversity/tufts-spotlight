@@ -9,7 +9,7 @@ module Tufts
     # Runs fix_tdl_resources on all resources.
     def self.fix_all_tdl_resources
       @solr_map = {}
-      Tufts::TdlResource.all.each { |r| fix_tdl_resource(r) }
+      Tufts::TdlResource.all.find_each { |r| fix_tdl_resource(r) }
       save_solr_map
     end
 
@@ -66,7 +66,7 @@ module Tufts
     # SolrDocuments and new IIIF urls.
     def self.fix_all_page_references
       load_solr_map
-      Spotlight::Page.all.each do |page|
+      Spotlight::Page.all.find_each do |page|
         fix_page_references(page)
       end
     end
