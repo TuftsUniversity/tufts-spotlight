@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 Rails.application.config.after_initialize do
-
   Riiif::Image.file_resolver = Spotlight::CarrierwaveFileResolver.new
 
   # Riiif::Image.authorization_service = IIIFAuthorizationService
