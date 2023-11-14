@@ -65,7 +65,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'bixby', '3.0.2'
+  gem 'bixby'
   gem 'byebug'
   gem 'rspec-rails', '~> 4' # Can update to 5.x after updating to Rails 6.x
   gem 'rubocop', require: false
