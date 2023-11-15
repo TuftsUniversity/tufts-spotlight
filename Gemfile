@@ -67,9 +67,9 @@ end
 group :development, :test do
   gem 'bixby'
   gem 'byebug'
-  gem 'rspec-rails' # , '~> 4' # Can update to 5.x after updating to Rails 6.x
+  gem 'rspec-rails'
   gem 'rubocop', require: false
-  gem 'solr_wrapper' # , '~> 2' # hi
+  gem 'solr_wrapper'
 end
 
 group :test do

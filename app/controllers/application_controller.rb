@@ -9,9 +9,6 @@ class ApplicationController < ActionController::Base
 
   layout 'blacklight'
 
-  # Removes annoying deprecation notice. Can be removed when upgrading to Blacklight 7.0
-  skip_after_action :discard_flash_if_xhr
-
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
