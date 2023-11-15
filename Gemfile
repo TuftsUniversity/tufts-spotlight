@@ -7,9 +7,9 @@ gem 'rails', '7.0.2'
 # Use sqlite3 as the database for Active Record
 gem 'mysql2'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails' # , '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier' # , '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 # gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -22,7 +22,7 @@ gem 'jquery-rails'
 # gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder' # , '~> 2.5'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -34,25 +34,25 @@ gem 'blacklight', '7.26.1'
 # https://github.com/projectblacklight/spotlight/releases
 # First version v3.0.0 to supports Rails 6
 gem 'blacklight-spotlight', tag: 'v3.4.0', git: 'https://github.com/projectblacklight/spotlight.git'
-gem 'rsolr', '>= 1.0'
+gem 'rsolr' # , '>= 1.0'
 gem 'solrizer'
 
 gem 'blacklight-gallery'
 gem 'blacklight-oembed'
 gem 'devise'
-gem 'devise-guests', '~> 0.6'
+gem 'devise-guests' # , '~> 0.6'
 gem 'devise_invitable'
 gem 'friendly_id'
 gem 'riiif'
 gem 'sitemap_generator'
 
-gem 'bootstrap-sass', '~> 3.0'
+gem 'bootstrap-sass' # , '~> 3.0'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 
 gem 'devise_ldap_authenticatable'
 
 # shib login
-gem 'omniauth', '1.9.1'
+gem 'omniauth' # , '1.9.1'
 gem 'omniauth-shibboleth'
 
 group :development do
