@@ -48,8 +48,6 @@ gem 'friendly_id'
 gem 'riiif'
 gem 'sitemap_generator'
 
-# Temp tryign to get assets to compile
-gem 'bootstrap-sass' , '3.4.1'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 
 gem 'devise_ldap_authenticatable'
