@@ -2,6 +2,8 @@
 
 source 'https://rubygems.org'
 
+ruby '3.2.2'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '7.0.2'
 # Use sqlite3 as the database for Active Record
@@ -46,7 +48,8 @@ gem 'friendly_id'
 gem 'riiif'
 gem 'sitemap_generator'
 
-gem 'bootstrap-sass' # , '~> 3.0'
+# Temp tryign to get assets to compile
+gem 'bootstrap-sass' , '3.4.1'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 
 gem 'devise_ldap_authenticatable'
@@ -54,6 +57,13 @@ gem 'devise_ldap_authenticatable'
 # shib login
 gem 'omniauth' # , '1.9.1'
 gem 'omniauth-shibboleth'
+
+
+# previously prepackaged gems in ruby 2
+# needed in elections, TODO: see if they are needed here
+gem 'http'
+gem 'puma'
+gem 'thin'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
@@ -84,3 +94,8 @@ group :test do
   gem 'simplecov-lcov', '~> 0.8.0'
   gem 'webdrivers', '~> 4.0', require: false
 end
+
+# Not sure about theses
+gem "bootstrap", "~> 4.0"
+gem "sassc-rails", "~> 2.1"
+gem "twitter-typeahead-rails", "0.11.1.pre.corejavascript"
