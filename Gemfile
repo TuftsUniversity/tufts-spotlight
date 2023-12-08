@@ -75,6 +75,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'solr_wrapper'
+  gem 'ladle'
 end
 
 group :test do
@@ -83,7 +84,6 @@ group :test do
   gem 'capybara-screenshot'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
-  gem 'ladle'
   gem 'selenium-webdriver', '~> 4.1.0'
   gem 'simplecov'
   gem 'simplecov-lcov', '~> 0.8.0'
