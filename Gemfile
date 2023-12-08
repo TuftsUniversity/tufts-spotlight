@@ -72,10 +72,10 @@ end
 group :development, :test do
   gem 'bixby'
   gem 'byebug'
+  gem 'ladle'
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'solr_wrapper'
-  gem 'ladle'
 end
 
 group :test do
