@@ -48,8 +48,6 @@ gem 'friendly_id'
 gem 'riiif'
 gem 'sitemap_generator'
 
-gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
-
 gem 'devise_ldap_authenticatable'
 
 # shib login
