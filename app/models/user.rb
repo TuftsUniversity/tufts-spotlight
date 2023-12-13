@@ -17,6 +17,7 @@ class User < ApplicationRecord
     # devise :ldap_authenticatable, :registerable,
     #         :recoverable, :rememberable, :trackable, :validatable
   else
+    # Issue here: some how this is not working
     # devise_modules = [:omniauthable, :rememberable, :trackable, omniauth_providers: [:shibboleth]]
     devise_modules = [:omniauthable, :rememberable, :trackable, omniauth_providers: [:shibboleth], authentication_keys: [:username]]
     devise(*devise_modules)

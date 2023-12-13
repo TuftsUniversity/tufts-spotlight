@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     concerns :searchable
   end
 
-  if Rails.env.production? || Rails.env.tdldev?
+  if Rails.env.production? # || Rails.env.tdldev?
     devise_for :users, controllers: { omniauth_callbacks: "omniauthcallbacks" }, skip: [:sessions]
     devise_scope :user do
       get 'users/sign_in', to: 'omniauth#new'
@@ -25,7 +25,12 @@ Rails.application.routes.draw do
       get 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
     end
   else
+    # TODO: maybe the issue is here
     devise_for :users
+    devise_scope :user do
+      get 'users/sign_in', to: 'omniauth#new'
+    end
+
   end
 
   concern :exportable, Blacklight::Routes::Exportable.new

@@ -30,7 +30,7 @@ gem 'jbuilder' # , '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # from 7.24 to 7.26 to fix  uninitialized constant Blacklight::Utils (NameError)
-gem 'blacklight', '7.26.1'
+gem 'blacklight'#, '7.26.1'
 # this version is a guess come back ad decide this
 # First verison v3.4.0 that supports Rails 7
 # https://github.com/projectblacklight/spotlight/releases
@@ -42,7 +42,7 @@ gem 'solrizer'
 gem 'blacklight-gallery'
 gem 'blacklight-oembed'
 gem 'devise'
-gem 'devise-guests' # , '~> 0.6'
+gem 'devise-guests', '~> 0.6'
 gem 'devise_invitable'
 gem 'friendly_id'
 gem 'riiif'
