@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   concern :searchable, Blacklight::Routes::Searchable.new
-  
+
   mount Blacklight::Oembed::Engine, at: 'oembed'
   mount Riiif::Engine => '/images', as: 'riiif'
   root to: 'spotlight/exhibits#index'
