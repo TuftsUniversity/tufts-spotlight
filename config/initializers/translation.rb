@@ -7,7 +7,7 @@ ActiveSupport::Reloader.to_prepare do
   # Don't allow initializer to break if DB doesn't exist yet
   # see: https://github.com/projectblacklight/spotlight/issues/2133
   if ENV['SKIP_TRANSLATION'].blank?
-    #raise unless Translation.table_exists?
+    # raise unless Translation.table_exists?
 
     ##
     # Sets up the new Spotlight Translation backend, backed by ActiveRecord. To
