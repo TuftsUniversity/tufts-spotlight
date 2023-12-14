@@ -18,8 +18,8 @@ class User < ApplicationRecord
     #         :recoverable, :rememberable, :trackable, :validatable
   else
     # Issue here: some how this is not working
-    # devise_modules = [:omniauthable, :rememberable, :trackable, omniauth_providers: [:shibboleth]]
-    devise_modules = [:omniauthable, :rememberable, :trackable, omniauth_providers: [:shibboleth], authentication_keys: [:username]]
+    devise_modules = [:omniauthable, :rememberable, :trackable, omniauth_providers: [:shibboleth]]
+    # devise_modules = [:omniauthable, :rememberable, :trackable, omniauth_providers: [:shibboleth], authentication_keys: [:username]]
     devise(*devise_modules)
   end
   # Include default devise modules. Others available are:
