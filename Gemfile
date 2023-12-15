@@ -30,7 +30,7 @@ gem 'jbuilder' # , '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # from 7.24 to 7.26 to fix  uninitialized constant Blacklight::Utils (NameError)
-#gem 'blacklight', '7.26.1'
+# gem 'blacklight', '7.26.1'
 # tryna out later versions
 gem 'blacklight', '7.35.0'
 # gem 'blacklight', '8.1.0'
