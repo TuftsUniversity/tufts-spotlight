@@ -67,9 +67,9 @@ services:
       - 4000
   server:
     <<: *exhibits-dev
+    # && tail -f /dev/null"
     command: >
-      bash -c "./build/entrypoint.sh && tail -f /dev/null"
-  # bundle exec rails s -p 4000 -b '0.0.0.0'
+      bash -c "./build/entrypoint.sh && bundle exec rails s -p 4000 -b '0.0.0.0'"
     ports:
        - "${SERVER_PORTS}"
     expose:
