@@ -16,19 +16,22 @@ Rails.application.routes.draw do
     concerns :searchable
   end
 
-  if Rails.env.production? # || Rails.env.tdldev?
+  # TODO: why are these different maybe just have one
+  if Rails.env.production? || Rails.env.tdldev?
     devise_for :users, controllers: { omniauth_callbacks: "omniauthcallbacks" }, skip: [:sessions]
     devise_scope :user do
       get 'users/sign_in', to: 'omniauth#new'
       post 'sign_in', to: 'omniauth#new', as: :new_user_session
       post 'sign_in', to: 'omniauth_callbacks#shibboleth', as: :new_session
       get 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
+      get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
     end
   else
     # TODO: maybe the issue is here
     devise_for :users
     devise_scope :user do
       get 'users/sign_in', to: 'omniauth#new'
+      get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
     end
 
   end

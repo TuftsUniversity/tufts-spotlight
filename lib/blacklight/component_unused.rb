@@ -1,4 +1,4 @@
-# Temporary override while I figure out what 
+# Temporary override while I figure out what
 # sidecar is about
 # frozen_string_literal: true
 
@@ -27,7 +27,7 @@ module Blacklight
 
           component_class._sidecar_files(extensions).each_with_object([]) do |path, memo|
             pieces = File.basename(path).split(".")
-            app_path = "#{Rails.root}/#{path.slice(path.index(component_class.view_component_path)..-1)}"
+            app_path = Rails.root.join(path.slice(path.index(component_class.view_component_path)..-1).to_s).to_s
 
             memo << {
               path: File.exist?(app_path) ? app_path : path,
