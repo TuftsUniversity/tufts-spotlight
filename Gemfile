@@ -80,6 +80,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'solr_wrapper'
+  gem 'webrick'
 end
 
 group :test do
@@ -91,7 +92,7 @@ group :test do
   gem 'selenium-webdriver', '~> 4.1.0'
   gem 'simplecov'
   gem 'simplecov-lcov', '~> 0.8.0'
-  gem 'webdrivers', '~> 4.0', require: false
+  gem 'webdrivers' # temp, '~> 4.0', require: false
 end
 
 # Not sure about theses
