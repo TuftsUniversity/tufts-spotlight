@@ -9,7 +9,7 @@ feature 'Views customizations' do
   # Checks that the sign-in link is removed.
   scenario 'Removed Sign in link' do
     visit(root_path)
-    within('#header-navbar') do
+    within('.navbar') do
       expect(page).to have_no_selector(:link, 'Sign in')
     end
   end
