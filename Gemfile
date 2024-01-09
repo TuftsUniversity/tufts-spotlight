@@ -38,6 +38,7 @@ gem 'blacklight', '7.35.0'
 # First verison v3.4.0 that supports Rails 7
 # https://github.com/projectblacklight/spotlight/releases
 # First version v3.0.0 to supports Rails 6
+# later versions won't use sir_trevor e.i. 3.4
 gem 'blacklight-spotlight', tag: 'v3.4.4', git: 'https://github.com/projectblacklight/spotlight.git'
 # gem 'blacklight-spotlight', tag: 'v3.5.0', git: 'https://github.com/projectblacklight/spotlight.git'
 gem 'rsolr' # , '>= 1.0'
@@ -89,7 +90,8 @@ group :test do
   gem 'capybara-screenshot'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
-  gem 'selenium-webdriver', '~> 4.1.0'
+  # temp try a newer version was 4.1 (latest 4.4)
+  gem 'selenium-webdriver', '~> 4.4.0'
   gem 'simplecov'
   gem 'simplecov-lcov', '~> 0.8.0'
   gem 'webdrivers' # temp, '~> 4.0', require: false

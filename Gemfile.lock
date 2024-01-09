@@ -347,7 +347,7 @@ GEM
     net-imap (0.4.9)
       date
       net-protocol
-    net-ldap (0.18.0)
+    net-ldap (0.19.0)
     net-pop (0.1.2)
       net-protocol
     net-protocol (0.2.2)
@@ -386,7 +386,7 @@ GEM
       racc
     popper_js (1.16.1)
     public_suffix (5.0.4)
-    puma (6.4.0)
+    puma (6.4.1)
       nio4r (~> 2.0)
     racc (1.7.3)
     rack (2.2.8)
@@ -507,10 +507,11 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.1.0)
+    selenium-webdriver (4.4.0)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
-      rubyzip (>= 1.2.2)
+      rubyzip (>= 1.2.2, < 3.0)
+      websocket (~> 1.0)
     signet (0.18.0)
       addressable (~> 2.8)
       faraday (>= 0.17.5, < 3.a)
@@ -574,7 +575,7 @@ GEM
     underscore-rails (1.8.3)
     unicode-display_width (2.5.0)
     version_gem (1.1.3)
-    view_component (3.8.0)
+    view_component (3.9.0)
       activesupport (>= 5.2.0, < 8.0)
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
@@ -590,6 +591,7 @@ GEM
       rubyzip (>= 1.3.0)
       selenium-webdriver (~> 4.0, < 4.11)
     webrick (1.8.1)
+    websocket (1.2.10)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -636,7 +638,7 @@ DEPENDENCIES
   rubocop
   sass-rails
   sassc-rails (~> 2.1)
-  selenium-webdriver (~> 4.1.0)
+  selenium-webdriver (~> 4.4.0)
   simplecov
   simplecov-lcov (~> 0.8.0)
   sitemap_generator

@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
   include Blacklight::Controller
   include Spotlight::Controller
 
-  layout 'blacklight'
+  layout :determine_layout if respond_to? :layout
+  # layout 'blacklight'
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

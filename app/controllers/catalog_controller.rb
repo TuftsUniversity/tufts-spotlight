@@ -4,6 +4,7 @@
 # Simplified catalog controller
 class CatalogController < ApplicationController
   include Blacklight::Catalog
+  include Blacklight::DefaultComponentConfiguration
 
   configure_blacklight do |config|
     config.show.oembed_field = :oembed_url_ssm
@@ -47,9 +48,9 @@ class CatalogController < ApplicationController
     config.add_show_field('citation_tesim', label: 'Citation')
     config.add_show_field('permanent_url_tesim', label: 'Permanent URL', helper_method: 'make_this_a_link')
 
-    config.add_search_field 'all_fields', label: 'Everything'
+    config.add_search_field 'all_fields', label: I18n.t('spotlight.search.fields.search.all_fields') #'Everything'
 
-    config.add_sort_field 'relevance', sort: 'score desc', label: 'Relevance'
+    config.add_sort_field 'relevance', sort: 'score desc', label: I18n.t('spotlight.search.fields.sort.relevance') #'Relevance'
 
     config.add_field_configuration_to_solr_request!
 
@@ -79,5 +80,9 @@ class CatalogController < ApplicationController
 
     config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
     config.add_nav_action(:search_history, partial: 'blacklight/nav/search_history')
+
+    # enable facets:
+    # https://github.com/projectblacklight/spotlight/issues/1812#issuecomment-327345318
+    config.add_facet_fields_to_solr_request!
   end
 end
