@@ -1,3 +1,5 @@
+<%# This changed between spotlight versions. TODO: Will have to dig into if this is still working. How it was changed and how to change it it have same effects. %>
+
 <% solr_documents_embed_block.with_solr_helper(self) %>
 
 <div class="content-block items-block row">
@@ -6,9 +8,12 @@
 
     <div class="items-col spotlight-flexbox pull-<%= solr_documents_embed_block.content_align %> <%= solr_documents_embed_block.text? ? "col-md-6" : "col-md-12" %> ">
       <% solr_documents_embed_block.each_document do |block_options, document| %>
+      <%# Our code %>
         <% doc_presenter = index_presenter(document) %>
+      <%# end of our %>
         <div class="box" data-id="<%= document.id %>">
           <%= render_document_partials document, blacklight_config.view.embed.partials, (blacklight_config.view.embed.locals || {}).reverse_merge(block: solr_documents_embed_block) %>
+          <%# Our code %>
           <% if solr_documents_embed_block.primary_caption? %>
             <div class="caption primary-caption">
               <%= doc_presenter.field_value solr_documents_embed_block.primary_caption_field %>
@@ -19,6 +24,7 @@
               <%= doc_presenter.field_value solr_documents_embed_block.secondary_caption_field %>
             </div>
           <% end %>
+          <%# end of our code %>
         </div>
       <% end %>
     </div>

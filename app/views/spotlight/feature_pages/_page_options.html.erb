@@ -1,9 +1,11 @@
 <div>
   <%= f.check_box :published %>
 </div>
+<%# This is where we changed from source %>
 <div>
   <%= f.check_box :in_menu? %>
 </div>
+<%# End of change from source %>
 <div>
   <%= f.check_box :display_sidebar?, disabled: @page.child_pages.published.present? %>
 </div>

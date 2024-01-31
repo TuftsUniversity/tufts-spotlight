@@ -1,3 +1,4 @@
+<%# This changed between spotlight versions. TODO: Will have to dig into if this is still working. How it was changed and how to change it it have same effects. %>
 <div class="navbar-right">
 
   <ul class="nav navbar-nav">
@@ -7,6 +8,7 @@
   </ul>
 
   <ul class="nav navbar-nav">
+    <%# removed line render '/spotlight/shared/locale_picker' %>
     <% if current_user %>
       <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=current_user.username%> <b class="caret"></b></a>
@@ -26,6 +28,7 @@
             </li>
             <li class="divider"></li>
           <% end %>
+          <%# new code %>
           <% if Rails.env.production? || Rails.env.tdldev? %>
             <li><%= link_to t("hyrax.toolbar.profile.logout"), "#{request.base_url}/Shibboleth.sso/Logout?return=#{request.base_url}/sign_out" %> </li>
           <% else %>
@@ -34,6 +37,7 @@
         </ul>
       </li>
     <% end %>
+    <%# end of our code %>
     <% if current_exhibit and show_contact_form? %>
       <li>
         <%= link_to t('spotlight.header_links.contact'), spotlight.new_exhibit_contact_form_path(current_exhibit), data: {behavior: 'contact-link', target: 'new_contact_form' } %>
