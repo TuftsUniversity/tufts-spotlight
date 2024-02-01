@@ -52,7 +52,16 @@ hr {
   color: #FEFEFA;
 }
 
-#header-navbar .navbar-brand {
+masthead .h1 {
+  color: #FEFEFA;
+}
+
+/** Temp remove, not convinced this is the new stuff **/
+/** #header-navbar .navbar-brand {
+  background-image: asset-url($logo_image);
+} **/ 
+
+.navbar .container .navbar-brand {
   background-image: asset-url($logo_image);
 }
 
@@ -63,14 +72,17 @@ hr {
   }
 }
 
-.navbar-inverse {
+.topbar {
   background-color: $light_tufts_blue;
+}
 
-  .navbar-brand {
-    padding-top: 10px;
-    margin-top: 10px;
-  }
+/** come back to this **/
+.navbar-brand {
+  padding-top: 10px;
+  margin-top: 10px;
+}
 
+.topbar .container .navbar-collapse .navbar-right {
   .navbar-nav > li > a {
     color: #FFF;
 
