@@ -32,7 +32,13 @@
       <%# We had custom code in final else %>
       <% else %>
         <%# This is where we changed from source %>
-        <% if params[:tag] == "Tisch Library" %>
+        <%# params[:tag] is nil. (have to figure out how this was set or what replaces it)%>
+        <% if true %>
+          <%# TODO: This is what I think we want to have happen. Figure out whats up with bellow code and why it no longer works. %>
+          <h1 class="site-title h2">
+            Tisch Library Exhibits
+          </h1>
+        <% elsif params[:tag] == "Tisch Library" %>
           <h1 class="site-title h2"> 
             Tisch Library Exhibits 
           </h1>
@@ -44,7 +50,7 @@
           <h1 class="site-title h2">
             <%= application_name %>
           </h1>
-          <small><%= params[:tag].to_str%></small>
+          <small>test</small>
           <% if current_site.subtitle.present? %>
             <small><%= current_site.subtitle %></small>
           <% end%>
