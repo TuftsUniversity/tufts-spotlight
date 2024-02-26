@@ -44,7 +44,7 @@
           <h1 class="site-title h2">
             <%= application_name %>
           </h1>
-          <small>test</small>
+          <small><%= params[:tag]%></small>
           <% if current_site.subtitle.present? %>
             <small><%= current_site.subtitle %></small>
           <% end%>
