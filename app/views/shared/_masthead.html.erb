@@ -31,12 +31,24 @@
       <%# old had else if current exhibit %>
       <%# We had custom code in final else %>
       <% else %>
-        <h1 class="site-title h2">
-          <%= masthead_heading_content %>
-        </h1>
-        <% if masthead_subheading_content %>
-          <small><%= masthead_subheading_content %></small>
+        <%# This is where we changed from source %>
+        <% if params[:tag] == "Tisch Library" %>
+          <h1 class="site-title h2"> 
+            Tisch Library Exhibits 
+          </h1>
+        <% elsif params[:tag] == "Tufts Archives" %>
+          <h1 class="site-title h2">
+            Tufts Archives Exhibits
+          </h1>
+        <% else %>
+          <h1 class="site-title h2">
+            <%= application_name %>
+          </h1>
+          <% if current_site.subtitle.present? %>
+            <small><%= current_site.subtitle %></small>
+          <% end%>
         <% end %>
+        <%# end of stuff changed %>
       <% end %>
     </div>
   </div>
