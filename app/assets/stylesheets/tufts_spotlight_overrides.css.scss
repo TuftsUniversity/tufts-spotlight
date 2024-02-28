@@ -93,6 +93,13 @@ masthead .h1 {
   }
 }
 
+.sidenav > li {
+  &:hover {
+    background-color: #e8e3e7;
+  }
+}
+
+
 .site-title small {
   white-space: normal;
 }
