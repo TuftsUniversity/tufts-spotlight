@@ -20,7 +20,7 @@
 a {
   color: #337ab7;
 }
-.nav-pills .nav-item{
+.nav-pills li.active{
     color: #337ab7 !important;
 }
 
