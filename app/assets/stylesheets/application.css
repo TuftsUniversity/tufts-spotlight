@@ -21,11 +21,3 @@ a {
   color: #337ab7;
 }
 
-.sidenav > li > a {
-
-  &:hover {
-    background-color: $dark_tufts_blue;
-  }
-}
-
-

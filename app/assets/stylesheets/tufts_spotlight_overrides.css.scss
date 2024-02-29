@@ -93,6 +93,13 @@ masthead .h1 {
   }
 }
 
+.sidenav > li > a {
+  &:hover {
+    background-color: $dark_tufts_blue;
+  }
+}
+
+
 .site-title small {
   white-space: normal;
 }
