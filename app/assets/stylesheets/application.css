@@ -20,4 +20,7 @@
 a {
   color: #337ab7;
 }
+.nav-item a{
+    color: #337ab7 !important;
+}
 
