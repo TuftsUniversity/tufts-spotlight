@@ -20,7 +20,8 @@
 a {
   color: #337ab7;
 }
-.nav-pills > .nav-items > a.active{
+
+.nav-pills .nav-link.active, .nav-pills .show >.nav-link {
     background-color: #337ab7 !important;
 }
 
