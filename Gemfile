@@ -56,8 +56,12 @@ gem 'sitemap_generator'
 gem 'devise_ldap_authenticatable'
 
 # shib login
-gem 'omniauth' # , '1.9.1'
+gem 'omniauth' #, '1.9.1'
 gem 'omniauth-shibboleth'
+
+# temp do we need this?
+# fix omniauth issues
+gem 'omniauth-rails_csrf_protection'
 
 # previously prepackaged gems in ruby 2
 # needed in elections, TODO: see if they are needed here
