@@ -1,19 +1,17 @@
-<%# This changed the whole thing from spotlight. TODO: Will have to dig into if this is still working. %>
 <% unless user_signed_in? %>
 <h3 class="nav-heading">See also</h3>
 <hr>
-<ul class="nav sidenav">
+<ul class="nav sidenav flex-column">
   <li><%= link_to "Tufts Digital Library", "http://dl.tufts.edu/" %></li>
   <li><%= link_to "Tufts Archival Research Center", "http://tarc.tufts.edu" %></li>
   <li><%= link_to "Tisch Library", "https://tischlibrary.tufts.edu/" %></li>
-  <li><%= link_to "Sign in Test", new_user_session_path, method: :post %></li>
 </ul>
 <% end %>
 
 <% if can?(:manage, Spotlight::Site.instance) || can?(:create, Spotlight::Exhibit) %>
 <h4 class="nav-heading"><%=t(:'.header') %></h4>
 <hr>
-<ul class="nav sidenav">
+<ul class="nav sidenav flex-column">
   <li><%= link_to t('.documentation'), 'https://github.com/projectblacklight/spotlight/wiki/Configuration-settings' %></li>
 
   <% if can? :manage, Spotlight::Site.instance %>
@@ -27,6 +25,6 @@
 </ul>
 
 <ul class="nav sidenav nav-pills nav-stacked">
-  <li><%= link_to t(:'spotlight.sites.new.page_title'), spotlight.new_exhibit_path, class: 'btn btn-default btn-nav', role: 'button' if can? :create, Spotlight::Exhibit %></li>
+  <li class="nav-item"><%= link_to t(:'spotlight.exhibits.new.page_title'), spotlight.new_exhibit_path, class: 'btn btn-default btn-nav', role: 'button' if can? :create, Spotlight::Exhibit %></li>
 </ul>
 <% end %>
