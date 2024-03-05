@@ -18,6 +18,7 @@
   <% if can? :manage, Spotlight::Site.instance %>
     <li><%= link_to t(:'spotlight.sites.edit.page_title'), spotlight.edit_site_path %></li>
   <% end %>
+  <li><%= link_to "Sign in Test", new_user_session_path, method: :post %></li>
 
   <% if can? :manage, Spotlight::Exhibit %>
     <li><%= link_to t(:'spotlight.sites.edit_exhibits.page_title'), spotlight.edit_site_exhibits_path %></li>
