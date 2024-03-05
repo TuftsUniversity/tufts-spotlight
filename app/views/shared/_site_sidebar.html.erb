@@ -6,7 +6,7 @@
   <li><%= link_to "Tufts Digital Library", "http://dl.tufts.edu/" %></li>
   <li><%= link_to "Tufts Archival Research Center", "http://tarc.tufts.edu" %></li>
   <li><%= link_to "Tisch Library", "https://tischlibrary.tufts.edu/" %></li>
-  <li><%= link_to "Sign in Test", :new_session_path, method: :post %></li>
+  <li><%= link_to "Sign in Test", new_user_session_path, method: :post %></li>
   <%# We don't need the turbo stuff %>
   <li><%= link_to "Sign in Test Turbo", new_user_session_path, data: { turbo_method: :post } %></li>
 </ul>
