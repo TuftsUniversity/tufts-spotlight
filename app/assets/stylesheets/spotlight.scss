@@ -14,3 +14,7 @@ $tufts_blue: #3172ae;
   box-shadow: 0 50vh 0 50vh $tufts_blue; /* Extends the blue to bottom of page, if necessary */
   width: 100%;
 }
+
+.blue-footer .navbar-nav>li>a {
+    color: #FFF;
+}
