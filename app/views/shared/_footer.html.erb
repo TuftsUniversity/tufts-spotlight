@@ -6,8 +6,12 @@
     </div>
 
     <div class="row pull-right col-md-3">
+
       <ul class="nav navbar-nav">
-        <li><%= link_to "Sign In", user_shibboleth_omniauth_authorize_path, method: :post %></li>
+        <!-- todo have sign out button -->
+        <% unless user_signed_in? %>
+          <li><%= link_to "Sign In", user_shibboleth_omniauth_authorize_path, method: :post %></li>
+        <% end %>
       </ul>
     </div>
   </div>
