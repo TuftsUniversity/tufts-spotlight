@@ -30,3 +30,9 @@ a {
     border-color: #337ab7;
 }
 
+/* temp */
+.nav>li {
+    position: relative;
+    display: block;
+}
+
