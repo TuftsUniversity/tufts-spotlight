@@ -1,4 +1,16 @@
 <div class="blue-footer container">
+  <div class="row">
+
+    <div class="col-md-6">
+      <%= link_to image_tag('tuftsuniversity.png', :alt => 'Go to tufts.edu'), "http://www.tufts.edu" %>
+    </div>
+
+    <div class="row pull-right col-md-3" id="copyright">
+      <span> &copy; <%= Date.today.year %> Tufts University </span>
+    </div>
+
+  </div>
+  
   <ul class="nav navbar-nav">
     <li><%= link_to "Sign in Test Avoid our conrtoller", user_shibboleth_omniauth_authorize_path, method: :post %></li>
   </ul>
