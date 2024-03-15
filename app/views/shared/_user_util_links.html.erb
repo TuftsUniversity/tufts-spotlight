@@ -7,13 +7,8 @@
     <% end %>
   <% end %>
 
-  <ul class="nav navbar-nav mr-auto">
-    <%= render_nav_actions do |config, action|%>
-      <li><%= action %></li>
-      <li>test</li>
-    <% end %>
-  </ul>
   <% if nav_actions.present? %>
+    <%# TODO these items need padding somehow %>
     <ul class="navbar-nav mr-auto">
       <%= nav_actions %>
     </ul>
