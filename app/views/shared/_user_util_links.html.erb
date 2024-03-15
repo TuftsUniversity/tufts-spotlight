@@ -1,6 +1,12 @@
 <%# This changed between spotlight versions. TODO: Will have to dig into if this is still working. How it was changed and how to change it it have same effects. %>
 <div class="navbar-right">
 
+  <% nav_actions = capture do %>
+    <%= render_nav_actions do |config, action|%>
+      <li class="nav-item"><%= action %></li>
+    <% end %>
+  <% end %>
+
   <ul class="nav navbar-nav mr-auto">
     <%= render_nav_actions do |config, action|%>
       <li><%= action %></li>
