@@ -13,6 +13,11 @@
       <li>test</li>
     <% end %>
   </ul>
+  <% if nav_actions.present? %>
+    <ul class="navbar-nav mr-auto">
+      <%= nav_actions %>
+    </ul>
+  <% end %>
 
   <ul class="navbar-nav">
     <%# removed line render '/spotlight/shared/locale_picker' %>
