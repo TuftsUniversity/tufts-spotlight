@@ -36,8 +36,25 @@ a {
     display: block;
 }
 
+
+.navbar-nav>.nav-link>a{
+  height: 100%;
+}
+
 /* overide bootstrap 4 margin so footer looks like a footer*/
 body {
     margin-bottom: 0 !important;
+}
+
+.navbar {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding: 0 !important;
+}
+.navbar .container {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
 }
 

@@ -4,6 +4,7 @@
 # Simplified catalog controller
 class CatalogController < ApplicationController
   include Blacklight::Catalog
+  # Nav stuff is included here.
   include Blacklight::DefaultComponentConfiguration
 
   configure_blacklight do |config|
@@ -78,6 +79,7 @@ class CatalogController < ApplicationController
     config.add_show_tools_partial(:sms, if: :render_sms_action?, callback: :sms_action, validator: :validate_sms_params)
     config.add_show_tools_partial(:citation)
 
+    # I thought commenting this out should remove this from the navbar
     config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
     config.add_nav_action(:search_history, partial: 'blacklight/nav/search_history')
 

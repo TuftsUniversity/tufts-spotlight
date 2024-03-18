@@ -56,15 +56,15 @@ masthead .h1 {
   color: #FEFEFA;
 }
 
-/** Temp remove, not convinced this is the new stuff **/
-/** #header-navbar .navbar-brand {
+#header-navbar .navbar-brand {
   background-image: asset-url($logo_image);
-} **/ 
+}
 
 .navbar .container .navbar-brand {
   background-image: asset-url($logo_image);
 }
 
+/** not sure if we are keeping this **/
 .navbar-right {
   .navbar-nav > li > a {
     padding-top: 21px;
@@ -82,9 +82,10 @@ masthead .h1 {
   margin-top: 10px;
 }
 
-.topbar .container .navbar-collapse .navbar-right {
+.topbar .container .navbar-collapse { /** take out .navbar-right  **/
   .navbar-nav > li > a {
     color: #FFF;
+    /** this should realy be a pr3 pl3 class but it is hidden away on an "action"**/
     padding-left: 10px;
     padding-right: 10px;
 
