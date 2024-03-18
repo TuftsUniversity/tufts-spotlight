@@ -36,3 +36,8 @@ a {
     display: block;
 }
 
+/* overide bootstrap 4 margin so footer looks like a footer*/
+body {
+    margin-bottom: 0 !important;
+}
+
