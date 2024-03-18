@@ -91,6 +91,11 @@ masthead .h1 {
       background-color: $dark_tufts_blue;
     }
   }
+  .navbar-nav > li {
+    &:hover {
+      background-color: $dark_tufts_blue;
+    }
+  }
 }
 
 .sidenav > li {
