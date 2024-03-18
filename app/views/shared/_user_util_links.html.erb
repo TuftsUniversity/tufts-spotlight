@@ -3,14 +3,16 @@
 
   <% nav_actions = capture do %>
     <%= render_nav_actions do |config, action|%>
-      <li class="nav-item pr-3"><%= action %></li>
+      <%# TODO This margin is not quite right, want to have the back round turn dark %>
+      <%# I think the pdding is needed for the action?%>
+      <div class="container">
+      <li class="nav-item mr-3"><%= action %></li>
+      </div>
     <% end %>
   <% end %>
 
   <% if nav_actions.present? %>
-    <%# TODO these items need padding somehow %>
     <ul class="navbar-nav mr-auto">
-      <%# TODO these items need padding somehow %>
       <%= nav_actions %>
     </ul>
   <% end %>

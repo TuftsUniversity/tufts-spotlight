@@ -83,7 +83,7 @@ masthead .h1 {
 }
 
 .topbar .container .navbar-collapse .navbar-right {
-  .navbar-nav > li > a {
+  .navbar-nav > .container > li > a {
     color: #FFF;
 
     &:hover {
@@ -91,7 +91,7 @@ masthead .h1 {
       background-color: $dark_tufts_blue;
     }
   }
-  .navbar-nav > li {
+  .navbar-nav > .container {
     &:hover {
       background-color: $dark_tufts_blue;
     }
