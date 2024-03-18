@@ -21,9 +21,6 @@
     <li class="nav-item dropdown">
       <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%=current_user%></a>
       <ul class="dropdown-menu">
-        <% if can? :manage, Spotlight::Site.instance %>
-          <%# <li><= link_to t(:'spotlight.header_links.edit_site'), spotlight.edit_site_path, class: 'dropdown-item' ></li> %>
-        <% end %>
         <% if can? :create, Spotlight::Exhibit %>
           <li>
             <%= link_to t(:'spotlight.header_links.create_exhibit'), spotlight.new_exhibit_path, class: 'dropdown-item' %>
