@@ -26,11 +26,11 @@
           </li>
           <li class="dropdown-divider"></li>
         <% end %>
-        <%# if current_exhibit && can?(:curate, current_exhibit) %>
+        <% if current_exhibit && can?(:curate, current_exhibit) %>
           <li>
             <%= link_to t('spotlight.header_links.dashboard'), spotlight.exhibit_dashboard_path(current_exhibit), class: 'dropdown-item' %>
           </li>
-        <%# end %>
+        <% end %>
           <li class="dropdown-divider">
             <%# new code %>
             <% if Rails.env.production? || Rails.env.tdldev? %>
