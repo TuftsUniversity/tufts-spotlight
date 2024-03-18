@@ -30,6 +30,7 @@
           <li>
             <%= link_to t('spotlight.header_links.dashboard'), spotlight.exhibit_dashboard_path(current_exhibit), class: 'dropdown-item' %>
           </li>
+        <%# end %>
           <li class="dropdown-divider">
             <%# new code %>
             <% if Rails.env.production? || Rails.env.tdldev? %>
