@@ -34,9 +34,9 @@
           <li class="dropdown-divider">
             <%# new code %>
             <% if Rails.env.production? || Rails.env.tdldev? %>
-              <li><%= link_to t("hyrax.toolbar.profile.logout"), "#{request.base_url}/Shibboleth.sso/Logout?return=#{request.base_url}/sign_out" %> </li>
+              <li><%= link_to t("hyrax.toolbar.profile.logout"), "#{request.base_url}/Shibboleth.sso/Logout?return=#{request.base_url}/sign_out", class: 'dropdown-item' %> </li>
             <% else %>
-              <li><%= link_to t("hyrax.toolbar.profile.logout"), main_app.destroy_user_session_path %></li>
+              <li><%= link_to t("hyrax.toolbar.profile.logout"), main_app.destroy_user_session_path, class: 'dropdown-item' %></li>
             <% end %>
           </li>
         <%# end %>
