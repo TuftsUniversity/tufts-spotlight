@@ -3,9 +3,8 @@
 
   <% nav_actions = capture do %>
     <%= render_nav_actions do |config, action|%>
-      <%# TODO This margin is not quite right, want to have the back round turn dark %>
-      <%# I think the pdding is needed for the action?%>
-      <li class="nav-item mr-1"><%= action %></li>
+      <%# TODO add padding to the action item, currently done in css %>
+      <li class="nav-item"><%= action %></li>
     <% end %>
   <% end %>
 
