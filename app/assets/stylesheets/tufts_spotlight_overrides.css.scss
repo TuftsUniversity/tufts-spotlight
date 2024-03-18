@@ -83,16 +83,13 @@ masthead .h1 {
 }
 
 .topbar .container .navbar-collapse .navbar-right {
-  .navbar-nav > .container > li > a {
+  .navbar-nav > li > a {
     color: #FFF;
+    padding-left: ($spacer * .5) !important;
+    padding-right: ($spacer * .5) !important;
 
     &:hover {
       color: #FFF;
-      background-color: $dark_tufts_blue;
-    }
-  }
-  .navbar-nav > .container {
-    &:hover {
       background-color: $dark_tufts_blue;
     }
   }
