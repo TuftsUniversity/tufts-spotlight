@@ -41,7 +41,11 @@ body {
     margin-bottom: 0 !important;
 }
 
-nav-bar {
+.nav-bar {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+}
+.nav-bar .container {
     margin-bottom: 0 !important;
     margin-top: 0 !important;
 }
