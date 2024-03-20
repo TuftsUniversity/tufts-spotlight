@@ -1,0 +1,55 @@
+<%# This changed between spotlight versions. TODO: Will have to dig into if this is still working. How it was changed and how to change it it have same effects. %>
+<%# <div class="navbar-right"> %>
+
+  <% nav_actions = capture do %>
+    <%= render_nav_actions do |config, action|%>
+      <%# TODO add padding to the action item, currently done in css %>
+      <li class="nav-item"><%= action %></li>
+    <% end %>
+  <% end %>
+
+  <% if nav_actions.present? %>
+    <ul class="navbar-nav ml-auto">
+      <%= nav_actions %>
+    </ul>
+  <% end %>
+  <%# removed line render '/spotlight/shared/locale_picker' %>
+
+  <ul class="navbar-nav">
+  <% if current_user %>
+    <li class="nav-item dropdown">
+      <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%=current_user%></a>
+      <ul class="dropdown-menu">
+        <% if can? :manage, Spotlight::Site.instance %>
+          <li><%= link_to t(:'spotlight.header_links.edit_site'), spotlight.edit_site_path, class: 'dropdown-item' %></li>
+        <% end %>
+        <% if can? :create, Spotlight::Exhibit %>
+          <li>
+            <%= link_to t(:'spotlight.header_links.create_exhibit'), spotlight.new_exhibit_path, class: 'dropdown-item' %>
+          </li>
+          <li class="dropdown-divider"></li>
+        <% end %>
+        <% if current_exhibit && can?(:curate, current_exhibit) %>
+          <li>
+            <%= link_to t('spotlight.header_links.dashboard'), spotlight.exhibit_dashboard_path(current_exhibit), class: 'dropdown-item' %>
+          </li>
+        <% end %>
+        <%# new code %>
+        <% if Rails.env.production? || Rails.env.tdldev? %>
+          <li><%= link_to t("hyrax.toolbar.profile.logout"), "#{request.base_url}/Shibboleth.sso/Logout?return=#{request.base_url}/sign_out", class: 'dropdown-item' %> </li>
+        <% else %>
+          <li><%= link_to t("hyrax.toolbar.profile.logout"), main_app.destroy_user_session_path, class: 'dropdown-item' %></li>
+        <% end %>
+        <%# end of our code %>
+
+      </ul>
+    </li>
+  <% end %>
+  <% if current_exhibit and show_contact_form? %>
+    <li class="nav-item">
+      <%= link_to t('spotlight.header_links.contact'), spotlight.new_exhibit_contact_form_path(current_exhibit), data: {behavior: 'contact-link', target: 'report-problem-form' }, class: 'nav-link' %>
+    </li>
+  <% end %>
+  </ul>
+
+<%# </div> %>
