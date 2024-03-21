@@ -4,7 +4,8 @@
 # Simplified catalog controller
 class CatalogController < ApplicationController
   include Blacklight::Catalog
-  include Blacklight::DefaultComponentConfiguration
+  # Nav stuff is included here.
+  # temp comment out include Blacklight::DefaultComponentConfiguration
 
   configure_blacklight do |config|
     config.show.oembed_field = :oembed_url_ssm
