@@ -5,7 +5,7 @@
 class CatalogController < ApplicationController
   include Blacklight::Catalog
   # Nav stuff is included here.
-  # temp comment out include Blacklight::DefaultComponentConfiguration
+  temp comment out include Blacklight::DefaultComponentConfiguration
 
   configure_blacklight do |config|
     config.show.oembed_field = :oembed_url_ssm
@@ -81,7 +81,7 @@ class CatalogController < ApplicationController
 
     # I thought commenting this out should remove this from the navbar
     # temp config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
-    # temp config.add_nav_action(:search_history, partial: 'blacklight/nav/search_history')
+    config.add_nav_action(:search_history, partial: 'shared/history_temp')
 
     # enable facets:
     # https://github.com/projectblacklight/spotlight/issues/1812#issuecomment-327345318
