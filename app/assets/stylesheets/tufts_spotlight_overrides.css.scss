@@ -56,10 +56,9 @@ masthead .h1 {
   color: #FEFEFA;
 }
 
-/** Temp remove, not convinced this is the new stuff **/
-/** #header-navbar .navbar-brand {
+#header-navbar .navbar-brand {
   background-image: asset-url($logo_image);
-} **/ 
+}
 
 .navbar .container .navbar-brand {
   background-image: asset-url($logo_image);
