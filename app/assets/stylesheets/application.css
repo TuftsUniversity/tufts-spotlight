@@ -39,6 +39,9 @@ a {
 .navbar-nav>.nav-item>a{
   height: 100%;
 }
+.navbar-nav>.nav-link>a{
+  height: 100%;
+}
 
 /* overide bootstrap 4 margin so footer looks like a footer*/
 body {
