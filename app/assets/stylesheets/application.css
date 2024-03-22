@@ -36,19 +36,9 @@ a {
     display: block;
 }
 
-.navbar-nav>.nav-item>a{
-  height: 100%;
-}
-.navbar-nav>.nav-item{
-  padding: 0 !important;
-}
+
 .navbar-nav>.nav-link>a{
   height: 100%;
-  padding-bottom: 5 !important;
-  padding-top: 5 !important;
-}
-.navbar-nav>.nav-link{
-  padding: 0 !important;
 }
 
 /* overide bootstrap 4 margin so footer looks like a footer*/
