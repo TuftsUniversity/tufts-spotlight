@@ -80,8 +80,8 @@ class CatalogController < ApplicationController
     config.add_show_tools_partial(:citation)
 
     # I thought commenting this out should remove this from the navbar
-    # temp config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
-    config.add_nav_action(:search_history, partial: 'shared/history_temp')
+    config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
+    config.add_nav_action(:search_history, partial: 'blacklight/nav/search_history')
 
     # enable facets:
     # https://github.com/projectblacklight/spotlight/issues/1812#issuecomment-327345318

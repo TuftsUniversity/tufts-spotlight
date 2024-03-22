@@ -41,12 +41,14 @@ a {
 }
 .navbar-nav>.nav-item{
   padding: 0 !important;
+  position: relative;
 }
 .navbar-nav>.nav-link>a{
   height: 100%;
 }
 .navbar-nav>.nav-link{
   padding: 0 !important;
+  position: relative;
 }
 
 /* overide bootstrap 4 margin so footer looks like a footer*/
