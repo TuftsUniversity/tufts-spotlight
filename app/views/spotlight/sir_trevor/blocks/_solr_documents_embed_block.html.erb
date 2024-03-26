@@ -13,6 +13,8 @@
       <div class="spotlight-flexbox">
         <% solr_documents_embed_block.each_document do |block_options, document| %>
           <%# Our code %>
+            <%# document_presenter(document) instead but it breaks some stuff %>
+            <%# doc_presenter = index_presenter(document) %>
             <% doc_presenter = document_presenter(document) %>
           <%# end of our %>
           <div class="box" data-id="<%= document.id %>">
@@ -20,12 +22,12 @@
             <%# Our code %>
             <% if solr_documents_embed_block.primary_caption? %>
               <div class="caption primary-caption">
-                <%= doc_presenter.field_value solr_documents_embed_block.primary_caption_field %>
+                <%= solr_documents_embed_block.document_caption(doc_presenter, solr_documents_embed_block.primary_caption_field) %>
               </div>
             <% end %>
             <% if solr_documents_embed_block.secondary_caption? %>
               <div class="caption secondary-caption">
-                <%= doc_presenter.field_value solr_documents_embed_block.secondary_caption_field %>
+                <%= solr_documents_embed_block.document_caption(doc_presenter, solr_documents_embed_block.secondary_caption_field) %>
               </div>
             <% end %>
             <%# end of our code %>
