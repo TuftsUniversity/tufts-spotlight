@@ -20,14 +20,14 @@
           <div class="box" data-id="<%= document.id %>">
             <%= render_document_partials document, blacklight_config.view.embed.partials, (blacklight_config.view.embed.locals || {}).reverse_merge(block: solr_documents_embed_block) %>
             <%# Our code %>
-            <% if solr_documents_block.primary_caption? %>
+            <% if solr_documents_embed_block.primary_caption? %>
               <div class="caption primary-caption">
-                <%= solr_documents_block.document_caption(doc_presenter, solr_documents_block.primary_caption_field) %>
+                <%= solr_documents_embed_block.document_caption(doc_presenter, solr_documents_embed_block.primary_caption_field) %>
               </div>
             <% end %>
-            <% if solr_documents_block.secondary_caption? %>
+            <% if solr_documents_embed_block.secondary_caption? %>
               <div class="caption secondary-caption">
-                <%= solr_documents_block.document_caption(doc_presenter, solr_documents_block.secondary_caption_field) %>
+                <%= solr_documents_embed_block.document_caption(doc_presenter, solr_documents_embed_block.secondary_caption_field) %>
               </div>
             <% end %>
             <%# end of our code %>
