@@ -2,7 +2,8 @@
 
 class User < ApplicationRecord
   include Spotlight::User
-  attr_accessible :email, :password, :password_confirmation if Blacklight::Utils.needs_attr_accessible?
+  # TODO: circle back https://github.com/projectblacklight/blacklight/issues/2055
+  # attr_accessible :email, :password, :password_confirmation if Blacklight::Utils.needs_attr_accessible?
   # Connects this user object to Blacklights Bookmarks.
   include Blacklight::User
 
@@ -16,7 +17,9 @@ class User < ApplicationRecord
     # devise :ldap_authenticatable, :registerable,
     #         :recoverable, :rememberable, :trackable, :validatable
   else
+    # Issue here: some how this is not working
     devise_modules = [:omniauthable, :rememberable, :trackable, omniauth_providers: [:shibboleth]]
+    # devise_modules = [:omniauthable, :rememberable, :trackable, omniauth_providers: [:shibboleth], authentication_keys: [:username]]
     devise(*devise_modules)
   end
   # Include default devise modules. Others available are:

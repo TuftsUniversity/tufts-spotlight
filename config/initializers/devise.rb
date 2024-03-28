@@ -15,6 +15,11 @@ Devise.setup do |config|
     # config.ldap_check_attributes = false
     # config.ldap_use_admin_to_bind = false
     # config.ldap_ad_group_check = false
+
+    # Backwards compatiable 4.9.0 Devise
+    # I don't think we need this
+    config.responder.error_status = :unprocessable_entity
+    config.responder.redirect_status = :see_other
   end
 
   # The secret key used by Devise. Devise uses this key to generate

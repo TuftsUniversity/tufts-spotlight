@@ -1,0 +1,5 @@
+<%# Spotlight overwrites this file to not be a nav-link class. We still want it to be a nav-link %>
+<%= link_to bookmarks_path, id:'bookmarks_nav', class: 'nav-link' do %>
+  <%= t('blacklight.header_links.bookmarks') %>
+(<span data-role='bookmark-counter'><%= current_or_guest_user.bookmarks.count %></span>)
+<% end %>
