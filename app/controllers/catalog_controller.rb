@@ -86,5 +86,10 @@ class CatalogController < ApplicationController
     # enable facets:
     # https://github.com/projectblacklight/spotlight/issues/1812#issuecomment-327345318
     config.add_facet_fields_to_solr_request!
+
+    # Needed for blacklight-galary
+    config.view.gallery.document_component = Blacklight::Gallery::DocumentComponent
+    config.view.masonry.document_component = Blacklight::Gallery::DocumentComponent
+    config.view.slideshow.document_component = Blacklight::Gallery::SlideshowComponent
   end
 end
