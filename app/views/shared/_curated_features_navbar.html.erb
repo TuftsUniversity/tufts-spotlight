@@ -3,10 +3,10 @@
 <% if filtered_feature_pages.present? %>
   <% if filtered_feature_pages.many? %>
     <li class="nav-item dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= navigation.label_or_default %> <b class="caret"></b></a>
+      <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= navigation.label_or_default %> <b class="caret"></b></a>
       <ul class="dropdown-menu">
         <% filtered_feature_pages.each do |page| %>
-          <li><%= link_to page.title, [spotlight, page.exhibit, page] %></li>
+          <li><%= link_to page.title, [spotlight, page.exhibit, page], class: 'dropdown-item' %></li>
         <% end %>
       </ul>
     </li>
