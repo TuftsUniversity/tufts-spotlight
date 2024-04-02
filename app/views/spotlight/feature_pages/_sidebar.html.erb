@@ -1,5 +1,3 @@
-<%# This changed between spotlight versions. TODO: Will have to dig into if this is still working. How it was changed and how to change it it have same effects. %>
-
 <% cache_unless current_user, [current_exhibit, @page] do %>
 <ol class="nav sidenav flex-column">
   <% InMenuBehavior::Helper.menu_filter(@exhibit.feature_pages).each do |feature_section| %>
