@@ -16,6 +16,9 @@
             <% doc_presenter = document_presenter(document) %>
           <%# end of our code%>
           <div class="box" data-id="<%= document.id %>">
+            <%# quick test to see what this value is %>
+            <%= "test" %>
+            <%= blacklight_config.view.embed.partials.to_s %>
             <%# Universal Viewer is not showing up. %>
             <%= render_document_partials document, blacklight_config.view.embed.partials, (blacklight_config.view.embed.locals || {}).reverse_merge(block: solr_documents_embed_block) %>
             <%# Our code %>
