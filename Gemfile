@@ -56,7 +56,7 @@ gem 'sitemap_generator'
 gem 'devise_ldap_authenticatable'
 
 # shib login
-gem 'omniauth' #, '1.9.1'
+gem 'omniauth' # , '1.9.1'
 gem 'omniauth-shibboleth'
 
 # temp do we need this?

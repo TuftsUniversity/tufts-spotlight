@@ -50,6 +50,6 @@ Rails.application.configure do
   config.active_record.legacy_connection_handling = false
 
   config.after_initialize do
-    config.active_record.yaml_column_permitted_classes = [Symbol, Hash, HashWithIndifferentAccess]
+    config.active_record.yaml_column_permitted_classes = [Symbol, Hash, ActiveSupport::HashWithIndifferentAccess]
   end
 end

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   # TODO: why are these different maybe just have one
   if Rails.env.production? || Rails.env.tdldev?
-    # Patch convert get users 
+    # Patch convert get users
     # get 'users/sign_in', to: 'omniauth#sign_in_help'
     devise_for :users, controllers: { omniauth_callbacks: "omniauthcallbacks" }, skip: [:sessions]
     devise_scope :user do

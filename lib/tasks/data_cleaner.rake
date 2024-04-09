@@ -6,7 +6,7 @@ namespace :tufts do
     puts "\n----------- Removing Uploads with no Image -----------"
 
     bad_resources = []
-    Spotlight::Resources::Upload.all.find_each do |r|
+    Spotlight::Resources::Upload.find_each do |r|
       if r.upload_id.nil?
         puts "WARNING: (#{r.id}) #{r.data['full_title_tesim']} has no Featured Image."
         bad_resources << r.id unless bad_resources.include?(r.id)
@@ -24,7 +24,7 @@ namespace :tufts do
       bad_resources = []
       puts "\nWorking on #{resource_type}"
 
-      resource_type.all.find_each do |r|
+      resource_type.find_each do |r|
         if Spotlight::Exhibit.where(id: r.exhibit_id).empty?
           puts "WARNING: #{r.id} has no exhibit (#{r.exhibit_id})."
           bad_resources << r.id unless bad_resources.include?(r.id)
@@ -40,7 +40,7 @@ namespace :tufts do
     puts "\n----------- Removing Orphan Sidecars -----------"
 
     bad_sidecars = []
-    Spotlight::SolrDocumentSidecar.all.find_each do |s|
+    Spotlight::SolrDocumentSidecar.find_each do |s|
       unless tdc_resource_exists?(s.resource_id) || tdc_solr_doc_exists?(s.document_id)
         puts "WARNING: #{s.id} has no document (#{s.document_id}) or resource (#{s.resource_id})."
         bad_sidecars << s.id unless bad_sidecars.include?(s.id)

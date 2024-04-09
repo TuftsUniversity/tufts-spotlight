@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# TODO: Is this waht is causing issues for Openseadragon viewer?
 module Tufts
   class IiifManifest < Spotlight::Resources::IiifManifest
     ##

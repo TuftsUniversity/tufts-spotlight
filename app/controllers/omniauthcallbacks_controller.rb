@@ -18,7 +18,7 @@ class OmniauthcallbacksController < Devise::OmniauthCallbacksController
     auth_headers.each do |k, v|
       auth[k] = request.env[v]
     end
-    auth.delete_if { |_k, v| v.blank? }
+    auth.compact_blank!
     @user = User.from_omniauth(auth)
     # capture data about the user from shib
     set_flash_message :notice, :success, kind: "Shibboleth"
@@ -26,6 +26,8 @@ class OmniauthcallbacksController < Devise::OmniauthCallbacksController
   end
 
   ## when shib login fails
+  # temp
+  # rubocop:disable Rails/I18nLocaleTexts
   def failure
     ## redirect them to the devise local login page
     # redirect_to new_local_user_session_path, :notice => "Shibboleth isn't available - local login only"

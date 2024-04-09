@@ -8,7 +8,7 @@ namespace :tufts do
       puts "\n== Working on #{resource_type} =="
       puts
 
-      resource_type.all.find_each do |r|
+      resource_type.find_each do |r|
         all_ok = true
 
         if Spotlight::Exhibit.where(id: r.exhibit_id).empty?
