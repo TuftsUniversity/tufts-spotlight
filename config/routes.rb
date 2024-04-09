@@ -32,11 +32,6 @@ Rails.application.routes.draw do
   else
     # TODO: maybe the issue is here, review why this is here
     devise_for :users
-    devise_scope :user do
-      get 'users/sign_in', to: 'omniauth#new'
-      get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
-    end
-
   end
 
   concern :exportable, Blacklight::Routes::Exportable.new
