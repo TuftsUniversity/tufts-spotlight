@@ -10,7 +10,7 @@ feature 'TDL ingest' do
   let(:ids) do
     %w[
       4b29bg82c
-      3a29bg82c
+      3x816x422
       8336hb39g
       dv140335h
     ]
@@ -79,7 +79,7 @@ feature 'TDL ingest' do
         3.times { click_button('Three More Fields') }
         inputs = all("input[type='text']")
         inputs[0].set(ids[0])
-        # TODO: note 3x816x422 is no longer a valid id
+        # TODO: note 3x816x422 is no longer a valid id. Need to figure out why
         inputs[1].set(ids[1]) # this is the prblem somehow
         inputs[3].set('garbage')
         inputs[5].set(ids[2])
@@ -91,6 +91,6 @@ feature 'TDL ingest' do
 
     expect(current_path).to eq(spotlight.admin_exhibit_catalog_path(exhibit))
     expect(page).to have_content('Successfully created 3 records.')
-    expect(page).to have_content('There was an error with the following ids -- 3a29bg82c -- garbage -- moregarbage')
+    expect(page).to have_content('There was an error with the following ids -- 3x816x422 -- garbage -- moregarbage')
   end
 end
