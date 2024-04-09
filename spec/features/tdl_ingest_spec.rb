@@ -79,7 +79,7 @@ feature 'TDL ingest' do
         3.times { click_button('Three More Fields') }
         inputs = all("input[type='text']")
         inputs[0].set(ids[0])
-        inputs[1].set('4b29bg82c') #ids[1]) # this is the prblem somehow
+        inputs[1].set('4b29bg82c') # ids[1]) # this is the prblem somehow
         inputs[3].set('garbage')
         inputs[5].set(ids[2])
         inputs[6].set('moregarbage')
