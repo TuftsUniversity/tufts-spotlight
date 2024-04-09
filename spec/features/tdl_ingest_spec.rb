@@ -80,7 +80,7 @@ feature 'TDL ingest' do
         inputs = all("input[type='text']")
         inputs[0].set(ids[0])
         # TODO: note 3x816x422 is no longer a valid id
-        # inputs[1].set(ids[1]) # this is the prblem somehow
+        inputs[1].set(ids[1]) # this is the prblem somehow
         inputs[3].set('garbage')
         inputs[5].set(ids[2])
         inputs[6].set('moregarbage')
@@ -90,7 +90,7 @@ feature 'TDL ingest' do
     end.to change(Tufts::TdlResource, :count).by(3)
 
     expect(current_path).to eq(spotlight.admin_exhibit_catalog_path(exhibit))
-    expect(page).to have_content('Successfully created 4 records.')
-    expect(page).to have_content('There was an error with the following ids -- garbage -- moregarbage')
+    expect(page).to have_content('Successfully created 3 records.')
+    expect(page).to have_content('There was an error with the following ids -- 3a29bg82c -- garbage -- moregarbage')
   end
 end
