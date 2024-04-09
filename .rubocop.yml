@@ -8,6 +8,7 @@ AllCops:
     - spec/fixtures/**/*
     - vendor/**/*
   TargetRubyVersion: 3
+  NewCops: enable
 
 Metrics/AbcSize:
   Exclude:
