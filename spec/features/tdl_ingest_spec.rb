@@ -10,7 +10,7 @@ feature 'TDL ingest' do
   let(:ids) do
     %w[
       4b29bg82c
-      4b29bg82c
+      3a29bg82c
       8336hb39g
       dv140335h
     ]
