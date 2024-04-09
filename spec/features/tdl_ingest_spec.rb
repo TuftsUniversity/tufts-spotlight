@@ -10,7 +10,7 @@ feature 'TDL ingest' do
   let(:ids) do
     %w[
       4b29bg82c
-      3x816x422
+      3b29bx82c
       8336hb39g
       dv140335h
     ]
@@ -79,7 +79,8 @@ feature 'TDL ingest' do
         3.times { click_button('Three More Fields') }
         inputs = all("input[type='text']")
         inputs[0].set(ids[0])
-        inputs[1].set('4b29bg82c') # ids[1]) # this is the prblem somehow
+        # TODO: note 3x816x422 is no longer a valid id
+        inputs[1].set(ids[1]) # this is the prblem somehow
         inputs[3].set('garbage')
         inputs[5].set(ids[2])
         inputs[6].set('moregarbage')
