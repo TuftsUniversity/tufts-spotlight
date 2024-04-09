@@ -31,17 +31,8 @@
       <%# old had else if current exhibit %>
       <%# We had custom code in final else %>
       <% else %>
-        <%# This is where we changed from source %>
-        <%# params[:tag] is nil. (have to figure out how this was set or what replaces it)%>
-        <% if true %>
-          <%# TODO: This is what I think we want to have happen. Figure out whats up with bellow code and why it no longer works. %>
-          <h1 class="site-title h2">
-            Tisch Library Exhibits
-          </h1>
-        <% elsif params[:tag] == "Tisch Library" %>
-          <h1 class="site-title h2"> 
-            Tisch Library Exhibits 
-          </h1>
+        <% if params[:tag] == "Tisch Library" %>
+          Tisch Library Exhibits
         <% elsif params[:tag] == "Tufts Archives" %>
           <h1 class="site-title h2">
             Tufts Archives Exhibits
@@ -50,7 +41,6 @@
           <h1 class="site-title h2">
             <%= application_name %>
           </h1>
-          <small>test</small>
           <% if current_site.subtitle.present? %>
             <small><%= current_site.subtitle %></small>
           <% end%>
