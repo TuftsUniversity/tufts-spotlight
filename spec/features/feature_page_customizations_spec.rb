@@ -46,8 +46,6 @@ feature 'Feature Page customizations' do
     visit(spotlight.edit_exhibit_feature_page_path(exhibit, visible_page))
 
     expect(Spotlight::FeaturePage.find(visible_page.id).in_menu).to be(true)
-    expect(page).to have_field('In menu')
-    # expect(page).to has_checked_field?('In menu')
     expect(page).to have_field('In menu', checked: true)
 
     uncheck('In menu')
@@ -55,8 +53,7 @@ feature 'Feature Page customizations' do
     click_link('Edit')
 
     expect(Spotlight::FeaturePage.find(visible_page.id).in_menu).to be(false)
-    # TODO: this is broken, even thou have_field has not changed between capybara versions
-    # expect(page).to have_field('In menu', { unchecked: true })
+    expect(page).to have_field('In menu', unchecked: true)
   end
 
   scenario 'In menu property displays/hides page in menus' do
