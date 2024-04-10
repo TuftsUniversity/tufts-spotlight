@@ -644,7 +644,7 @@ DEPENDENCIES
   rubocop
   sass-rails
   sassc-rails (~> 2.1)
-  selenium-webdriver (~> 4.4.0)
+  selenium-webdriver
   simplecov
   simplecov-lcov (~> 0.8.0)
   sitemap_generator
