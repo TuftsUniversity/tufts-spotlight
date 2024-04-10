@@ -46,7 +46,9 @@ feature 'Feature Page customizations' do
     visit(spotlight.edit_exhibit_feature_page_path(exhibit, visible_page))
 
     expect(Spotlight::FeaturePage.find(visible_page.id).in_menu).to be(true)
-    expect(page).to have_field('In menu', { checked: true })
+    expect(page).to have_field('In menu')
+    # expect(page).to has_checked_field?('In menu')
+    expect(page).to have_field('In menu', checked: true)
 
     uncheck('In menu')
     click_button('Save')
