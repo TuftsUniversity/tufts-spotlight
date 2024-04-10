@@ -29,7 +29,7 @@
                 <%= link_to t('spotlight.header_links.dashboard'), spotlight.exhibit_dashboard_path(current_exhibit), class: 'dropdown-item' %>
               </li>
             <% end %>
-            <%# new code %>
+            <%# our code %>
             <% if Rails.env.production? || Rails.env.tdldev? %>
               <li><%= link_to t("hyrax.toolbar.profile.logout"), "#{request.base_url}/Shibboleth.sso/Logout?return=#{request.base_url}/sign_out", class: 'dropdown-item' %> </li>
             <% else %>
