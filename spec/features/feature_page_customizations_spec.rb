@@ -62,10 +62,10 @@ feature 'Feature Page customizations' do
 
     visit(spotlight.exhibit_feature_page_path(exhibit, blank_page))
     # Todo look into new element names: Ambiguous match, found 2 elements matching visible css "#sidebar"
-    # within('#sidebar') do
-    #   expect(has_link?('Visible')).to be(true)
-    #   expect(has_link?('Hidden')).to be(false)
-    # end
+    within('#sidebar') do
+      expect(has_link?('Visible')).to be(true)
+      expect(has_link?('Hidden')).to be(false)
+    end
     within('#exhibit-navbar') do
       expect(has_link?('Visible', visible: :all)).to be(true)
       expect(has_link?('Hidden', visible: :all)).to be(false)
