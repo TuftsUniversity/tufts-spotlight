@@ -16,7 +16,6 @@ Rails.application.routes.draw do
     concerns :searchable
   end
 
-  # TODO: why are these different maybe just have one
   if Rails.env.production? || Rails.env.tdldev?
     # Patch convert get users
     # get 'users/sign_in', to: 'omniauth#sign_in_help'
@@ -26,11 +25,8 @@ Rails.application.routes.draw do
       post 'sign_in', to: 'omniauth#new', as: :new_user_session
       post 'sign_in', to: 'omniauth_callbacks#shibboleth', as: :new_session
       get 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
-      # TODO: I don't rember why I added this
-      # get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
     end
   else
-    # TODO: maybe the issue is here, review why this is here
     devise_for :users
   end
 
