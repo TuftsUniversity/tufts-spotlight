@@ -94,11 +94,10 @@ group :test do
   gem 'capybara-screenshot'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
-  # temp try a newer version was 4.1 (latest 4.4)
-  gem 'selenium-webdriver' # , '~> 4.4.0'
+  gem 'selenium-webdriver'
   gem 'simplecov'
   gem 'simplecov-lcov', '~> 0.8.0'
-  gem 'webdrivers' # temp, '~> 4.0', require: false
+  gem 'webdrivers'
 end
 
 # Not sure about theses
