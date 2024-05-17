@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     concerns :searchable
   end
 
-  if Rails.env.production? || Rails.env.tdldev?
+  if Rails.env.production? || Rails.env.stage?
     devise_for :users, controllers: { omniauth_callbacks: "omniauthcallbacks" }, skip: [:sessions]
     devise_scope :user do
       get 'users/sign_in', to: 'omniauth#new'
