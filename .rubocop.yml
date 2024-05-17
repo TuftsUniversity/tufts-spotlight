@@ -83,4 +83,4 @@ Rails/UnknownEnv:
     - production
     - development
     - test
-    - tdldev
+    - stage

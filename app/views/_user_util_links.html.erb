@@ -26,7 +26,7 @@
             </li>
             <li class="divider"></li>
           <% end %>
-          <% if Rails.env.production? || Rails.env.tdldev? %>
+          <% if Rails.env.production? || Rails.env.stage? %>
             <li><%= link_to t("hyrax.toolbar.profile.logout"), "#{request.base_url}/Shibboleth.sso/Logout?return=#{request.base_url}/sign_out" %> </li>
           <% else %>
             <li><%= link_to t("hyrax.toolbar.profile.logout"), main_app.destroy_user_session_path %></li>

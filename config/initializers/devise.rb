@@ -339,7 +339,7 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
-  if Rails.env.production? || Rails.env.tdldev?
+  if Rails.env.production? || Rails.env.stage?
     config.omniauth :shibboleth, {
       uid_field: 'uid',
       info_fields: { display_name: 'displayName', uid: 'uid', mail: 'mail' },

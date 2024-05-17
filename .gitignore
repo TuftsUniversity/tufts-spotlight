@@ -38,3 +38,6 @@ public/assets
 coverage/**
 
 .DS_Store
+
+# ignore bundled assets
+vendor/
