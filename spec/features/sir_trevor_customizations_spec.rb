@@ -51,9 +51,9 @@ feature 'Tufts Spotlight Blocks customizations' do
     add_autocomplete_item
     add_autocomplete_item
     add_autocomplete_item
-    sleep(10)
+    sleep(1000)
     # line below fails
-    # expect(ac.visible?).to be(false)
+    expect(ac.visible?).to be(false)
     expect(warning.visible?).to be(true)
 
     # Ac on - warning off, when removing sidebar (3 items)
