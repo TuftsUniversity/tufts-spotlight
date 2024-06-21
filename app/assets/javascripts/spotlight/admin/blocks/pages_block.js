@@ -96,7 +96,7 @@ SirTrevor.Blocks.FeaturedPages = (function(){
       SpotlightNestable.init($('[data-behavior="nestable"]', this.inner));
       $('[data-input-select-target]', this.inner).selectRelatedInput();
 
-      this.acInput = $('span.twitter-typeahead', this.inner);
+      this.acInput = $('span.data-twitter-typeahead', this.inner);
       this.makeWarningEl();
       this.resetAc(true);
 
