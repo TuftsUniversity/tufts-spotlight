@@ -78,9 +78,9 @@ SirTrevor.Blocks.FeaturedPages = (function(){
      *  Whether or not to reset the limit.
      */
     resetAc: function(resetLimit) {
-      if(typeof resetLimit !== undefined) {
-        this.setLimit();
-      }
+      // if(typeof resetLimit !== undefined) {
+      //  this.setLimit();
+      //}
 
       // Counts the items in the block and compares to limit.
       full = ($('li.dd-item', this.inner).length >= this.limit);
