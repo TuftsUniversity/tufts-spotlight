@@ -83,7 +83,7 @@ SirTrevor.Blocks.FeaturedPages = (function(){
       //}
 
       // Counts the items in the block and compares to limit.
-      full = ($('li.dd-item', this.inner).length >= this.limit);
+      // full = ($('li.dd-item', this.inner).length >= this.limit);
 
       this.toggleAutocomplete(full);
     },
