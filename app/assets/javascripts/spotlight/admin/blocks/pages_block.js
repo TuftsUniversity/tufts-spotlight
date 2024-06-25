@@ -114,7 +114,7 @@ SirTrevor.Blocks.FeaturedPages = (function(){
       // Don't run during page load. Wait until block is fully rendered.
       if(this.acInput) {
         // Code was firing before panel html was actually in the DOM.
-        window.setTimeout(this.toggleAutocomplete(true), 100);
+        window.setTimeout(this.acInput.hide(), 100);
       }
     },
 
