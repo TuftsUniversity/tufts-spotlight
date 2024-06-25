@@ -104,6 +104,7 @@ SirTrevor.Blocks.FeaturedPages = (function(){
       this.sidebarEl.on("change", function() {
         this.resetAc(true);
       }.bind(this));
+      this.acInput.hide()
     },
 
     /**
