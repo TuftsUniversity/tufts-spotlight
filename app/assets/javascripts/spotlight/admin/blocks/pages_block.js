@@ -113,6 +113,7 @@ SirTrevor.Blocks.FeaturedPages = (function(){
     afterPanelRender: function(data, panel) {
       // Don't run during page load. Wait until block is fully rendered.
       if(this.acInput) {
+        this.acInput.hide()
         // Code was firing before panel html was actually in the DOM.
         window.setTimeout(this.acInput.hide(), 100);
       }
