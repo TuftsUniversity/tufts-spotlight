@@ -105,7 +105,7 @@ SirTrevor.Blocks.FeaturedPages = (function(){
         this.resetAc(true);
       }.bind(this));
       this.acInput.hide()
-      window.setTimeout(this.acInput.hide(), 1000);
+      window.setTimeout(this.acInput.hide(), 100);
     },
 
     /**

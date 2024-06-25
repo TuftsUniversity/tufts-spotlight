@@ -51,6 +51,7 @@ feature 'Tufts Spotlight Blocks customizations' do
     add_autocomplete_item
     add_autocomplete_item
     add_autocomplete_item
+    
     sleep(100)
     # line below fails
     expect(ac.visible?).to be(false)
