@@ -28,7 +28,7 @@ feature 'Tufts Spotlight Blocks customizations' do
   end
 
   after(:each) do
-    errors = page.driver.browser.manage.logs.get(:browser)
+    errors = page.driver.browser.logs.get(:browser)
     if errors.present?
       message = errors.map(&:message).join("\n")
       puts message
