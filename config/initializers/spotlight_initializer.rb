@@ -83,3 +83,5 @@ Spotlight::Engine.config.ga_email = Rails.application.secrets.ga_email
 # Spotlight::Engine.config.page_configurations = {
 #   'my-local-config': ->(context) { context.my_custom_data_path(context.current_exhibit) }
 # }
+
+Spotlight::Engine.config.upload_dir = "public/uploads"

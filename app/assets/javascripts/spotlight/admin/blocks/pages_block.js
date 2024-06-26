@@ -14,8 +14,9 @@ SirTrevor.Blocks.FeaturedPages = (function(){
         .replace("%25QUERY", "%QUERY");
     },
     autocomplete_template: function() {
-      return '<div class="autocomplete-item{{#unless published}} blacklight-private{{/unless}}">{{log "Look at me"}}{{log thumbnail_image_url}}{{#if thumbnail_image_url}}<div class="document-thumbnail thumbnail"><img src="{{thumbnail_image_url}}" /></div>{{/if}}<span class="autocomplete-title">{{title}}</span><br/><small>&nbsp;&nbsp;{{description}}</small></div>'
+      return '<div class="autocomplete-item{{#unless published}} blacklight-private{{/unless}}">{{#if thumbnail_image_url}}<div class="document-thumbnail"><img class="img-thumbnail" src="{{thumbnail_image_url}}" /></div>{{/if}}<span class="autocomplete-title">{{title}}</span><br/><small>&nbsp;&nbsp;{{description}}</small></div>'
     },
+    
     bloodhoundOptions: function() {
       return {
         prefetch: {
@@ -77,14 +78,14 @@ SirTrevor.Blocks.FeaturedPages = (function(){
      *  Whether or not to reset the limit.
      */
     resetAc: function(resetLimit) {
-      if(typeof resetLimit !== undefined) {
-        this.setLimit();
-      }
+      // if(typeof resetLimit !== undefined) {
+      //  this.setLimit();
+      //}
 
       // Counts the items in the block and compares to limit.
-      full = ($('li.dd-item', this.inner).length >= this.limit);
+      // full = ($('li.dd-item', this.inner).length >= this.limit);
 
-      this.toggleAutocomplete(full);
+      this.toggleAutocomplete(true);
     },
 
     /**
@@ -103,6 +104,8 @@ SirTrevor.Blocks.FeaturedPages = (function(){
       this.sidebarEl.on("change", function() {
         this.resetAc(true);
       }.bind(this));
+      this.acInput.hide()
+      window.setTimeout(this.acInput.hide(), 100);
     },
 
     /**
@@ -112,8 +115,9 @@ SirTrevor.Blocks.FeaturedPages = (function(){
     afterPanelRender: function(data, panel) {
       // Don't run during page load. Wait until block is fully rendered.
       if(this.acInput) {
+        this.acInput.hide()
         // Code was firing before panel html was actually in the DOM.
-        window.setTimeout(this.resetAc.bind(this), 100);
+        window.setTimeout(this.acInput.hide(), 100);
       }
     },
 
