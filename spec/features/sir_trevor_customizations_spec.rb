@@ -27,6 +27,14 @@ feature 'Tufts Spotlight Blocks customizations' do
     visit(spotlight.edit_exhibit_feature_page_path(exhibit, feature_page))
   end
 
+  after(:each) do
+    errors = page.driver.browser.manage.logs.get(:browser)
+    if errors.present?
+      message = errors.map(&:message).join("\n")
+      puts message
+    end
+  end
+
   scenario 'adds captions to the solr documents embed block', js: true do
     add_block('solr_documents_embed')
     expect(page).to have_css('.primary-caption')
@@ -51,7 +59,7 @@ feature 'Tufts Spotlight Blocks customizations' do
     add_autocomplete_item
     add_autocomplete_item
     add_autocomplete_item
-    
+
     sleep(100)
     # line below fails
     expect(ac.visible?).to be(false)
