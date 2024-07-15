@@ -32,7 +32,7 @@ namespace :tufts do
   desc 'Copy config files'
   task configs: :environment do
     %w[blacklight solr ldap].each do |f|
-      next if File.exist?(Rails.root.join('config', "#{f}.yml"))
+      next if Rails.root.join('config', "#{f}.yml").exist?
       FileUtils.cp(
         Rails.root.join('config', "#{f}.yml.sample"),
         Rails.root.join('config', "#{f}.yml")

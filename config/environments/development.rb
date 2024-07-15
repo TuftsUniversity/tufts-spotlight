@@ -10,9 +10,6 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
-  # This resolves an issue loading symbols causing pysch disallowed class error
-  # Check out https://discuss.rubyonrails.org/t/cve-2022-32224-possible-rce-escalation-bug-with-serialized-columns-in-active-record/81017
-  config.active_record.yaml_column_permitted_classes = [Symbol, Hash, HashWithIndifferentAccess]
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local = true
@@ -83,4 +80,10 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  config.after_initialize do
+    # This resolves an issue loading symbols causing pysch disallowed class error
+    # Check out https://discuss.rubyonrails.org/t/cve-2022-32224-possible-rce-escalation-bug-with-serialized-columns-in-active-record/81017
+    config.active_record.yaml_column_permitted_classes = [Symbol, Hash, ActiveSupport::HashWithIndifferentAccess]
+  end
 end

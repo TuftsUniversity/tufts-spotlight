@@ -1,42 +1,57 @@
-<% if show_contact_form? %>
+<% if show_contact_form? && (current_exhibit.nil? || !current_page?(spotlight.new_exhibit_contact_form_path(current_exhibit))) %>
   <div id="report-problem-form">
     <%= render 'spotlight/shared/report_a_problem' %>
   </div>
 <% end %>
 
-<div class="masthead <%= 'image-masthead' if current_masthead %> <%= 'resource-masthead' if resource_masthead? %>">
+<%- masthead_navbar = capture do %>
+  <% if content_for? :masthead_navbar %>
+    <%= content_for :masthead_navbar %>
+  <% elsif current_exhibit %>
+    <%= render 'shared/exhibit_navbar' %>
+  <% else %>
+    <%= render 'shared/site_navbar' %>
+  <% end %>
+<% end %>
+
+<header class="masthead <%= 'image-masthead' if current_masthead %> <%= 'resource-masthead' if resource_masthead? %>" role="banner">
   <% if current_masthead %>
     <span class='background-container' style="background-image: url('<%= current_masthead.iiif_url %>')"></span>
     <span class='background-container-gradient'></span>
   <% end %>
 
-  <%= render 'shared/exhibit_navbar' if current_exhibit && resource_masthead? %>
+  <%= masthead_navbar if resource_masthead? %>
 
   <div class="container site-title-container">
-    <div class="site-title h1">
+    <div class="site-title-wrapper">
       <% if content_for? :masthead %>
-        <%= content_for :masthead %>
-      <% elsif current_exhibit %>
-        <%= current_exhibit.title %>
-        <% if current_exhibit.subtitle.present? %>
-          <small><%= current_exhibit.subtitle %></small>
-        <% end %>
+        <h1 class="site-title h2">
+          <%= content_for :masthead %>
+        </h1>
+      <%# Our Custom Code %>
       <% else %>
         <% if params[:tag] == "Tisch Library" %>
-          Tisch Library Exhibits
+          <h1 class="site-title h2">
+            Tisch Library Exhibits
+          </h1>
         <% elsif params[:tag] == "Tufts Archives" %>
-          Tufts Archives Exhibits
+          <h1 class="site-title h2">
+            Tufts Archives Exhibits
+          </h1>
         <% else %>
-          <%= application_name %>
+          <h1 class="site-title h2">
+            <%= application_name %>
+          </h1>
           <% if current_site.subtitle.present? %>
             <small><%= current_site.subtitle %></small>
           <% end%>
         <% end %>
+        <%# end of stuff changed %>
       <% end %>
     </div>
   </div>
 
-  <%= render 'shared/exhibit_navbar' if current_exhibit && !resource_masthead? %>
-</div>
+  <%= masthead_navbar unless resource_masthead? %>
+</header>
 
 <%= render 'shared/breadcrumbs' unless resource_masthead? %>
