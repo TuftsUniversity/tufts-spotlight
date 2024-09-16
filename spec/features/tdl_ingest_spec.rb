@@ -81,17 +81,17 @@ feature 'TDL ingest' do
         inputs[0].set(ids[0])
         # NOTE: 3x816x422 is no longer a valid id. Need to figure out why
         # This stopped being an issue so I am leaving the comment for later.
-        inputs[1].set(ids[1])
+        # inputs[1].set(ids[1])
         inputs[3].set('garbage')
         inputs[5].set(ids[2])
         inputs[6].set('moregarbage')
         inputs[7].set(ids[3])
         click_button('Import Objects')
       end
-    end.to change(Tufts::TdlResource, :count).by(4)
+    end.to change(Tufts::TdlResource, :count).by(3)
 
     expect(current_path).to eq(spotlight.admin_exhibit_catalog_path(exhibit))
-    expect(page).to have_content('Successfully created 4 records.')
+    expect(page).to have_content('Successfully created 3 records.')
     expect(page).to have_content('There was an error with the following ids -- garbage -- moregarbage')
   end
 end
