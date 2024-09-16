@@ -20,7 +20,7 @@ gem 'jquery-rails'
 gem 'jbuilder'
 
 gem 'blacklight', '7.35.0'
-gem 'blacklight-spotlight', tag: 'v3.4.4', git: 'https://github.com/projectblacklight/spotlight.git'
+gem 'blacklight-spotlight', tag: 'v3.4.4'
 gem 'rsolr'
 gem 'solrizer'
 
