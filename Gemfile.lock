@@ -593,7 +593,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  base64 (= 0.1.1)
   bixby
   blacklight (= 7.35.0)
   blacklight-gallery
