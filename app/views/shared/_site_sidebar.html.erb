@@ -1,6 +1,5 @@
 <% unless user_signed_in? %>
 <h3 class="nav-heading">See also</h3>
-<hr>
 <ul class="nav sidenav flex-column">
   <li><%= link_to "Tufts Digital Library", "http://dl.tufts.edu/" %></li>
   <li><%= link_to "Tufts Archival Research Center", "http://tarc.tufts.edu" %></li>
@@ -10,7 +9,6 @@
 
 <% if can?(:manage, Spotlight::Site.instance) || can?(:create, Spotlight::Exhibit) %>
 <h4 class="nav-heading"><%=t(:'.header') %></h4>
-<hr>
 <ul class="nav sidenav flex-column">
   <li><%= link_to t('.documentation'), 'https://github.com/projectblacklight/spotlight/wiki/Configuration-settings' %></li>
 
