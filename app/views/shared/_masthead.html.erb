@@ -26,6 +26,7 @@
     <div class="site-title-wrapper">
       <% if content_for? :masthead %>
         <h1 class="site-title h2">
+          Our Content
           <%= content_for :masthead %>
         </h1>
       <%# Our Custom Code %>
@@ -40,6 +41,7 @@
           </h1>
         <% else %>
           <h1 class="site-title h2">
+            Fallback name
             <%= application_name %>
           </h1>
           <% if current_site.subtitle.present? %>
@@ -52,6 +54,7 @@
   </div>
 
   <%= masthead_navbar unless resource_masthead? %>
+  here
 </header>
 
 <%= render 'shared/breadcrumbs' unless resource_masthead? %>
