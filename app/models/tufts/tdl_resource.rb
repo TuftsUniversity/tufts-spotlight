@@ -20,11 +20,11 @@ module Tufts
     #
     # Wrapping super function in exception handling,
     #   so users don't see uncaught exceptions if the url is bad.
-    def url_is_iiif?(url)
-      super
-    rescue StandardError
-      false
-    end
+    # def url_is_iiif?(url)
+    #   super
+    # rescue StandardError
+    #   false
+    # end
 
     ##
     # @function
