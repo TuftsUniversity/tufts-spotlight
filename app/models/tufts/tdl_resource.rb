@@ -29,19 +29,21 @@ module Tufts
     # need to override this to have solr car
     def self.indexing_pipeline
       @indexing_pipeline ||= super.dup.tap do |pipeline|
-        pipeline.transforms = [Spotlight::Etl::Transforms::SourceMethodTransform(:solr_doc)] + pipeline.transforms
+        # pipeline.transforms = [Spotlight::Etl::Transforms::SourceMethodTransform(:solr_doc)] + pipeline.transforms
         # maybe I add a new sources?
-        # pipeline.sources = [Spotlight::Etl::Sources::SourceMethodSource(:iiif_manifests), ]
+        pipeline.sources = [Spotlight::Etl::Sources::SourceMethodSource(:iiif_manifests), Spotlight::Etl::Transforms::SourceMethodTransform(:solr_doc)]
 
-        # pipeline.transforms = [
-        #   ->(data, p) { data.merge(p.source.to_solr(exhibit: p.context.resource.exhibit)) }
-        # ] + pipeline.transforms
+        pipeline.transforms = [
+          ->(data, p) { data.merge(p.source.to_solr(exhibit: p.context.resource.exhibit)) },
+
+        ] + pipeline.transforms
 
         # pipeline.transforms = [
         #   ->(data, p) { data.merge(p.source.to_solr(exhibit: p.context.resource.exhibit)) },
         #   ->(data, p) { data.merge({ p.context.document_model.unique_key.to_sym => p.source.compound_id }) },
         #     Spotlight::Etl::Transforms::SourceMethodTransform(:solr_doc)
         # ] + pipeline.transforms
+        Rails.logger.info "Indexing pipleline step for tdl_reasource"
       end
     end
 
