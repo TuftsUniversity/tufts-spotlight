@@ -8,6 +8,7 @@ module Tufts
     # Lets users input just the id of the resource, instead of the full manifest URL.
     # Also allows bulk importing.
     def create
+      Rails.logger.info "tdl_reasource created"
       ids = params['resource']['ids']
       bad_ids = []
       successes = 0
