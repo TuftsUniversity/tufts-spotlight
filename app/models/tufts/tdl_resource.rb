@@ -21,6 +21,7 @@ module Tufts
     # Wrapping super function in exception handling,
     #   so users don't see uncaught exceptions if the url is bad.
     def url_is_iiif?(url)
+      Rails.logger.info "tdl_reasource called url_is_iiif?"
       super
     rescue StandardError
       false
@@ -28,6 +29,7 @@ module Tufts
 
     # need to override this to have solr car
     def self.indexing_pipeline
+      Rails.logger.info "tdl_reasource starting index_pipeline"
       @indexing_pipeline ||= super.dup.tap do |pipeline|
         # pipeline.transforms = [Spotlight::Etl::Transforms::SourceMethodTransform(:solr_doc)] + pipeline.transforms
         # maybe I add a new sources?
@@ -54,6 +56,7 @@ module Tufts
     # @function
     # Retrieves the SolrDocument id via the shared sidecar.
     def doc_id
+      Rails.logger.info "tdl_reasource called doc_id"
       sidecar.document_id
     end
 
@@ -61,6 +64,7 @@ module Tufts
     # @function
     # An easy way to get to the SolrDocument created from this resource.
     def solr_doc
+      Rails.logger.info "tdl_reasource called solr_doc"
       SolrDocument.find(doc_id)
     end
 
@@ -68,6 +72,7 @@ module Tufts
     # @function
     # An easy way to get to the SolrDocumentSidecar of this resource.
     def sidecar
+      Rails.logger.info "tdl_reasource called sidecar"
       solr_document_sidecars.find_by(exhibit_id: exhibit_id)
     end
   end
