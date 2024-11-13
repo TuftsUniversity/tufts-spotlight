@@ -38,6 +38,7 @@ module Tufts
     end
 
     def resource_class
+      Rails.logger.info "tdl_reasource resource_class called"
       Tufts::TdlResource
     end
   end
