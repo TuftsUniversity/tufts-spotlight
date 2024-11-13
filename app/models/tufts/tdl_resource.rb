@@ -31,7 +31,7 @@ module Tufts
       @indexing_pipeline ||= super.dup.tap do |pipeline|
         # pipeline.transforms = [Spotlight::Etl::Transforms::SourceMethodTransform(:solr_doc)] + pipeline.transforms
         # maybe I add a new sources?
-        pipeline.sources = [Spotlight::Etl::Sources::SourceMethodSource(:iiif_manifests), Spotlight::Etl::Transforms::SourceMethodTransform(:solr_doc)]
+        pipeline.sources = [Spotlight::Etl::Sources::SourceMethodSource(:iiif_manifests), Spotlight::Etl::Sources::SourceMethodSource(:solr_doc)]
 
         pipeline.transforms = [
           ->(data, p) { data.merge(p.source.to_solr(exhibit: p.context.resource.exhibit)) },
@@ -44,6 +44,7 @@ module Tufts
         #     Spotlight::Etl::Transforms::SourceMethodTransform(:solr_doc)
         # ] + pipeline.transforms
         Rails.logger.info "Indexing pipleline step for tdl_reasource"
+        # maybe log and see formate  of solr_doc
       end
     end
 
