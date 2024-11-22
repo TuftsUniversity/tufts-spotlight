@@ -2,7 +2,7 @@
 
 SirTrevor.Blocks.SolrDocumentsEmbed = (function(){
 
-  return SirTrevor.Blocks.SolrDocuments.extend({
+  return SirTrevor.Blocks.SolrDocumentsBase.extend({
     type: "solr_documents_embed",
 
     icon_name: "item_embed",
