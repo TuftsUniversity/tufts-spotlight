@@ -16,5 +16,9 @@ module Spotlight
     # -- all .rb files in that directory are automatically loaded.
 
     config.eager_load_paths << Rails.root.join('lib')
+
+    # Un comment these if you need web console in dev
+    # config.web_console.permissions = '0.0.0.0/0'
+    # config.web_console.development_only = false
   end
 end

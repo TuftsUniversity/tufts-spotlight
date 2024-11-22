@@ -9,7 +9,7 @@ feature 'Views customizations' do
   # Checks that the sign-in link is removed.
   scenario 'Removed Sign in link' do
     visit(root_path)
-    within('#header-navbar') do
+    within('.navbar') do
       expect(page).to have_no_selector(:link, 'Sign in')
     end
   end
@@ -21,7 +21,7 @@ feature 'Views customizations' do
     let(:image) do
       FactoryBot.create(
         :featured_image,
-        image: File.open(Rails.root.join('spec', 'fixtures', 'stego.jpg'))
+        image: Rails.root.join('spec', 'fixtures', 'stego.jpg').open
       )
     end
     let(:upload) do

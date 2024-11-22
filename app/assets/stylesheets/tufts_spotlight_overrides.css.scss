@@ -1,11 +1,10 @@
 /** General **/
-@font-face{
-  font-family:"Meta Serif";
-  src:font-url("b95879a4-6677-40bf-9528-ffecf9b247e4.eot?#iefix");
-  src:font-url("b95879a4-6677-40bf-9528-ffecf9b247e4.eot?#iefix") format("eot"),
-  font-url("540baff3-1dae-4349-b607-d71e6a8d5a3e.woff2") format("woff2"),
-  font-url("329d96cf-0721-417a-9888-cc6b095163c3.woff") format("woff"),
-  font-url("c46c5707-21ab-4331-99d5-197ac889ffc7.ttf") format("truetype");
+@font-face {
+  font-family: 'Proxima Nova';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/l/font?kit=FwZc7-Am2FI_-VOxaLDvvq27omO73q3LkQ&skey=96867d716c89840e&v=v19) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 $logo_image: 'tufts_logo.png';
@@ -14,9 +13,10 @@ $dark_tufts_blue: #2a5c89;
 
 body {
   background-color: #FEFEFA;
-  font-family: "Gotham SSm A", "Gotham SSm B";
+  font-family: 'proxima-nova', sans-serif;
+  //font-family: "Gotham SSm A", "Gotham SSm B";
   //font-family: "Whitney SSm A", "Whitney SSm B";
-  font-size: 13px;
+  //font-size: 13px;
 }
 
 h1, h2, h3, .h1, .h1 small {
@@ -52,7 +52,15 @@ hr {
   color: #FEFEFA;
 }
 
+masthead .h1 {
+  color: #FEFEFA;
+}
+
 #header-navbar .navbar-brand {
+  background-image: asset-url($logo_image);
+}
+
+.navbar .container .navbar-brand {
   background-image: asset-url($logo_image);
 }
 
@@ -63,16 +71,26 @@ hr {
   }
 }
 
-.navbar-inverse {
-  background-color: $light_tufts_blue;
+.topbar {
+  background-color: $light_tufts_blue !important;
+}
 
-  .navbar-brand {
-    padding-top: 10px;
-    margin-top: 10px;
-  }
+.navbar-brand {
+  padding-top: 10px;
+  margin-top: 10px;
+}
 
+/** Navbrand image feels like it crowds to bottom of the nav bar. **/
+.navbar .container {
+  padding-bottom: 5px;
+}
+
+.topbar .container .navbar-collapse {
   .navbar-nav > li > a {
     color: #FFF;
+    /** this should realy be a pr3 pl3 class but it is hidden away on an "action"**/
+    padding-left: 10px;
+    padding-right: 10px;
 
     &:hover {
       color: #FFF;
@@ -80,6 +98,13 @@ hr {
     }
   }
 }
+
+.sidenav > li {
+  &:hover {
+    background-color: #e8e3e7;
+  }
+}
+
 
 .site-title small {
   white-space: normal;
