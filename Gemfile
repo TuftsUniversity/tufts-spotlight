@@ -20,7 +20,7 @@ gem 'jquery-rails'
 gem 'jbuilder'
 
 gem 'blacklight', '7.35.0'
-gem 'blacklight-spotlight', tag: 'v4.0.3'
+gem 'blacklight-spotlight', tag: 'v4.3.6'
 gem 'bootstrap_form', '~> 4.0'
 gem 'rsolr'
 gem 'solrizer'
