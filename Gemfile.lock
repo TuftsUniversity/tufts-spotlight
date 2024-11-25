@@ -599,6 +599,7 @@ DEPENDENCIES
   blacklight-oembed
   blacklight-spotlight
   bootstrap (~> 4.0)
+  bootstrap_form (~> 4.0)
   byebug
   capybara
   capybara-maleficent

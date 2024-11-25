@@ -4,3 +4,4 @@
 //= link application.js
 
 //= link blacklight_gallery/manifest.js
+//= link spotlight/manifest.js
