@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 ruby '3.2.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '7.0.2'
+gem 'rails', '7.0.4'
 # Use sqlite3 as the database for Active Record
 gem 'mysql2'
 # Use SCSS for stylesheets
@@ -19,8 +19,8 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 
-gem 'blacklight', '7.35.0'
-gem 'blacklight-spotlight', tag: 'v4.3.6'
+gem 'blacklight', '8.6.0'
+gem 'blacklight-spotlight', '4.3.6'
 gem 'bootstrap_form', '~> 4.0'
 gem 'rsolr'
 gem 'solrizer'
