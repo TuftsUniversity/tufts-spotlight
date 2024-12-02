@@ -4,8 +4,6 @@
 # Simplified catalog controller
 class CatalogController < ApplicationController
   include Blacklight::Catalog
-  # TODO: fubd replacement for this in blacklight 8
-  # include Blacklight::DefaultComponentConfiguration
 
   configure_blacklight do |config|
     config.show.oembed_field = :oembed_url_ssm
