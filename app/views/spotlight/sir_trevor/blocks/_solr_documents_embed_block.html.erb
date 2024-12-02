@@ -4,7 +4,7 @@
 
   <% if solr_documents_embed_block.documents? %>
     <%# Changed col-md to col-xs universal viewer takes up more space than open sea dragon %>
-    <div class="items-col <%= solr_documents_embed_block.text? ? "col-xs-6" : "col-md-12" %> <%= solr_documents_embed_block.content_align == 'right' ? 'float-right' : 'float-left' %>">
+    <div class="items-col <%= solr_documents_embed_block.text? ? "col-xs-6" : "col-md-12" %> <%= solr_documents_embed_block.content_align == 'right' ? 'float-right float-end' : 'float-left float-start' %>">
       <% unless solr_documents_embed_block.text? %>
         <% unless solr_documents_embed_block.title.blank? %>
 
@@ -17,7 +17,9 @@
             <% doc_presenter = document_presenter(document) %>
           <%# end of our code%>
           <div class="box" data-id="<%= document.id %>">
-            <%= render_document_partials document, blacklight_config.view.embed.partials, (blacklight_config.view.embed.locals || {}).reverse_merge(block: solr_documents_embed_block) %>
+          <%# end of our code%>
+          <%# not sure if this is right%>
+            <%= render '/spotlight/sir_trevor/blocks/embedded_document', document: document, block: solr_documents_embed_block %>
             <%# Our code %>
             <% if solr_documents_embed_block.primary_caption? %>
               <div class="caption primary-caption">
