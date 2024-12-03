@@ -47,7 +47,7 @@ gem "bootstrap", "~> 4.0"
 gem "sassc-rails", "~> 2.1"
 
 # Tempoary until ruby 3 switch is finallized (come back after transistion)
-# gem 'base64', '0.1.1'
+gem 'base64', '0.1.1'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
