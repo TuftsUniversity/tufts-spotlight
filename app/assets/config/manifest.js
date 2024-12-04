@@ -5,4 +5,8 @@
 
 //= link blacklight_gallery/manifest.js
 //= link spotlight/manifest.js
-//= link openseadragon/mainfest.js
+
+// link openseadragon/mainfest.js
+
+// link openseadragon/mainfest.js
+//= link_tree ../../../../vendor/assets/javascripts .js
