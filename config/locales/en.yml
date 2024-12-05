@@ -34,4 +34,7 @@ en:
     attributes:
       "spotlight/page":
         in_menu?: "In menu"
+  omniauth:
+    shibboleth:
+      failure: "Shibboleth isn't available - local login only"
 

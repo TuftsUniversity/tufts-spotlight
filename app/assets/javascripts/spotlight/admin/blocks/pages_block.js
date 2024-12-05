@@ -1,8 +1,8 @@
-//= require spotlight/admin/blocks/resources_block
+import Core from 'spotlight/core'
 
 SirTrevor.Blocks.FeaturedPages = (function(){
 
-  return Spotlight.Block.Resources.extend({
+  return Core.Block.Resources.extend({
     type: "featured_pages",
 
     icon_name: "pages",
@@ -13,9 +13,12 @@ SirTrevor.Blocks.FeaturedPages = (function(){
         .data('autocomplete-exhibit-pages-path')
         .replace("%25QUERY", "%QUERY");
     },
-    autocomplete_template: function() {
-      return '<div class="autocomplete-item{{#unless published}} blacklight-private{{/unless}}">{{log "Look at me"}}{{log thumbnail_image_url}}{{#if thumbnail_image_url}}<div class="document-thumbnail thumbnail"><img src="{{thumbnail_image_url}}" /></div>{{/if}}<span class="autocomplete-title">{{title}}</span><br/><small>&nbsp;&nbsp;{{description}}</small></div>'
+    autocomplete_template: function(obj) {
+      const thumbnail = obj.thumbnail_image_url ? `<div class="document-thumbnail"><img class="img-thumbnail" src="${obj.thumbnail_image_url}" /></div>` : ''
+      return `<div class="autocomplete-item${!obj.published ? ' blacklight-private' : ''}">${thumbnail}
+      <span class="autocomplete-title">${obj.title}</span><br/><small>&nbsp;&nbsp;${obj.description}</small></div>`
     },
+    
     bloodhoundOptions: function() {
       return {
         prefetch: {

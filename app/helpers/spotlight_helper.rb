@@ -5,6 +5,9 @@
 module SpotlightHelper
   include ::BlacklightHelper
   include Spotlight::MainAppHelpers
+  def iiif_manifest(manifest_service:)
+    manifest_service.url
+  end
 
   ##
   # Cuts text fields down to a specific length and adds ellipses.

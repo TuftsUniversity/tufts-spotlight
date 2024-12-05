@@ -15,7 +15,7 @@ module Spotlight
         custom_field = custom_fields[key]
         field_name = custom_field.solr_field if custom_field
         field_name ||= key
-        solr_hash[field_name] = value
+        solr_hash[field_name] = convert_stored_value_to_solr(value)
       end
     end
   end

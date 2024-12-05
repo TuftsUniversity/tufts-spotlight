@@ -9,12 +9,13 @@ class CatalogController < ApplicationController
     config.show.oembed_field = :oembed_url_ssm
     config.show.partials.insert(1, :oembed)
 
-    config.view.gallery.partials = %i[index_header index]
-    config.view.masonry.partials = [:index]
-    config.view.slideshow.partials = [:index]
+    # Needed for blacklight-galary
+    config.view.gallery.document_component = Blacklight::Gallery::DocumentComponent
+    config.view.masonry.document_component = Blacklight::Gallery::DocumentComponent
+    config.view.slideshow.document_component = Blacklight::Gallery::SlideshowComponent
 
     config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
-    config.show.partials.insert(1, :openseadragon)
+    config.show.partials.insert(1, :universal_viewer_default)
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = {
       qt: 'search',
@@ -47,9 +48,9 @@ class CatalogController < ApplicationController
     config.add_show_field('citation_tesim', label: 'Citation')
     config.add_show_field('permanent_url_tesim', label: 'Permanent URL', helper_method: 'make_this_a_link')
 
-    config.add_search_field 'all_fields', label: 'Everything'
+    config.add_search_field 'all_fields', label: I18n.t('spotlight.search.fields.search.all_fields')
 
-    config.add_sort_field 'relevance', sort: 'score desc', label: 'Relevance'
+    config.add_sort_field 'relevance', sort: 'score desc', label: I18n.t('spotlight.search.fields.sort.relevance')
 
     config.add_field_configuration_to_solr_request!
 
@@ -63,6 +64,21 @@ class CatalogController < ApplicationController
     config.add_facet_field('area_of_interest_sim', label: 'Area of Interest')
     config.add_facet_field 'spotlight_upload_date_tesim', label: 'Date', limit: 7
 
+    config.add_facet_fields_to_solr_request!
+
+    # new blacklight configure for version 7
+    config.add_results_document_tool(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
+
+    config.add_show_tools_partial(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
+    config.add_show_tools_partial(:email, callback: :email_action, validator: :validate_email_params)
+    config.add_show_tools_partial(:sms, if: :render_sms_action?, callback: :sms_action, validator: :validate_sms_params)
+    config.add_show_tools_partial(:citation)
+
+    config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
+    config.add_nav_action(:search_history, partial: 'blacklight/nav/search_history')
+
+    # enable facets:
+    # https://github.com/projectblacklight/spotlight/issues/1812#issuecomment-327345318
     config.add_facet_fields_to_solr_request!
   end
 end

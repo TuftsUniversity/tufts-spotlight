@@ -3,7 +3,7 @@
 class SearchBuilder < Blacklight::SearchBuilder
   include Blacklight::Solr::SearchBuilderBehavior
 
-  include Spotlight::AccessControlsEnforcementSearchBuilder
+  include Spotlight::SearchBuilder
 
   self.default_processor_chain += [:add_non_iiif_image_field_to_searches]
 
