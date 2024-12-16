@@ -17,7 +17,7 @@
     <link href="<%= current_exhibit ? spotlight.opensearch_exhibit_catalog_url(current_exhibit, format: 'xml') : main_app.opensearch_catalog_url(format: 'xml') %>" title="<%= application_name %>" type="application/opensearchdescription+xml" rel="search"/>
     <%= favicon_link_tag 'favicon.ico' %>
     <%= stylesheet_link_tag    "application" %>
-    <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/6706294/7509792/css/fonts.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/weh5hzx.css">
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <%= content_for(:head) %>
